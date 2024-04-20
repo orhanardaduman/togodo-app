@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupGridLayout.swift":
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.o"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.swiftconstvalues"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.d"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.dia"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupGridLayout.swiftdeps"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupListVC.swift":
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.swiftconstvalues"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.o"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupListVC.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailVideoCell.swift":
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.dia"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.swiftconstvalues"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.o"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.d"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAssetGroupDetailVideoCell.swiftdeps"

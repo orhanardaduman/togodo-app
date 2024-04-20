@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImageAssetExporter.swift":
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.swiftconstvalues"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.dia"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageAssetExporter.swiftdeps"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageDataManager.swift":
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.swiftdeps"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.d"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageDataManager.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageBaseManager.swift":
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.swiftconstvalues"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.dia"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.swiftdeps"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKImageBaseManager.d"

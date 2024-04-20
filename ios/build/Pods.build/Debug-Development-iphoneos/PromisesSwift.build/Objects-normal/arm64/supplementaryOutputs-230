@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesSwift/Sources/Promises/Promise+Do.swift":
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Do.o"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Do.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Do.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Do.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Do.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesSwift/Sources/Promises/Promise+Delay.swift":
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Delay.swiftdeps"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Delay.o"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Delay.swiftconstvalues"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Delay.d"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Delay.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesSwift/Sources/Promises/Promise+Catch.swift":
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Catch.swiftdeps"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Catch.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Catch.dia"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Catch.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesSwift.build/Objects-normal/arm64/Promise+Catch.swiftconstvalues"

@@ -1,0 +1,75 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s15ua_client_hints19UAClientHintsPluginC8register4withySo07FlutterF9Registrar_p_tFZ",
+            "_$s15ua_client_hints19UAClientHintsPluginC6deviceSSyF",
+            "_$s15ua_client_hints19UAClientHintsPluginCMn",
+            "_ua_client_hintsVersionNumber",
+            "_$s15ua_client_hints19UAClientHintsPluginCACycfc",
+            "_ua_client_hintsVersionString",
+            "_$s15ua_client_hints19UAClientHintsPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctF",
+            "_$s15ua_client_hints19UAClientHintsPluginCN",
+            "_$s15ua_client_hints19UAClientHintsPluginC7cpuTypeSSyFTq",
+            "_$s15ua_client_hints19UAClientHintsPluginCfD",
+            "_$s15ua_client_hints19UAClientHintsPluginC7cpuTypeSSyF",
+            "_$s15ua_client_hints19UAClientHintsPluginC6deviceSSyFTq",
+            "_$s15ua_client_hints19UAClientHintsPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctFTq",
+            "_$s15ua_client_hints19UAClientHintsPluginCACycfC",
+            "_$s15ua_client_hints19UAClientHintsPluginCMa"
+          ],
+          "objc_class": [
+            "PodsDummy_ua_client_hints",
+            "_TtC15ua_client_hints19UAClientHintsPlugin"
+          ]
+        }
+      },
+      {
+        "data": {
+          "global": [
+            "_Swift51Overrides"
+          ]
+        },
+        "targets": [
+          "x86_64-ios-simulator"
+        ],
+        "text": {
+          "global": [
+            "__Z34_swiftoverride_class_getSuperclassPKN5swift14TargetMetadataINS_9InProcessEEE",
+            "__ZN5swift39swift51override_conformsToSwiftProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEN7__swift9__runtime4llvm9StringRefEPFPKNS_35TargetProtocolConformanceDescriptorIS1_EES4_S8_SC_E"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/ua_client_hints.framework/ua_client_hints"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "13",
+        "target": "x86_64-ios-simulator"
+      },
+      {
+        "min_deployment": "14",
+        "target": "arm64-ios-simulator"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

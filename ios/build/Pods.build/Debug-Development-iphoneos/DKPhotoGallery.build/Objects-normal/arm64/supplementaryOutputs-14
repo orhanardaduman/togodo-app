@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/QRCode/DKPhotoQRCodeResultVC.swift":
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.o"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.dia"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.swiftconstvalues"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoQRCodeResultVC.d"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/QRCode/DKPhotoWebVC.swift":
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.o"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.d"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.dia"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.swiftdeps"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoWebVC.swiftconstvalues"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPlayerView.swift":
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.dia"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.o"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPlayerView.swiftdeps"

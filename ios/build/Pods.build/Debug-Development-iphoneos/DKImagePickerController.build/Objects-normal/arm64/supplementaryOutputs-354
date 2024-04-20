@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Export.swift":
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.swiftdeps"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Fetch.swift":
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.dia"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.swiftdeps"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.d"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset.swift":
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.dia"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.o"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.d"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.swiftdeps"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/DKImagePickerController.build/Objects-normal/arm64/DKAsset.swiftconstvalues"

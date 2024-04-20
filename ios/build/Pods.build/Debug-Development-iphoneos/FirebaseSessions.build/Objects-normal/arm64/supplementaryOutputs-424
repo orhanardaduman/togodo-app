@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Public/SessionsDependencies.swift":
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionsDependencies.dia"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionsDependencies.o"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionsDependencies.swiftconstvalues"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionsDependencies.d"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionsDependencies.swiftdeps"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionGenerator.swift":
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionGenerator.o"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionGenerator.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionGenerator.dia"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionGenerator.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionGenerator.swiftconstvalues"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/SessionInitiator.swift":
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionInitiator.dia"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionInitiator.swiftconstvalues"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionInitiator.d"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionInitiator.swiftdeps"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/SessionInitiator.o"

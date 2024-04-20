@@ -1,0 +1,24 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Settings/LocalOverrideSettings.swift":
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.dia"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.swiftconstvalues"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.d"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/LocalOverrideSettings.o"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Installations+InstallationsProtocol.swift":
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.swiftconstvalues"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.o"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.d"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Installations+InstallationsProtocol.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/GoogleDataTransport+GoogleDataTransportProtocol.swift":
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.swiftdeps"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.d"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.o"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.swiftconstvalues"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/GoogleDataTransport+GoogleDataTransportProtocol.dia"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/FirebaseSessionsError.swift":
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.swiftdeps"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.dia"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/FirebaseSessionsError.d"

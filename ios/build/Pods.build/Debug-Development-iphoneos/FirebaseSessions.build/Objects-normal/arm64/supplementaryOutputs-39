@@ -1,0 +1,18 @@
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Development/NanoPB+CustomStringConvertible.swift":
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.swiftdeps"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.o"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.dia"
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NanoPB+CustomStringConvertible.d"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/NetworkInfo.swift":
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.d"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.dia"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.o"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.swiftdeps"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/NetworkInfo.swiftconstvalues"
+"/Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseSessions/FirebaseSessions/Sources/Logger.swift":
+  dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.d"
+  const-values: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.swiftconstvalues"
+  swift-dependencies: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.swiftdeps"
+  diagnostics: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.dia"
+  object: "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseSessions.build/Objects-normal/arm64/Logger.o"

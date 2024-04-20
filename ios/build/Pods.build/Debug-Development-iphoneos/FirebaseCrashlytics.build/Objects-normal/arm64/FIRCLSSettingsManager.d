@@ -1,0 +1,43 @@
+dependencies: \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/FirebaseCrashlytics.build/module.modulemap \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Settings/FIRCLSSettingsManager.m \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Settings/FIRCLSSettingsManager.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromises.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/PromisesObjC.build/module.modulemap \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/Target\ Support\ Files/PromisesObjC/PromisesObjC-umbrella.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+All.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromiseError.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Always.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Any.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Async.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Await.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Catch.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Delay.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Do.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Race.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Recover.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Reduce.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Retry.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Testing.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Then.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Timeout.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Validate.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Wrap.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/DataCollection/FIRCLSDataCollectionToken.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSDefines.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Helpers/FIRCLSLogger.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSFileManager.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSInstallIdentifierModel.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Models/FIRCLSSettings.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Settings/Models/FIRCLSApplicationIdentifierModel.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Components/FIRCLSApplication.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Settings/Operations/FIRCLSDownloadAndSaveSettingsOperation.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Crashlytics/Settings/Operations/FIRCLSNetworkOperation.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSOperation/FIRCLSOperation.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSOperation/FIRCLSCompoundOperation.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSOperation/FIRCLSFABAsyncOperation.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSOperation/FIRCLSFABAsyncOperation_Private.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSConstants.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSNetworking/FIRCLSFABNetworkClient.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCrashlytics/Crashlytics/Shared/FIRCLSNetworking/FIRCLSURLBuilder.h

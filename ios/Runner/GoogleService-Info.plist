@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>623189034780-chk7up4jjfbv6remu2fp4415os3043lv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.623189034780-chk7up4jjfbv6remu2fp4415os3043lv</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>623189034780-205gv70f5t052v5mtbsv0mjp0pcltj60.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBXZw6ANjZtApp9W_gJ6-4KHAmIj1AheJI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>623189034780</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.togodo.co.dev</string>
+	<key>PROJECT_ID</key>
+	<string>togodo-dev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>togodo-dev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:623189034780:ios:616c8dc69a6b219fc95cd9</string>
+</dict>
+</plist>

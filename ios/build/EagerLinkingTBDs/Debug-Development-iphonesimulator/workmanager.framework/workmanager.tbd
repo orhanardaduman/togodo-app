@@ -1,0 +1,207 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconO9hashValueSivpMV",
+            "_$s11workmanager8WMPErrorON",
+            "_$s11workmanager11NetworkTypeO8rawValueACSgSS_tcfC",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconO9hashValueSivg",
+            "_$s11workmanager23DebugNotificationHelperCyAC10Foundation4UUIDVcfC",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconO9textValueSSvpMV",
+            "_$s11workmanager18ThumbnailGeneratorVN",
+            "_$s11workmanager22SwiftWorkmanagerPluginC11application_33performFetchWithCompletionHandlerSbSo13UIApplicationC_ySo012UIBackgroundG6ResultVctF",
+            "_$s11workmanager23DebugNotificationHelperCN",
+            "_$s11workmanager23DebugNotificationHelperCMm",
+            "_$s11workmanager18UserDefaultsHelperV3KeyO4hash4intoys6HasherVz_tF",
+            "_$s11workmanager23DebugNotificationHelperC018showCompletedFetchC013completedDate6result11elapsedTimey10Foundation0I0V_So012UIBackgroundG6ResultVSdtFTq",
+            "_$s11workmanager7LogTypeOMn",
+            "_$s11workmanager8WMPErrorO14asFlutterErrorSo0dE0Cvg",
+            "_$s11workmanager23DebugNotificationHelperCyAC10Foundation4UUIDVcfCTq",
+            "_$s11workmanager22SwiftWorkmanagerPluginC12registerTask14withIdentifierySS_tFZ",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconO9textValueSSvg",
+            "_$s11workmanager18ThumbnailGeneratorVACycfC",
+            "_$s11workmanager22SwiftWorkmanagerPluginCACycfC",
+            "_$s11workmanager23BackgroundTaskOperationC_31flutterPluginRegistrantCallbackACSS_ySo07FlutterF8Registry_pXCSgtcfc",
+            "_$s11workmanager7LogTypeOSHAAMc",
+            "_$s11workmanager14BackgroundModeOMa",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconON",
+            "_$s11workmanager18UserDefaultsHelperVMa",
+            "_$s11workmanager11NetworkTypeOSQAAMc",
+            "_$s11workmanager18UserDefaultsHelperV19storeCallbackHandleyys5Int64VFZ",
+            "_$s11workmanager22SwiftWorkmanagerPluginC8register4withySo07FlutterD9Registrar_p_tFZ",
+            "_$s11workmanager14BackgroundModeO24flutterThreadlabelPrefixSSvg",
+            "_$s11workmanager16BackgroundWorkerCMa",
+            "_$s11workmanager23DebugNotificationHelperCMa",
+            "_$s11workmanager23BackgroundTaskOperationC_31flutterPluginRegistrantCallbackACSS_ySo07FlutterF8Registry_pXCSgtcfC",
+            "_$s11workmanager22SwiftWorkmanagerPluginCMa",
+            "_$s11workmanager18UserDefaultsHelperV3KeyO9hashValueSivpMV",
+            "_$s11workmanager16BackgroundWorkerCMn",
+            "_$s11workmanager18UserDefaultsHelperV3KeyO21__derived_enum_equalsySbAE_AEtFZ",
+            "_$s11workmanager18UserDefaultsHelperVN",
+            "_$s11workmanager14BackgroundModeOMn",
+            "_$s11workmanager18ThumbnailGeneratorVMa",
+            "_$sSo23UIBackgroundFetchResultV11workmanagerE16debugDescriptionSSvpMV",
+            "_$s11workmanager18UserDefaultsHelperV3KeyOMa",
+            "_$s11workmanager16BackgroundWorkerCfd",
+            "_$s11workmanager23DebugNotificationHelperCyAC10Foundation4UUIDVcfc",
+            "_$s11workmanager3log_2asySS_AA7LogTypeOtF",
+            "_$s11workmanager7LogTypeOSYAAMc",
+            "_$s11workmanager18UserDefaultsHelperV3KeyO11stringValueSSvpMV",
+            "_$s11workmanager8WMPErrorOMa",
+            "_$s11workmanager8WMPErrorOs5ErrorAAMc",
+            "_$s11workmanager7LogTypeO02osbC0So0D11_log_type_tavpMV",
+            "_workmanagerVersionString",
+            "_$s11workmanager22SwiftWorkmanagerPluginC03setD18RegistrantCallbackyyySo07FlutterD8Registry_pXCFZ",
+            "_$s11workmanager23BackgroundTaskOperationCACycfC",
+            "_$s11workmanager11NetworkTypeON",
+            "_$s11workmanager16BackgroundWorkerCN",
+            "_$s11workmanager7LogTypeO8rawValueSSvpMV",
+            "_$s11workmanager7LogTypeO8rawValueACSgSS_tcfC",
+            "_$s11workmanager18UserDefaultsHelperV10getIsDebugSbyFZ",
+            "_$s11workmanager7logInfoyySSF",
+            "_$s11workmanager16BackgroundWorkerC31flutterPluginRegistrantCallbackySo07FlutterE8Registry_pXCSgvpWvd",
+            "_$s11workmanager23DebugNotificationHelperCfD",
+            "_$s11workmanager11NetworkTypeOSHAAMc",
+            "_$s11workmanager16BackgroundWorkerC07performB7RequestySbySo23UIBackgroundFetchResultVcF",
+            "_$sSo23UIBackgroundFetchResultVs28CustomDebugStringConvertible11workmanagerMc",
+            "_$s11workmanager8WMPErrorO7messageSSvpMV",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconO4hash4intoys6HasherVz_tF",
+            "_$s11workmanager18UserDefaultsHelperV12storeIsDebugyySbFZ",
+            "_$s11workmanager22SwiftWorkmanagerPluginCMn",
+            "_$s11workmanager18UserDefaultsHelperVACycfC",
+            "_$s11workmanager22SwiftWorkmanagerPluginCN",
+            "_$sSd11workmanagerE15formatToSecondsSSyF",
+            "_$s11workmanager8logDebugyySSF",
+            "_workmanagerVersionNumber",
+            "_$s11workmanager22SwiftWorkmanagerPluginC10identifierSSvgZ",
+            "_$s11workmanager23BackgroundTaskOperationCMn",
+            "_$s11workmanager8logFaultyySSF",
+            "_$s11workmanager11NetworkTypeO8rawValueSSvpMV",
+            "_$s11workmanager16BackgroundWorkerC14backgroundModeAA0bE0OvpWvd",
+            "_$s11workmanager23BackgroundTaskOperationCN",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconOMa",
+            "_$s11workmanager18UserDefaultsHelperV3KeyOMn",
+            "_$s11workmanager7LogTypeON",
+            "_$s11workmanager23DebugNotificationHelperC014showStartFetchC09startDate14callBackHandle12callbackInfoy10Foundation0I0V_s5Int64VSo26FlutterCallbackInformationCtF",
+            "_$s11workmanager16BackgroundWorkerC4mode31flutterPluginRegistrantCallbackAcA0B4ModeO_ySo07FlutterF8Registry_pXCSgtcfC",
+            "_$s11workmanager7LogTypeOSQAAMc",
+            "_$s11workmanager16BackgroundWorkerC14backgroundModeAA0bE0OvpMV",
+            "_$sSS11workmanagerE16lowercasingFirstSSvpMV",
+            "_$s11workmanager8WMPErrorO4codeSSvpMV",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconOSHAAMc",
+            "_$sSo23UIBackgroundFetchResultV11workmanagerE16debugDescriptionSSvg",
+            "_$s11workmanager16BackgroundWorkerC31flutterPluginRegistrantCallbackySo07FlutterE8Registry_pXCSgvg",
+            "_$s11workmanager22SwiftWorkmanagerPluginCfD",
+            "_$s11workmanager7LogTypeO8rawValueSSvg",
+            "_$s11workmanager23DebugNotificationHelperCfd",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconO21__derived_enum_equalsySbAE_AEtFZ",
+            "_$s11workmanager14BackgroundModeO24flutterThreadlabelPrefixSSvpMV",
+            "_$s11workmanager18UserDefaultsHelperV3KeyOSHAAMc",
+            "_$s11workmanager8WMPErrorO4codeSSvg",
+            "_$s11workmanager18UserDefaultsHelperV3KeyOSQAAMc",
+            "_$s11workmanager23DebugNotificationHelperC014showStartFetchC09startDate14callBackHandle12callbackInfoy10Foundation0I0V_s5Int64VSo26FlutterCallbackInformationCtFTq",
+            "_$s11workmanager23BackgroundTaskOperationCMa",
+            "_$s11workmanager23BackgroundTaskOperationCfD",
+            "_$s11workmanager7LogTypeO02osbC0So0D11_log_type_tavg",
+            "_$s11workmanager8WMPErrorO7detailsypSgvpMV",
+            "_$s11workmanager18ThumbnailGeneratorVMn",
+            "_$s11workmanager8logErroryySSF",
+            "_$s11workmanager16BackgroundWorkerC4mode31flutterPluginRegistrantCallbackAcA0B4ModeO_ySo07FlutterF8Registry_pXCSgtcfCTq",
+            "_$s11workmanager16BackgroundWorkerC4mode31flutterPluginRegistrantCallbackAcA0B4ModeO_ySo07FlutterF8Registry_pXCSgtcfc",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconOSQAAMc",
+            "_$s11workmanager16BackgroundWorkerC07performB7RequestySbySo23UIBackgroundFetchResultVcFTq",
+            "_$s11workmanager11NetworkTypeOMa",
+            "_$s11workmanager16BackgroundWorkerCfD",
+            "_$s11workmanager18UserDefaultsHelperV23getStoredCallbackHandles5Int64VSgyFZ",
+            "_$sSS11workmanagerE16lowercasingFirstSSvg",
+            "_$s11workmanager22SwiftWorkmanagerPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctF",
+            "_$s11workmanager23DebugNotificationHelperC018showCompletedFetchC013completedDate6result11elapsedTimey10Foundation0I0V_So012UIBackgroundG6ResultVSdtF",
+            "_$s11workmanager11NetworkTypeOMn",
+            "_$s11workmanager18UserDefaultsHelperVMn",
+            "_$s11workmanager22SwiftWorkmanagerPluginC10identifierSSvpZ",
+            "_$s11workmanager7LogTypeOMa",
+            "_$s10Foundation4DateV11workmanagerE9formattedSSyF",
+            "_$s11workmanager8WMPErrorO7messageSSvg",
+            "_$s11workmanager18ThumbnailGeneratorV0B4IconOMn",
+            "_$s11workmanager8WMPErrorO7detailsypSgvg",
+            "_$s11workmanager16BackgroundWorkerCMm",
+            "_$s11workmanager14BackgroundModeO21onResultSendArgumentsSDyS2SGvpMV",
+            "_$s11workmanager11NetworkTypeOSYAAMc",
+            "_$s11workmanager18UserDefaultsHelperV3KeyON",
+            "_$s11workmanager14BackgroundModeON",
+            "_$s11workmanager23BackgroundTaskOperationC_31flutterPluginRegistrantCallbackACSS_ySo07FlutterF8Registry_pXCSgtcfCTq",
+            "_$s11workmanager8WMPErrorOMn",
+            "_$s11workmanager3log_2asySS_AA7LogTypeOtFfA0_",
+            "_$s11workmanager16BackgroundWorkerC31flutterPluginRegistrantCallbackySo07FlutterE8Registry_pXCSgvpMV",
+            "_$s11workmanager23DebugNotificationHelperCMn",
+            "_$s11workmanager22SwiftWorkmanagerPluginC10identifierSSvau",
+            "_$s11workmanager8WMPErrorO14asFlutterErrorSo0dE0CvpMV",
+            "_$s11workmanager23BackgroundTaskOperationCACycfc",
+            "_$s11workmanager18ThumbnailGeneratorV06createB04withSo24UNNotificationAttachmentCSgAC0B4IconO_tFZ",
+            "_$s11workmanager22SwiftWorkmanagerPluginCACycfc",
+            "_$s11workmanager14BackgroundModeO21onResultSendArgumentsSDyS2SGvg",
+            "_$s11workmanager18UserDefaultsHelperV3KeyO11stringValueSSvg",
+            "_$s11workmanager18UserDefaultsHelperV3KeyO9hashValueSivg",
+            "_$s11workmanager23BackgroundTaskOperationC4mainyyF",
+            "_$s11workmanager11NetworkTypeO8rawValueSSvg",
+            "_$s11workmanager16BackgroundWorkerC14backgroundModeAA0bE0Ovg",
+            "_$s11workmanager3logyySSF",
+            "_$s11workmanager11NetworkTypeO8fromDartACSgSS_tcfC"
+          ],
+          "objc_class": [
+            "PodsDummy_workmanager",
+            "_TtC11workmanager23BackgroundTaskOperation",
+            "WorkmanagerPlugin",
+            "_TtC11workmanager22SwiftWorkmanagerPlugin"
+          ]
+        }
+      },
+      {
+        "data": {
+          "global": [
+            "_Swift51Overrides"
+          ]
+        },
+        "targets": [
+          "x86_64-ios-simulator"
+        ],
+        "text": {
+          "global": [
+            "__ZN5swift39swift51override_conformsToSwiftProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEN7__swift9__runtime4llvm9StringRefEPFPKNS_35TargetProtocolConformanceDescriptorIS1_EES4_S8_SC_E",
+            "__Z34_swiftoverride_class_getSuperclassPKN5swift14TargetMetadataINS_9InProcessEEE"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/workmanager.framework/workmanager"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "13",
+        "target": "x86_64-ios-simulator"
+      },
+      {
+        "min_deployment": "14",
+        "target": "arm64-ios-simulator"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}
