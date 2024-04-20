@@ -1,0 +1,15 @@
+// TODO Must be re-created.
+signingConfigs {
+    release {
+        storeFile file("release.jks")
+        storePassword "togodo.*"
+        keyAlias "togodokey"
+        keyPassword "togodo.*"
+    }
+}
+
+// $ keytool -v -list -keystore
+// Certificate fingerprints:
+// MD5:  44:21:4A:F6:F5:C8:CC:E1:2B:1B:48:7A:C2:2E:BC:89
+// SHA1: E7:00:DB:A2:90:65:D2:F4:B4:8B:78:91:77:E9:EA:6C:AD:4C:F5:59
+// SHA256: A6:31:B3:AC:F4:5C:85:E8:35:7D:73:0A:85:76:4C:77:DF:C0:B4:46:08:2E:5E:8A:1D:73:AB:16:B0:C7:6D:43

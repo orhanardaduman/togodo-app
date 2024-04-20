@@ -1,0 +1,17 @@
+#include "Flutter/Generated.xcconfig"
+#include "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-development.xcconfig"
+TRACK_WIDGET_CREATION=
+
+FLUTTER_FLAVOR=development
+FLUTTER_TARGET=$PROJECT_DIR/../lib/main.dart
+PRODUCT_BUNDLE_IDENTIFIER=com.togodo.co.devs
+DISPLAY_NAME=Togodo-DEV
+
+FIREBASE_DIR=$PROJECT_DIR/$PROJECT_NAME/Resources/Firebase/Development
+
+// GOOGLE prefix key configs were copied from GoogleService-Info.plist
+GOOGLE_REVERSED_CLIENT_ID = com.googleusercontent.apps.623189034780-tk1oukrjk28uporenmu4lsqepi4pgmd7
+
+//Facebook prefix key configs were copied from FacebookAppID
+FACEBOOK_APP_ID = 366871152570160
+

@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "11618932806",
+    "project_id": "togodo-9b850",
+    "storage_bucket": "togodo-9b850.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11618932806:android:a4e56e259894407005d247",
+        "android_client_info": {
+          "package_name": "com.togodo.co"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11618932806-02mn10rnunl5meu2aqdo5u9p6m5kvb26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.togodo.co",
+            "certificate_hash": "706987bdf47cd00f44dbee027389cd9716846949"
+          }
+        },
+        {
+          "client_id": "11618932806-n1ja0kg5ooc5v474lrs2vrckn4018uba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.togodo.co",
+            "certificate_hash": "95c6751b39b593d63641c73310bd42895b9d3860"
+          }
+        },
+        {
+          "client_id": "11618932806-ofjdufqfee6n50np0glt74oe1asgskqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLbAMSnKBS1bVCnpzF_gVsP3bhDGrx2rY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11618932806-ofjdufqfee6n50np0glt74oe1asgskqm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "11618932806-87obvbb1btlc07mutf9j5q3orae9bbp1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.togodo.co"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
