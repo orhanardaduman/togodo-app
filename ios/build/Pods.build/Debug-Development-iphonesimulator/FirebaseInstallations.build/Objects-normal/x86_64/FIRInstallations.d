@@ -1,0 +1,53 @@
+dependencies: \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/FirebaseInstallations.build/module.modulemap \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/FIRInstallations.m \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallations.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromises.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/PromisesObjC.build/module.modulemap \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/Target\ Support\ Files/PromisesObjC/PromisesObjC-umbrella.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+All.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromiseError.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Always.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Any.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Async.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Await.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Catch.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Delay.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Do.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Race.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Recover.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Reduce.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Retry.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Testing.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Then.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Timeout.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Validate.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/PromisesObjC/Sources/FBLPromises/include/FBLPromise+Wrap.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FirebaseCoreInternal.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/FirebaseCore.build/module.modulemap \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/Target\ Support\ Files/FirebaseCore/FirebaseCore-umbrella.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRApp.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRConfiguration.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRLoggerLevel.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FirebaseCore.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIROptions.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRAppInternal.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRComponent.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRComponentContainer.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRComponentType.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRDependency.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRHeartbeatLogger.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRLibrary.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIRLogger.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseCore/Extension/FIROptionsInternal.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/FIRInstallationsAuthTokenResultInternal.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsAuthTokenResult.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Errors/FIRInstallationsErrorUtil.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/Public/FirebaseInstallations/FIRInstallationsErrors.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/FIRInstallationsItem.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/InstallationsIDController/FIRInstallationsStatus.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/FIRInstallationsLogger.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/InstallationsIDController/FIRInstallationsIDController.h \
+  /Users/forbigs/Documents/GitHub/goolabs/ios/Pods/FirebaseInstallations/FirebaseInstallations/Source/Library/InstallationsStore/FIRInstallationsStoredAuthToken.h

@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Debug-Development-iphoneos/ua_client_hints/ua_client_hints.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/ua_client_hints.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Debug-Development-iphoneos/ua_client_hints/ua_client_hints.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "ua_client_hints-Swift.h",
+      'external-contents': "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphoneos/ua_client_hints.build/unextended-interface-header.h",
+    }]
+    }]
+}

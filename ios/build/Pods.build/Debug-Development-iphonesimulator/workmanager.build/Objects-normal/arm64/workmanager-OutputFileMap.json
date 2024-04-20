@@ -1,0 +1,108 @@
+{
+  "" : {
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/workmanager-master.dia",
+    "emit-module-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/workmanager-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/workmanager-master-emit-module.dia",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/workmanager-master.swiftdeps"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/BackgroundTaskOperation.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundTaskOperation~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/BackgroundWorker.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/BackgroundWorker~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/DebugNotificationHelper.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/DebugNotificationHelper~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/Extensions.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/Extensions~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/NetworkType.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/NetworkType~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/SimpleLogger.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SimpleLogger~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/SwiftWorkmanagerPlugin.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/SwiftWorkmanagerPlugin~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/ThumbnailGenerator.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/ThumbnailGenerator~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/UserDefaultsHelper.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/UserDefaultsHelper~partial.swiftmodule"
+  },
+  "/Users/forbigs/.pub-cache/hosted/pub.dev/workmanager-0.5.1/ios/Classes/WMPError.swift" : {
+    "const-values" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.swiftconstvalues",
+    "dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.d",
+    "diagnostics" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.o",
+    "llvm-bc" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.bc",
+    "object" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.o",
+    "swift-dependencies" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError.swiftdeps",
+    "swiftmodule" : "/Users/forbigs/Documents/GitHub/goolabs/ios/build/Pods.build/Debug-Development-iphonesimulator/workmanager.build/Objects-normal/arm64/WMPError~partial.swiftmodule"
+  }
+}
