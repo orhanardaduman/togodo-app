@@ -1,7 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,7 +14,6 @@ import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
-import 'package:togodo/data/model/result.dart';
 import 'package:togodo/features/component/custom_checkbox.dart';
 import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/auth/signin.dart';
@@ -100,7 +96,6 @@ class _SignupPageState extends ConsumerState<SignupPage>
                             model.passwordController.text.trim(),
                             false,
                           );
-                          print("val :: ${value}");
                           if (value) {
                             router.push(const VerifyEmailRoute());
                           } else {
@@ -111,8 +106,6 @@ class _SignupPageState extends ConsumerState<SignupPage>
                             );
                           }
                         } catch (e) {
-                          print("cathc :: ${e}");
-
                           showToast(
                             context,
                             e.toString() ==

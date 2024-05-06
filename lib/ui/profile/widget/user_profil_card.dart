@@ -479,29 +479,10 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
 
   Widget buildBio(Token token, AppTheme theme, Color blurColor) {
     // bioCompletion değerine göre blur uygula veya uygulama
-    return token.bioCompletion ?? false
-        ? PrimaryText(
-            widget.data?.bio ?? '',
-            style:
-                theme.textTheme.bodyMedium.copyWith(color: MainColors.grey600),
-          )
-        : Column(
-            children: [
-              const SizedBox(height: 12),
-              Blur(
-                blur: 2.5,
-                blurColor: blurColor,
-                child: SizedBox(
-                  width: context.sized.dynamicWidth(0.75),
-                  child: PrimaryText(
-                    widget.data?.bio ?? '',
-                    style: theme.textTheme.bodyMedium
-                        .copyWith(color: MainColors.grey600),
-                  ),
-                ),
-              ),
-            ],
-          );
+    return PrimaryText(
+      widget.data?.bio ?? '',
+      style: theme.textTheme.bodyMedium.copyWith(color: MainColors.grey600),
+    );
   }
 
   Widget buildTags(
@@ -532,13 +513,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
 
   Widget buildSocialMedia(Token token, AppTheme theme, Color blurColor) {
     // socialMediaCompletion değerine göre blur uygula veya uygulama
-    return token.socialMediaCompletion ?? false
-        ? socialMediaLink()
-        : Blur(
-            blur: 2.5,
-            blurColor: blurColor,
-            child: socialMediaLink(),
-          );
+    return socialMediaLink();
   }
 
   SizedBox newFriendButton(

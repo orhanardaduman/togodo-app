@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animarker/core/ripple_marker.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -74,9 +73,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
   }
 
   Future<void> updatePosition(
-    CameraPosition position,
-    StackRouter router,
-  ) async {
+      CameraPosition position, StackRouter router, BuildContext context) async {
     state = state.copyWith(position: position);
     try {
       if (_isDisposed) return;
@@ -94,6 +91,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
             router,
             isNewMark: false,
             initCity: '${place.subAdministrativeArea}',
+            context: context,
           );
         }
       }
@@ -129,6 +127,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
     LatLng? value,
     bool isNewMark = true,
     String? initCity,
+    required BuildContext context,
   }) async {
     if (_isDisposed) return;
 
@@ -153,7 +152,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
       city: city,
     );
     final newMarkers = <String, MarkerModel>{};
-
+    print('data : ${result.dataOrThrow}');
     for (final element in result.dataOrThrow) {
       if (element.tags != null &&
           element.tags!.isNotEmpty &&
@@ -180,7 +179,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
       _ref.read(userViewModelProvider).profileImageUrl ?? '',
     );
     final hobyList = _ref
-        .watch(hobyStateNotifierProvider(useContext()))
+        .watch(hobyStateNotifierProvider(context))
         .where(
           (element) => element.id! > 0 && element.id! < 20,
         )
@@ -224,6 +223,8 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
         }
       }
     }
+    print('markers : ${newMarkerList.toString()}');
+
     if (_isDisposed) return;
 
     state = state.copyWith(

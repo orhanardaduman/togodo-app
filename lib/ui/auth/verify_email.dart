@@ -8,8 +8,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:sms_autodetect/sms_autodetect.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 import 'package:togodo/core/component/alert/alert_messages.dart';
 import 'package:togodo/core/component/custom_app_bar.dart';
 import 'package:togodo/core/component/loading/container_with_loading.dart';

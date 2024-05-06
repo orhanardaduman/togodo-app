@@ -44,11 +44,11 @@ class _DiscoveryMapViewPageState extends ConsumerState<DiscoveryMapViewPage> {
               MarkerModel(LatLng(value.latitude, value.longitude), '0'),
             )
             ..addAllMarkers(
-              value: value,
-              isNewMark: false,
-              router,
-              initCity: 'Türkiye',
-            );
+                value: value,
+                isNewMark: false,
+                router,
+                initCity: 'Türkiye',
+                context: context);
         },
       );
     });

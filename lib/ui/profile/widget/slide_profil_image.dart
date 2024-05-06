@@ -270,7 +270,7 @@ class SlideProfilImage extends HookConsumerWidget {
               copyLink(
                 context,
                 theme,
-                'app.togodo.co/userProfile/$userId',
+                'togodo.co/userProfile/$userId',
               ).then((value) => router.pop());
             },
             theme,

@@ -12,7 +12,7 @@
             "args": [
                 "--dart-define=FLAVOR=development",
                 "--flavor",
-                "production"
+                "development"
             ]
         },
         {
@@ -23,7 +23,7 @@
             "args": [
                 "--dart-define=FLAVOR=development",
                 "--flavor",
-                "production"
+                "development"
             ]
         }
     ]

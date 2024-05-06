@@ -11,6 +11,8 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>unilinks:app.togodo.co</string>
+		<string>applinks:app.togodo.co</string>
+		<string>applinks:togodo.co</string>
 	</array>
 </dict>
 </plist>

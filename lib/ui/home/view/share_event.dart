@@ -66,7 +66,7 @@ class _ShareEventState extends ConsumerState<ShareEvent> {
 
   String getEventDetailsPageUrl(String eventId) {
     // AutoRoute paketi ile URL oluşturma
-    return 'app.togodo.co/$eventId';
+    return 'togodo.co/$eventId';
   }
 
   void clearTextField() {

@@ -23,7 +23,6 @@ import 'package:togodo/ui/chat/utils/chat_constants.dart';
 import 'package:togodo/ui/event/create_event_page.dart';
 import 'package:togodo/ui/home/view/event_management.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
-import 'package:togodo/ui/home/widget/ticket_info_popup.dart';
 
 import '../../../../data/local/token_model.dart';
 
