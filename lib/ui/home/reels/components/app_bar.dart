@@ -115,55 +115,58 @@ class ReelsAppBar extends HookConsumerWidget {
           ),
         ),
         const Spacer(),
-        IconButton(
-          onPressed: () {
-            if (userType == UserType.guest) {
-              return;
-            }
-            router.push(const DiscoverSearchRoute());
-          },
-          icon: Assets.icons.bold.newSearch.svg(),
-        ),
-        IconButton(
-          onPressed: () {
-            if (userType == UserType.guest) {
-              return;
-            }
-            if (notificationState.newNotification) {
-              notifierNotification.updateNotification(false);
-            }
-            router.push(
-              NotificationRoute(),
-            );
-          },
-          icon: notificationState.newNotification
-              ? Badge(
-                  smallSize: 10,
-                  backgroundColor: MainColors.primary,
-                  child: Assets.icons.bold.newNot.svg(),
-                )
-              : Assets.icons.bold.newNot.svg(),
-        ),
-        IconButton(
-          onPressed: () {
-            if (userType == UserType.guest) {
-              return;
-            }
-            if (notificationState.newMessage) {
-              notifierNotification.updateMessage(false);
-            }
-            router.push(
-              ChatHomeRoute(),
-            );
-          },
-          icon: notificationState.newMessage
-              ? Badge(
-                  smallSize: 10,
-                  backgroundColor: MainColors.primary,
-                  child: Assets.icons.bold.newMessage.svg(),
-                )
-              : Assets.icons.bold.newMessage.svg(),
-        ),
+        if (userType != UserType.guest)
+          IconButton(
+            onPressed: () {
+              if (userType == UserType.guest) {
+                return;
+              }
+              router.push(const DiscoverSearchRoute());
+            },
+            icon: Assets.icons.bold.newSearch.svg(),
+          ),
+        if (userType != UserType.guest)
+          IconButton(
+            onPressed: () {
+              if (userType == UserType.guest) {
+                return;
+              }
+              if (notificationState.newNotification) {
+                notifierNotification.updateNotification(false);
+              }
+              router.push(
+                NotificationRoute(),
+              );
+            },
+            icon: notificationState.newNotification
+                ? Badge(
+                    smallSize: 10,
+                    backgroundColor: MainColors.primary,
+                    child: Assets.icons.bold.newNot.svg(),
+                  )
+                : Assets.icons.bold.newNot.svg(),
+          ),
+        if (userType != UserType.guest)
+          IconButton(
+            onPressed: () {
+              if (userType == UserType.guest) {
+                return;
+              }
+              if (notificationState.newMessage) {
+                notifierNotification.updateMessage(false);
+              }
+              router.push(
+                ChatHomeRoute(),
+              );
+            },
+            icon: notificationState.newMessage
+                ? Badge(
+                    smallSize: 10,
+                    backgroundColor: MainColors.primary,
+                    child: Assets.icons.bold.newMessage.svg(),
+                  )
+                : Assets.icons.bold.newMessage.svg(),
+          ),
       ],
     );
   }
