@@ -33,7 +33,7 @@ class _ProfilDataSource implements ProfilDataSource {
     )
             .compose(
               _dio.options,
-              'User/GetProfile',
+              'User/GetUserProfile',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -192,7 +192,7 @@ class NotificationItemView extends HookConsumerWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: ' ${data.event!.name} ',
+                                text: ' ${data.event?.name} ',
                                 style: theme.textTheme.bodySmall.copyWith(
                                   fontWeight: FontWeight.w500,
                                   color: theme.appColors.themeColor,
@@ -249,7 +249,7 @@ class NotificationItemView extends HookConsumerWidget {
                         )
                       else if (data.type != 'FriendRequest')
                         PrimaryText(
-                          '${data.user!.name} ${data.type!.notificationMessage(
+                          '${data.user?.name} ${data.type?.notificationMessage(
                             l10n,
                           )}', // Replace with actual user's username
                           maxLines: 3,
@@ -261,7 +261,7 @@ class NotificationItemView extends HookConsumerWidget {
                         )
                       else
                         PrimaryText(
-                          '${data.user!.name} ${data.type!.notificationMessage(
+                          '${data.user?.name} ${data.type?.notificationMessage(
                             l10n,
                           )}', // Replace with actual user's username
                           maxLines: 3,

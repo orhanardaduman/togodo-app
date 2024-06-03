@@ -300,15 +300,10 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         'otherUserId': state.otherUserModel?.id ?? '',
         'link': linkController.text,
       });
-      if (!isUpdates) {
-        dio.options = BaseOptions(
-          baseUrl: Constants.of().newEndPoint,
-          contentType: 'application/json',
-          connectTimeout: const Duration(milliseconds: 220000),
-          sendTimeout: const Duration(milliseconds: 220000),
-          receiveTimeout: const Duration(milliseconds: 220000),
-        );
-      }
+
+      print("other user id ${state.otherUserModel?.id ?? 'yok'}");
+      print("other user id publish mi ${isPublish}");
+
       final response = isUpdates
           ? await dio.put<Map<String, dynamic>>(
               ApiEndpoint.auth(
@@ -317,7 +312,9 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
               data: formData,
             )
           : await dio.post<Map<String, dynamic>>(
-              'events',
+              ApiEndpoint.auth(
+                AuthEndpoint.CREATE_EVENT,
+              ),
               data: formData,
             );
       dio.options = BaseOptions(

@@ -1,6 +1,6 @@
 name: togodo
 description: A new Flutter project.
-version: 1.0.3+30
+version: 1.0.3+33
 publish_to: 'none' 
 
 
@@ -85,7 +85,7 @@ dependencies:
   # For Image / Picker
   cached_network_image: ^3.3.0
   image_cropper: ^5.0.0
-  image_picker: ^1.0.4
+  image_picker: ^1.1.1
   insta_assets_picker: ^2.2.1
   wechat_assets_picker: ^8.9.0-dev.1
   # For Architecture

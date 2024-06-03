@@ -99,6 +99,8 @@ class WelcomeQuestionModel extends StateNotifier<WelcomeQuestionState> {
 
   Future<bool> firebaseLogin(FirebaseLoginModel requestModel) async {
     updateLoading(true);
+    print("burda");
+
     final dio = _ref.read(dioProvider);
     final userViewModel = _ref.read(userViewModelProvider);
     final authType = await CacheItems.signType.readSecureData();
@@ -113,8 +115,9 @@ class WelcomeQuestionModel extends StateNotifier<WelcomeQuestionState> {
             filename: state.image!.path.split('/').last,
           )
         : null;
+
     try {
-      log(requestModel.idToken!);
+      print(type);
       final formData = FormData.fromMap({
         'idToken': requestModel.idToken,
         'deviceId': requestModel.deviceId,
@@ -127,13 +130,14 @@ class WelcomeQuestionModel extends StateNotifier<WelcomeQuestionState> {
         'tagId': state.hobyList.map((e) => e!.id).toList(),
         'formFile': files,
       });
+      print(formData.fields.toString());
 
       final response = await dio.post<Map<String, dynamic>>(
         ApiEndpoint.auth(AuthEndpoint.LOGIN),
         data: formData,
       );
-
-      if (response.statusCode == 200) {
+      print(response.toString());
+      if (response.statusCode == 201) {
         await setUserSettings();
         log(response.data!['token']['accessToken'] as String);
         await CacheItems.token.writeSecureData(
@@ -150,6 +154,7 @@ class WelcomeQuestionModel extends StateNotifier<WelcomeQuestionState> {
         return false;
       }
     } catch (e) {
+      print("catch de $e");
       updateLoading(true);
 
       return false;

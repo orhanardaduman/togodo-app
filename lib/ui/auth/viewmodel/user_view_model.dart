@@ -199,7 +199,7 @@ class UserViewModel extends ChangeNotifier {
       final firebase = FirebaseAuth.instance.currentUser;
       if (firebase != null) {
         final token = await firebase.getIdToken();
-        log('idToken: $token');
+        print('burda tokenr: $token');
         log('deviceId: $deviceId');
         final formData = FormData.fromMap({
           'deviceId': deviceId,
@@ -211,14 +211,26 @@ class UserViewModel extends ChangeNotifier {
           data: formData,
         );
 
-        if (response.statusCode == 200) {
+        if (response.statusCode == 201 || response.statusCode == 200) {
           // ignore: avoid_dynamic_calls
+          print("data ${response.data}");
+          var deneme = Token.fromJson(
+            response.data!,
+          );
+          print("token model deneme ${deneme}");
+
           _tokenModel = TokenModel.fromJson(
             response.data!,
           );
+          print("token model ${_tokenModel}");
+
           accessTokens = _tokenModel?.token?.accessToken;
+          print("acesstokens ${accessTokens}");
+
           userIds = response.data!['userId'] as String;
-          profileImageUrls = response.data!['profileImageUrl'] as String;
+          profileImageUrls = response.data?['profileImageUrl'] ?? '';
+          print("userids ${userIds}");
+          print("profileimageirls ${profileImageUrls}");
 
           await CacheItems.token.writeSecureData(accessTokens!);
           await CacheItems.uid.writeSecureData(userIds!);
@@ -233,6 +245,7 @@ class UserViewModel extends ChangeNotifier {
         return false;
       }
     } catch (e) {
+      print('burda catch: $e');
       await signOut();
       return false;
     }

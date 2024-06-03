@@ -25,6 +25,7 @@ class Result<T> with _$Result<T> {
     try {
       return Result.success(data: await future());
     } on Exception catch (e) {
+      print(e.toString());
       return Result.failure(error: AppError(e));
     }
   }

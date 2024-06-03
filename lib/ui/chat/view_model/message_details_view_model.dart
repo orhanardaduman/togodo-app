@@ -57,68 +57,52 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
   late final ChatRepository _repository = _ref.read(chatRepositoryProvider);
   WebSocketService webSocketService = WebSocketService.instance;
   Future<void> connect({bool isSearchRoute = false}) async {
+    print("detal connectde ${isSearchRoute}");
+
     if (_isDisposed) return;
     state = state.copyWith(loading: true);
     final userModelView = _ref.read(userViewModelProvider);
-    await webSocketService.connect(userModelView.accessToken!).then((value) {
-      isSearchRoute
-          ? webSocketService.sink.add(
-              '${jsonEncode({
-                    "type": 1,
-                    "target": "ConnectToRoom",
-                    "arguments": ['', roomId],
-                  })}',
-            )
-          : webSocketService.sink.add(
-              '${jsonEncode({
-                    "type": 1,
-                    "target": "ConnectToRoom",
-                    "arguments": [roomId, ''],
-                  })}',
-            );
-      log('Chat Details WebSocket connected');
+    await webSocketService.connect(userModelView.accessToken!);
+    print("burda sinklemesi lazim room Id ${roomId}");
+    await webSocketService.sink(isSearchRoute, roomId);
 
-      socketListen();
-    });
+    socketListen();
+  }
+
+  Future<void> discoonect() async {
+    await webSocketService.sinkDissconnect("dad");
   }
 
   void socketListen() {
-    webSocketService.messages.listen(
-      (rawMessage) {
-        // ignore: avoid_dynamic_calls
-        final cleanedMessage = rawMessage.replaceAll('', '');
+    webSocketService.onData(
+      (event, rawMessage) {
+        if (event == "GetChatRoomMessage") {
+          // ignore: avoid_dynamic_calls
 
-        final message =
-            jsonDecode(cleanedMessage.toString()) as Map<String, dynamic>;
-        log('Detay çalışıyor');
-        state = state.copyWith(
-          connectionStatus: true,
-          messageType: message['type'] as int,
-        );
-        log(cleanedMessage.toString());
-        if (message['type'] == 1 && message['target'] == 'GetChatRoomMessage') {
-          final List<dynamic> argumentList = message['arguments'];
-          if (argumentList.isNotEmpty) {
-            final messages = argumentList[0];
-            if (messages != null && messages is List<dynamic>) {
-              final messageModels = messages.map((msg) {
-                return MessageInfoModel.fromJson(
-                  msg as Map<String,
-                      dynamic>, // Use msg instead of message['arguments']
-                );
-              }).toList();
+          final message = rawMessage;
+          log('Detay çalışıyor');
+          state = state.copyWith(
+            connectionStatus: true,
+            messageType: 1,
+          );
+          final List<dynamic> argumentList = message;
+          final messageModels = argumentList.map((msg) {
+            return MessageInfoModel.fromJson(
+              msg as Map<String,
+                  dynamic>, // Use msg instead of message['arguments']
+            );
+          }).toList();
 
-              state = state.copyWith(
-                chatData: messageModels,
-                loading: false,
-                isWriting: messageModels.last.isWriting ?? false,
-              );
-            }
-          }
+          state = state.copyWith(
+            chatData: messageModels,
+            loading: false,
+            isWriting: messageModels.last.isWriting ?? false,
+          );
+
+          state = state.copyWith(loading: false);
         }
-        state = state.copyWith(loading: false);
       },
-      onError: (dynamic error) {
+      (dynamic error) {
         state = state.copyWith(loading: false);
         // handle the error
         log(error.toString());
@@ -306,7 +290,7 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
   }
 
   void closeAndOpenWebSocket() {
-    webSocketService.sink.close();
+    webSocketService.close();
     log('Chat Details WebSocket disposed');
     Future.delayed(const Duration(seconds: 1), connect);
     log('Chat Details WebSocket opened');
@@ -314,7 +298,7 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
 
   void closeChatWebSocket() {
     closeChatRoom();
-    webSocketService.sink.close();
+    webSocketService.close();
 
     _ref.read(webSocketProvider.notifier).connect();
     log('Chat Details WebSocket disposed');

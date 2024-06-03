@@ -51,7 +51,8 @@ class PostService {
         ApiEndpoint.auth(AuthEndpoint.SEND_MESSAGE),
         data: formData,
       );
-      if (response.statusCode == 200) {
+      print("burda response status code ${response.statusCode}");
+      if (response.statusCode == 201) {
         return true;
       } else {
         log('File upload failed!');

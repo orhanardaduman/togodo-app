@@ -18,9 +18,9 @@ abstract class ProfilDataSource {
   factory ProfilDataSource(ProviderRef<dynamic> ref) =>
       _ProfilDataSource(ref.read(dioProvider));
 
-  @GET('User/GetProfile')
+  @GET('User/GetUserProfile')
   Future<ProfilModel> getProfil({
-    @Query('userId') String? userId,
+    @Query('c') String? userId,
   });
   @GET('Admin/GetUserCount')
   Future<DailyReportsModel> getUserCount();

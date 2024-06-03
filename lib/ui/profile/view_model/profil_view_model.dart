@@ -43,6 +43,7 @@ class ProfilViewModel extends StateNotifier<ProfilState> {
     if (_isDisposed) return;
     state = state.copyWith(loading: true);
     final result = await _repository.getProfil(userId: userId);
+    print(result.toString());
     if (result.isSuccess) {
       if (_isDisposed) return;
       state = state.copyWith(

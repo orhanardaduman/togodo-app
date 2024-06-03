@@ -41,58 +41,45 @@ class WebSocketNotifier extends StateNotifier<WebSocketState> {
     state = state.copyWith(loading: loading);
     final userModelView = _ref.read(userViewModelProvider);
     await webSocketService.connect(userModelView.accessToken ?? token!);
-
+    await webSocketService.getAllChatdata(userModelView.accessToken ?? token!);
     socketListen();
   }
 
   void socketListen() {
     if (_isDisposed) return;
+    webSocketService.onData((event, rawMessage) async {
+      //  try {
+      if (event == "GetDirectMessageTimeline") {
+        final message = rawMessage;
 
-    webSocketService.messages.listen(
-      (rawMessage) async {
-        try {
-          final cleanedMessage = rawMessage.replaceAll('', '');
-          final message =
-              jsonDecode(cleanedMessage.toString()) as Map<String, dynamic>;
-          log('Chat çalışıyor');
-          state = state.copyWith(connectionStatus: true);
+        state = state.copyWith(connectionStatus: true);
 
-          if (message['type'] == 1 &&
-              message['target'] == 'GetDirectMessageTimeline') {
-            final List<dynamic> argumentList = message['arguments'];
-            if (argumentList.isNotEmpty) {
-              final messages = argumentList[0];
-              if (messages != null && messages is List<dynamic>) {
-                final messageModels = messages.map((msg) {
-                  return MessageTimelineModel.fromJson(
-                    msg as Map<String, dynamic>,
-                  );
-                }).toList();
+        final List<dynamic> argumentList = message;
+        final messageModels = argumentList.map((msg) {
+          return MessageTimelineModel.fromJson(
+            msg as Map<String, dynamic>,
+          );
+        }).toList();
 
-                // Verileri Hive'a kaydet
-                /*   final chatBox = Hive.box<List<MessageTimelineModel>>('chatBox');
+        // Verileri Hive'a kaydet
+        /*   final chatBox = Hive.box<List<MessageTimelineModel>>('chatBox');
                 await chatBox.put('chatData', messageModels); */
 
-                // Güncellenmiş verilerle state'i güncelle
-                state = state.copyWith(
-                  chatData: messageModels
-                      .where((element) => !element.isGroupChat!)
-                      .toList(),
-                  groupChatData: messageModels
-                      .where((element) => element.isGroupChat!)
-                      .toList(),
-                  loading: false,
-                );
-              }
-            }
-          }
-        } catch (error) {
-          // Hata yönetimi
-          state = state.copyWith(loading: false);
-          log(error.toString());
-        }
-      },
-    );
+        // Güncellenmiş verilerle state'i güncelle
+        state = state.copyWith(
+          chatData:
+              messageModels.where((element) => !element.isGroupChat!).toList(),
+          groupChatData:
+              messageModels.where((element) => element.isGroupChat!).toList(),
+          loading: false,
+        );
+      }
+      //} catch (error) {
+      // Hata yönetimi
+      //  state = state.copyWith(loading: false);
+      //  print("errorda " + error.toString());
+      //}
+    }, (s) {});
   }
 
   Future<List<MessageTimelineModel>> getChatData() async {
@@ -224,7 +211,7 @@ class WebSocketNotifier extends StateNotifier<WebSocketState> {
 
   void closeAndOpenWebSocket() {
     state = state.copyWith(connectionStatus: false);
-    webSocketService.sink.close();
+    webSocketService.close();
     log('Chat WebSocket disposed');
 
     Future.delayed(const Duration(seconds: 1), connect);
@@ -234,7 +221,7 @@ class WebSocketNotifier extends StateNotifier<WebSocketState> {
 
   Future<void> closeWebSocket() async {
     if (_isDisposed) return;
-    await webSocketService.sink.close();
+    await webSocketService.close();
     state = state.copyWith(connectionStatus: false);
   }
 

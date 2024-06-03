@@ -20,9 +20,11 @@ class ProfilRepositoryImpl implements ProfilRepository {
 
   @override
   Future<Result<ProfilModel>> getProfil({String? userId}) {
-    return Result.guardFuture(
-      () async => _dataSource.getProfil(userId: userId),
-    );
+    return Result.guardFuture(() async {
+      var data = _dataSource.getProfil(userId: userId);
+      print(data);
+      return data;
+    });
   }
 
   @override

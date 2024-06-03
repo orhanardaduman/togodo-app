@@ -327,10 +327,12 @@ class ProfilEditViewModel extends StateNotifier<ProfilEditState> {
             : List.empty,
       });
 
-      final response = await dio.put<Map<String, dynamic>>(
+      final response = await dio.put<String>(
         ApiEndpoint.auth(AuthEndpoint.UPDATE_PROFILE),
         data: formData,
       );
+      print(response.statusCode);
+      print(response);
 
       if (response.statusCode == 200) {
         {
@@ -344,6 +346,7 @@ class ProfilEditViewModel extends StateNotifier<ProfilEditState> {
         return response.statusCode;
       }
     } catch (e) {
+      print("catchde $e");
       state = state.copyWith(putLoading: false);
       return 500;
     }

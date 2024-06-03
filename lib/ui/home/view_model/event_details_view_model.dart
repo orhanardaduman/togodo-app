@@ -57,6 +57,7 @@ class EventDetailsViewModel extends StateNotifier<EventDetailsState> {
         : await _repository.getEventDetails(
             eventId: eventId,
           );
+    print("tags data : " + result.dataOrThrow.tags.toString());
     if (_isDisposed) return; // Future tamamlandıktan sonra tekrar kontrol edin
     if (result.isSuccess) {
       //  await Future<dynamic>.delayed(const Duration(seconds: 2));

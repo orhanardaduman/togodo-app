@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:togodo/core/constants/constants.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 /* {
     "type": 1,
@@ -25,24 +26,61 @@ class WebSocketService {
   static final WebSocketService instance =
       WebSocketService._privateConstructor();
 
-  late IOWebSocketChannel _channel;
-
+  IO.Socket? _channel;
+  bool isConnected = false;
   Future<void> connect(String token) async {
-    final baseUrl = dotenv.env['BASE_URL'] ?? Constants.instance.endpoint;
-    final url = 'wss://$baseUrl/ChatHub';
-    final headers = <String, dynamic>{
-      'Authorization': 'Bearer $token',
-      'Connection': 'Upgrade',
-      'Upgrade': 'websocket',
-    };
-    _channel = IOWebSocketChannel.connect(
-      url,
-      headers: headers,
-    );
+    if (_channel == null) {
+      final baseUrl = dotenv.env['BASE_URL'] ?? Constants.instance.endpoint;
 
-    _channel.sink.add('${jsonEncode({"protocol": "json", "version": 1})}');
+      _channel = IO.io(
+        'wss://$baseUrl',
+        IO.OptionBuilder()
+            .setTransports(['websocket']) // Use WebSocket transport only
+            .setExtraHeaders(
+                {'Authorization': 'Bearer $token'}) // Set headers if needed
+            .build(),
+      );
+      _channel?.connect();
+    }
+    if ((_channel?.connected ?? false) == false) {
+      _channel?.connect();
+    }
+
+    //_channel.onAny((event, data) => null);
+
+    //_channel.sink.add('${jsonEncode({"protocol": "json", "version": 1})}');
   }
 
-  Stream<dynamic> get messages => _channel.stream;
-  WebSocketSink get sink => _channel.sink;
+  onData(Function(String event, dynamic data) onCall,
+      Function(dynamic data) onError) {
+    _channel?.onAny((event, data) => {
+          print('onAnyde'),
+          print(event),
+          print(data),
+          onCall(event, data),
+        });
+    _channel?.onError((data) => {
+          print('onErrorda'),
+          print(data),
+          onError(data),
+        });
+  }
+
+  sink(bool isSearch, dynamic data) {
+    _channel?.emit('connectToRoom', {isSearch ? "userId" : "chatRoomId": data});
+  }
+
+  sinkDissconnect(dynamic data) {
+    _channel?.emit('disconnectToRoom', {"token": data});
+  }
+
+  getAllChatdata(dynamic data) {
+    _channel?.emit('getMessages', {"token": data});
+  }
+
+  close() {
+    _channel?.disconnect();
+    _channel?.dispose();
+    _channel = null;
+  }
 }

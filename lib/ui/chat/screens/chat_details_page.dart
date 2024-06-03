@@ -41,17 +41,16 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   @override
   void initState() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      if (!widget.isNotificationRoute) {
-        ref.read(webSocketProvider.notifier).closeWebSocket();
-      }
       listenMessage();
     });
+
     super.initState();
   }
 
   Future<void> listenMessage() async {
     final readModel = ref
         .read(messageDetailsProvider(widget.roomId ?? widget.userId).notifier);
+    print("is noti route yeni deneme ${widget.isNotificationRoute}");
     if (widget.isNotificationRoute) {
       await ref.read(webSocketProvider.notifier).connect().then(
             (value) => readModel
@@ -62,6 +61,15 @@ class _ChatPageState extends ConsumerState<ChatPage> {
       await readModel.connect(isSearchRoute: widget.roomId == null);
       readModel.updateGroupChat(isGroupChat: widget.isGroup);
     }
+  }
+
+  @override
+  void dispose() {
+    ref
+        .read(messageDetailsProvider(widget.roomId ?? widget.userId).notifier)
+        .discoonect();
+
+    super.dispose();
   }
 
   @override

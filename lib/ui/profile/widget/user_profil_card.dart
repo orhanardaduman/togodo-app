@@ -637,7 +637,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.data?.title != null)
+        if (widget.data?.title != '')
           PrimaryText(
             '${widget.data?.title ?? ''}, ${widget.data?.location ?? ''}',
             style:
