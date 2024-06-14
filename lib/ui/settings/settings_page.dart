@@ -18,7 +18,10 @@ import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
+import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../chat/services/connect_services.dart';
 
 @RoutePage()
 class SettingsPage extends HookConsumerWidget {
@@ -192,6 +195,7 @@ class SettingsPage extends HookConsumerWidget {
           ),
           ListTile(
             onTap: () {
+              ref.read(webSocketProvider.notifier).closeWebSocket();
               userModel
                   .signOut()
                   .then((value) => router.push(const WelcomeRoute()));

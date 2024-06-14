@@ -7,6 +7,8 @@ import 'package:togodo/ui/chat/screens/chat_room_message.dart';
 import 'package:togodo/ui/chat/view_model/message_details_view_model.dart';
 import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 
+import '../../../core/enums/cache_items.dart';
+
 final PermissionHandlerProvider = Provider<PermissionHandler>(
   (ref) => PermissionHandler(),
 );
@@ -52,7 +54,9 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         .read(messageDetailsProvider(widget.roomId ?? widget.userId).notifier);
     print("is noti route yeni deneme ${widget.isNotificationRoute}");
     if (widget.isNotificationRoute) {
-      await ref.read(webSocketProvider.notifier).connect().then(
+      final token = await CacheItems.token.readSecureData();
+
+      await ref.read(webSocketProvider.notifier).connect(token: token).then(
             (value) => readModel
               ..connect(isSearchRoute: widget.roomId == null)
               ..updateGroupChat(isGroupChat: widget.isGroup),

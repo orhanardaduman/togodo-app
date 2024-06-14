@@ -211,6 +211,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         dateController.text = data.date ?? '';
         startDateController.text = data.startTime ?? '';
         endDateController.text = data.endTime ?? '';
+        linkController.text = data.ticketUrl ?? '';
         if (!data.isParticipants!) {
           userController.text = data.participantsLimit.toString();
         }

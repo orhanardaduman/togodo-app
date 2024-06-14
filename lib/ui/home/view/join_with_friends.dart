@@ -52,7 +52,8 @@ class _JoinWithFriendsPageState extends ConsumerState<JoinWithFriendsPage> {
 
   @override
   void initState() {
-    if (widget.ticketUrl != null) {
+    print("ticket url ${widget.ticketUrl}");
+    if (widget.ticketUrl != null && widget.ticketUrl != "") {
       Future.delayed(const Duration(milliseconds: 2000), () {
         showTicketInfo(
           ref.watch(appThemeProvider),
@@ -106,7 +107,7 @@ class _JoinWithFriendsPageState extends ConsumerState<JoinWithFriendsPage> {
             : Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  if (model.events.isEmpty) nullContainer(theme, context,l10n),
+                  if (model.events.isEmpty) nullContainer(theme, context, l10n),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

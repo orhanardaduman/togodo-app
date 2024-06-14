@@ -458,7 +458,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
     // titleCompletion değerine göre blur uygula veya uygulama
     return token.titleCompletion ?? false
         ? PrimaryText(
-            '${widget.data?.title ?? ''}, ${widget.data?.location ?? ''}',
+            '${widget.data?.title ?? ''}${(widget.data?.title ?? '') != "" && (widget.data?.location ?? '') != '' ? "," : ""} ${widget.data?.location ?? ''}',
             style:
                 theme.textTheme.bodyMedium.copyWith(color: MainColors.grey600),
           )
@@ -468,7 +468,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                 blur: 2.5,
                 blurColor: blurColor,
                 child: PrimaryText(
-                  '${widget.data?.title ?? ''}, ${widget.data?.location ?? ''}',
+                  '${widget.data?.title ?? ''}${(widget.data?.title ?? '') != "" && (widget.data?.location ?? '') != '' ? "," : ""} ${widget.data?.location ?? ''}',
                   style: theme.textTheme.bodyMedium
                       .copyWith(color: MainColors.grey600),
                 ),
@@ -637,9 +637,9 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.data?.title != '')
+        if (widget.data?.title != '' || widget.data?.location != '')
           PrimaryText(
-            '${widget.data?.title ?? ''}, ${widget.data?.location ?? ''}',
+            '${widget.data?.title ?? ''}${(widget.data?.title ?? '') != "" && (widget.data?.location ?? '') != '' ? "," : ""} ${widget.data?.location ?? ''}',
             style:
                 theme.textTheme.bodyMedium.copyWith(color: MainColors.grey600),
           ),

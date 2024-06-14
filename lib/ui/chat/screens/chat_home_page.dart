@@ -13,6 +13,8 @@ import 'package:togodo/ui/chat/screens/person_tab.dart';
 import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 import 'package:togodo/ui/chat/widgets/index.dart';
 
+import '../../../core/enums/cache_items.dart';
+
 @RoutePage()
 class ChatHomePage extends StatefulHookConsumerWidget {
   const ChatHomePage({
@@ -30,14 +32,24 @@ class ChatHomePage extends StatefulHookConsumerWidget {
 class _ChatHomePageState extends ConsumerState<ChatHomePage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  bool deneme = false;
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(webSocketProvider.notifier).connect();
-    });
+    refreshData();
+
     super.initState();
+  }
+
+  refreshData() async {
+    final token = await CacheItems.token.readSecureData();
+    await ref.read(webSocketProvider.notifier).refreshData();
+
+    await ref.read(webSocketProvider.notifier).connect(token: token);
+    await Future.delayed(const Duration(milliseconds: 200));
+    setState(() {
+      deneme = true;
+    });
   }
 
   @override
@@ -48,54 +60,58 @@ class _ChatHomePageState extends ConsumerState<ChatHomePage>
     return Scaffold(
       body: FlatPageWrapper(
         scrollType: ScrollType.chatPage,
-        onRefresh: () {
-          ref.read(webSocketProvider.notifier).closeAndOpenWebSocket();
+        onRefresh: () async {
+          final token = await CacheItems.token.readSecureData();
+
+          ref.read(webSocketProvider.notifier).closeAndOpenWebSocket(token);
         },
         backgroundColor: theme.appColors.background,
         header: ChatAppbar(theme: theme, widget: widget, router: router),
         children: [
-          SizedBox(
-            height: context.sized.height,
-            child: NestedScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
-                return <Widget>[
-                  SliverList(
-                    delegate: SliverChildListDelegate([
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: TabBar(
-                          controller: _tabController,
-                          labelColor: MainColors.primary,
-                          indicator: TabIndicator(),
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          unselectedLabelColor: MainColors.dark3,
-                          labelStyle: theme.textTheme.bodyXLarge.copyWith(
-                            fontWeight: FontWeight.bold,
+          if (deneme)
+            SizedBox(
+              height: context.sized.height,
+              child: NestedScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                headerSliverBuilder:
+                    (BuildContext context, bool boxIsScrolled) {
+                  return <Widget>[
+                    SliverList(
+                      delegate: SliverChildListDelegate([
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: TabBar(
+                            controller: _tabController,
+                            labelColor: MainColors.primary,
+                            indicator: TabIndicator(),
+                            indicatorSize: TabBarIndicatorSize.tab,
+                            unselectedLabelColor: MainColors.dark3,
+                            labelStyle: theme.textTheme.bodyXLarge.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            tabs: [
+                              Tab(
+                                text: l10n.people,
+                              ),
+                              Tab(
+                                text: l10n.groups,
+                              ),
+                            ],
                           ),
-                          tabs: [
-                            Tab(
-                              text: l10n.people,
-                            ),
-                            Tab(
-                              text: l10n.groups,
-                            ),
-                          ],
                         ),
-                      ),
-                    ]),
-                  ),
-                ];
-              },
-              body: TabBarView(
-                controller: _tabController,
-                children: [
-                  TabFirst(theme: theme, router: router),
-                  TabSecond(theme: theme, router: router),
-                ],
+                      ]),
+                    ),
+                  ];
+                },
+                body: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    TabFirst(theme: theme, router: router),
+                    TabSecond(theme: theme, router: router),
+                  ],
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

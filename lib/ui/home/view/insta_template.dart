@@ -138,7 +138,7 @@ class _CustomInstagramStoryWidgetState
                             ],
                           ),
                           const PrimaryText(
-                            'İndir ve Etkinlileri Keşfet!',
+                            'İndir ve Etkinlikleri Keşfet!',
                             style: TextStyle(
                               fontSize: 16,
                               color: MainColors.primary,

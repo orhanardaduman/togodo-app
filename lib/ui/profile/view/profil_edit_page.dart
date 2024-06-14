@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -124,83 +125,97 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
           appBar: CustomAppBar(
             title: l10n.profile_edit_title,
           ),
-          body: ListView(
-            shrinkWrap: true,
-            controller: _scrollController,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 23.5,
-            ),
+          body: Stack(
             children: [
-              if (modelView.type == 0)
-                DragDropImage(imageUrl: model.imageUrl)
-              else
-                CommunityImage(
-                  image: model.imageUrl.ext.isNullOrEmpty
-                      ? null
-                      : model.imageUrl!.first,
+              ListView(
+                shrinkWrap: true,
+                controller: _scrollController,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 23.5,
                 ),
-              if (modelView.type == 0)
-                SizedBox(height: context.sized.dynamicHeight(0.021)),
-              if (modelView.type == 0)
-                Center(
-                  child: PrimaryText(
-                    l10n.profile_edit_picture_change_instruction,
-                  ),
-                ),
-              SizedBox(height: context.sized.dynamicHeight(0.022)),
-              if (modelView.type == 0)
-                normalUserForm(l10n, model, modelView, theme)
-              else
-                communityForm(l10n, model, modelView, theme),
-              SizedBox(height: context.sized.dynamicHeight(0.046)),
-              Row(
                 children: [
-                  SizedBox(
-                    width: context.sized.dynamicWidth(0.35),
-                    child: CustomButton(
-                      text: l10n.exit_button,
-                      mode: ButtonMode.dark,
-                      onPressed: () {
-                        AutoRouter.of(context).pop();
-                      },
+                  if (modelView.type == 0)
+                    DragDropImage(imageUrl: model.imageUrl)
+                  else
+                    CommunityImage(
+                      image: model.imageUrl.ext.isNullOrEmpty
+                          ? null
+                          : model.imageUrl!.first,
                     ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    decoration: const BoxDecoration().buttonShadow,
-                    width: context.sized.dynamicWidth(0.5),
-                    child: CustomButton(
-                      text: l10n.save_button,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          model.updateProfil().then((value) async {
-                            if (value == 200) {
-                              await ref
-                                  .read(profilViewModelProvider(null).notifier)
-                                  .fetchProfil()
-                                  .then((value) {
-                                AutoRouter.of(context).pop();
-                                NotificationService.instance.showNotification(
-                                  l10n.info,
-                                  l10n.profileNotfications,
-                                );
-                              });
-                            } else {
-                              showToast(
-                                context,
-                                'Hata Oluştu',
-                                type: AlertType.error,
-                              );
-                            }
-                          });
-                        }
-                      },
+                  if (modelView.type == 0)
+                    SizedBox(height: context.sized.dynamicHeight(0.021)),
+                  if (modelView.type == 0)
+                    Center(
+                      child: PrimaryText(
+                        l10n.profile_edit_picture_change_instruction,
+                      ),
                     ),
-                  ),
+                  SizedBox(height: context.sized.dynamicHeight(0.022)),
+                  if (modelView.type == 0)
+                    normalUserForm(l10n, model, modelView, theme)
+                  else
+                    communityForm(l10n, model, modelView, theme),
+                  SizedBox(height: context.sized.dynamicHeight(0.1)),
                 ],
               ),
-              SizedBox(height: context.sized.dynamicHeight(0.086)),
+              Positioned(
+                bottom: 24,
+                left: 24,
+                right: 24,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: context.sized.dynamicHeight(0.1),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: context.sized.dynamicWidth(0.35),
+                        child: CustomButton(
+                          text: l10n.exit_button,
+                          mode: ButtonMode.dark,
+                          onPressed: () {
+                            AutoRouter.of(context).pop();
+                          },
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        decoration: const BoxDecoration().buttonShadow,
+                        width: context.sized.dynamicWidth(0.5),
+                        child: CustomButton(
+                          text: l10n.save_button,
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              model.updateProfil().then((value) async {
+                                if (value == 200) {
+                                  await ref
+                                      .read(profilViewModelProvider(null)
+                                          .notifier)
+                                      .fetchProfil()
+                                      .then((value) {
+                                    AutoRouter.of(context).pop();
+                                    NotificationService.instance
+                                        .showNotification(
+                                      l10n.info,
+                                      l10n.profileNotfications,
+                                    );
+                                  });
+                                } else {
+                                  showToast(
+                                    context,
+                                    'Hata Oluştu',
+                                    type: AlertType.error,
+                                  );
+                                }
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -404,7 +419,7 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
       ),
     );
   }
-}/* 
+} /*
 
 void showDay(
   BuildContext context,

@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>623189034780-chk7up4jjfbv6remu2fp4415os3043lv.apps.googleusercontent.com</string>
+	<string>11618932806-87obvbb1btlc07mutf9j5q3orae9bbp1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.623189034780-chk7up4jjfbv6remu2fp4415os3043lv</string>
+	<string>com.googleusercontent.apps.11618932806-87obvbb1btlc07mutf9j5q3orae9bbp1</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>623189034780-205gv70f5t052v5mtbsv0mjp0pcltj60.apps.googleusercontent.com</string>
+	<string>11618932806-02mn10rnunl5meu2aqdo5u9p6m5kvb26.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBXZw6ANjZtApp9W_gJ6-4KHAmIj1AheJI</string>
+	<string>AIzaSyD-_gzpNTXQ8J6J3fQfp2Lqcn0IYnFMQak</string>
 	<key>GCM_SENDER_ID</key>
-	<string>623189034780</string>
+	<string>11618932806</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.togodo.co.dev</string>
+	<string>com.togodo.co</string>
 	<key>PROJECT_ID</key>
-	<string>togodo-dev</string>
+	<string>togodo-9b850</string>
 	<key>STORAGE_BUCKET</key>
-	<string>togodo-dev.appspot.com</string>
+	<string>togodo-9b850.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:623189034780:ios:616c8dc69a6b219fc95cd9</string>
+	<string>1:11618932806:ios:a35d9eff35fa664c05d247</string>
 </dict>
 </plist>

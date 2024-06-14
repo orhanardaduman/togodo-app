@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:togodo/core/constants/constants.dart';
+import 'package:togodo/core/enums/cache_items.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -29,6 +30,10 @@ class WebSocketService {
   IO.Socket? _channel;
   bool isConnected = false;
   Future<void> connect(String token) async {
+    print("deneme socket connect");
+    print("gelen token: $token ");
+    print("_chenl data : $_channel ");
+
     if (_channel == null) {
       final baseUrl = dotenv.env['BASE_URL'] ?? Constants.instance.endpoint;
 
@@ -37,10 +42,16 @@ class WebSocketService {
         IO.OptionBuilder()
             .setTransports(['websocket']) // Use WebSocket transport only
             .setExtraHeaders(
-                {'Authorization': 'Bearer $token'}) // Set headers if needed
+          {'Authorization': 'Bearer $token'},
+        ) // Set headers if needed
             .build(),
       );
       _channel?.connect();
+      _channel?.onAny((event, data) {
+        if (event == "connect") {
+          _channel?.emit('saveUser', {"token": token});
+        }
+      });
     }
     if ((_channel?.connected ?? false) == false) {
       _channel?.connect();
@@ -66,8 +77,9 @@ class WebSocketService {
         });
   }
 
-  sink(bool isSearch, dynamic data) {
-    _channel?.emit('connectToRoom', {isSearch ? "userId" : "chatRoomId": data});
+  sink(bool isSearch, dynamic data, dynamic token) {
+    _channel?.emit('connectToRoom',
+        {isSearch ? "userId" : "chatRoomId": data, "token": token});
   }
 
   sinkDissconnect(dynamic data) {
@@ -78,7 +90,9 @@ class WebSocketService {
     _channel?.emit('getMessages', {"token": data});
   }
 
-  close() {
+  void close() {
+    print("deneme socket close");
+    _channel?.clearListeners();
     _channel?.disconnect();
     _channel?.dispose();
     _channel = null;

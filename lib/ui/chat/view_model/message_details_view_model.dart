@@ -64,7 +64,8 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
     final userModelView = _ref.read(userViewModelProvider);
     await webSocketService.connect(userModelView.accessToken!);
     print("burda sinklemesi lazim room Id ${roomId}");
-    await webSocketService.sink(isSearchRoute, roomId);
+    await webSocketService.sink(
+        isSearchRoute, roomId, userModelView.accessToken!);
 
     socketListen();
   }
@@ -300,9 +301,7 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
     closeChatRoom();
     webSocketService.close();
 
-    _ref.read(webSocketProvider.notifier).connect();
-    log('Chat Details WebSocket disposed');
-    state = state.copyWith(connectionStatus: false);
+    state = state.copyWith(connectionStatus: false, loading: true);
   }
 
   @override

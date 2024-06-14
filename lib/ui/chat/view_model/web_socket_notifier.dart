@@ -35,13 +35,22 @@ class WebSocketNotifier extends StateNotifier<WebSocketState> {
   bool _isDisposed = false;
   late final ChatRepository _repository = _ref.read(chatRepositoryProvider);
   WebSocketService webSocketService = WebSocketService.instance;
-  Future<void> connect({bool loading = true}) async {
+  Future<void> refreshData() async {
+    state = state.copyWith(
+      loading: true,
+      initData: [],
+      chatData: [],
+      connectionStatus: false,
+      groupChatData: [],
+    );
+  }
+
+  Future<void> connect({bool loading = true, String? token}) async {
+    print("giden token: $token ");
     if (_isDisposed) return;
-    final token = await CacheItems.token.readSecureData();
     state = state.copyWith(loading: loading);
-    final userModelView = _ref.read(userViewModelProvider);
-    await webSocketService.connect(userModelView.accessToken ?? token!);
-    await webSocketService.getAllChatdata(userModelView.accessToken ?? token!);
+    await webSocketService.connect(token!);
+    await webSocketService.getAllChatdata(token);
     socketListen();
   }
 
@@ -209,19 +218,22 @@ class WebSocketNotifier extends StateNotifier<WebSocketState> {
     );
   }
 
-  void closeAndOpenWebSocket() {
+  void closeAndOpenWebSocket(String? token) {
     state = state.copyWith(connectionStatus: false);
     webSocketService.close();
     log('Chat WebSocket disposed');
 
-    Future.delayed(const Duration(seconds: 1), connect);
+    Future.delayed(
+      const Duration(seconds: 1),
+    );
+    connect(token: token);
     log('Chat WebSocket opened');
     state = state.copyWith(connectionStatus: true);
   }
 
-  Future<void> closeWebSocket() async {
+  void closeWebSocket() {
     if (_isDisposed) return;
-    await webSocketService.close();
+    webSocketService.close();
     state = state.copyWith(connectionStatus: false);
   }
 

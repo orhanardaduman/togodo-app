@@ -20,6 +20,8 @@ import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/data/provider/firebase_auth_provider.dart';
 import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
 
+import '../chat/view_model/web_socket_notifier.dart';
+
 @RoutePage()
 class RemoveUserPage extends StatefulHookConsumerWidget {
   const RemoveUserPage({super.key});
@@ -49,10 +51,12 @@ class _RemoveUserPageState extends ConsumerState<RemoveUserPage> {
       // Kullanıcının hesabını sil.
       if (user != null) {
         await _updateDeletedUserSettings(user);
-        CacheItems.clearAll();
+        await CacheItems.clearAll();
+        print("sildimi ${await CacheItems.token.readSecureData()}");
 
         await user.delete();
         if (kDebugMode) {
+          ref.read(webSocketProvider.notifier).closeWebSocket();
           await ref.read(userViewModelProvider).signOut();
 
           _isLoading = false;

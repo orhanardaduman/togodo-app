@@ -21,6 +21,8 @@ import 'package:togodo/ui/chat/services/post_service.dart';
 import 'package:togodo/ui/chat/utils/chat_constants.dart';
 import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 
+import '../../../core/enums/cache_items.dart';
+
 @RoutePage()
 class GroupDetailsPage extends StatefulHookConsumerWidget {
   const GroupDetailsPage({
@@ -118,7 +120,9 @@ class _GroupDetailsPageState extends ConsumerState<GroupDetailsPage> {
                   ),
                 const SizedBox(height: 8),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    final token = await CacheItems.token.readSecureData();
+
                     setState(() {
                       _isUpdate = !_isUpdate;
                       if (_isUpdate) {
@@ -130,7 +134,7 @@ class _GroupDetailsPageState extends ConsumerState<GroupDetailsPage> {
                             widget.roomId,
                             nameTextController.text,
                           )
-                          ..closeAndOpenWebSocket();
+                          ..closeAndOpenWebSocket(token);
 
                         FocusScope.of(context).unfocus();
                       }

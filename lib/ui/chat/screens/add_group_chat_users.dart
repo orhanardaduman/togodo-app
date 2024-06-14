@@ -17,6 +17,8 @@ import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 import 'package:togodo/ui/profile/view/friends_search_page.dart';
 import 'package:togodo/ui/profile/view_model/profil_view_model.dart';
 
+import '../../../core/enums/cache_items.dart';
+
 final addUserSearchProvider = FutureProvider.autoDispose
     .family<List<UserSearchModel>?, String>((ref, keyword) async {
   final model = ref.watch(
@@ -143,8 +145,12 @@ class _AddGroupChatUserPageState extends ConsumerState<AddGroupChatUserPage> {
                                       user.id!,
                                     )
                                       .then(
-                                      (value) {
-                                        notifierSocket.closeAndOpenWebSocket();
+                                      (value) async {
+                                        final token = await CacheItems.token
+                                            .readSecureData();
+
+                                        notifierSocket
+                                            .closeAndOpenWebSocket(token);
                                         notifier.incrementChangeRequest(
                                           user.id!,
                                         );

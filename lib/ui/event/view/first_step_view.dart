@@ -38,8 +38,7 @@ class _FirstStepViewState extends ConsumerState<FirstStepView> {
         CustomTextField(
           label: l10n.description_label,
           minLines: 3,
-          maxLength: 500,
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.newline,
           required: false,
           controller: model.descController,
           onFieldSubmitted: (p0) {

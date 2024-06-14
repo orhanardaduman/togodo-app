@@ -234,7 +234,7 @@ class UserViewModel extends ChangeNotifier {
 
           await CacheItems.token.writeSecureData(accessTokens!);
           await CacheItems.uid.writeSecureData(userIds!);
-          await webSocketService.connect(accessTokens!);
+          //await webSocketService.connect(accessTokens!);
           notifyListeners();
 
           return true;
@@ -417,9 +417,12 @@ class UserViewModel extends ChangeNotifier {
     });
   }
 
-  void clear() {
+  void clear() async {
     _ref.read(welcomeQuestionModelProvider.notifier).clear();
-    CacheItems.clearAll();
+    await CacheItems.clearAll();
+    print("sildimi ${await CacheItems.token.readSecureData()}");
+    final webSocketService = WebSocketService.instance;
+    webSocketService.close();
     phoneController.clear();
     nameController.clear();
     surnameController.clear();

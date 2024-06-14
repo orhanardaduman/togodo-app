@@ -9,7 +9,10 @@ enum CacheItems {
   signType, // authButton ise google, facebook, apple,  twitter  // authOtp ise phone, email
   token;
 
-  static const _storage = FlutterSecureStorage();
+  static const _storage = FlutterSecureStorage(
+      aOptions: AndroidOptions(
+    encryptedSharedPreferences: true,
+  ));
   static AndroidOptions _getAndroidOptions() => const AndroidOptions(
         encryptedSharedPreferences: true,
       );
@@ -23,10 +26,9 @@ enum CacheItems {
     await _storage.write(
       key: name,
       value: value,
-      aOptions: _getAndroidOptions(),
     );
   }
 
-  void clear() => _storage.delete(key: name, aOptions: _getAndroidOptions());
-  static void clearAll() => _storage.deleteAll(aOptions: _getAndroidOptions());
+  void clear() => _storage.delete(key: name);
+  static Future<void> clearAll() => _storage.deleteAll();
 }

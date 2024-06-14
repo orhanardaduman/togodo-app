@@ -120,7 +120,7 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
       keyboardAppearance: themeMode.isDark ? Brightness.dark : Brightness.light,
       minLines: widget.minLines,
       maxLines: widget.maxLines ?? (widget.minLines ?? 1),
-      inputFormatters: widget.isRegExp ? [CustomTextInputFormatter()] : null,
+      // inputFormatters: widget.isRegExp ? [CustomTextInputFormatter()] : null,
       validator: widget.isEnabled && widget.required
           ? (value) {
               if (value == null || value.isEmpty) {
@@ -241,7 +241,7 @@ class CustomTextInputFormatter extends TextInputFormatter {
     TextEditingValue newValue,
   ) {
     // Türkçe karakterler ve temel noktalama işaretleri dışındaki özel karakterleri engelleyen bir regex
-    final regex = RegExp(r'^[a-zA-ZğüşıöçĞÜŞİÖ&Ç0-9 ]+$');
+    final regex = RegExp(r'^[a-zA-ZğüşıöçĞÜŞİÖ&Ç0-9 .,!?;:()\-]+$');
     var filtered = '';
     for (final char in newValue.text.split('')) {
       if (regex.hasMatch(char)) {

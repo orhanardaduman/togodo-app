@@ -151,6 +151,7 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
         CustomTextField(
           isEnabled: !state.isFree,
           label: l10n.tickedUrl,
+          required: false,
           keyboardType: TextInputType.url,
           prefixIcon: Assets.icons.bold.link.path,
           controller: model.linkController,

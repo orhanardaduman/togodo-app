@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use_from_same_package, avoid_bool_literals_in_conditional_expressions
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
@@ -53,12 +54,12 @@ class EventDetailsPage extends StatefulHookConsumerWidget {
 
 class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
   FocusNode focusNode = FocusNode();
-  final ScrollController _scrollController = ScrollController();
+  //final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController = RefreshController();
   @override
   void dispose() {
     focusNode.dispose();
-    _scrollController.dispose();
+    //_scrollController.dispose();
     focusNode.removeListener(() {});
     _refreshController.dispose();
     super.dispose();
@@ -69,26 +70,16 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
     super.initState();
 
     focusNode.addListener(() {
-      if (focusNode.hasFocus) {
-        scrollToBottom();
-      }
+      setState(() {});
     });
   }
 
-  void pageDown() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.ease,
-    );
-  }
-
   void scrollToBottom() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent * 5,
+    /* _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
       duration: const Duration(seconds: 1),
       curve: Curves.easeInOut,
-    );
+    );*/
   }
 
   @override
@@ -118,7 +109,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
               : Stack(
                   children: [
                     SingleChildScrollView(
-                      controller: _scrollController,
+                      //controller: _scrollController,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
