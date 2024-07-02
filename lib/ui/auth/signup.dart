@@ -145,142 +145,118 @@ class _SignupPageState extends ConsumerState<SignupPage>
         child: Scaffold(
           key: _scaffoldKey,
           appBar: CustomAppBar(title: l10n.createAccount),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  height: context.sized.dynamicHeight(model.isEmail ? 1 : 0.88),
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: GestureDetector(
-                    onTap: () => FocusScope.of(context).unfocus(),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 18.5),
-                                PrimaryText(
-                                  l10n.welcomeSub,
-                                  style: theme.textTheme.bodyMedium,
-                                ),
-                                const SizedBox(height: 35),
-                                CustomTextField(
-                                  prefixIcon: model.isCommunity
-                                      ? Assets.icons.bold.threeUser.path
-                                      : Assets.icons.bold.profile.path,
-                                  label: model.isCommunity
-                                      ? l10n.community_name_label
-                                      : l10n.name_label,
-                                  isRegExp: true,
-                                  controller: model.nameController,
-                                ),
-                                const SizedBox(height: 12),
-                                if (!model.isCommunity)
-                                  CustomTextField(
-                                    label: l10n.surname_label,
-                                    isRegExp: true,
-                                    controller: model.surnameController,
-                                  ),
-                                const SizedBox(height: 12),
-                                if (model.isEmail)
-                                  Column(
-                                    children: [
-                                      CustomTextField(
-                                        label: l10n.email,
-                                        controller: model.emailController,
-                                      ),
-                                      const SizedBox(height: 12),
-                                      CustomTextField(
-                                        isPassword: true,
-                                        label: l10n.password,
-                                        controller: model.passwordController,
-                                      ),
-                                      const SizedBox(height: 12),
-                                      CustomTextField(
-                                        isPassword: true,
-                                        label: l10n.passwordAgain,
-                                        controller:
-                                            model.passwordAgainController,
-                                      ),
-                                    ],
-                                  ),
-                                if (!model.isEmail)
-                                  CustomPhoneTextField(
-                                    controller: model.phoneController,
-                                    onChanged: (v) =>
-                                        model.phone = v.completeNumber,
-                                  ),
-                                CustomCheckBox(
-                                  label: l10n.createCominityAccount,
-                                  padding:
-                                      const EdgeInsets.only(left: 2, top: 12),
-                                  isBgColor: false,
-                                  isVal: model.isCommunity,
-                                  onTap: model.changeCommunity,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                PrimaryText(
-                                  l10n.or,
-                                  style: theme.textTheme.bodyMedium.copyWith(
-                                    color: theme.appColors.secondText,
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: model.changeEmail,
-                                  child: PrimaryText(
-                                    model.isEmail
-                                        ? l10n.registerWithPhone
-                                        : l10n.registerWithEmail,
-                                    style: theme.textTheme.bodyMedium.copyWith(
-                                      color: theme.appColors.secondText,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                                context.sized.emptySizedHeightBoxLow3x,
-                                const SignButton(),
-                                context.sized.emptySizedHeightBoxLow3x,
-                                PrivacyText(theme: theme, l10n: l10n),
-                                const Spacer(),
-                                TextButton(
-                                  onPressed: () async {
-                                    await router.push(const SigninRoute());
-                                  },
-                                  child: PrimaryText(
-                                    l10n.alreadyAccount,
-                                    style: theme.textTheme.bodyMedium.copyWith(
-                                      color: theme.appColors.secondText,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                                AnimatedPadding(
-                                  duration: const Duration(milliseconds: 300),
-                                  padding: EdgeInsets.only(
-                                    bottom: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom,
-                                  ),
-                                  child:
-                                      _signUpButton(model, router, theme, l10n),
-                                ),
-                                SizedBox(
-                                  height: context.sized.dynamicHeight(0.024),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+          body: Container(
+            height: context.sized.dynamicHeight(model.isEmail ? 1 : 0.88),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 18.5),
+                      PrimaryText(
+                        l10n.welcomeSub,
+                        style: theme.textTheme.bodyMedium,
                       ),
-                    ),
+                      const SizedBox(height: 35),
+                      CustomTextField(
+                        prefixIcon: model.isCommunity
+                            ? Assets.icons.bold.threeUser.path
+                            : Assets.icons.bold.profile.path,
+                        label: model.isCommunity
+                            ? l10n.community_name_label
+                            : l10n.name_label,
+                        isRegExp: true,
+                        controller: model.nameController,
+                      ),
+                      const SizedBox(height: 12),
+                      if (!model.isCommunity)
+                        CustomTextField(
+                          label: l10n.surname_label,
+                          isRegExp: true,
+                          controller: model.surnameController,
+                        ),
+                      const SizedBox(height: 12),
+                      if (model.isEmail)
+                        Column(
+                          children: [
+                            CustomTextField(
+                              label: l10n.email,
+                              controller: model.emailController,
+                            ),
+                            const SizedBox(height: 12),
+                            CustomTextField(
+                              isPassword: true,
+                              label: l10n.password,
+                              controller: model.passwordController,
+                            ),
+                            const SizedBox(height: 12),
+                            CustomTextField(
+                              isPassword: true,
+                              label: l10n.passwordAgain,
+                              controller: model.passwordAgainController,
+                            ),
+                          ],
+                        ),
+                      if (!model.isEmail)
+                        CustomPhoneTextField(
+                          controller: model.phoneController,
+                          onChanged: (v) => model.phone = v.completeNumber,
+                        ),
+                      CustomCheckBox(
+                        label: l10n.createCominityAccount,
+                        padding: const EdgeInsets.only(left: 2, top: 12),
+                        isBgColor: false,
+                        isVal: model.isCommunity,
+                        onTap: model.changeCommunity,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      PrimaryText(
+                        l10n.or,
+                        style: theme.textTheme.bodyMedium.copyWith(
+                          color: theme.appColors.secondText,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: model.changeEmail,
+                        child: PrimaryText(
+                          model.isEmail
+                              ? l10n.registerWithPhone
+                              : l10n.registerWithEmail,
+                          style: theme.textTheme.bodyMedium.copyWith(
+                            color: theme.appColors.secondText,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                      context.sized.emptySizedHeightBoxLow3x,
+                      const SignButton(),
+                      context.sized.emptySizedHeightBoxLow3x,
+                      PrivacyText(theme: theme, l10n: l10n),
+                      TextButton(
+                        onPressed: () async {
+                          await router.push(const SigninRoute());
+                        },
+                        child: PrimaryText(
+                          l10n.alreadyAccount,
+                          style: theme.textTheme.bodyMedium.copyWith(
+                            color: theme.appColors.secondText,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                      _signUpButton(model, router, theme, l10n),
+                      SizedBox(
+                        height: context.sized.dynamicHeight(0.024),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),

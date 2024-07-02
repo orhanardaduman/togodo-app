@@ -33,7 +33,6 @@ class App extends HookConsumerWidget {
     return MaterialApp.router(
       theme: theme.data,
       //  builder: FToastBuilder(),
-
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.dark().data,
       themeMode: themeMode,

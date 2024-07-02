@@ -122,8 +122,7 @@ mixin _SplashViewListenMixin on ConsumerState<SplashViewPage> {
           }
         });
         return;
-      }
-      if (next.isRedirectHome != null && next.isRedirectHome!) {
+      } else {
         try {
           Future.delayed(Duration.zero, () async {
             final status = await ref.read(userViewModelProvider).tokenCheck();

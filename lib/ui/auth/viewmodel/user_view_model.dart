@@ -317,7 +317,7 @@ class UserViewModel extends ChangeNotifier {
 
           onCodeSent!();
         },
-        // timeout: const Duration(seconds: 0),
+        timeout: Duration(seconds: 0),
         codeAutoRetrievalTimeout: (verificationId) {
           loading.toIdle();
         },

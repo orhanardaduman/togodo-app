@@ -37,15 +37,15 @@ run-dev:
 
 .PHONY: run-prd
 run-prd:
-	flutter run --release --flavor production --enable-software-rendering --dart-define=FLAVOR=production --target lib/main.dart
+	fvm flutter run --release --flavor production --enable-software-rendering --dart-define=FLAVOR=production --target lib/main.dart
 
 .PHONY: build-android-dev
 build-android-dev:
-	flutter build apk --no-tree-shake-icons --flavor development --dart-define=FLAVOR=development --target lib/main.dart
+	fvm flutter build apk --no-tree-shake-icons --flavor development --dart-define=FLAVOR=development --target lib/main.dart
 
 .PHONY: build-android-prd
 build-android-prd:
-	flutter build appbundle --no-tree-shake-icons --release --flavor production --dart-define=FLAVOR=production --target lib/main.dart
+	fvm flutter build appbundle --no-tree-shake-icons --release --flavor production --dart-define=FLAVOR=production --target lib/main.dart
 
 .PHONY: build-ios-dev
 build-ios-dev:
