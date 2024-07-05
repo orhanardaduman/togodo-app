@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_bool_literals_in_conditional_expressions, deprecated_member_use_from_same_package, use_setters_to_change_properties
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ import 'package:togodo/ui/event/create_event_page.dart';
 import 'package:togodo/ui/event/widget/event_rating_popup.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 import 'package:togodo/ui/notification_view_model.dart';
-import 'package:uni_links/uni_links.dart';
+//import 'package:uni_links/uni_links.dart';
 
 class IntStateNotifier extends StateNotifier<int> {
   IntStateNotifier() : super(0); // Başlangıç değeri 0 olarak ayarlanır.
@@ -72,8 +73,14 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
   void _incomingLinkHandler(StackRouter router) {
     // 1
     if (!kIsWeb) {
+      final _appLinks = AppLinks(); // AppLinks is singleton
+
+// Subscribe to all events (initial link and further)
+      _appLinks.uriLinkStream.listen((uri) {
+        router.pushNamed(uri.path);
+      });
       // 2
-      _streamSubscription = uriLinkStream.listen(
+      /* _streamSubscription = uriLinkStream.listen(
         (Uri? uri) {
           if (!mounted) {
             return;
@@ -90,7 +97,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
           debugPrint('Error occurred: $err');
           setState(() {});
         },
-      );
+      );*/
     }
   }
 

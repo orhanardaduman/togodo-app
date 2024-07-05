@@ -17,6 +17,7 @@ class EventJoinedState with _$EventJoinedState {
     @Default([]) List<EventFriendInviteModel> events,
     @Default(false) bool loading,
     @Default(0) int pagination,
+    @Default(0) int totalCount,
   }) = _EventJoinedState;
 }
 
@@ -38,10 +39,13 @@ class EventJoinedViewModel extends StateNotifier<EventJoinedState> {
       eventId: eventId,
     );
     if (result.isSuccess) {
+      List<EventFriendInviteModel> data = [];
+      data.addAll(result.dataOrThrow.users?.toList() ?? []);
       state = state.copyWith(
-        events: result.dataOrThrow,
+        events: data,
         loading: false,
         pagination: 1,
+        totalCount: result.dataOrThrow.total ?? 0,
       );
     } else {
       state = state.copyWith(loading: false);
@@ -71,10 +75,12 @@ class EventJoinedViewModel extends StateNotifier<EventJoinedState> {
       eventId: eventId,
     );
     if (result.isSuccess) {
-      final newNews = result.dataOrThrow;
+      List<EventFriendInviteModel> data = [];
+      data.addAll(result.dataOrThrow.users?.toList() ?? []);
       state = state.copyWith(
-        events: [...state.events, ...newNews],
+        events: [...state.events, ...data],
         pagination: state.pagination + 1,
+        totalCount: result.dataOrThrow.total ?? 0,
       );
     } else {}
   }

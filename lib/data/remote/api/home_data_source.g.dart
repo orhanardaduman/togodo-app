@@ -276,7 +276,7 @@ class _HomeDataSource implements HomeDataSource {
   }
 
   @override
-  Future<List<EventFriendInviteModel>> getUserEvent({
+  Future<EventAllUsersModel> getUserEvent({
     int? pagination,
     String? eventId,
   }) async {
@@ -288,8 +288,8 @@ class _HomeDataSource implements HomeDataSource {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<EventFriendInviteModel>>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<EventAllUsersModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -305,10 +305,7 @@ class _HomeDataSource implements HomeDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    var value = _result.data!
-        .map((dynamic i) =>
-            EventFriendInviteModel.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = EventAllUsersModel.fromJson(_result.data!);
     return value;
   }
 

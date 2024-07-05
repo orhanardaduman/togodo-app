@@ -40,8 +40,10 @@ class QuizViewModel extends StateNotifier<QuizState> {
       eventId: eventId,
     );
     if (result.isSuccess) {
+      List<EventFriendInviteModel> data = [];
+      data.addAll(result.dataOrThrow.users?.toList() ?? []);
       state = state.copyWith(
-        data: result.dataOrThrow,
+        data: data,
         loading: false,
         pagination: 1,
       );

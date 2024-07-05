@@ -10,8 +10,8 @@
 #endif
 #endif
 
-#import "UniLinksPlugin.h"
+#import "AppLinksPlugin.h"
 
-FOUNDATION_EXPORT double uni_linksVersionNumber;
-FOUNDATION_EXPORT const unsigned char uni_linksVersionString[];
+FOUNDATION_EXPORT double app_linksVersionNumber;
+FOUNDATION_EXPORT const unsigned char app_linksVersionString[];
 

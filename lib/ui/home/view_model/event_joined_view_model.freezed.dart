@@ -19,6 +19,7 @@ mixin _$EventJoinedState {
   List<EventFriendInviteModel> get events => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   int get pagination => throw _privateConstructorUsedError;
+  int get totalCount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EventJoinedStateCopyWith<EventJoinedState> get copyWith =>
@@ -32,7 +33,10 @@ abstract class $EventJoinedStateCopyWith<$Res> {
       _$EventJoinedStateCopyWithImpl<$Res, EventJoinedState>;
   @useResult
   $Res call(
-      {List<EventFriendInviteModel> events, bool loading, int pagination});
+      {List<EventFriendInviteModel> events,
+      bool loading,
+      int pagination,
+      int totalCount});
 }
 
 /// @nodoc
@@ -51,6 +55,7 @@ class _$EventJoinedStateCopyWithImpl<$Res, $Val extends EventJoinedState>
     Object? events = null,
     Object? loading = null,
     Object? pagination = null,
+    Object? totalCount = null,
   }) {
     return _then(_value.copyWith(
       events: null == events
@@ -65,6 +70,10 @@ class _$EventJoinedStateCopyWithImpl<$Res, $Val extends EventJoinedState>
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
               as int,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -78,7 +87,10 @@ abstract class _$$EventJoinedStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<EventFriendInviteModel> events, bool loading, int pagination});
+      {List<EventFriendInviteModel> events,
+      bool loading,
+      int pagination,
+      int totalCount});
 }
 
 /// @nodoc
@@ -95,6 +107,7 @@ class __$$EventJoinedStateImplCopyWithImpl<$Res>
     Object? events = null,
     Object? loading = null,
     Object? pagination = null,
+    Object? totalCount = null,
   }) {
     return _then(_$EventJoinedStateImpl(
       events: null == events
@@ -109,6 +122,10 @@ class __$$EventJoinedStateImplCopyWithImpl<$Res>
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
               as int,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -119,7 +136,8 @@ class _$EventJoinedStateImpl implements _EventJoinedState {
   const _$EventJoinedStateImpl(
       {final List<EventFriendInviteModel> events = const [],
       this.loading = false,
-      this.pagination = 0})
+      this.pagination = 0,
+      this.totalCount = 0})
       : _events = events;
 
   final List<EventFriendInviteModel> _events;
@@ -137,10 +155,13 @@ class _$EventJoinedStateImpl implements _EventJoinedState {
   @override
   @JsonKey()
   final int pagination;
+  @override
+  @JsonKey()
+  final int totalCount;
 
   @override
   String toString() {
-    return 'EventJoinedState(events: $events, loading: $loading, pagination: $pagination)';
+    return 'EventJoinedState(events: $events, loading: $loading, pagination: $pagination, totalCount: $totalCount)';
   }
 
   @override
@@ -151,12 +172,18 @@ class _$EventJoinedStateImpl implements _EventJoinedState {
             const DeepCollectionEquality().equals(other._events, _events) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.pagination, pagination) ||
-                other.pagination == pagination));
+                other.pagination == pagination) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_events), loading, pagination);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_events),
+      loading,
+      pagination,
+      totalCount);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +197,8 @@ abstract class _EventJoinedState implements EventJoinedState {
   const factory _EventJoinedState(
       {final List<EventFriendInviteModel> events,
       final bool loading,
-      final int pagination}) = _$EventJoinedStateImpl;
+      final int pagination,
+      final int totalCount}) = _$EventJoinedStateImpl;
 
   @override
   List<EventFriendInviteModel> get events;
@@ -178,6 +206,8 @@ abstract class _EventJoinedState implements EventJoinedState {
   bool get loading;
   @override
   int get pagination;
+  @override
+  int get totalCount;
   @override
   @JsonKey(ignore: true)
   _$$EventJoinedStateImplCopyWith<_$EventJoinedStateImpl> get copyWith =>

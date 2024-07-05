@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:togodo/core/network/api/app_dio.dart';
 import 'package:togodo/data/model/event/concept_image_model.dart';
+import 'package:togodo/data/model/event/event_all_users_model.dart';
 import 'package:togodo/data/model/event/event_comment_model.dart';
 import 'package:togodo/data/model/event/event_details_model.dart';
 import 'package:togodo/data/model/event/event_friend_invite_model.dart';
@@ -55,7 +56,7 @@ abstract class HomeDataSource {
     @Query('eventId') String? eventId,
   });
   @GET('Timeline/GetEventUsers')
-  Future<List<EventFriendInviteModel>> getUserEvent({
+  Future<EventAllUsersModel> getUserEvent({
     @Query('pagination') int? pagination,
     @Query('eventId') String? eventId,
   });

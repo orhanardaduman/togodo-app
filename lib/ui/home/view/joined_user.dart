@@ -64,6 +64,11 @@ class _EventJoinedUserPageState extends ConsumerState<EventJoinedUserPage> {
         return value.events;
       }),
     );
+    final total = ref.watch(
+      eventJoinedViewModelProvider(widget.eventId).select((value) {
+        return value.totalCount;
+      }),
+    );
     final loading = ref.watch(
       eventJoinedViewModelProvider(widget.eventId).select((value) {
         return value.loading;
@@ -87,7 +92,7 @@ class _EventJoinedUserPageState extends ConsumerState<EventJoinedUserPage> {
                   children: [
                     const SizedBox(height: 17.5),
                     PrimaryText(
-                      l10n.joinedInfo(users.length),
+                      l10n.joinedInfo(total),
                       style: theme.textTheme.bodyXLarge.copyWith(
                         color: theme.appColors.text,
                         fontWeight: FontWeight.w700,

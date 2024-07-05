@@ -18,12 +18,14 @@ Future<void> main() async {
   }
 
   await runZonedGuarded<Future<void>>(() async {
-    await AppStart.init();
-    await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
-    ).then((_) {
-      runApp(const ProviderScope(child: OverlaySupport(child: App())));
-    });
+    try {
+      await AppStart.init();
+      await SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+      );
+    } catch (e) {}
+
+    runApp(const ProviderScope(child: OverlaySupport(child: App())));
   }, (error, stackTrace) {
     Future.microtask(
       () => FirebaseCrashlytics.instance.recordError(error, stackTrace),

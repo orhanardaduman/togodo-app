@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/data/model/event/concept_image_model.dart';
+import 'package:togodo/data/model/event/event_all_users_model.dart';
 import 'package:togodo/data/model/event/event_comment_model.dart';
 import 'package:togodo/data/model/event/event_details_model.dart';
 import 'package:togodo/data/model/event/event_friend_invite_model.dart';
@@ -222,7 +223,7 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Result<List<EventFriendInviteModel>>> getUserEvent({
+  Future<Result<EventAllUsersModel>> getUserEvent({
     int? pagination,
     String? eventId,
   }) {

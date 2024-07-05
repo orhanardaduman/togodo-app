@@ -4,7 +4,7 @@ setup:
 
 .PHONY: dependencies
 dependencies:
-	flutter clean && flutter pub get && cd ios && rm podfile.lock && arch -x86_64 pod install --repo-update
+	fvm flutter clean && fvm flutter pub get && cd ios && rm podfile.lock && arch -x86_64 pod install --repo-update
 .PHONY: pod-ios
 pod-ios:
 	cd ios && rm podfile.lock && arch -x86_64 pod install --repo-update
@@ -29,11 +29,11 @@ format-analyze:
 
 .PHONY: build-runner
 build-runner:
-	flutter packages pub run build_runner build --delete-conflicting-outputs
+	fvm flutter packages pub run build_runner build --delete-conflicting-outputs
 
 .PHONY: run-dev
 run-dev:
-	flutter run --flavor development --enable-software-rendering --dart-define=FLAVOR=development --target lib/main.dart
+	fvm flutter run --flavor production --enable-software-rendering --dart-define=FLAVOR=production --target lib/main.dart
 
 .PHONY: run-prd
 run-prd:
@@ -45,19 +45,19 @@ build-android-dev:
 
 .PHONY: build-android-prd
 build-android-prd:
-	fvm flutter build appbundle --no-tree-shake-icons --release --flavor production --dart-define=FLAVOR=production --target lib/main.dart
+	fvm flutter build appbundle --no-shrink --no-tree-shake-icons --release --flavor production --dart-define=FLAVOR=production --target lib/main.dart
 
 .PHONY: build-ios-dev
 build-ios-dev:
-	flutter build ios --no-codesign --flavor development --dart-define=FLAVOR=development --target lib/main.dart
+	fvm flutter build ios --no-codesign --flavor development --dart-define=FLAVOR=development --target lib/main.dart
 
 .PHONY: build-ios-prd
 build-ios-prd:
-	flutter build ios --release --no-codesign --flavor production --dart-define=FLAVOR=production --target lib/main.dart
+	fvm flutter build ios --release --no-codesign --flavor production --dart-define=FLAVOR=production --target lib/main.dart
 
 .PHONY: unit-test
 unit-test:
-	flutter test --coverage --coverage-path=./coverage/lcov.info
+	fvm flutter test --coverage --coverage-path=./coverage/lcov.info
 
 .PHONY: codecov
 codecov:

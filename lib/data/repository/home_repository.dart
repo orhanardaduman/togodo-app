@@ -7,6 +7,8 @@ import 'package:togodo/data/model/event/event_request_model.dart';
 import 'package:togodo/data/model/profil/user_search_model.dart';
 import 'package:togodo/data/model/result.dart';
 
+import '../model/event/event_all_users_model.dart';
+
 abstract class HomeRepository {
   Future<Result<List<EventModel>>> getTimelineEvents({
     int? pagination,
@@ -35,7 +37,7 @@ abstract class HomeRepository {
     int? pagination,
     String? eventId,
   });
-  Future<Result<List<EventFriendInviteModel>>> getUserEvent({
+  Future<Result<EventAllUsersModel>> getUserEvent({
     int? pagination,
     String? eventId,
   });
