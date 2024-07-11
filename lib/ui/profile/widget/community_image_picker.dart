@@ -28,12 +28,14 @@ class CommunityImage extends HookConsumerWidget {
           width: context.sized.dynamicWidth(0.9),
           height: context.sized.dynamicWidth(0.9),
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: image == null || modelView.mediaList.isNotEmpty
-                  ? FileImage(modelView.mediaList.first!.url!)
-                  : NetworkImage(image!.downloadUrl!) as ImageProvider,
-              fit: BoxFit.fill,
-            ),
+            image: image == null && modelView.mediaList.firstOrNull == null
+                ? null
+                : DecorationImage(
+                    image: image == null || modelView.mediaList.isNotEmpty
+                        ? FileImage(modelView.mediaList.first!.url!)
+                        : NetworkImage(image!.downloadUrl!) as ImageProvider,
+                    fit: BoxFit.fill,
+                  ),
             borderRadius: BorderRadius.circular(40),
             color: MainColors.transparentBlue,
           ),
