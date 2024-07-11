@@ -11,10 +11,10 @@ enum CacheItems {
 
   static const _storage = FlutterSecureStorage(
       aOptions: AndroidOptions(
-    encryptedSharedPreferences: true,
+    encryptedSharedPreferences: false,
   ));
   static AndroidOptions _getAndroidOptions() => const AndroidOptions(
-        encryptedSharedPreferences: true,
+        encryptedSharedPreferences: false,
       );
   Future<String?> readSecureData() async {
     final readData =
