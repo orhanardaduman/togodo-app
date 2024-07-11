@@ -45,6 +45,7 @@ mixin _$EventModel {
   bool? get isUserEvent => throw _privateConstructorUsedError;
   int? get likeCount => throw _privateConstructorUsedError;
   int? get shareCount => throw _privateConstructorUsedError;
+  String? get aspectRatio => throw _privateConstructorUsedError;
   VendorDetails? get vendorDetails => throw _privateConstructorUsedError;
   List<JoinedUsers>? get joinedUsers => throw _privateConstructorUsedError;
 
@@ -86,6 +87,7 @@ abstract class $EventModelCopyWith<$Res> {
       bool? isUserEvent,
       int? likeCount,
       int? shareCount,
+      String? aspectRatio,
       VendorDetails? vendorDetails,
       List<JoinedUsers>? joinedUsers});
 
@@ -130,6 +132,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? isUserEvent = freezed,
     Object? likeCount = freezed,
     Object? shareCount = freezed,
+    Object? aspectRatio = freezed,
     Object? vendorDetails = freezed,
     Object? joinedUsers = freezed,
   }) {
@@ -234,6 +237,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.shareCount
           : shareCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      aspectRatio: freezed == aspectRatio
+          ? _value.aspectRatio
+          : aspectRatio // ignore: cast_nullable_to_non_nullable
+              as String?,
       vendorDetails: freezed == vendorDetails
           ? _value.vendorDetails
           : vendorDetails // ignore: cast_nullable_to_non_nullable
@@ -292,6 +299,7 @@ abstract class _$$EventModelImplCopyWith<$Res>
       bool? isUserEvent,
       int? likeCount,
       int? shareCount,
+      String? aspectRatio,
       VendorDetails? vendorDetails,
       List<JoinedUsers>? joinedUsers});
 
@@ -335,6 +343,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? isUserEvent = freezed,
     Object? likeCount = freezed,
     Object? shareCount = freezed,
+    Object? aspectRatio = freezed,
     Object? vendorDetails = freezed,
     Object? joinedUsers = freezed,
   }) {
@@ -439,6 +448,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value.shareCount
           : shareCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      aspectRatio: freezed == aspectRatio
+          ? _value.aspectRatio
+          : aspectRatio // ignore: cast_nullable_to_non_nullable
+              as String?,
       vendorDetails: freezed == vendorDetails
           ? _value.vendorDetails
           : vendorDetails // ignore: cast_nullable_to_non_nullable
@@ -480,6 +493,7 @@ class _$EventModelImpl implements _EventModel {
       this.isUserEvent,
       this.likeCount,
       this.shareCount,
+      this.aspectRatio,
       this.vendorDetails,
       final List<JoinedUsers>? joinedUsers})
       : _joinedUsers = joinedUsers;
@@ -538,6 +552,8 @@ class _$EventModelImpl implements _EventModel {
   @override
   final int? shareCount;
   @override
+  final String? aspectRatio;
+  @override
   final VendorDetails? vendorDetails;
   final List<JoinedUsers>? _joinedUsers;
   @override
@@ -551,7 +567,7 @@ class _$EventModelImpl implements _EventModel {
 
   @override
   String toString() {
-    return 'EventModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, startTime: $startTime, endTime: $endTime, resolution: $resolution, joinedUserCount: $joinedUserCount, isQuotaFull: $isQuotaFull, joinedStatus: $joinedStatus, latitude: $latitude, longitude: $longitude, ticketUrl: $ticketUrl, requestStatus: $requestStatus, isCurrentUser: $isCurrentUser, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, rating: $rating, isPublish: $isPublish, isUserEvent: $isUserEvent, likeCount: $likeCount, shareCount: $shareCount, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers)';
+    return 'EventModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, startTime: $startTime, endTime: $endTime, resolution: $resolution, joinedUserCount: $joinedUserCount, isQuotaFull: $isQuotaFull, joinedStatus: $joinedStatus, latitude: $latitude, longitude: $longitude, ticketUrl: $ticketUrl, requestStatus: $requestStatus, isCurrentUser: $isCurrentUser, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, rating: $rating, isPublish: $isPublish, isUserEvent: $isUserEvent, likeCount: $likeCount, shareCount: $shareCount, aspectRatio: $aspectRatio, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers)';
   }
 
   @override
@@ -604,6 +620,8 @@ class _$EventModelImpl implements _EventModel {
                 other.likeCount == likeCount) &&
             (identical(other.shareCount, shareCount) ||
                 other.shareCount == shareCount) &&
+            (identical(other.aspectRatio, aspectRatio) ||
+                other.aspectRatio == aspectRatio) &&
             (identical(other.vendorDetails, vendorDetails) ||
                 other.vendorDetails == vendorDetails) &&
             const DeepCollectionEquality()
@@ -639,6 +657,7 @@ class _$EventModelImpl implements _EventModel {
         isUserEvent,
         likeCount,
         shareCount,
+        aspectRatio,
         vendorDetails,
         const DeepCollectionEquality().hash(_joinedUsers)
       ]);
@@ -684,6 +703,7 @@ abstract class _EventModel implements EventModel {
       final bool? isUserEvent,
       final int? likeCount,
       final int? shareCount,
+      final String? aspectRatio,
       final VendorDetails? vendorDetails,
       final List<JoinedUsers>? joinedUsers}) = _$EventModelImpl;
 
@@ -740,6 +760,8 @@ abstract class _EventModel implements EventModel {
   int? get likeCount;
   @override
   int? get shareCount;
+  @override
+  String? get aspectRatio;
   @override
   VendorDetails? get vendorDetails;
   @override

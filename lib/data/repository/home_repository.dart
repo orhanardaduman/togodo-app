@@ -101,4 +101,8 @@ abstract class HomeRepository {
   Future<Result<void>> leaveEvent(
     String eventId,
   );
+  Future<Result<void>> updateEventSort(
+    String? eventId,
+    String? sortNumber,
+  );
 }

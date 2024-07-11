@@ -1,12 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:togodo/core/constants/constants.dart';
-import 'package:togodo/core/enums/cache_items.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:togodo/core/constants/constants.dart';
 
 /* {
     "type": 1,
@@ -38,7 +34,7 @@ class WebSocketService {
       final baseUrl = dotenv.env['BASE_URL'] ?? Constants.instance.endpoint;
 
       _channel = IO.io(
-        'wss://$baseUrl',
+        'ws://$baseUrl',
         IO.OptionBuilder()
             .setTransports(['websocket']) // Use WebSocket transport only
             .setExtraHeaders(

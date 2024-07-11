@@ -72,6 +72,11 @@ class EventDetailsViewModel extends StateNotifier<EventDetailsState> {
     }
   }
 
+  void changeSort(String? sortText) async {
+    print("-------- ${state.events?.id}");
+    await _repository.updateEventSort(state.events?.id, sortText);
+  }
+
   void incrementReplyModel(EventCommentModel? model) {
     if (_isDisposed) return;
     state = state.copyWith(

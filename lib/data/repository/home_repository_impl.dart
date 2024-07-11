@@ -440,4 +440,16 @@ class HomeRepositoryImpl implements HomeRepository {
       ),
     );
   }
+
+  @override
+  Future<Result<void>> updateEventSort(String? eventId, String? sortNumber) {
+    return Result.guardFuture(
+      () async => _dataSource.updateEventSort(
+        {
+          'sortNumber': int.tryParse(sortNumber ?? '') ?? 0,
+          'eventId': eventId,
+        },
+      ),
+    );
+  }
 }

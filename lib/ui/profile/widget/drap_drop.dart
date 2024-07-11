@@ -76,7 +76,9 @@ class _DragDropImageState extends ConsumerState<DragDropImage> {
     // index'in list uzunluğunu aşmadığını kontrol et.
     Images? image;
     if (widget.imageUrl != null && item < widget.imageUrl!.length) {
-      image = widget.imageUrl!.where((element) => element.number == item).first;
+      image = widget.imageUrl
+          ?.where((element) => element.number == item)
+          .firstOrNull;
     }
     return Material(
       borderRadius: BorderRadius.circular(40),

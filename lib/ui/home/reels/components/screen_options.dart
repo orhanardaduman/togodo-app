@@ -129,8 +129,10 @@ class ScreenOptions extends HookConsumerWidget {
                           ),
                         )
                       else if ((item.joinedUserCount ?? 0) > 0)
-                        item.isQuotaFull!
-                            ? Padding(
+                        Column(
+                          children: [
+                            if (item.isQuotaFull!)
+                              Padding(
                                 padding: const EdgeInsets.only(right: 15),
                                 child: SizedBox(
                                   width: context.dyWidth(110),
@@ -163,31 +165,39 @@ class ScreenOptions extends HookConsumerWidget {
                                   ),
                                 ),
                               )
-                            : GestureDetector(
-                                onTap: () {
-                                  if (userType == UserType.guest) {
-                                    return showGuestInfo(theme, context);
-                                  }
-                                  router.push(
-                                    EventJoinedUserRoute(
-                                      eventId: item.id!,
-                                      isManagement: false,
-                                    ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: StackedWidgets(
-                                    size: context.isMediumScrn ? 32 : 28,
-                                    direction: TextDirection.rtl,
-                                    xShift: 18,
-                                    joinedUsers: item.joinedUsers!
-                                        .map((e) => e.imageUrl!)
-                                        .toList(),
-                                    imageLength: 5,
+                            else
+                              const SizedBox.shrink(),
+                            if (item.isQuotaFull!)
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            GestureDetector(
+                              onTap: () {
+                                if (userType == UserType.guest) {
+                                  return showGuestInfo(theme, context);
+                                }
+                                router.push(
+                                  EventJoinedUserRoute(
+                                    eventId: item.id!,
+                                    isManagement: false,
                                   ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: StackedWidgets(
+                                  size: context.isMediumScrn ? 32 : 28,
+                                  direction: TextDirection.rtl,
+                                  xShift: 18,
+                                  joinedUsers: item.joinedUsers!
+                                      .map((e) => e.imageUrl!)
+                                      .toList(),
+                                  imageLength: 5,
                                 ),
-                              )
+                              ),
+                            )
+                          ],
+                        )
                       else
                         SizedBox(
                           height: context.isMediumScrn ? 32 : 28,

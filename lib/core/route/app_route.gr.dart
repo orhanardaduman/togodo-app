@@ -1467,7 +1467,7 @@ class NotificationRouteArgs {
 /// [_i30.ProfilEditPage]
 class ProfilEditRoute extends _i50.PageRouteInfo<ProfilEditRouteArgs> {
   ProfilEditRoute({
-    _i54.Key? key,
+    _i51.Key? key,
     _i30.ProfilScrollPosition? profilScrollPosition,
     List<_i50.PageRouteInfo>? children,
   }) : super(
@@ -1491,7 +1491,7 @@ class ProfilEditRouteArgs {
     this.profilScrollPosition,
   });
 
-  final _i54.Key? key;
+  final _i51.Key? key;
 
   final _i30.ProfilScrollPosition? profilScrollPosition;
 

@@ -34,7 +34,7 @@ project.ext.envConfigFiles = [
 ]
 android {
     // Workaround for support to multiple CIs (Bitrise and Codemagic).
-    compileSdkVersion System.getenv('ANDROID_SDK_VERSION') ? System.getenv('ANDROID_SDK_VERSION').toInteger() : 34
+    compileSdkVersion 34
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

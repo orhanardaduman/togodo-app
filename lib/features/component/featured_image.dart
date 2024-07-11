@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:togodo/features/component/blurs.dart';
-import 'package:togodo/features/component/fetured_image_linear_container.dart';
+
+import 'fetured_image_linear_container.dart';
 
 const errorImage =
     'https://api.togodo.xyz/resource/event-image/togodo-combination-logo-dark.png';
@@ -9,6 +10,7 @@ class FeaturedImageWidget extends StatelessWidget {
   const FeaturedImageWidget({
     required this.imageUrl,
     this.resolution = '1200x800',
+    this.aspectRatio = '0.5625',
     super.key,
     this.borderRadius = BorderRadius.zero,
     this.isTimeline = false,
@@ -16,6 +18,8 @@ class FeaturedImageWidget extends StatelessWidget {
   final String imageUrl;
   final BorderRadiusGeometry borderRadius;
   final String resolution;
+  final String aspectRatio;
+
   final bool isTimeline;
 
   @override
@@ -29,6 +33,7 @@ class FeaturedImageWidget extends StatelessWidget {
               if (isTimeline)
                 Blurs(borderRadius: borderRadius, imageUrl: imageUrl),
               FeaturedImageLinearContainer(
+                isFull: aspectRatio == '0.5625',
                 borderRadius: borderRadius,
                 imageUrl: imageUrl,
                 isTimeline: isTimeline,

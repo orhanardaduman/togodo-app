@@ -9,6 +9,7 @@ class FeaturedImageLinearContainer extends StatelessWidget {
   const FeaturedImageLinearContainer({
     required this.borderRadius,
     required this.imageUrl,
+    required this.isFull,
     this.isTimeline = false,
     super.key,
   });
@@ -16,6 +17,7 @@ class FeaturedImageLinearContainer extends StatelessWidget {
   final BorderRadiusGeometry borderRadius;
   final String imageUrl;
   final bool isTimeline;
+  final bool isFull;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +33,16 @@ class FeaturedImageLinearContainer extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        CachedNetworkImage(
-          imageUrl: imageUrl,
-          errorWidget: (context, url, error) => CachedNetworkImage(
-            imageUrl: errorImage,
-            fit: BoxFit.contain,
-            errorWidget: (context, url, error) => const SizedBox.shrink(),
+        AspectRatio(
+          aspectRatio: 9 / 16,
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            fit: isFull ? BoxFit.cover : BoxFit.contain,
+            errorWidget: (context, url, error) => CachedNetworkImage(
+              imageUrl: errorImage,
+              fit: BoxFit.contain,
+              errorWidget: (context, url, error) => const SizedBox.shrink(),
+            ),
           ),
         ),
         /*    Image.network(

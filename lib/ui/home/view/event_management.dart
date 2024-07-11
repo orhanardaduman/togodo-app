@@ -24,6 +24,10 @@ import 'package:togodo/ui/home/view_model/event_details_view_model.dart';
 import 'package:togodo/ui/home/widget/details_management_comment_list.dart';
 import 'package:togodo/ui/home/widget/event_info.dart';
 
+import '../../../core/component/input/custom_text_field.dart';
+import '../../../data/local/token_model.dart';
+import '../../auth/viewmodel/user_view_model.dart';
+
 class ManagementEvent extends StatefulHookConsumerWidget {
   const ManagementEvent({
     required this.eventId,
@@ -40,7 +44,17 @@ class ManagementEvent extends StatefulHookConsumerWidget {
 
 class _ManagementEventState extends ConsumerState<ManagementEvent> {
   final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _sort = TextEditingController();
+  final FocusNode node = FocusNode();
   bool _isPost = false;
+  @override
+  void initState() {
+    node.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   void dispose() {
     _textEditingController.dispose();
@@ -55,6 +69,8 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
     final theme = ref.watch(appThemeProvider);
     final router = useRouter();
     final l10n = useL10n();
+    final userModel = ref.watch(userViewModelProvider).tokenModel;
+
     return DragCustomModal(
       title: l10n.eventManagement,
       isCloseDivider: true,
@@ -70,17 +86,26 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
                 SingleChildScrollView(
                   child: SizedBox(
                     height: context.sized.dynamicHeight(0.76),
-                    child: body(model, theme, context, l10n, router, notifier),
+                    child: body(
+                      model,
+                      theme,
+                      context,
+                      l10n,
+                      router,
+                      notifier,
+                      userModel,
+                    ),
                   ),
                 ),
-                bottomTextField(
-                  context,
-                  theme,
-                  l10n,
-                  notifier,
-                  MediaQuery.of(context).viewInsets.bottom,
-                  model,
-                ),
+                if (!node.hasFocus)
+                  bottomTextField(
+                    context,
+                    theme,
+                    l10n,
+                    notifier,
+                    MediaQuery.of(context).viewInsets.bottom,
+                    model,
+                  ),
               ],
             ),
     );
@@ -183,6 +208,7 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
     L10n l10n,
     StackRouter router,
     EventDetailsViewModel notifier,
+    TokenModel? userModel,
   ) {
     return ListView(
       shrinkWrap: true,
@@ -230,6 +256,22 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
         ),
         divider(theme),
         eventInfo(theme, model.events!),
+        if (userModel?.token?.userType == 101) divider(theme),
+        if (userModel?.token?.userType == 101)
+          CustomTextField(
+            label: model.events?.sortNumber != null
+                ? '${model.events?.sortNumber}'
+                : "Sıra",
+            controller: _sort,
+            suffixIcon: Assets.icons.bulk.send.path,
+            keyboardType: TextInputType.number,
+            isRegExp: true,
+            focusNode: node,
+            onFieldSubmitted: (value) {
+              notifier.changeSort(value);
+              // onSuffixTap?.call();
+            },
+          ),
         divider(theme),
         if (model.events!.eventComment != null &&
             model.events!.eventComment!.isNotEmpty)

@@ -37,11 +37,13 @@ class CustomTextField extends StatefulHookConsumerWidget {
     this.keyboardType,
     this.maxLength,
     this.onSaved,
+    this.useIos = false,
   });
   final String label;
   final String? prefixIcon;
   final String? suffixIcon;
   final bool isEnabled;
+  final bool useIos;
   final bool isReadOnly;
   final bool isPassword;
   final int? minLines;

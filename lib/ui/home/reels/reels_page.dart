@@ -46,6 +46,7 @@ class ReelsPage extends StatelessWidget {
             }
           },
           child: FeaturedImageWidget(
+            aspectRatio: item.aspectRatio ?? '',
             imageUrl: item.imageUrl ?? '',
             resolution: item.resolution ?? '1200x800',
             isTimeline: true,

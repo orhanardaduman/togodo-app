@@ -66,6 +66,7 @@ _$EventDetailsModelImpl _$$EventDetailsModelImplFromJson(
       ratings: (json['ratings'] as List<dynamic>?)
           ?.map((e) => Ratings.fromJson(e as Map<String, dynamic>))
           .toList(),
+      sortNumber: json['sortNumber'] as int?,
     );
 
 Map<String, dynamic> _$$EventDetailsModelImplToJson(
@@ -111,6 +112,7 @@ Map<String, dynamic> _$$EventDetailsModelImplToJson(
       'eventComment': instance.eventComment,
       'request': instance.request,
       'ratings': instance.ratings,
+      'sortNumber': instance.sortNumber,
     };
 
 _$PricesImpl _$$PricesImplFromJson(Map<String, dynamic> json) => _$PricesImpl(

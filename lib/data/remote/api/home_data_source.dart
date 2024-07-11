@@ -161,4 +161,8 @@ abstract class HomeDataSource {
   Future<dynamic> leaveEvent(
     @Body() Map<String, dynamic> data,
   );
+  @POST('Event/SavePostNumber')
+  Future<dynamic> updateEventSort(
+    @Body() Map<String, dynamic> data,
+  );
 }

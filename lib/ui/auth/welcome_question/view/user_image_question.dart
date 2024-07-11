@@ -217,6 +217,13 @@ class ServicePicker {
     await InstaAssetPicker.pickAssets(
       context,
       maxAssets: maxAssets,
+      cropDelegate: InstaAssetCropDelegate(
+        cropRatios: [
+          9 / 16,
+          1,
+          4 / 3,
+        ],
+      ),
       onPermissionDenied: (context, perm) async {
         showToast(
           context,

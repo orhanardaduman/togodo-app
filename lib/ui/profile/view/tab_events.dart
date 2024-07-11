@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:togodo/core/component/custom_event_card.dart';
 import 'package:togodo/core/component/custom_refresher.dart';
@@ -59,7 +58,7 @@ class _TabEventsViewState extends ConsumerState<TabEventsView> {
             onRefresh: () async => notifier.fetchEvents(),
             onLoading: () async => notifier.fetchMoreEvents(),
             enablePullUp: true,
-            child: data.events.ext.isNullOrEmpty
+            child: data.events.isEmpty
                 ? NullEventWidget(
                     theme: theme,
                     userId: widget.userId,

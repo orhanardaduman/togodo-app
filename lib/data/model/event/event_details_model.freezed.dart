@@ -61,6 +61,7 @@ mixin _$EventDetailsModel {
       throw _privateConstructorUsedError;
   List<Request>? get request => throw _privateConstructorUsedError;
   List<Ratings>? get ratings => throw _privateConstructorUsedError;
+  int? get sortNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -114,7 +115,8 @@ abstract class $EventDetailsModelCopyWith<$Res> {
       List<Prices>? prices,
       List<EventCommentModel>? eventComment,
       List<Request>? request,
-      List<Ratings>? ratings});
+      List<Ratings>? ratings,
+      int? sortNumber});
 
   $VendorDetailsCopyWith<$Res>? get vendorDetails;
 }
@@ -172,6 +174,7 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
     Object? eventComment = freezed,
     Object? request = freezed,
     Object? ratings = freezed,
+    Object? sortNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -334,6 +337,10 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
           ? _value.ratings
           : ratings // ignore: cast_nullable_to_non_nullable
               as List<Ratings>?,
+      sortNumber: freezed == sortNumber
+          ? _value.sortNumber
+          : sortNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -398,7 +405,8 @@ abstract class _$$EventDetailsModelImplCopyWith<$Res>
       List<Prices>? prices,
       List<EventCommentModel>? eventComment,
       List<Request>? request,
-      List<Ratings>? ratings});
+      List<Ratings>? ratings,
+      int? sortNumber});
 
   @override
   $VendorDetailsCopyWith<$Res>? get vendorDetails;
@@ -455,6 +463,7 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
     Object? eventComment = freezed,
     Object? request = freezed,
     Object? ratings = freezed,
+    Object? sortNumber = freezed,
   }) {
     return _then(_$EventDetailsModelImpl(
       id: freezed == id
@@ -617,6 +626,10 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
           ? _value._ratings
           : ratings // ignore: cast_nullable_to_non_nullable
               as List<Ratings>?,
+      sortNumber: freezed == sortNumber
+          ? _value.sortNumber
+          : sortNumber // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -664,7 +677,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
       final List<Prices>? prices,
       final List<EventCommentModel>? eventComment,
       final List<Request>? request,
-      final List<Ratings>? ratings})
+      final List<Ratings>? ratings,
+      this.sortNumber})
       : _joinedUsers = joinedUsers,
         _images = images,
         _tags = tags,
@@ -813,8 +827,11 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
   }
 
   @override
+  final int? sortNumber;
+
+  @override
   String toString() {
-    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings)';
+    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber)';
   }
 
   @override
@@ -887,7 +904,9 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
             const DeepCollectionEquality()
                 .equals(other._eventComment, _eventComment) &&
             const DeepCollectionEquality().equals(other._request, _request) &&
-            const DeepCollectionEquality().equals(other._ratings, _ratings));
+            const DeepCollectionEquality().equals(other._ratings, _ratings) &&
+            (identical(other.sortNumber, sortNumber) ||
+                other.sortNumber == sortNumber));
   }
 
   @JsonKey(ignore: true)
@@ -933,7 +952,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
         const DeepCollectionEquality().hash(_prices),
         const DeepCollectionEquality().hash(_eventComment),
         const DeepCollectionEquality().hash(_request),
-        const DeepCollectionEquality().hash(_ratings)
+        const DeepCollectionEquality().hash(_ratings),
+        sortNumber
       ]);
 
   @JsonKey(ignore: true)
@@ -992,7 +1012,8 @@ abstract class _EventDetailsModel implements EventDetailsModel {
       final List<Prices>? prices,
       final List<EventCommentModel>? eventComment,
       final List<Request>? request,
-      final List<Ratings>? ratings}) = _$EventDetailsModelImpl;
+      final List<Ratings>? ratings,
+      final int? sortNumber}) = _$EventDetailsModelImpl;
 
   factory _EventDetailsModel.fromJson(Map<String, dynamic> json) =
       _$EventDetailsModelImpl.fromJson;
@@ -1077,6 +1098,8 @@ abstract class _EventDetailsModel implements EventDetailsModel {
   List<Request>? get request;
   @override
   List<Ratings>? get ratings;
+  @override
+  int? get sortNumber;
   @override
   @JsonKey(ignore: true)
   _$$EventDetailsModelImplCopyWith<_$EventDetailsModelImpl> get copyWith =>

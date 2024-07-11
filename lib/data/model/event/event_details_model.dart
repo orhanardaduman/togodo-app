@@ -51,6 +51,7 @@ class EventDetailsModel
     List<EventCommentModel>? eventComment,
     List<Request>? request,
     List<Ratings>? ratings,
+    int? sortNumber,
   }) = _EventDetailsModel;
 
   factory EventDetailsModel.fromJson(Map<String, Object?> json) =>

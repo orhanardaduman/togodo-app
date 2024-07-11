@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,9 +21,10 @@ import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/profile/view_model/profil_edit_view_model.dart';
 import 'package:togodo/ui/profile/view_model/profil_view_model.dart';
 import 'package:togodo/ui/profile/widget/community_image_picker.dart';
-import 'package:togodo/ui/profile/widget/drap_drop.dart';
 import 'package:togodo/ui/profile/widget/multi_chip.dart';
 import 'package:togodo/ui/profile/widget/profil_edit_dropdown.dart';
+
+import '../widget/drap_drop.dart';
 
 enum ProfilScrollPosition {
   top,
@@ -141,7 +141,7 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
                     CommunityImage(
                       image: model.imageUrl.ext.isNullOrEmpty
                           ? null
-                          : model.imageUrl!.first,
+                          : model.imageUrl?.first,
                     ),
                   if (modelView.type == 0)
                     SizedBox(height: context.sized.dynamicHeight(0.021)),
@@ -189,8 +189,9 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
                               model.updateProfil().then((value) async {
                                 if (value == 200) {
                                   await ref
-                                      .read(profilViewModelProvider(null)
-                                          .notifier)
+                                      .read(
+                                        profilViewModelProvider(null).notifier,
+                                      )
                                       .fetchProfil()
                                       .then((value) {
                                     AutoRouter.of(context).pop();

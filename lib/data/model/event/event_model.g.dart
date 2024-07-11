@@ -33,6 +33,7 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       isUserEvent: json['isUserEvent'] as bool?,
       likeCount: json['likeCount'] as int?,
       shareCount: json['shareCount'] as int?,
+      aspectRatio: json['aspectRatio'] as String?,
       vendorDetails: json['vendorDetails'] == null
           ? null
           : VendorDetails.fromJson(
@@ -69,6 +70,7 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'isUserEvent': instance.isUserEvent,
       'likeCount': instance.likeCount,
       'shareCount': instance.shareCount,
+      'aspectRatio': instance.aspectRatio,
       'vendorDetails': instance.vendorDetails,
       'joinedUsers': instance.joinedUsers,
     };

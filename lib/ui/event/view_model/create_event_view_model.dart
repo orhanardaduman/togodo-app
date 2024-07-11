@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:insta_assets_picker/insta_assets_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:togodo/core/constants/constants.dart';
 import 'package:togodo/core/network/api/api_endpoint.dart';
@@ -18,6 +18,7 @@ import 'package:togodo/data/model/profil/profil_model.dart';
 import 'package:togodo/data/repository/home_repository.dart';
 import 'package:togodo/data/repository/home_repository_impl.dart';
 
+import '../../../core/helpers/colors/colors.dart';
 import '../../../data/model/profil/user_search_with_events.dart';
 
 part 'create_event_view_model.freezed.dart';
@@ -303,7 +304,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
       });
 
       print("other user id ${state.otherUserModel?.id ?? 'yok'}");
-      print("other user id publish mi ${isPublish}");
+      print('other user id publish mi ${isPublish}');
 
       final response = isUpdates
           ? await dio.put<Map<String, dynamic>>(
@@ -334,7 +335,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
               response.data!,
             );
           } catch (e) {
-            print("error deneme ${e}");
+            print('error deneme ${e}');
           }
         } else {
           // response.data['data'] null veya Map<String, dynamic> türünde değil.
@@ -361,11 +362,71 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     }
   }
 
-  void updateLocation(GeocodingResult? p0) {
-    locationController.text = p0!.formattedAddress ?? '';
-    address = p0.formattedAddress;
-    Latitude = p0.geometry.location.lat.toString();
-    Longitude = p0.geometry.location.lng.toString();
+  void updateLocation(GeocodingResult? p0) async {
+    print('-----burda------');
+    print(p0?.addressComponents.toString());
+    for (AddressComponent i in p0?.addressComponents ?? []) {
+      print(i.longName);
+      print(i.shortName);
+      print('-----bitti------');
+    }
+    for (String i in p0?.postcodeLocalities ?? []) {
+      print(i);
+      print('-----bitti------');
+    }
+    for (String i in p0?.types ?? []) {
+      print(i);
+      print('-----bitti------');
+    }
+    print(p0?.placeId);
+    print(p0?.geometry.location.lat);
+    print(p0?.geometry.location.lng);
+
+    if (p0 != null) {
+      final dio = Dio();
+      dio.options.headers['X-Goog-Api-Key'] =
+          'AIzaSyDH0WTqT5qgKxnTifEpQnKl5pBEihYyyOE';
+      dio.options.headers['Content-Type'] = 'application/json';
+      dio.options.headers['X-Goog-FieldMask'] = 'places.displayName';
+
+      print(dio.options.headers);
+      //key = AIzaSyDH0WTqT5qgKxnTifEpQnKl5pBEihYyyOE
+      try {
+        final results = await dio.post<Map<String, dynamic>>(
+          'https://places.googleapis.com/v1/places:searchNearby',
+          data: {
+            "maxResultCount": 1,
+            "languageCode": "tr",
+            "locationRestriction": {
+              "circle": {
+                "center": {
+                  "latitude": p0.geometry.location.lat,
+                  "longitude": p0.geometry.location.lng
+                },
+                "radius": 10.0
+              }
+            }
+          },
+        );
+        print('----place response-----');
+        address = results.data?["places"][0]["displayName"]["text"] + " ";
+        print(results.statusCode);
+
+        print(results.data);
+      } on DioException catch (e) {
+        print(e.error.toString());
+        print(e.response?.statusCode);
+
+        print(e.response?.data);
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+
+    locationController.text = (address ?? '') + (p0?.formattedAddress ?? '');
+    address = (address ?? '') + (p0?.formattedAddress ?? '');
+    Latitude = p0?.geometry.location.lat.toString();
+    Longitude = p0?.geometry.location.lng.toString();
   }
 
   void changeJoinUser() {
@@ -373,6 +434,8 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     userController.clear();
   }
 
+  /*ben KYXuGkk2nTUEfUZhddI5V3SXgPh2
+  ahlam 6ruX1cLqY8Pc1cLnaRapmxnywgD3*/
   void changeFree() {
     state = state.copyWith(isFree: !state.isFree);
     eventController.clear();
@@ -427,7 +490,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     return myIndex;
   }
 
-  Future<void> setMediaList(List<AssetEntity> file) async {
+  Future<void> setMediaList(List<File> file) async {
     final list = <SelectedAssetsModel>[];
     for (var i = 0; i < file.length; i++) {
       final control = getRemainingIndexesAll();
@@ -435,7 +498,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
       list.add(
         SelectedAssetsModel(
           index: control[i],
-          localImage: await file[i].file,
+          localImage: file[i],
           /* width: element.width,
           height: element.height, */
         ),
@@ -454,9 +517,11 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
   void selectAllAssets({
     required bool isNetwork,
     String? url,
-    List<AssetEntity>? file,
+    List<File>? file,
   }) {
     final control = getRemainingIndexesAll();
+    print(control);
+    print(isNetwork);
     if (control.isNotEmpty && isNetwork == true) {
       state = state.copyWith(
         selectedAssetsAll: state.selectedAssetsAll == null
@@ -528,6 +593,47 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     }).toList();
     state = state.copyWith(
       selectedAssetsAll: updatedList,
+    );
+  }
+
+  void editAtIndex(int index) async {
+    final newImageUrlList = state.selectedAssetsAll!.toList();
+    final img = state.selectedAssetsAll!.firstWhere(
+      (element) => element.index == index,
+    );
+
+    final croppedFile = await ImageCropper().cropImage(
+      sourcePath: img.localImage?.path ?? '',
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9,
+      ],
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarTitle: 'Kırp',
+          toolbarColor: MainColors.primary,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false,
+        ),
+        IOSUiSettings(),
+      ],
+    );
+
+    var image = SelectedAssetsModel(
+      index: img.index,
+      localImage: File(
+        croppedFile?.path ?? img.localImage?.path ?? '',
+      ),
+    );
+    var indexNew = newImageUrlList.indexOf(img);
+    newImageUrlList.remove(img);
+    newImageUrlList.insert(indexNew, image);
+    state = state.copyWith(
+      selectedAssetsAll: newImageUrlList,
     );
   }
 

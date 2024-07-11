@@ -31,6 +31,7 @@ class EventModel with _$EventModel implements EventCommonProperties {
     bool? isUserEvent,
     int? likeCount,
     int? shareCount,
+    String? aspectRatio,
     VendorDetails? vendorDetails,
     List<JoinedUsers>? joinedUsers,
   }) = _EventModel;

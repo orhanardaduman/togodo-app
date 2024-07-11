@@ -1,5 +1,6 @@
-// ignore_for_file: deprecated_member_use_from_same_package
+import 'dart:ui' as ui;
 
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -98,6 +99,7 @@ class CustomImageBox extends HookConsumerWidget {
     final modelView = ref.watch(createEventModelProvider);
     final theme = ref.watch(appThemeProvider);
     ImageProvider? imageProvider;
+    Future<ui.Image>? imageData;
     // ignore: unused_local_variable
     var isUrl = false;
     // Network listesinden uygun nesneyi al
@@ -120,11 +122,20 @@ class CustomImageBox extends HookConsumerWidget {
     }
 
     DecorationImage? imageDecoration;
+    DecorationImage? forBlur;
+    DecorationImage? forFull;
     if (imageProvider != null) {
-      imageDecoration = DecorationImage(
-        image: imageProvider,
-        fit: BoxFit.cover,
-      );
+      imageDecoration =
+          DecorationImage(image: imageProvider, fit: BoxFit.contain);
+    }
+    if (imageProvider != null) {
+      forFull = DecorationImage(image: imageProvider, fit: BoxFit.cover);
+    }
+    if (imageProvider != null) {
+      forBlur = DecorationImage(image: imageProvider, fit: BoxFit.cover);
+    }
+    if (assets?.localImage != null) {
+      imageData = decodeImageFromList(assets!.localImage!.readAsBytesSync());
     }
 
     return Stack(
@@ -145,28 +156,86 @@ class CustomImageBox extends HookConsumerWidget {
                 ? MainColors.dark3
                 : MainColors.grey50,
           ),
+          child: FutureBuilder(
+            future: imageData,
+            builder: (context, snapshot) {
+              var denemeImageDecoration =
+                  ((snapshot.data?.width ?? 0) / (snapshot.data?.height ?? 0) ==
+                          9 / 16)
+                      ? forFull
+                      : imageDecoration;
+
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(16.6),
+                child: Stack(
+                  children: [
+                    Blur(
+                      blur: 10,
+                      blurColor: Colors.black.withOpacity(0.5),
+                      child: Positioned.fill(
+                        child: Container(
+                          width: context.sized.dynamicWidth(0.149),
+                          height: 97,
+                          decoration: BoxDecoration(image: forBlur),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: context.sized.dynamicWidth(0.149),
+                      height: 97,
+                      decoration: BoxDecoration(
+                        image: denemeImageDecoration,
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
         ),
         if (imageProvider != null && modelView.step == 2)
           Positioned(
             bottom: 0,
+            left: 0,
+            right: 0,
             child: Material(
               // Wrap with a Material widget
               color:
                   Colors.transparent, // Maintain the existing background color
 
-              child: InkWell(
-                radius: 12.5,
-                onTap: () async {
-                  // Eğer medya öğesi varsa, sil.
-                  if (index != null) {
-                    model.removeAssetsIndex(index!);
-                  }
-                },
-                child: Assets.icons.bold.delete.svg(
-                  color: MainColors.red,
-                  width: 15,
-                  height: 16.7,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  if (assets?.localImage != null)
+                    InkWell(
+                      radius: 12.5,
+                      onTap: () async {
+                        // Eğer medya öğesi varsa, sil.
+                        if (index != null) {
+                          model.editAtIndex(index!);
+                        }
+                      },
+                      child: Assets.icons.bold.edit.svg(
+                        color: MainColors.white,
+                        width: 15,
+                        height: 16.7,
+                      ),
+                    ),
+                  InkWell(
+                    radius: 12.5,
+                    onTap: () async {
+                      // Eğer medya öğesi varsa, sil.
+                      if (index != null) {
+                        model.removeAssetsIndex(index!);
+                      }
+                    },
+                    child: Assets.icons.bold.delete.svg(
+                      color: MainColors.red,
+                      width: 15,
+                      height: 16.7,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

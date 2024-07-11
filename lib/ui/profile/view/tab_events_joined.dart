@@ -7,6 +7,10 @@ import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/ui/profile/view_model/tab_joined_event_view_model.dart';
 
+import '../../../core/hook/use_l10n.dart';
+import '../../../core/theme/app_theme.dart';
+import '../widget/null_event.dart';
+
 class TabEventsJoinedView extends StatefulHookConsumerWidget {
   const TabEventsJoinedView({super.key, this.userId});
   final String? userId;
@@ -41,43 +45,53 @@ class _TabEventsJoinedViewState extends ConsumerState<TabEventsJoinedView> {
     final notifier =
         ref.watch(tabEventsJoinedViewModelProvider(widget.userId).notifier);
     final router = useRouter();
+    final theme = ref.watch(appThemeProvider);
+    final l10n = useL10n();
     // homeViewModel.data içerisinde verilerinizi bulabilirsiniz.
     return data.loading
         ? const SizedBox.shrink()
-        : CustomRefresher(
-            controller: _refreshController,
-            onRefresh: () async => notifier.fetchEvents(),
-            onLoading: () async => notifier.fetchMoreEvents(),
-            enablePullUp: true,
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Yan yana iki öğe olacak
-                crossAxisSpacing: 18, // Yatay aralık
-                mainAxisSpacing: 16, // Dikey aralık
-                childAspectRatio:
-                    189 / 302, // Öğelerin genişlik/yükseklik oranı
-              ),
-              padding: const EdgeInsets.only(
-                left: 24,
-                right: 24,
-                top: 24,
-                bottom: 100,
-              ),
-              itemCount: data.events.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    router.push(
-                      EventDetailsRoute(eventId: data.events[index].id!),
+        : data.events.isEmpty
+            ? NullEventWidget(
+                theme: theme,
+                userId: widget.userId,
+                userName: '',
+                l10n: l10n,
+                isCurrentUser: false,
+              )
+            : CustomRefresher(
+                controller: _refreshController,
+                onRefresh: () async => notifier.fetchEvents(),
+                onLoading: () async => notifier.fetchMoreEvents(),
+                enablePullUp: true,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Yan yana iki öğe olacak
+                    crossAxisSpacing: 18, // Yatay aralık
+                    mainAxisSpacing: 16, // Dikey aralık
+                    childAspectRatio:
+                        189 / 302, // Öğelerin genişlik/yükseklik oranı
+                  ),
+                  padding: const EdgeInsets.only(
+                    left: 24,
+                    right: 24,
+                    top: 24,
+                    bottom: 100,
+                  ),
+                  itemCount: data.events.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        router.push(
+                          EventDetailsRoute(eventId: data.events[index].id!),
+                        );
+                      },
+                      child: EnventCards(
+                        data: data.events[index],
+                        isShowRating: true,
+                      ),
                     );
                   },
-                  child: EnventCards(
-                    data: data.events[index],
-                    isShowRating: true,
-                  ),
-                );
-              },
-            ),
-          );
+                ),
+              );
   }
 }

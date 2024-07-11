@@ -1,16 +1,15 @@
-// ignore_for_file: deprecated_member_use_from_same_package
+import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:insta_assets_picker/insta_assets_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/features/component/custom_divider.dart';
 import 'package:togodo/gen/assets.gen.dart';
-import 'package:togodo/ui/auth/welcome_question/view/user_image_question.dart';
 import 'package:togodo/ui/event/view_model/create_event_view_model.dart';
 
 class DividerWithTextAndIcon extends HookConsumerWidget {
@@ -55,7 +54,22 @@ class DividerWithTextAndIcon extends HookConsumerWidget {
                           model.selectedAssetsAll!.length == 5
                       ? () {}
                       : () async {
-                          await ServicePicker().pickImage(
+                          final picker = ImagePicker();
+
+                          final pickedFile = await picker.pickMultiImage();
+                          List<File> deneme = [];
+
+                          final file = pickedFile.fold(
+                            deneme,
+                            (p, e) => [...p, File(e.path)],
+                          );
+                          ref
+                              .read(createEventModelProvider.notifier)
+                              .selectAllAssets(
+                                isNetwork: false,
+                                file: file.toSet().toList(),
+                              );
+                          /* await ServicePicker().pickImage(
                             context,
                             theme,
                             maxAssets: 5 - model.selectedAssetsAll!.length,
@@ -63,17 +77,25 @@ class DividerWithTextAndIcon extends HookConsumerWidget {
                               Stream<InstaAssetsExportDetails> exportDetails,
                             ) async {
                               // Stream'den tüm elemanları alıp bir listeye döküyoruz
-                              final detailsList = await exportDetails.first;
-                              final file = detailsList.selectedAssets;
+                              final detailsList = await exportDetails;
+                              print("burdaaaaa");
+                              List<File> deneme = [];
+                              final file = await detailsList.fold(
+                                deneme,
+                                (p, e) => [...p, ...e.croppedFiles],
+                              );
+                              print(file.length.toString());
+
                               ref
                                   .read(createEventModelProvider.notifier)
                                   .selectAllAssets(
                                     isNetwork: false,
-                                    file: file,
+                                    file: file.toSet().toList(),
                                   );
+
                               await router.pop();
                             },
-                          );
+                          );*/
                         },
               ),
             ],
