@@ -36,7 +36,7 @@ class Constants {
 
   factory Constants._prd() {
     return Constants._(
-      endpoint: 'http://${dotenv.env['BASE_URL'] ?? ''}/',
+      endpoint: 'https://${dotenv.env['BASE_URL'] ?? ''}/',
       apiKey: '',
     );
   }
