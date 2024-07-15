@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,7 +17,6 @@ import 'package:togodo/ui/chat/repo/repository/chat_event_repository.dart';
 import 'package:togodo/ui/chat/repo/repository/chat_event_repository_impl.dart';
 import 'package:togodo/ui/chat/services/connect_services.dart';
 import 'package:togodo/ui/chat/services/post_service.dart';
-import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 import 'package:togodo/ui/chat/widgets/video_editor/video_editor.dart';
 
 part 'message_details_view_model.freezed.dart';
@@ -234,13 +233,6 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
           // Görüntü işleme
           final croppedFile = await ImageCropper().cropImage(
             sourcePath: pickedFile.path,
-            aspectRatioPresets: [
-              CropAspectRatioPreset.square,
-              CropAspectRatioPreset.ratio3x2,
-              CropAspectRatioPreset.original,
-              CropAspectRatioPreset.ratio4x3,
-              CropAspectRatioPreset.ratio16x9,
-            ],
             uiSettings: [
               AndroidUiSettings(
                 toolbarTitle: 'Kırp',

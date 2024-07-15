@@ -254,6 +254,8 @@
   "userInfo": "Katılımcıları bilgilendir...",
   "requestWaiting": "İstek Gönderildi",
   "join": "Katıl",
+  "getInLine": "Sıraya gir",
+  "getInLined": "Sırada",
   "joinWithFriends": "Arkadaşla Katıl",
   "joinedUsers": "Katılımcılar",
   "joinedInfo": "Bu etkinliğe {joinedInfo} kişi katılıyor. 🎉 ",
@@ -536,6 +538,9 @@
   "controlCred": "Lütfen email ve şifrenizi kontrol ediniz",
   "tickedUrl": "Bilet linki",
   "controlEmailInfo": "Doğrulama linkini {controlEmailInfo} email adresine gönderdik.",
-  "controlEmail": "Lütfen emaili kontrol et"
+  "controlEmail": "Lütfen emaili kontrol et",
+  "original": "Orjinal",
+  "homePage": "Ana sayfa",
+  "post": "Post"
 
 }

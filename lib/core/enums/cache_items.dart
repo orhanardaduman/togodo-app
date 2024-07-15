@@ -1,4 +1,4 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum CacheItems {
   uid,
@@ -9,26 +9,24 @@ enum CacheItems {
   signType, // authButton ise google, facebook, apple,  twitter  // authOtp ise phone, email
   token;
 
-  static const _storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(
-    encryptedSharedPreferences: false,
-  ));
-  static AndroidOptions _getAndroidOptions() => const AndroidOptions(
-        encryptedSharedPreferences: false,
-      );
   Future<String?> readSecureData() async {
-    final readData =
-        await _storage.read(key: name, aOptions: _getAndroidOptions());
+    final preferences = await SharedPreferences.getInstance();
+    final readData = preferences.getString(name);
     return readData;
   }
 
   Future<void> writeSecureData(String value) async {
-    await _storage.write(
-      key: name,
-      value: value,
-    );
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setString(name, value);
   }
 
-  void clear() => _storage.delete(key: name);
-  static Future<void> clearAll() => _storage.deleteAll();
+  void clear() async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.remove(name);
+  }
+
+  static Future<void> clearAll() async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+  }
 }

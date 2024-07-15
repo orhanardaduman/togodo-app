@@ -12,11 +12,15 @@ class CustomAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     this.title,
     this.onTap,
     this.isBackButtonShow = true,
+    this.hasEdit = false,
+    this.actions = const [],
     super.key,
   });
 
   final String? title;
   final bool isBackButtonShow;
+  final bool hasEdit;
+  final List<Widget> actions;
   final void Function()? onTap;
 
   @override
@@ -35,7 +39,7 @@ class CustomAppBar extends HookConsumerWidget implements PreferredSizeWidget {
             ),
       backgroundColor: Colors.transparent,
       elevation: 0,
-      centerTitle: false,
+      centerTitle: hasEdit,
       leading: isBackButtonShow
           ? InkWell(
               splashColor: Colors.transparent,
@@ -57,19 +61,7 @@ class CustomAppBar extends HookConsumerWidget implements PreferredSizeWidget {
               ),
             )
           : const SizedBox.shrink(),
-      /*   actions: [
-        ThemeButton(
-          width: 32,
-          height: 32,
-          onChanged: (bool value) async {
-            themeModeNotifier.setThemeMode(
-              value ? ThemeMode.light : ThemeMode.dark,
-              await sharedPreferences,
-            );
-          },
-        ),
-        const SizedBox(width: 15),
-      ], */
+      actions: hasEdit ? actions : null,
     );
   }
 

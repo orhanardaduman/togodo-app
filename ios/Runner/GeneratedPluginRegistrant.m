@@ -102,16 +102,16 @@
 @import flutter_local_notifications;
 #endif
 
-#if __has_include(<flutter_secure_storage/FlutterSecureStoragePlugin.h>)
-#import <flutter_secure_storage/FlutterSecureStoragePlugin.h>
-#else
-@import flutter_secure_storage;
-#endif
-
 #if __has_include(<flutter_sound_record/FlutterSoundRecordPlugin.h>)
 #import <flutter_sound_record/FlutterSoundRecordPlugin.h>
 #else
 @import flutter_sound_record;
+#endif
+
+#if __has_include(<flutter_uxcam/FlutterUxcamPlugin.h>)
+#import <flutter_uxcam/FlutterUxcamPlugin.h>
+#else
+@import flutter_uxcam;
 #endif
 
 #if __has_include(<fluttertoast/FluttertoastPlugin.h>)
@@ -301,8 +301,8 @@
   [FlutterFacebookAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterFacebookAuthPlugin"]];
   [FlutterKeyboardVisibilityPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterKeyboardVisibilityPlugin"]];
   [FlutterLocalNotificationsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterLocalNotificationsPlugin"]];
-  [FlutterSecureStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSecureStoragePlugin"]];
   [FlutterSoundRecordPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSoundRecordPlugin"]];
+  [FlutterUxcamPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterUxcamPlugin"]];
   [FluttertoastPlugin registerWithRegistrar:[registry registrarForPlugin:@"FluttertoastPlugin"]];
   [GeocodingPlugin registerWithRegistrar:[registry registrarForPlugin:@"GeocodingPlugin"]];
   [GeolocatorPlugin registerWithRegistrar:[registry registrarForPlugin:@"GeolocatorPlugin"]];

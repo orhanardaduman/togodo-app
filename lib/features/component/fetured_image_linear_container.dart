@@ -8,6 +8,7 @@ const errorImage =
 class FeaturedImageLinearContainer extends StatelessWidget {
   const FeaturedImageLinearContainer({
     required this.borderRadius,
+    required this.aspectRatio,
     required this.imageUrl,
     required this.isFull,
     this.isTimeline = false,
@@ -18,30 +19,45 @@ class FeaturedImageLinearContainer extends StatelessWidget {
   final String imageUrl;
   final bool isTimeline;
   final bool isFull;
+  final String aspectRatio;
 
   @override
   Widget build(BuildContext context) {
     return isTimeline
-        ? body()
+        ? body(context)
         : ClipRRect(
             borderRadius: borderRadius,
-            child: body(),
+            child: body(context),
           );
   }
 
-  Stack body() {
+  Stack body(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
-        AspectRatio(
-          aspectRatio: 9 / 16,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: isFull ? BoxFit.cover : BoxFit.contain,
-            errorWidget: (context, url, error) => CachedNetworkImage(
-              imageUrl: errorImage,
-              fit: BoxFit.contain,
-              errorWidget: (context, url, error) => const SizedBox.shrink(),
+        Positioned(
+          bottom: (double.tryParse(aspectRatio) ?? 0) <=
+                  ((MediaQuery.of(context).size.height * .5) /
+                      MediaQuery.of(context).size.width)
+              ? null
+              : MediaQuery.of(context).size.height * .34,
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: isFull
+                ? null
+                : (double.tryParse(aspectRatio) ?? 0) <=
+                        ((MediaQuery.of(context).size.height * .5) /
+                            MediaQuery.of(context).size.width)
+                    ? MediaQuery.of(context).size.height
+                    : (MediaQuery.of(context).size.height * .5),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              fit: isFull ? BoxFit.cover : BoxFit.contain,
+              errorWidget: (context, url, error) => CachedNetworkImage(
+                imageUrl: errorImage,
+                fit: BoxFit.contain,
+                errorWidget: (context, url, error) => const SizedBox.shrink(),
+              ),
             ),
           ),
         ),

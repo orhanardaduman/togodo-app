@@ -536,5 +536,10 @@
   "controlCred": "Please check your email and password",
   "tickedUrl": "Ticket url",
   "controlEmailInfo": "We've sent the verification link to the email {controlEmailInfo}.",
-  "controlEmail": "Please check your email"
+  "controlEmail": "Please check your email",
+  "original": "Original",
+  "homePage": "Home page",
+  "post": "Post",
+  "getInLine": "Get In Line",
+  "getInLined": "In Line"
 }

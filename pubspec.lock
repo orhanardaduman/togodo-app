@@ -329,6 +329,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  collision:
+    dependency: transitive
+    description:
+      name: collision
+      sha256: "2bd2eb6a9dfc69bc9d92cb3401dcfadb3b8429a261102ec0e59a91c0f5fcab25"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   color:
     dependency: transitive
     description:
@@ -353,6 +361,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.23"
+  crop:
+    dependency: "direct main"
+    description:
+      name: crop
+      sha256: "9d94ec70fb2a5b1f4c30a686db561ed2395a900e5b17f44a0111f2c70ecf6889"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.5"
+  cropperx:
+    dependency: "direct main"
+    description:
+      name: cropperx
+      sha256: "62c73b4d18e4920fe914b27b45fabb0d5ea62099f35b62e94c81d0ffee35e702"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   cross_file:
     dependency: transitive
     description:
@@ -377,14 +401,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  cupertino_date_textbox:
-    dependency: "direct main"
-    description:
-      name: cupertino_date_textbox
-      sha256: "62b957c34e3dfb484712458c8608c8f3e66d1ec7b8b101c304d57b8d6fa8948b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.3"
   cupertino_icons:
     dependency: transitive
     description:
@@ -955,54 +971,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.9"
-  flutter_secure_storage:
-    dependency: "direct main"
-    description:
-      name: flutter_secure_storage
-      sha256: "165164745e6afb5c0e3e3fcc72a012fb9e58496fb26ffb92cf22e16a821e85d0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.2.2"
-  flutter_secure_storage_linux:
-    dependency: transitive
-    description:
-      name: flutter_secure_storage_linux
-      sha256: "4d91bfc23047422cbcd73ac684bc169859ee766482517c22172c86596bf1464b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
-  flutter_secure_storage_macos:
-    dependency: transitive
-    description:
-      name: flutter_secure_storage_macos
-      sha256: "1693ab11121a5f925bbea0be725abfcfbbcf36c1e29e571f84a0c0f436147a81"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.2"
-  flutter_secure_storage_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_secure_storage_platform_interface
-      sha256: cf91ad32ce5adef6fba4d736a542baca9daf3beac4db2d04be350b87f69ac4a8
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
-  flutter_secure_storage_web:
-    dependency: transitive
-    description:
-      name: flutter_secure_storage_web
-      sha256: f4ebff989b4f07b2656fb16b47852c0aab9fed9b4ec1c70103368337bc1886a9
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
-  flutter_secure_storage_windows:
-    dependency: transitive
-    description:
-      name: flutter_secure_storage_windows
-      sha256: b20b07cb5ed4ed74fc567b78a72936203f587eba460af1df11281c9326cd3709
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.2"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -1072,6 +1040,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  flutter_uxcam:
+    dependency: "direct main"
+    description:
+      name: flutter_uxcam
+      sha256: acc2d8bcc5bbb3b88ac9fc042dcd452729b0557ef674322ec71fbfb4ab7909d2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.4"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -2675,6 +2651,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.3"
+  visibility_detector:
+    dependency: transitive
+    description:
+      name: visibility_detector
+      sha256: dd5cc11e13494f432d15939c3aa8ae76844c42b723398643ce9addb88a5ed420
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0+2"
   wakelock_plus:
     dependency: transitive
     description:

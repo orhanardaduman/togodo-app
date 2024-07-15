@@ -1161,10 +1161,11 @@ PODS:
     - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
-  - flutter_secure_storage (6.0.0):
-    - Flutter
   - flutter_sound_record (0.0.1):
     - Flutter
+  - flutter_uxcam (2.5.4):
+    - Flutter
+    - UXCam (~> 3.6.14)
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
@@ -1396,6 +1397,7 @@ PODS:
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
+  - UXCam (3.6.14)
   - vibration (1.7.5):
     - Flutter
   - video_player_avfoundation (0.0.1):
@@ -1425,8 +1427,8 @@ DEPENDENCIES:
   - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
-  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sound_record (from `.symlinks/plugins/flutter_sound_record/ios`)
+  - flutter_uxcam (from `.symlinks/plugins/flutter_uxcam/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
@@ -1505,6 +1507,7 @@ SPEC REPOS:
     - RecaptchaInterop
     - Toast
     - TOCropViewController
+    - UXCam
 
 EXTERNAL SOURCES:
   app_links:
@@ -1541,10 +1544,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
-  flutter_secure_storage:
-    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_sound_record:
     :path: ".symlinks/plugins/flutter_sound_record/ios"
+  flutter_uxcam:
+    :path: ".symlinks/plugins/flutter_uxcam/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
   geocoding_ios:
@@ -1648,8 +1651,8 @@ SPEC CHECKSUMS:
   flutter_facebook_auth: c8700ab1770f3d8e5e7456220e4f3bbcdb831454
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
-  flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   flutter_sound_record: fa9800029599bccfaa8be22cc372550a5fa505ac
+  flutter_uxcam: 4ec3d74f99adbbfff0a62bf676107d194b6ef737
   fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
   FMDB: 728731dd336af3936ce00f91d9d8495f5718a0e6
   geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
@@ -1692,6 +1695,7 @@ SPEC CHECKSUMS:
   twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
   ua_client_hints: 5887fe166a59d944cbade5eb84d60c4e417b4f55
   url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812
+  UXCam: 042b36c456c1b877c9852558353db5ac413e742d
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
   video_player_avfoundation: 02011213dab73ae3687df27ce441fbbcc82b5579
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1

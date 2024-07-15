@@ -33,6 +33,7 @@ class FeaturedImageWidget extends StatelessWidget {
               if (isTimeline)
                 Blurs(borderRadius: borderRadius, imageUrl: imageUrl),
               FeaturedImageLinearContainer(
+                aspectRatio: aspectRatio,
                 isFull: aspectRatio == '0.5625',
                 borderRadius: borderRadius,
                 imageUrl: imageUrl,

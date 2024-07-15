@@ -299,7 +299,7 @@ class EventButtonState extends ConsumerState<EventButton> {
     HomeViewModel notifier,
   ) {
     return CustomButton(
-      text: l10n.join,
+      text: widget.model.isQuotaFull == true ? l10n.getInLine : l10n.join,
       style: theme.textTheme.bodyLarge.copyWith(
         color: themeMode ? MainColors.white : MainColors.primary,
         fontWeight: FontWeight.w700,

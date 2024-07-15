@@ -1,6 +1,6 @@
 name: togodo
 description: A new Flutter project.
-version: 1.0.6+45
+version: 1.0.6+46
 publish_to: 'none' 
 
 
@@ -66,7 +66,6 @@ dependencies:
   permission_handler: ^11.1.0
 
   # For Cache
-  flutter_secure_storage: ^9.2.2
   shared_preferences: ^2.2.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -101,6 +100,8 @@ dependencies:
   reorderables: ^0.6.0
   lottie: ^2.7.0
   card_swiper: ^3.0.1
+  cropperx: ^1.1.1
+  crop: ^0.5.5
   #connectivity_plus: ^4.0.2
 
   # For Form
@@ -111,7 +112,6 @@ dependencies:
   dropdown_button2: ^2.3.9
   simple_chips_input: ^1.2.0
   flutter_social_textfield: ^0.1.2
-  cupertino_date_textbox: ^1.0.3
   flutter_advanced_switch: ^3.0.1
   readmore: ^2.2.0
   flutter_typeahead: ^4.8.0
@@ -168,6 +168,7 @@ dependencies:
   app_tracking_transparency: ^2.0.4
   firebase_app_check: ^0.2.1+17
   firebase_analytics: ^10.8.9
+  flutter_uxcam: ^2.5.4
 dependency_overrides: 
   photo_manager: ^3.0.0-dev.2
   

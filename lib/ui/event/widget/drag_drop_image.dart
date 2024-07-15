@@ -160,8 +160,11 @@ class CustomImageBox extends HookConsumerWidget {
             future: imageData,
             builder: (context, snapshot) {
               var denemeImageDecoration =
-                  ((snapshot.data?.width ?? 0) / (snapshot.data?.height ?? 0) ==
-                          9 / 16)
+                  ((snapshot.data?.width ?? 0) / (snapshot.data?.height ?? 0) <
+                              0.6 &&
+                          (snapshot.data?.width ?? 0) /
+                                  (snapshot.data?.height ?? 0) >
+                              0.5)
                       ? forFull
                       : imageDecoration;
 
@@ -212,7 +215,10 @@ class CustomImageBox extends HookConsumerWidget {
                       onTap: () async {
                         // Eğer medya öğesi varsa, sil.
                         if (index != null) {
-                          model.editAtIndex(index!);
+                          model.editAtIndex(
+                            index!,
+                            context,
+                          );
                         }
                       },
                       child: Assets.icons.bold.edit.svg(

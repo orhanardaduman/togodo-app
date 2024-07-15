@@ -6,8 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:map_location_picker/map_location_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:togodo/core/constants/constants.dart';
 import 'package:togodo/core/network/api/api_endpoint.dart';
 import 'package:togodo/core/network/api/app_dio.dart';
@@ -17,8 +17,8 @@ import 'package:togodo/data/model/event/ready_template_model.dart';
 import 'package:togodo/data/model/profil/profil_model.dart';
 import 'package:togodo/data/repository/home_repository.dart';
 import 'package:togodo/data/repository/home_repository_impl.dart';
+import 'package:togodo/ui/event/widget/crop_view.dart';
 
-import '../../../core/helpers/colors/colors.dart';
 import '../../../data/model/profil/user_search_with_events.dart';
 
 part 'create_event_view_model.freezed.dart';
@@ -596,21 +596,46 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     );
   }
 
-  void editAtIndex(int index) async {
+  void editAtIndex(
+    int index,
+    BuildContext context,
+  ) async {
     final newImageUrlList = state.selectedAssetsAll!.toList();
     final img = state.selectedAssetsAll!.firstWhere(
       (element) => element.index == index,
     );
+    await showDialog(
+      context: context,
+      builder: (context) => CropView(img.localImage?.path, (data) async {
+        print(data.toString());
+        if (data != null) {
+          Navigator.pop(context);
+          final tempDir = await getApplicationDocumentsDirectory();
+          File file = File(
+            "${tempDir.path}/${img.localImage?.path.split("/").last.split(".").first}${DateTime.now().millisecondsSinceEpoch}.png",
+          );
 
-    final croppedFile = await ImageCropper().cropImage(
+          final buffer = data.buffer.asUint8List();
+          file = await file.writeAsBytes(buffer, flush: true);
+
+          var image = SelectedAssetsModel(
+            index: img.index,
+            localImage: file,
+          );
+          var indexNew = newImageUrlList.indexOf(img);
+          newImageUrlList.remove(img);
+          print(newImageUrlList);
+          newImageUrlList.insert(indexNew, image);
+          print(newImageUrlList);
+
+          state = state.copyWith(
+            selectedAssetsAll: newImageUrlList,
+          );
+        }
+      }),
+    );
+    /*   final croppedFile = await ImageCropper().cropImage(
       sourcePath: img.localImage?.path ?? '',
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-        CropAspectRatioPreset.ratio3x2,
-        CropAspectRatioPreset.original,
-        CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9,
-      ],
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Kırp',
@@ -634,7 +659,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     newImageUrlList.insert(indexNew, image);
     state = state.copyWith(
       selectedAssetsAll: newImageUrlList,
-    );
+    );*/
   }
 
   void unCheckNetworkImage(String index) {

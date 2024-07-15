@@ -18,7 +18,7 @@ class Blurs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Blur(
       blur: 10,
-      blurColor: Colors.black.withOpacity(0.5),
+      blurColor: Colors.black.withOpacity(0.2),
       child: Positioned.fill(
         child: ClipRRect(
           borderRadius: borderRadius,

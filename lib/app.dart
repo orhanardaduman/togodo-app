@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_uxcam/flutter_uxcam.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/core/route/app_route.dart';
 import 'package:togodo/core/theme/app_theme.dart';
@@ -14,6 +15,13 @@ class App extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    FlutterUxcam
+        .optIntoSchematicRecordings(); // Confirm that you have user permission for screen recording
+    final config = FlutterUxConfig(
+      userAppKey: 'c4qr6yh4qujy8df',
+      enableAutomaticScreenNameTagging: false,
+    );
+    FlutterUxcam.startWithConfiguration(config);
     final theme = ref.watch(appThemeProvider);
     final themeMode = ref.watch(appThemeModeProvider);
     final appRouter = useMemoized(AppRouter.new);
