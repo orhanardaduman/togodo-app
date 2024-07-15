@@ -92,7 +92,11 @@ class _CropViewState extends ConsumerState<CropView> {
               Expanded(
                 child: Crop(
                   backgroundColor: Colors.transparent,
-                  onChanged: (decomposition) {},
+                  onChanged: (decomposition) {
+                    if (decomposition.rotation != 0.0) {
+                      controller.rotation = 0;
+                    }
+                  },
                   controller: controller,
                   shape: shape,
                   helper: shape == BoxShape.rectangle

@@ -33,7 +33,7 @@ build-runner:
 
 .PHONY: run-dev
 run-dev:
-	fvm flutter run --flavor production --enable-software-rendering --dart-define=FLAVOR=production --target lib/main.dart
+	fvm flutter run --flavor production --dart-define=FLAVOR=production --target lib/main.dart
 
 .PHONY: run-prd
 run-prd:

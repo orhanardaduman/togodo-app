@@ -19,6 +19,7 @@ mixin _$SelectedAssetsModel {
   int? get index => throw _privateConstructorUsedError;
   String? get networkImage => throw _privateConstructorUsedError;
   File? get localImage => throw _privateConstructorUsedError;
+  bool? get isCropped => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SelectedAssetsModelCopyWith<SelectedAssetsModel> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $SelectedAssetsModelCopyWith<$Res> {
           SelectedAssetsModel value, $Res Function(SelectedAssetsModel) then) =
       _$SelectedAssetsModelCopyWithImpl<$Res, SelectedAssetsModel>;
   @useResult
-  $Res call({int? index, String? networkImage, File? localImage});
+  $Res call(
+      {int? index, String? networkImage, File? localImage, bool? isCropped});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$SelectedAssetsModelCopyWithImpl<$Res, $Val extends SelectedAssetsModel>
     Object? index = freezed,
     Object? networkImage = freezed,
     Object? localImage = freezed,
+    Object? isCropped = freezed,
   }) {
     return _then(_value.copyWith(
       index: freezed == index
@@ -64,6 +67,10 @@ class _$SelectedAssetsModelCopyWithImpl<$Res, $Val extends SelectedAssetsModel>
           ? _value.localImage
           : localImage // ignore: cast_nullable_to_non_nullable
               as File?,
+      isCropped: freezed == isCropped
+          ? _value.isCropped
+          : isCropped // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -76,7 +83,8 @@ abstract class _$$SelectedAssetsModelImplCopyWith<$Res>
       __$$SelectedAssetsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? index, String? networkImage, File? localImage});
+  $Res call(
+      {int? index, String? networkImage, File? localImage, bool? isCropped});
 }
 
 /// @nodoc
@@ -93,6 +101,7 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
     Object? index = freezed,
     Object? networkImage = freezed,
     Object? localImage = freezed,
+    Object? isCropped = freezed,
   }) {
     return _then(_$SelectedAssetsModelImpl(
       index: freezed == index
@@ -107,6 +116,10 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
           ? _value.localImage
           : localImage // ignore: cast_nullable_to_non_nullable
               as File?,
+      isCropped: freezed == isCropped
+          ? _value.isCropped
+          : isCropped // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -115,7 +128,7 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
 
 class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
   const _$SelectedAssetsModelImpl(
-      {this.index, this.networkImage, this.localImage});
+      {this.index, this.networkImage, this.localImage, this.isCropped});
 
   @override
   final int? index;
@@ -123,10 +136,12 @@ class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
   final String? networkImage;
   @override
   final File? localImage;
+  @override
+  final bool? isCropped;
 
   @override
   String toString() {
-    return 'SelectedAssetsModel(index: $index, networkImage: $networkImage, localImage: $localImage)';
+    return 'SelectedAssetsModel(index: $index, networkImage: $networkImage, localImage: $localImage, isCropped: $isCropped)';
   }
 
   @override
@@ -138,11 +153,14 @@ class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
             (identical(other.networkImage, networkImage) ||
                 other.networkImage == networkImage) &&
             (identical(other.localImage, localImage) ||
-                other.localImage == localImage));
+                other.localImage == localImage) &&
+            (identical(other.isCropped, isCropped) ||
+                other.isCropped == isCropped));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index, networkImage, localImage);
+  int get hashCode =>
+      Object.hash(runtimeType, index, networkImage, localImage, isCropped);
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +174,8 @@ abstract class _SelectedAssetsModel implements SelectedAssetsModel {
   const factory _SelectedAssetsModel(
       {final int? index,
       final String? networkImage,
-      final File? localImage}) = _$SelectedAssetsModelImpl;
+      final File? localImage,
+      final bool? isCropped}) = _$SelectedAssetsModelImpl;
 
   @override
   int? get index;
@@ -164,6 +183,8 @@ abstract class _SelectedAssetsModel implements SelectedAssetsModel {
   String? get networkImage;
   @override
   File? get localImage;
+  @override
+  bool? get isCropped;
   @override
   @JsonKey(ignore: true)
   _$$SelectedAssetsModelImplCopyWith<_$SelectedAssetsModelImpl> get copyWith =>

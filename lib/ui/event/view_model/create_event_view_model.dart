@@ -29,6 +29,7 @@ class SelectedAssetsModel with _$SelectedAssetsModel {
     int? index,
     String? networkImage,
     File? localImage,
+    bool? isCropped,
   }) = _SelectedAssetsModel;
 }
 
@@ -257,6 +258,8 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     final dio = _ref.read(dioProvider);
     final multipartFiles = <MultipartFile>[];
     final indexList = <int>[];
+    final cropList = <bool>[];
+
     for (final file in state.selectedAssetsAll!
         .where((element) => element.localImage != null)
         .toList()) {
@@ -265,6 +268,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         file.localImage!.path,
         filename: fileName,
       );
+      cropList.add(file.isCropped ?? false);
       indexList.add(file.index!);
       multipartFiles.add(multipartFile);
     }
@@ -297,6 +301,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         'tagId': state.tagList!.map((e) => e.id).toList(),
         'formFiles': multipartFiles,
         'index': indexList,
+        'crop': cropList,
         'imageUrl': imageUrl,
         'imageIndex': imageIndex,
         'otherUserId': state.otherUserModel?.id ?? '',
@@ -621,6 +626,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
           var image = SelectedAssetsModel(
             index: img.index,
             localImage: file,
+            isCropped: true,
           );
           var indexNew = newImageUrlList.indexOf(img);
           newImageUrlList.remove(img);

@@ -8,7 +8,6 @@ enum Flavor { development, production }
 class Constants {
   const Constants._({
     required this.endpoint,
-    required this.newEndPoint,
     required this.apiKey,
   });
 
@@ -37,8 +36,7 @@ class Constants {
 
   factory Constants._prd() {
     return Constants._(
-      endpoint: 'https://${dotenv.env['BASE_URL'] ?? ''}/',
-      newEndPoint: 'https://${dotenv.env['BASE_URL_NEW'] ?? ''}/',
+      endpoint: 'http://${dotenv.env['BASE_URL'] ?? ''}/',
       apiKey: '',
     );
   }
@@ -46,6 +44,5 @@ class Constants {
   static final Constants instance = Constants.of();
 
   final String endpoint;
-  final String newEndPoint;
   final String apiKey;
 }

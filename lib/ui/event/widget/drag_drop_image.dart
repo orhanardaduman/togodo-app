@@ -159,8 +159,10 @@ class CustomImageBox extends HookConsumerWidget {
           child: FutureBuilder(
             future: imageData,
             builder: (context, snapshot) {
-              var denemeImageDecoration =
-                  ((snapshot.data?.width ?? 0) / (snapshot.data?.height ?? 0) <
+              var denemeImageDecoration = assets?.isCropped == null
+                  ? forFull
+                  : ((snapshot.data?.width ?? 0) /
+                                  (snapshot.data?.height ?? 0) <
                               0.6 &&
                           (snapshot.data?.width ?? 0) /
                                   (snapshot.data?.height ?? 0) >
