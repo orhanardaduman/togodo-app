@@ -541,5 +541,9 @@
   "homePage": "Home page",
   "post": "Post",
   "getInLine": "Get In Line",
-  "getInLined": "In Line"
+  "getInLined": "In Line",
+  "editAlt": "Edit",
+  "homePageSize": "Home Page Size"
+
+
 }

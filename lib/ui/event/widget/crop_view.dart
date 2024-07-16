@@ -28,6 +28,7 @@ class _CropViewState extends ConsumerState<CropView> {
   BoxShape shape = BoxShape.rectangle;
   ui.Image? imageData;
   bool isFit = true;
+  bool isInProcess = false;
   @override
   void initState() {
     controller.addListener(() {
@@ -51,178 +52,110 @@ class _CropViewState extends ConsumerState<CropView> {
     final theme = ref.watch(appThemeProvider);
     final l10n = useL10n();
 
-    return SafeArea(
-      bottom: false,
-      right: false,
-      left: false,
-      top: false,
-      child: Scaffold(
-        backgroundColor: theme.appColors.background,
-        /*   floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            controller.rotation = 0;
-            controller.offset = Offset(0, 0);
-            controller.scale = 0;
-          },
-        ),*/
-        body: SafeArea(
-          child: Column(
-            children: [
-              CustomAppBar(
-                title: l10n.edit,
-                hasEdit: true,
-                actions: [
-                  TextButton(
-                    onPressed: () async {
+    return Scaffold(
+      backgroundColor: theme.appColors.background,
+      /*   floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.rotation = 0;
+          controller.offset = Offset(0, 0);
+          controller.scale = 0;
+        },
+      ),*/
+      body: SafeArea(
+        child: Column(
+          children: [
+            CustomAppBar(
+              title: l10n.edit,
+              hasEdit: true,
+              actions: [
+                TextButton(
+                  onPressed: () async {
+                    if (!isInProcess) {
+                      isInProcess = true;
                       final response = await controller.crop(pixelRatio: 5);
                       final data = await response?.toByteData(
                         format: ui.ImageByteFormat.png,
                       );
                       widget.onSave(data);
-                    },
-                    child: PrimaryText(
-                      l10n.save_button,
-                      style: theme.textTheme.bodyXLarge.copyWith(
-                        color: theme.appColors.themeColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Crop(
-                  backgroundColor: Colors.transparent,
-                  onChanged: (decomposition) {
-                    if (decomposition.rotation != 0.0) {
-                      controller.rotation = 0;
+                      isInProcess = false;
                     }
                   },
-                  controller: controller,
-                  shape: shape,
-                  helper: shape == BoxShape.rectangle
-                      ? Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white, width: 2),
-                          ),
-                        )
-                      : null,
-                  child: Container(
-                    width: isFit ? null : MediaQuery.of(context).size.width,
-                    height: isFit ? null : MediaQuery.of(context).size.height,
-                    color: Colors.transparent,
-                    child: Image.file(
-                      File(
-                        widget.img ?? '',
-                      ),
+                  child: PrimaryText(
+                    l10n.save_button,
+                    style: theme.textTheme.bodyXLarge.copyWith(
+                      color: theme.appColors.themeColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Crop(
+                backgroundColor: Colors.transparent,
+                onChanged: (decomposition) {
+                  if (decomposition.rotation != 0.0) {
+                    controller.rotation = 0;
+                  }
+                },
+                controller: controller,
+                shape: shape,
+                helper: shape == BoxShape.rectangle
+                    ? Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                      )
+                    : null,
+                child: Container(
+                  width: isFit ? null : MediaQuery.of(context).size.width,
+                  height: isFit ? null : MediaQuery.of(context).size.height,
+                  color: Colors.transparent,
+                  child: Image.file(
+                    File(
+                      widget.img ?? '',
                     ),
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      if (!isFit) {
-                        if (imageData != null) {
-                          controller
-                            ..offset = Offset.zero
-                            ..rotation = 0
-                            ..scale = 0;
-                        }
-                      } else {
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    if (!isFit) {
+                      if (imageData != null) {
                         controller
                           ..offset = Offset.zero
                           ..rotation = 0
                           ..scale = 0;
                       }
-                      setState(() {
-                        isFit = !isFit;
-                      });
-                    },
-                    icon: Icon(
-                      isFit ? Icons.fullscreen : Icons.fullscreen_exit,
-                    ),
+                    } else {
+                      controller
+                        ..offset = Offset.zero
+                        ..rotation = 0
+                        ..scale = 0;
+                    }
+                    setState(() {
+                      isFit = !isFit;
+                    });
+                  },
+                  icon: Icon(
+                    isFit ? Icons.fullscreen : Icons.fullscreen_exit,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      showCupertinoModalPopup(
-                        context: context,
-                        builder: (cxt) {
-                          return Theme(
-                            data: ThemeData.light(),
-                            child: CupertinoActionSheet(
-                              actions: [
-                                CupertinoActionSheetAction(
-                                  child: Text(
-                                    l10n.original,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    if (imageData != null) {
-                                      controller
-                                        ..aspectRatio =
-                                            imageData!.width / imageData!.height
-                                        ..offset = Offset.zero
-                                        ..rotation = 0
-                                        ..scale = 0;
-                                      setState(() {
-                                        isFit = false;
-                                      });
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                ),
-                                CupertinoActionSheetAction(
-                                  child: const Text(
-                                    '9:16',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    controller
-                                      ..aspectRatio = 9 / 16
-                                      ..offset = Offset.zero
-                                      ..rotation = 0
-                                      ..scale = 0;
-                                    setState(() {
-                                      isFit = false;
-                                    });
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                                CupertinoActionSheetAction(
-                                  child: const Text(
-                                    '4:5',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    controller
-                                      ..aspectRatio = 4 / 5
-                                      ..offset = Offset.zero
-                                      ..rotation = 0
-                                      ..scale = 0;
-                                    setState(() {
-                                      isFit = false;
-                                    });
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                              cancelButton: CupertinoActionSheetAction(
+                ),
+                IconButton(
+                  onPressed: () {
+                    showCupertinoModalPopup(
+                      context: context,
+                      builder: (cxt) {
+                        return Theme(
+                          data: ThemeData.light(),
+                          child: CupertinoActionSheet(
+                            actions: [
+                              CupertinoActionSheetAction(
                                 child: Text(
-                                  l10n.cancel,
+                                  l10n.original,
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -230,44 +163,106 @@ class _CropViewState extends ConsumerState<CropView> {
                                   ),
                                 ),
                                 onPressed: () {
+                                  if (imageData != null) {
+                                    controller
+                                      ..aspectRatio =
+                                          imageData!.width / imageData!.height
+                                      ..offset = Offset.zero
+                                      ..rotation = 0
+                                      ..scale = 0;
+                                    setState(() {
+                                      isFit = false;
+                                    });
+                                    Navigator.pop(context);
+                                  }
+                                },
+                              ),
+                              CupertinoActionSheetAction(
+                                child: Text(
+                                  l10n.homePageSize,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  controller
+                                    ..aspectRatio = 9 / 16
+                                    ..offset = Offset.zero
+                                    ..rotation = 0
+                                    ..scale = 0;
+                                  setState(() {
+                                    isFit = true;
+                                  });
                                   Navigator.pop(context);
                                 },
                               ),
+                              CupertinoActionSheetAction(
+                                child: const Text(
+                                  '4:5',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  controller
+                                    ..aspectRatio = 4 / 5
+                                    ..offset = Offset.zero
+                                    ..rotation = 0
+                                    ..scale = 0;
+                                  setState(() {
+                                    isFit = false;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                            cancelButton: CupertinoActionSheetAction(
+                              child: Text(
+                                l10n.cancel,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                             ),
-                          );
-                        },
-                      );
-                    },
-                    icon: Text(
-                      controller.aspectRatio == 9 / 16
-                          ? l10n.homePage
-                          : controller.aspectRatio == 4 / 5
-                              ? l10n.post
-                              : l10n.original,
-                    ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  icon: Text(
+                    l10n.editAlt,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      controller
-                        ..offset = Offset.zero
-                        ..rotation = 0
-                        ..scale = 0;
+                ),
+                IconButton(
+                  onPressed: () {
+                    controller
+                      ..offset = Offset.zero
+                      ..rotation = 0
+                      ..scale = 0;
 
-                      setState(() {
-                        isFit = false;
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.restore,
-                    ),
+                    setState(() {
+                      isFit = false;
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.restore,
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
         ),
       ),
     );

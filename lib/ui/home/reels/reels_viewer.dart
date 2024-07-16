@@ -70,38 +70,43 @@ class ReelsViewer extends HookConsumerWidget {
 
     return Stack(
       children: [
-        Swiper(
-          loop: false,
-          itemBuilder: (BuildContext context, int index) {
-            return /* _index != 0 && _index & 5 == 0
-                ? QuizView(
-                    item: widget.reelsList[index - 1],
-                    controller: controller,
-                  )
-                : */
-                index == 0
-                    ? CustomRefresher(
-                        controller: refreshController,
-                        onRefresh: () {
-                          if (model.isToday) {
-                            notifier.fetchEventsDaily();
-                          } else {
-                            notifier.fetchEvents();
-                          }
-                        },
-                        onLoading: controller.next,
-                        enablePullUp: true,
-                        child: reelsMain(index),
-                      )
-                    : reelsMain(index);
-          },
-          controller: controller,
-          itemCount: reelsList.length,
-          scrollDirection: Axis.vertical,
-          onIndexChanged: (value) {
-            notifier.addIndex(value);
-            onIndexChanged?.call(value);
-          },
+        Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height * .1,
+          ),
+          child: Swiper(
+            loop: false,
+            itemBuilder: (BuildContext context, int index) {
+              return /* _index != 0 && _index & 5 == 0
+                  ? QuizView(
+                      item: widget.reelsList[index - 1],
+                      controller: controller,
+                    )
+                  : */
+                  index == 0
+                      ? CustomRefresher(
+                          controller: refreshController,
+                          onRefresh: () {
+                            if (model.isToday) {
+                              notifier.fetchEventsDaily();
+                            } else {
+                              notifier.fetchEvents();
+                            }
+                          },
+                          onLoading: controller.next,
+                          enablePullUp: true,
+                          child: reelsMain(index),
+                        )
+                      : reelsMain(index);
+            },
+            controller: controller,
+            itemCount: reelsList.length,
+            scrollDirection: Axis.vertical,
+            onIndexChanged: (value) {
+              notifier.addIndex(value);
+              onIndexChanged?.call(value);
+            },
+          ),
         ),
         if (showAppbar && reelsList.isNotEmpty && reelsList.length > index)
           /*   _index != 0 && _index & 5 == 0

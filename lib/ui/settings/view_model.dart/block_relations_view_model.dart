@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/data/model/profil/user_search_model.dart';
@@ -104,7 +105,7 @@ class BlockRelationsViewModel extends StateNotifier<BlockRelationsState> {
 
   Future<bool> blockRelation(String userId) {
     incrementRemoveUser(userId);
-    return _repository.blockRelation(userId).then((result) {
+    return _repository.blockRelation(userId, false).then((result) {
       result.ifSuccess((data) async {
         log('Follow user successfully');
       });

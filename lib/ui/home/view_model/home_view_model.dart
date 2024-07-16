@@ -439,7 +439,10 @@ class HomeViewModel extends StateNotifier<HomeState> {
     state = state.copyWith(events: updatedEvents);
   }
 
-  void incrementBlockRemoveEvent(String userId) {
+  void incrementBlockRemoveEvent(
+    String userId,
+    bool isEmptyUser,
+  ) {
     // Engellenen kullanının eventlerini silmek için
     if (_isDisposed) return;
     // `state.events` listesinde `userId`'ye göre event'i bulun ve silin
@@ -447,7 +450,9 @@ class HomeViewModel extends StateNotifier<HomeState> {
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update
         .where(
-          (event) => event.vendorDetails!.id != userId,
+          (event) => isEmptyUser
+              ? event.id != userId
+              : event.vendorDetails!.id != userId,
         )
         .toList();
 

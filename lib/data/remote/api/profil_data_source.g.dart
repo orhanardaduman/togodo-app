@@ -21,7 +21,7 @@ class _ProfilDataSource implements ProfilDataSource {
   @override
   Future<ProfilModel> getProfil({String? userId}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'c': userId};
+    final queryParameters = <String, dynamic>{r'userId': userId};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;

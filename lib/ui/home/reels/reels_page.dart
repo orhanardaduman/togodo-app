@@ -27,10 +27,10 @@ class ReelsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getView();
+    return getView(context);
   }
 
-  Widget getView() {
+  Widget getView(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [

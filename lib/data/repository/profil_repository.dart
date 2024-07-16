@@ -40,7 +40,10 @@ abstract class ProfilRepository {
   Future<Result<void>> acceptRequest(String userId);
   Future<Result<void>> declineRequest(String userId);
   Future<Result<void>> removeFriend(String userId);
-  Future<Result<void>> blockRelation(String userId);
+  Future<Result<void>> blockRelation(
+    String userId,
+    bool isEmptyUser,
+  );
   Future<Result<void>> unblockRelation(String userId);
   Future<Result<void>> updatePrivacyType(int type);
   Future<Result<void>> updateLanguage(String name);

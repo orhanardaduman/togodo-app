@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/data/repository/profil_repository.dart';
@@ -29,7 +30,7 @@ class SecurityViewModel extends StateNotifier<SecurityState> {
   late final ProfilRepository _repository;
 
   Future<bool> blockRelation(String userId) {
-    return _repository.blockRelation(userId).then((result) {
+    return _repository.blockRelation(userId, false).then((result) {
       result.ifSuccess((data) async {
         log('Follow user successfully');
       });

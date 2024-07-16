@@ -541,6 +541,8 @@
   "controlEmail": "Lütfen emaili kontrol et",
   "original": "Orjinal",
   "homePage": "Ana sayfa",
-  "post": "Post"
+  "post": "Post",
+  "editAlt": "Düzenle",
+  "homePageSize": "Ana Sayfa Boyutu"
 
 }

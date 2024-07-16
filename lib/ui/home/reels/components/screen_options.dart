@@ -60,7 +60,7 @@ class ScreenOptions extends HookConsumerWidget {
             left: 24,
             right: 12,
             bottom: context.sized
-                .dynamicHeight(context.isSmallScrn ? 0.215 : 0.205),
+                .dynamicHeight(context.isSmallScrn ? 0.115 : 0.105),
           ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -223,11 +223,25 @@ class UserIconPopupMenu extends HookConsumerWidget {
                 /*   showAlertDialog(theme, context, 'Silmek İstediğine Emin Misin?',
               'Bu gönderiyi silmek istediğine emin misin?'); */
 /* notifier.incrementBlockRemoveEvent(userId); */
+                print(userId);
+                print(
+                  userId == '8ebb12ec-05db-4230-aa9e-28af26600d93',
+                );
                 ref
                     .read(profilViewModelProvider(null).notifier)
-                    .blockRelationUser(userId)
+                    .blockRelationUser(
+                      userId == '8ebb12ec-05db-4230-aa9e-28af26600d93'
+                          ? eventId
+                          : userId,
+                      userId == '8ebb12ec-05db-4230-aa9e-28af26600d93',
+                    )
                     .then(
-                      (value) => notifier.incrementBlockRemoveEvent(userId),
+                      (value) => notifier.incrementBlockRemoveEvent(
+                        userId == '8ebb12ec-05db-4230-aa9e-28af26600d93'
+                            ? eventId
+                            : userId,
+                        userId == '8ebb12ec-05db-4230-aa9e-28af26600d93',
+                      ),
                     );
               }
             },

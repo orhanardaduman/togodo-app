@@ -609,37 +609,39 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     final img = state.selectedAssetsAll!.firstWhere(
       (element) => element.index == index,
     );
-    await showDialog(
-      context: context,
-      builder: (context) => CropView(img.localImage?.path, (data) async {
-        print(data.toString());
-        if (data != null) {
-          Navigator.pop(context);
-          final tempDir = await getApplicationDocumentsDirectory();
-          File file = File(
-            "${tempDir.path}/${img.localImage?.path.split("/").last.split(".").first}${DateTime.now().millisecondsSinceEpoch}.png",
-          );
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CropView(img.localImage?.path, (data) async {
+          if (data != null) {
+            Navigator.pop(context);
+            final tempDir = await getApplicationDocumentsDirectory();
+            File file = File(
+              "${tempDir.path}/${img.localImage?.path.split("/").last.split(".").first}${DateTime.now().millisecondsSinceEpoch}.png",
+            );
 
-          final buffer = data.buffer.asUint8List();
-          file = await file.writeAsBytes(buffer, flush: true);
+            final buffer = data.buffer.asUint8List();
+            file = await file.writeAsBytes(buffer, flush: true);
 
-          var image = SelectedAssetsModel(
-            index: img.index,
-            localImage: file,
-            isCropped: true,
-          );
-          var indexNew = newImageUrlList.indexOf(img);
-          newImageUrlList.remove(img);
-          print(newImageUrlList);
-          newImageUrlList.insert(indexNew, image);
-          print(newImageUrlList);
+            var image = SelectedAssetsModel(
+              index: img.index,
+              localImage: file,
+              isCropped: true,
+            );
+            var indexNew = newImageUrlList.indexOf(img);
+            newImageUrlList.remove(img);
+            print(newImageUrlList);
+            newImageUrlList.insert(indexNew, image);
+            print(newImageUrlList);
 
-          state = state.copyWith(
-            selectedAssetsAll: newImageUrlList,
-          );
-        }
-      }),
+            state = state.copyWith(
+              selectedAssetsAll: newImageUrlList,
+            );
+          }
+        }),
+      ),
     );
+
     /*   final croppedFile = await ImageCropper().cropImage(
       sourcePath: img.localImage?.path ?? '',
       uiSettings: [
@@ -681,9 +683,8 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
   }
 
   void setEndDate() {
-    endDateController.text = selectedEndDate == null
-        ? DateTime.now().add(const Duration(hours: 3)).formattedTime
-        : selectedEndDate!.formattedTime;
+    endDateController.text =
+        selectedEndDate == null ? "" : selectedEndDate!.formattedTime;
   }
 
   void setDate() {

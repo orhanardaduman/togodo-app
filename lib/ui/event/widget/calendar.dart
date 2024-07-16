@@ -19,6 +19,7 @@ void showCustomDate(
   AppTheme theme,
   String title,
   L10n l10n,
+  VoidCallback? onClear,
   void Function()? onPressed, {
   bool isFinish = false,
 }) {
@@ -53,11 +54,37 @@ void showCustomDate(
                 ),
               ),
               const SizedBox(height: 24),
-              PrimaryText(
-                title,
-                style: theme.textTheme.h4.copyWith(
-                  color: theme.appColors.text,
-                  fontWeight: FontWeight.w700,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: PrimaryText(
+                        title,
+                        style: theme.textTheme.h4.copyWith(
+                          color: theme.appColors.text,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    if (onClear != null)
+                      Positioned(
+                        right: 10,
+                        top: 0,
+                        bottom: 0,
+                        child: TextButton(
+                          onPressed: onClear,
+                          child: PrimaryText(
+                            l10n.clear,
+                            style: theme.textTheme.bodySmall.copyWith(
+                              color: theme.appColors.text,
+                              fontWeight: FontWeight.w700,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
               Divider(

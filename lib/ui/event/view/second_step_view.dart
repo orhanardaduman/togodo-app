@@ -60,6 +60,7 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
             ref.watch(appThemeProvider),
             l10n.selectDate,
             l10n,
+            null,
             () {
               model.setDate();
               Navigator.pop(context);
@@ -215,6 +216,12 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
       title,
       l10n,
       () {
+        model
+          ..selectedEndDate = null
+          ..setEndDate();
+        Navigator.pop(context);
+      },
+      () {
         model.setEndDate();
         Navigator.pop(context);
       },
@@ -263,6 +270,7 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
       ref.watch(appThemeProvider),
       title,
       l10n,
+      null,
       () {
         model.setStartDate();
         setState(() {});

@@ -244,9 +244,12 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
               IOSUiSettings(),
             ],
           );
-          state = state.copyWith(
-            mediaList: List.from(state.mediaList)..add(File(croppedFile!.path)),
-          );
+          if (croppedFile != null) {
+            state = state.copyWith(
+              mediaList: List.from(state.mediaList)
+                ..add(File(croppedFile!.path)),
+            );
+          }
         } else if (fileType == '3') {
           // Video dosyası seçildiyse, doğrudan bu dosyayı kullan
           await Navigator.of(context!).push(

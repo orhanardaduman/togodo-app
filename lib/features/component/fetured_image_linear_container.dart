@@ -37,18 +37,18 @@ class FeaturedImageLinearContainer extends StatelessWidget {
       children: [
         Positioned(
           bottom: (double.tryParse(aspectRatio) ?? 0) <=
-                  ((MediaQuery.of(context).size.height * .5) /
+                  ((MediaQuery.of(context).size.height * .45) /
                       MediaQuery.of(context).size.width)
               ? null
-              : MediaQuery.of(context).size.height * .34,
+              : MediaQuery.of(context).size.height * .24,
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: isFull
                 ? null
                 : (double.tryParse(aspectRatio) ?? 0) <=
-                        ((MediaQuery.of(context).size.height * .5) /
+                        ((MediaQuery.of(context).size.height * .45) /
                             MediaQuery.of(context).size.width)
-                    ? MediaQuery.of(context).size.height
+                    ? MediaQuery.of(context).size.height * .9
                     : (MediaQuery.of(context).size.height * .5),
             child: CachedNetworkImage(
               imageUrl: imageUrl,

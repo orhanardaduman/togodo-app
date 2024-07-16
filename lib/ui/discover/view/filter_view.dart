@@ -156,6 +156,7 @@ class _DiscoverFilterViewState extends ConsumerState<DiscoverFilterView> {
                 ref.watch(appThemeProvider),
                 l10n.selectDate,
                 l10n,
+                null,
                 () {
                   Navigator.pop(context);
                 },

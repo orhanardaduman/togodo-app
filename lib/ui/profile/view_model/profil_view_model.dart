@@ -234,8 +234,8 @@ class ProfilViewModel extends StateNotifier<ProfilState> {
     });
   }
 
-  Future<bool> blockRelationUser(String userID) {
-    return _repository.blockRelation(userID).then((result) {
+  Future<bool> blockRelationUser(String userID, bool isEmptyUser) {
+    return _repository.blockRelation(userID, isEmptyUser).then((result) {
       return result.isSuccess;
     });
   }
@@ -266,7 +266,7 @@ class ProfilViewModel extends StateNotifier<ProfilState> {
 
   Future<bool> blockRelation() {
     if (userId == null) return Future.value(false);
-    return _repository.blockRelation(userId!).then((result) {
+    return _repository.blockRelation(userId!, false).then((result) {
       result.ifSuccess((data) async {
         if (_isDisposed) return;
         await fetchProfil();

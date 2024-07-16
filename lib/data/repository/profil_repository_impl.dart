@@ -260,11 +260,10 @@ class ProfilRepositoryImpl implements ProfilRepository {
   }
 
   @override
-  Future<Result<void>> blockRelation(String userId) {
+  Future<Result<void>> blockRelation(String userId, bool isEmptyUser) {
     return Result.guardFuture(
-      () => _dataSource.blockRelation({
-        'userId': userId,
-      }),
+      () => _dataSource
+          .blockRelation({'userId': userId, 'isEmptyUser': isEmptyUser}),
     );
   }
 

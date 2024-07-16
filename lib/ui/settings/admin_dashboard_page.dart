@@ -575,6 +575,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
       ref.watch(appThemeProvider),
       l10n.notTime,
       l10n,
+      null,
       () {
         Navigator.pop(context);
       },
@@ -606,6 +607,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
       ref.watch(appThemeProvider),
       'Gün',
       l10n,
+      null,
       () {
         Navigator.pop(context);
       },
