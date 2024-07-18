@@ -60,7 +60,7 @@ class ScreenOptions extends HookConsumerWidget {
             left: 24,
             right: 12,
             bottom: context.sized
-                .dynamicHeight(context.isSmallScrn ? 0.115 : 0.105),
+                .dynamicHeight(context.isSmallScrn ? 0.100 : 0.105),
           ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,6 +130,7 @@ class ScreenOptions extends HookConsumerWidget {
                         )
                       else if ((item.joinedUserCount ?? 0) > 0)
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             if (item.isQuotaFull!)
                               Padding(

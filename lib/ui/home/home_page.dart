@@ -17,6 +17,8 @@ import 'package:togodo/ui/home/reels/reels_viewer.dart';
 import 'package:togodo/ui/home/view/share_event.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 
+import '../notification_view_model.dart';
+
 @RoutePage()
 class HomePage extends StatefulHookConsumerWidget {
   const HomePage({super.key});
@@ -38,6 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       if (userType == UserType.guest) {
         ref.read(homeViewModelProvider.notifier).fetchEventsGuest();
       } else {
+        ref.read(notificationStateProvider.notifier).getHasUnread();
         ref.read(userViewModelProvider).tokenCheck();
         ref.read(homeViewModelProvider.notifier)
               ..fetchEvents()

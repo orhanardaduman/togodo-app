@@ -20,6 +20,7 @@ class App extends HookConsumerWidget {
     final config = FlutterUxConfig(
       userAppKey: 'c4qr6yh4qujy8df',
       enableAutomaticScreenNameTagging: false,
+      enableCrashHandling: true,
     );
     FlutterUxcam.startWithConfiguration(config);
     final theme = ref.watch(appThemeProvider);

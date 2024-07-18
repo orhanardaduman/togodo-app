@@ -132,84 +132,87 @@ class _SigninPageState extends ConsumerState<SigninPage>
         child: Scaffold(
           key: _scaffoldKey,
           appBar: CustomAppBar(title: l10n.welcome),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: SizedBox(
-              height: context.sized.dynamicHeight(0.88),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  PrimaryText(
-                    l10n.welcomeSubSignin,
-                  ),
-                  const Spacer(),
-                  Form(
-                    key: _formKey,
+          body: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: SizedBox(
+                    height: context.sized.dynamicHeight(0.88),
                     child: Column(
-                      children: [
-                        if (model.isEmail)
-                          Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        PrimaryText(
+                          l10n.welcomeSubSignin,
+                        ),
+                        const Spacer(),
+                        Form(
+                          key: _formKey,
+                          child: Column(
                             children: [
-                              CustomTextField(
-                                label: l10n.email,
-                                controller: model.emailController,
-                              ),
-                              const SizedBox(height: 12),
-                              CustomTextField(
-                                isPassword: true,
-                                label: l10n.password,
-                                controller: model.passwordController,
-                              ),
+                              if (model.isEmail)
+                                Column(
+                                  children: [
+                                    CustomTextField(
+                                      label: l10n.email,
+                                      controller: model.emailController,
+                                    ),
+                                    const SizedBox(height: 12),
+                                    CustomTextField(
+                                      isPassword: true,
+                                      label: l10n.password,
+                                      controller: model.passwordController,
+                                    ),
+                                  ],
+                                ),
+                              if (!model.isEmail)
+                                CustomPhoneTextField(
+                                  controller: model.phoneController,
+                                  onChanged: (v) =>
+                                      model.phone = v.completeNumber,
+                                ),
                             ],
                           ),
-                        if (!model.isEmail)
-                          CustomPhoneTextField(
-                            controller: model.phoneController,
-                            onChanged: (v) => model.phone = v.completeNumber,
+                        ),
+                        PrimaryText(
+                          l10n.or,
+                          style: theme.textTheme.bodyMedium.copyWith(
+                            color: theme.appColors.secondText,
                           ),
+                        ),
+                        TextButton(
+                          onPressed: model.changeEmail,
+                          child: PrimaryText(
+                            model.isEmail
+                                ? l10n.loginWithPhone
+                                : l10n.loginWithEmail,
+                            style: theme.textTheme.bodyMedium.copyWith(
+                              color: theme.appColors.secondText,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                        context.sized.emptySizedHeightBoxLow3x,
+                        const SignButton(),
+                        context.sized.emptySizedHeightBoxLow3x,
+                        PrivacyText(
+                          theme: theme,
+                          l10n: l10n,
+                        ),
+                        const Spacer(),
                       ],
                     ),
                   ),
-                  PrimaryText(
-                    l10n.or,
-                    style: theme.textTheme.bodyMedium.copyWith(
-                      color: theme.appColors.secondText,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: model.changeEmail,
-                    child: PrimaryText(
-                      model.isEmail ? l10n.loginWithPhone : l10n.loginWithEmail,
-                      style: theme.textTheme.bodyMedium.copyWith(
-                        color: theme.appColors.secondText,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                  context.sized.emptySizedHeightBoxLow3x,
-                  const SignButton(),
-                  context.sized.emptySizedHeightBoxLow3x,
-                  PrivacyText(
-                    theme: theme,
-                    l10n: l10n,
-                  ),
-                  const Spacer(),
-                  AnimatedPadding(
-                    duration: const Duration(milliseconds: 100),
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,
-                    ),
-                    child: _signUpButton(model, router, theme, l10n),
-                  ),
-                  SizedBox(
-                    height: context.sized.dynamicHeight(0.024),
-                  ),
-                ],
+                ),
               ),
-            ),
+              _signUpButton(model, router, theme, l10n),
+              SizedBox(
+                height: context.sized.dynamicHeight(0.024),
+              ),
+            ],
           ),
         ),
       ),

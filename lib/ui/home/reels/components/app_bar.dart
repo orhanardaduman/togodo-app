@@ -138,13 +138,14 @@ class ReelsAppBar extends HookConsumerWidget {
                 NotificationRoute(),
               );
             },
-            icon: notificationState.newNotification
-                ? Badge(
-                    smallSize: 10,
-                    backgroundColor: MainColors.primary,
-                    child: Assets.icons.bold.newNot.svg(),
-                  )
-                : Assets.icons.bold.newNot.svg(),
+            icon:
+                notificationState.newNotification || notificationState.hasUnread
+                    ? Badge(
+                        smallSize: 10,
+                        backgroundColor: MainColors.primary,
+                        child: Assets.icons.bold.newNot.svg(),
+                      )
+                    : Assets.icons.bold.newNot.svg(),
           ),
         if (userType != UserType.guest)
           IconButton(

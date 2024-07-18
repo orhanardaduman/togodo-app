@@ -264,6 +264,10 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
                 : "Sıra",
             controller: _sort,
             suffixIcon: Assets.icons.bulk.send.path,
+            onSuffixTap: () {
+              FocusScope.of(context).unfocus();
+              notifier.changeSort(_sort.value.text);
+            },
             keyboardType: TextInputType.number,
             isRegExp: true,
             focusNode: node,
@@ -272,6 +276,7 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
               // onSuffixTap?.call();
             },
           ),
+
         divider(theme),
         if (model.events!.eventComment != null &&
             model.events!.eventComment!.isNotEmpty)
@@ -282,6 +287,10 @@ class _ManagementEventState extends ConsumerState<ManagementEvent> {
             commentReply: () {},
           ),
         context.sized.emptySizedHeightBoxHigh,
+        if (node.hasFocus)
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .2,
+          ),
       ],
     );
   }

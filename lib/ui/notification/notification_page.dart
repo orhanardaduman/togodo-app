@@ -18,6 +18,8 @@ import 'package:togodo/ui/notification/notification_view_model.dart';
 import 'package:togodo/ui/notification/view/event_request_view.dart';
 import 'package:togodo/ui/notification/view/notification_view.dart';
 
+import '../notification_view_model.dart';
+
 @RoutePage()
 class NotificationPage extends StatefulHookConsumerWidget {
   const NotificationPage({super.key, this.isNotification = false});
@@ -33,6 +35,7 @@ class _NotificationPageState extends ConsumerState<NotificationPage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(notificationViewModelProvider.notifier).fetchNotification();
+      ref.read(notificationStateProvider.notifier).updateNotification(false);
     });
 
     super.initState();

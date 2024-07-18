@@ -402,6 +402,32 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }
   }
 
+  void incrementLineEvent(
+    String id, {
+    bool openToJoin = false,
+  }) {
+    if (_isDisposed) return;
+
+    final update = state.isToday ? state.eventsDaily : state.events;
+    // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
+    final updatedEvents = update.map((event) {
+      if (event.id == id) {
+        // `joinedStatus` değerini tersine çevirin
+        return event.copyWith(
+          requestStatus: !(event.requestStatus ?? false),
+        );
+      }
+      return event;
+    }).toList();
+
+    // Güncellenmiş events listesini state'e aktarın
+    if (state.isToday) {
+      state = state.copyWith(eventsDaily: updatedEvents);
+    } else {
+      state = state.copyWith(events: updatedEvents);
+    }
+  }
+
   Future<void> toggleLike(String id) async {
     // İlk olarak arayüzde değişikliği uygula
     final update = state.isToday ? state.eventsDaily : state.events;
@@ -492,8 +518,13 @@ class HomeViewModel extends StateNotifier<HomeState> {
     String id, {
     bool openToJoin = false,
     bool homePage = false,
+    bool forLine = false,
   }) {
-    incrementJoinEvent(id, openToJoin: openToJoin);
+    if (forLine) {
+      incrementLineEvent(id, openToJoin: openToJoin);
+    } else {
+      incrementJoinEvent(id, openToJoin: openToJoin);
+    }
 
     return _repository
         .eventJoinRequest(id, openToJoin: openToJoin)

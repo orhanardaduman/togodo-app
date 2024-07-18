@@ -88,86 +88,58 @@ class EventButtonState extends ConsumerState<EventButton> {
     TokenModel? userModel,
   ) {
     return Padding(
-      padding: EdgeInsets.only(
-        bottom: context.sized.dynamicHeight(
-          0.01,
+        padding: EdgeInsets.only(
+          bottom: context.sized.dynamicHeight(
+            0.01,
+          ),
         ),
-      ),
-      child: widget.model.isCurrentUser == true ||
-              userModel?.token?.userType == 101
-          ? Row(
-              children: <Widget>[
-                editButton(themeMode, context),
-                const Spacer(),
-                SizedBox(
-                  width: context.dyWidth(context.isMediumScrn ? 293 : 280),
-                  child: CustomButton(
-                    mode: themeMode ? ButtonMode.dark : ButtonMode.primary,
-                    text: l10n.eventManagement,
-                    onPressed: () {
-                      showModalBottomSheet<CreateEventPage>(
-                        context: context,
-                        enableDrag: false,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        builder: (BuildContext context) {
-                          // Burada yeni post ekleme formunuzu oluşturun
-                          return DraggableScrollableSheet(
-                            expand: false,
-                            initialChildSize: 0.9, // Başlangıç boyutu
-                            maxChildSize: 0.9,
-                            minChildSize: 0.5, // Minimum kaplayacağı boyut
-                            builder: (_, controller) {
-                              return ManagementEvent(
-                                eventId: widget.model.id!,
-                                controller: controller,
-                              );
-                            },
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            )
-          : !(widget.model.isUserEvent ?? false)
-              ? communityButton(
-                  context,
-                  l10n,
-                  theme,
-                  themeMode,
-                  notifier,
-                  router,
-                )
-              : Row(
-                  children: [
-                    if (!(widget.model.joinedStatus ?? false))
-                      SizedBox(
-                        width: context.sized.dynamicWidth(0.35),
-                        child: widget.model.requestStatus ?? false
-                            ? requestWaitingButton(
-                                l10n,
-                                theme,
-                                themeMode,
-                                notifier,
-                              )
-                            : joinButton(l10n, theme, themeMode, notifier),
-                      )
-                    else
-                      joinedButton(context, l10n, theme, themeMode, notifier),
-                    const Spacer(),
-                    joinWithFriendsButton(
-                      theme,
-                      l10n,
-                      context,
-                      router,
-                      notifier,
+        child: widget.model.isCurrentUser == true ||
+                userModel?.token?.userType == 101
+            ? Row(
+                children: <Widget>[
+                  editButton(themeMode, context),
+                  const Spacer(),
+                  SizedBox(
+                    width: context.dyWidth(context.isMediumScrn ? 293 : 280),
+                    child: CustomButton(
+                      mode: themeMode ? ButtonMode.dark : ButtonMode.primary,
+                      text: l10n.eventManagement,
+                      onPressed: () {
+                        showModalBottomSheet<CreateEventPage>(
+                          context: context,
+                          enableDrag: false,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          builder: (BuildContext context) {
+                            // Burada yeni post ekleme formunuzu oluşturun
+                            return DraggableScrollableSheet(
+                              expand: false,
+                              initialChildSize: 0.9, // Başlangıç boyutu
+                              maxChildSize: 0.9,
+                              minChildSize: 0.5, // Minimum kaplayacağı boyut
+                              builder: (_, controller) {
+                                return ManagementEvent(
+                                  eventId: widget.model.id!,
+                                  controller: controller,
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
                     ),
-                  ],
-                ),
-    );
+                  ),
+                ],
+              )
+            : communityButton(
+                context,
+                l10n,
+                theme,
+                themeMode,
+                notifier,
+                router,
+              ));
   }
 
   SizedBox editButton(bool themeMode, BuildContext context) {
@@ -232,13 +204,34 @@ class EventButtonState extends ConsumerState<EventButton> {
                   child:
                       joinedButton(context, l10n, theme, themeMode, notifier),
                 )
+              else if (widget.model.requestStatus ?? false)
+                SizedBox(
+                  width: context.sized
+                      .dynamicWidth(context.isSmallScrn ? 0.85 : 0.88),
+                  child: requestWaitingButton(
+                    l10n,
+                    theme,
+                    themeMode,
+                    notifier,
+                  ),
+                )
+              else if (widget.model.isQuotaFull == true)
+                SizedBox(
+                  width: context.sized
+                      .dynamicWidth(context.isSmallScrn ? 0.85 : 0.88),
+                  child:
+                      withFriendsButton(context, l10n, theme, notifier, router),
+                )
               else
                 SizedBox(
                   width: context.sized.dynamicWidth(0.35),
                   child: joinButton(l10n, theme, themeMode, notifier),
                 ),
-              if (!(widget.model.joinedStatus ?? false)) const Spacer(),
-              if (!(widget.model.joinedStatus ?? false))
+              if (!(widget.model.joinedStatus ?? false) &&
+                  (widget.model.isQuotaFull != true))
+                const Spacer(),
+              if (!(widget.model.joinedStatus ?? false) &&
+                  (widget.model.isQuotaFull != true))
                 joinWithFriendsButton(
                   theme,
                   l10n,
@@ -331,7 +324,7 @@ class EventButtonState extends ConsumerState<EventButton> {
     return SizedBox(
       width: context.sized.dynamicWidth(0.35),
       child: CustomButton(
-        text: l10n.joined,
+        text: widget.model.isQuotaFull == true ? l10n.getInLined : l10n.joined,
         style: theme.textTheme.bodyLarge.copyWith(
           color: themeMode ? MainColors.white : MainColors.primary,
           fontWeight: FontWeight.w700,
@@ -496,27 +489,35 @@ class EventButtonState extends ConsumerState<EventButton> {
     return SizedBox(
       width: context.sized.dynamicWidth(0.5),
       child: CustomButton(
-        text: l10n.joinWithFriends,
+        text: widget.model.isQuotaFull == true
+            ? l10n.getInLine
+            : l10n.joinWithFriends,
         style: theme.textTheme.bodyLarge.copyWith(
           color: Colors.white,
           fontWeight: FontWeight.w700,
         ),
         onPressed: () {
-          if (!(widget.model.openToJoinStatus ?? false)) {
+          if (widget.model.isQuotaFull == true) {
+            notifier.eventJoinRequest(
+              widget.model.id!,
+              homePage: widget.isHomePage,
+              forLine: true,
+            );
+          } else if (!(widget.model.openToJoinStatus ?? false)) {
             notifier.eventJoinRequest(
               widget.model.id!,
               openToJoin: true,
               homePage: widget.isHomePage,
             );
+            router.push(
+              JoinWithFriendsRoute(
+                eventId: widget.model.id!,
+                ticketUrl: (widget.model.openToJoinStatus ?? false)
+                    ? widget.model.ticketUrl
+                    : null,
+              ),
+            );
           }
-          router.push(
-            JoinWithFriendsRoute(
-              eventId: widget.model.id!,
-              ticketUrl: (widget.model.openToJoinStatus ?? false)
-                  ? widget.model.ticketUrl
-                  : null,
-            ),
-          );
         },
       ),
     );

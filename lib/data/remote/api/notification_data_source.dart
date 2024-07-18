@@ -33,4 +33,6 @@ abstract class NotificationDataSource {
   Future<dynamic> declineInvite(
     @Body() Map<String, dynamic> data,
   );
+  @GET('User/UnreadCount')
+  Future<String> unreadCount();
 }
