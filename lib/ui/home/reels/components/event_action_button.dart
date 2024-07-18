@@ -228,10 +228,12 @@ class EventButtonState extends ConsumerState<EventButton> {
                   child: joinButton(l10n, theme, themeMode, notifier),
                 ),
               if (!(widget.model.joinedStatus ?? false) &&
-                  (widget.model.isQuotaFull != true))
+                  (widget.model.isQuotaFull != true) &&
+                  !(widget.model.requestStatus ?? false))
                 const Spacer(),
               if (!(widget.model.joinedStatus ?? false) &&
-                  (widget.model.isQuotaFull != true))
+                  (widget.model.isQuotaFull != true) &&
+                  !(widget.model.requestStatus ?? false))
                 joinWithFriendsButton(
                   theme,
                   l10n,
