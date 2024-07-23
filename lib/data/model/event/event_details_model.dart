@@ -38,6 +38,7 @@ class EventDetailsModel
     int? participantsLimit,
     String? price,
     String? ticketUrl,
+    String? onlineUrl,
     String? latitude,
     String? longitude,
     String? mapLink,

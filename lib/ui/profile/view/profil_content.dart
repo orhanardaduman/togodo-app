@@ -87,10 +87,14 @@ class ProfilContent extends HookConsumerWidget {
                         tabs: userId != null
                             ? [
                                 Tab(
-                                  text: l10n.eventsTab,
+                                  text: data?.type == 1
+                                      ? l10n.comingEvents
+                                      : l10n.eventsTab,
                                 ),
                                 Tab(
-                                  text: l10n.created,
+                                  text: data?.type == 1
+                                      ? l10n.pastEvents
+                                      : l10n.created,
                                 ),
                               ]
                             : [
@@ -115,9 +119,15 @@ class ProfilContent extends HookConsumerWidget {
                     children: userId != null
                         ? [
                             if (showJoinedEvents)
-                              TabEventsJoinedView(
-                                userId: userId,
-                              )
+                              data?.type == 1
+                                  ? TabEventsView(
+                                      userId: userId,
+                                      isCurrentUser:
+                                          data?.isCurrentUser ?? false,
+                                    )
+                                  : TabEventsJoinedView(
+                                      userId: userId,
+                                    )
                             else
                               NullEventWidget(
                                 theme: theme,
@@ -167,6 +177,7 @@ class ProfilContent extends HookConsumerWidget {
         SlideProfilImage(
           images: data?.images,
           userId: userId,
+          userTag: data?.userName,
           isFriends: data?.isFriend ?? false,
           isFollow: data?.isFollowed ?? false,
           isBlock: data?.isBlockedCurrentUserToUser ?? false,
@@ -174,11 +185,8 @@ class ProfilContent extends HookConsumerWidget {
           isHiddenEvent: data?.isHideEventCurrentUserToUser ?? false,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-          ),
           margin: EdgeInsets.only(
-            top: context.sized.dynamicHeight(0.428) - 75.7,
+            top: context.sized.dynamicHeight(0.3),
           ),
           child: UserProfileCard(
             data: data,

@@ -287,6 +287,10 @@ class $AssetsIconsBoldGen {
   /// File path: assets/icons/Bold/Message.svg
   SvgGenImage get message => const SvgGenImage('assets/icons/Bold/Message.svg');
 
+  /// File path: assets/icons/Bold/MoreDownArrow.svg
+  SvgGenImage get moreDownArrow =>
+      const SvgGenImage('assets/icons/Bold/MoreDownArrow.svg');
+
   /// File path: assets/icons/Bold/More_Circle.svg
   SvgGenImage get moreCircle =>
       const SvgGenImage('assets/icons/Bold/More_Circle.svg');
@@ -535,6 +539,7 @@ class $AssetsIconsBoldGen {
         logout,
         map,
         message,
+        moreDownArrow,
         moreCircle,
         moreSquare,
         notification,

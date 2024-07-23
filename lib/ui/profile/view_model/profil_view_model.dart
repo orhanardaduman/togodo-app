@@ -56,6 +56,20 @@ class ProfilViewModel extends StateNotifier<ProfilState> {
     }
   }
 
+  Future<void> addPoint(int point, String userId) async {
+    if (_isDisposed) return;
+    state = state.copyWith(loading: true);
+    final result = await _repository.addPoint(userId: userId, point: point);
+    print(result.toString());
+    if (result.isSuccess) {
+      if (_isDisposed) return;
+      state = state.copyWith(
+        loading: true,
+      );
+      fetchProfil();
+    }
+  }
+
   Future<List<UserSearchModel>?> getUserSearch(
     String? keyword,
   ) async {

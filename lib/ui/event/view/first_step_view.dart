@@ -9,6 +9,8 @@ import 'package:togodo/ui/event/view_model/create_event_view_model.dart';
 import 'package:togodo/ui/event/widget/select_other_admin.dart';
 import 'package:togodo/ui/profile/widget/multi_chip.dart';
 
+import '../../../features/component/custom_checkbox.dart';
+
 class FirstStepView extends StatefulHookConsumerWidget {
   const FirstStepView({super.key});
 
@@ -65,12 +67,18 @@ class _FirstStepViewState extends ConsumerState<FirstStepView> {
           onTap: model.updateTag,
           isOpen: isOpen,
         ),
-        NewCustomMapPicker(
-          locationController: model.locationController,
-          initLocation: model.initLocation ?? const LatLng(0, 0),
-          label: model.address ?? l10n.location_label,
-          onChange: model.updateLocation,
+        CustomCheckBox(
+          label: l10n.online,
+          isVal: modelView.isOnline,
+          onTap: model.changeOnline,
         ),
+        if (!modelView.isOnline)
+          NewCustomMapPicker(
+            locationController: model.locationController,
+            initLocation: model.initLocation ?? const LatLng(0, 0),
+            label: model.address ?? l10n.location_label,
+            onChange: model.updateLocation,
+          ),
       ],
     );
   }

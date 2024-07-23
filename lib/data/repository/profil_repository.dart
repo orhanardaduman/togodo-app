@@ -7,6 +7,11 @@ import 'package:togodo/data/model/result.dart';
 
 abstract class ProfilRepository {
   Future<Result<ProfilModel>> getProfil({String? userId});
+  Future<Result<String>> addPoint({
+    String? userId,
+    int? point,
+  });
+
   Future<Result<DailyReportsModel>> getUserCount();
   Future<Result<List<ReportsModel>>> getReports();
   Future<Result<List<SocialMedias>>> getSocialMedias();

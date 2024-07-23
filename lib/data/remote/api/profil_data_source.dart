@@ -166,4 +166,8 @@ abstract class ProfilDataSource {
     @Query('pagination') int? pagination,
     @Query('status') bool? status,
   });
+  @POST('User/AddPoint')
+  Future<String> addPoint(
+    @Body() Map<String, dynamic> data,
+  );
 }

@@ -380,4 +380,14 @@ class ProfilRepositoryImpl implements ProfilRepository {
       ),
     );
   }
+
+  @override
+  Future<Result<String>> addPoint({String? userId, int? point}) {
+    return Result.guardFuture(
+      () async => _dataSource.addPoint({
+        "point": point,
+        "userId": userId,
+      }),
+    );
+  }
 }

@@ -57,6 +57,9 @@ mixin _$ProfilModel {
   int? get privacyType => throw _privateConstructorUsedError;
   int? get eventsCreatedCount => throw _privateConstructorUsedError;
   int? get applauseCount => throw _privateConstructorUsedError;
+  int? get totalPoint => throw _privateConstructorUsedError;
+  int? get pointCount => throw _privateConstructorUsedError;
+  double? get calculatedPoint => throw _privateConstructorUsedError;
   bool? get isHideEventCreatedCurrentUserToUser =>
       throw _privateConstructorUsedError;
   bool? get isHideEventCreatedUserToCurrentUser =>
@@ -68,6 +71,7 @@ mixin _$ProfilModel {
   List<TagsModel>? get tags => throw _privateConstructorUsedError;
   List<SocialMedias>? get socialMedias => throw _privateConstructorUsedError;
   List<Images>? get images => throw _privateConstructorUsedError;
+  List<String>? get fallowers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -117,13 +121,17 @@ abstract class $ProfilModelCopyWith<$Res> {
       int? privacyType,
       int? eventsCreatedCount,
       int? applauseCount,
+      int? totalPoint,
+      int? pointCount,
+      double? calculatedPoint,
       bool? isHideEventCreatedCurrentUserToUser,
       bool? isHideEventCreatedUserToCurrentUser,
       bool? isHideEventJoinedCurrentUserToUser,
       bool? isHideEventJoinedUserToCurrentUser,
       List<TagsModel>? tags,
       List<SocialMedias>? socialMedias,
-      List<Images>? images});
+      List<Images>? images,
+      List<String>? fallowers});
 }
 
 /// @nodoc
@@ -174,6 +182,9 @@ class _$ProfilModelCopyWithImpl<$Res, $Val extends ProfilModel>
     Object? privacyType = freezed,
     Object? eventsCreatedCount = freezed,
     Object? applauseCount = freezed,
+    Object? totalPoint = freezed,
+    Object? pointCount = freezed,
+    Object? calculatedPoint = freezed,
     Object? isHideEventCreatedCurrentUserToUser = freezed,
     Object? isHideEventCreatedUserToCurrentUser = freezed,
     Object? isHideEventJoinedCurrentUserToUser = freezed,
@@ -181,6 +192,7 @@ class _$ProfilModelCopyWithImpl<$Res, $Val extends ProfilModel>
     Object? tags = freezed,
     Object? socialMedias = freezed,
     Object? images = freezed,
+    Object? fallowers = freezed,
   }) {
     return _then(_value.copyWith(
       isCurrentUser: freezed == isCurrentUser
@@ -323,6 +335,18 @@ class _$ProfilModelCopyWithImpl<$Res, $Val extends ProfilModel>
           ? _value.applauseCount
           : applauseCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      totalPoint: freezed == totalPoint
+          ? _value.totalPoint
+          : totalPoint // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pointCount: freezed == pointCount
+          ? _value.pointCount
+          : pointCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      calculatedPoint: freezed == calculatedPoint
+          ? _value.calculatedPoint
+          : calculatedPoint // ignore: cast_nullable_to_non_nullable
+              as double?,
       isHideEventCreatedCurrentUserToUser: freezed ==
               isHideEventCreatedCurrentUserToUser
           ? _value.isHideEventCreatedCurrentUserToUser
@@ -355,6 +379,10 @@ class _$ProfilModelCopyWithImpl<$Res, $Val extends ProfilModel>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Images>?,
+      fallowers: freezed == fallowers
+          ? _value.fallowers
+          : fallowers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -403,13 +431,17 @@ abstract class _$$ProfilModelImplCopyWith<$Res>
       int? privacyType,
       int? eventsCreatedCount,
       int? applauseCount,
+      int? totalPoint,
+      int? pointCount,
+      double? calculatedPoint,
       bool? isHideEventCreatedCurrentUserToUser,
       bool? isHideEventCreatedUserToCurrentUser,
       bool? isHideEventJoinedCurrentUserToUser,
       bool? isHideEventJoinedUserToCurrentUser,
       List<TagsModel>? tags,
       List<SocialMedias>? socialMedias,
-      List<Images>? images});
+      List<Images>? images,
+      List<String>? fallowers});
 }
 
 /// @nodoc
@@ -458,6 +490,9 @@ class __$$ProfilModelImplCopyWithImpl<$Res>
     Object? privacyType = freezed,
     Object? eventsCreatedCount = freezed,
     Object? applauseCount = freezed,
+    Object? totalPoint = freezed,
+    Object? pointCount = freezed,
+    Object? calculatedPoint = freezed,
     Object? isHideEventCreatedCurrentUserToUser = freezed,
     Object? isHideEventCreatedUserToCurrentUser = freezed,
     Object? isHideEventJoinedCurrentUserToUser = freezed,
@@ -465,6 +500,7 @@ class __$$ProfilModelImplCopyWithImpl<$Res>
     Object? tags = freezed,
     Object? socialMedias = freezed,
     Object? images = freezed,
+    Object? fallowers = freezed,
   }) {
     return _then(_$ProfilModelImpl(
       isCurrentUser: freezed == isCurrentUser
@@ -607,6 +643,18 @@ class __$$ProfilModelImplCopyWithImpl<$Res>
           ? _value.applauseCount
           : applauseCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      totalPoint: freezed == totalPoint
+          ? _value.totalPoint
+          : totalPoint // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pointCount: freezed == pointCount
+          ? _value.pointCount
+          : pointCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      calculatedPoint: freezed == calculatedPoint
+          ? _value.calculatedPoint
+          : calculatedPoint // ignore: cast_nullable_to_non_nullable
+              as double?,
       isHideEventCreatedCurrentUserToUser: freezed ==
               isHideEventCreatedCurrentUserToUser
           ? _value.isHideEventCreatedCurrentUserToUser
@@ -639,6 +687,10 @@ class __$$ProfilModelImplCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Images>?,
+      fallowers: freezed == fallowers
+          ? _value._fallowers
+          : fallowers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -682,16 +734,21 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
       this.privacyType,
       this.eventsCreatedCount,
       this.applauseCount,
+      this.totalPoint,
+      this.pointCount,
+      this.calculatedPoint,
       this.isHideEventCreatedCurrentUserToUser,
       this.isHideEventCreatedUserToCurrentUser,
       this.isHideEventJoinedCurrentUserToUser,
       this.isHideEventJoinedUserToCurrentUser,
       final List<TagsModel>? tags,
       final List<SocialMedias>? socialMedias,
-      final List<Images>? images})
+      final List<Images>? images,
+      final List<String>? fallowers})
       : _tags = tags,
         _socialMedias = socialMedias,
-        _images = images;
+        _images = images,
+        _fallowers = fallowers;
 
   factory _$ProfilModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfilModelImplFromJson(json);
@@ -767,6 +824,12 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
   @override
   final int? applauseCount;
   @override
+  final int? totalPoint;
+  @override
+  final int? pointCount;
+  @override
+  final double? calculatedPoint;
+  @override
   final bool? isHideEventCreatedCurrentUserToUser;
   @override
   final bool? isHideEventCreatedUserToCurrentUser;
@@ -804,9 +867,19 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<String>? _fallowers;
+  @override
+  List<String>? get fallowers {
+    final value = _fallowers;
+    if (value == null) return null;
+    if (_fallowers is EqualUnmodifiableListView) return _fallowers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProfilModel(isCurrentUser: $isCurrentUser, isFriend: $isFriend, isHideEvent: $isHideEvent, isBlocked: $isBlocked, isNotification: $isNotification, isBlockedCurrentUserToUser: $isBlockedCurrentUserToUser, isBlockedUserToCurrentUser: $isBlockedUserToCurrentUser, isHideEventCurrentUserToUser: $isHideEventCurrentUserToUser, isHideEventUserToCurrentUser: $isHideEventUserToCurrentUser, friendRequestUserToCurrentUser: $friendRequestUserToCurrentUser, friendRequestCurrentUserToUser: $friendRequestCurrentUserToUser, id: $id, name: $name, surname: $surname, phoneNumber: $phoneNumber, email: $email, gender: $gender, age: $age, type: $type, birthdayDate: $birthdayDate, userName: $userName, bio: $bio, title: $title, location: $location, completionRate: $completionRate, titleCompletion: $titleCompletion, socialMediaCompletion: $socialMediaCompletion, tagCompletion: $tagCompletion, bioCompletion: $bioCompletion, isFollowed: $isFollowed, friendCount: $friendCount, followersCount: $followersCount, privacyType: $privacyType, eventsCreatedCount: $eventsCreatedCount, applauseCount: $applauseCount, isHideEventCreatedCurrentUserToUser: $isHideEventCreatedCurrentUserToUser, isHideEventCreatedUserToCurrentUser: $isHideEventCreatedUserToCurrentUser, isHideEventJoinedCurrentUserToUser: $isHideEventJoinedCurrentUserToUser, isHideEventJoinedUserToCurrentUser: $isHideEventJoinedUserToCurrentUser, tags: $tags, socialMedias: $socialMedias, images: $images)';
+    return 'ProfilModel(isCurrentUser: $isCurrentUser, isFriend: $isFriend, isHideEvent: $isHideEvent, isBlocked: $isBlocked, isNotification: $isNotification, isBlockedCurrentUserToUser: $isBlockedCurrentUserToUser, isBlockedUserToCurrentUser: $isBlockedUserToCurrentUser, isHideEventCurrentUserToUser: $isHideEventCurrentUserToUser, isHideEventUserToCurrentUser: $isHideEventUserToCurrentUser, friendRequestUserToCurrentUser: $friendRequestUserToCurrentUser, friendRequestCurrentUserToUser: $friendRequestCurrentUserToUser, id: $id, name: $name, surname: $surname, phoneNumber: $phoneNumber, email: $email, gender: $gender, age: $age, type: $type, birthdayDate: $birthdayDate, userName: $userName, bio: $bio, title: $title, location: $location, completionRate: $completionRate, titleCompletion: $titleCompletion, socialMediaCompletion: $socialMediaCompletion, tagCompletion: $tagCompletion, bioCompletion: $bioCompletion, isFollowed: $isFollowed, friendCount: $friendCount, followersCount: $followersCount, privacyType: $privacyType, eventsCreatedCount: $eventsCreatedCount, applauseCount: $applauseCount, totalPoint: $totalPoint, pointCount: $pointCount, calculatedPoint: $calculatedPoint, isHideEventCreatedCurrentUserToUser: $isHideEventCreatedCurrentUserToUser, isHideEventCreatedUserToCurrentUser: $isHideEventCreatedUserToCurrentUser, isHideEventJoinedCurrentUserToUser: $isHideEventJoinedCurrentUserToUser, isHideEventJoinedUserToCurrentUser: $isHideEventJoinedUserToCurrentUser, tags: $tags, socialMedias: $socialMedias, images: $images, fallowers: $fallowers)';
   }
 
   @override
@@ -855,6 +928,9 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
       ..add(DiagnosticsProperty('privacyType', privacyType))
       ..add(DiagnosticsProperty('eventsCreatedCount', eventsCreatedCount))
       ..add(DiagnosticsProperty('applauseCount', applauseCount))
+      ..add(DiagnosticsProperty('totalPoint', totalPoint))
+      ..add(DiagnosticsProperty('pointCount', pointCount))
+      ..add(DiagnosticsProperty('calculatedPoint', calculatedPoint))
       ..add(DiagnosticsProperty('isHideEventCreatedCurrentUserToUser',
           isHideEventCreatedCurrentUserToUser))
       ..add(DiagnosticsProperty('isHideEventCreatedUserToCurrentUser',
@@ -865,7 +941,8 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
           isHideEventJoinedUserToCurrentUser))
       ..add(DiagnosticsProperty('tags', tags))
       ..add(DiagnosticsProperty('socialMedias', socialMedias))
-      ..add(DiagnosticsProperty('images', images));
+      ..add(DiagnosticsProperty('images', images))
+      ..add(DiagnosticsProperty('fallowers', fallowers));
   }
 
   @override
@@ -936,13 +1013,17 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
             (identical(other.privacyType, privacyType) || other.privacyType == privacyType) &&
             (identical(other.eventsCreatedCount, eventsCreatedCount) || other.eventsCreatedCount == eventsCreatedCount) &&
             (identical(other.applauseCount, applauseCount) || other.applauseCount == applauseCount) &&
+            (identical(other.totalPoint, totalPoint) || other.totalPoint == totalPoint) &&
+            (identical(other.pointCount, pointCount) || other.pointCount == pointCount) &&
+            (identical(other.calculatedPoint, calculatedPoint) || other.calculatedPoint == calculatedPoint) &&
             (identical(other.isHideEventCreatedCurrentUserToUser, isHideEventCreatedCurrentUserToUser) || other.isHideEventCreatedCurrentUserToUser == isHideEventCreatedCurrentUserToUser) &&
             (identical(other.isHideEventCreatedUserToCurrentUser, isHideEventCreatedUserToCurrentUser) || other.isHideEventCreatedUserToCurrentUser == isHideEventCreatedUserToCurrentUser) &&
             (identical(other.isHideEventJoinedCurrentUserToUser, isHideEventJoinedCurrentUserToUser) || other.isHideEventJoinedCurrentUserToUser == isHideEventJoinedCurrentUserToUser) &&
             (identical(other.isHideEventJoinedUserToCurrentUser, isHideEventJoinedUserToCurrentUser) || other.isHideEventJoinedUserToCurrentUser == isHideEventJoinedUserToCurrentUser) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._socialMedias, _socialMedias) &&
-            const DeepCollectionEquality().equals(other._images, _images));
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality().equals(other._fallowers, _fallowers));
   }
 
   @JsonKey(ignore: true)
@@ -984,13 +1065,17 @@ class _$ProfilModelImpl with DiagnosticableTreeMixin implements _ProfilModel {
         privacyType,
         eventsCreatedCount,
         applauseCount,
+        totalPoint,
+        pointCount,
+        calculatedPoint,
         isHideEventCreatedCurrentUserToUser,
         isHideEventCreatedUserToCurrentUser,
         isHideEventJoinedCurrentUserToUser,
         isHideEventJoinedUserToCurrentUser,
         const DeepCollectionEquality().hash(_tags),
         const DeepCollectionEquality().hash(_socialMedias),
-        const DeepCollectionEquality().hash(_images)
+        const DeepCollectionEquality().hash(_images),
+        const DeepCollectionEquality().hash(_fallowers)
       ]);
 
   @JsonKey(ignore: true)
@@ -1044,13 +1129,17 @@ abstract class _ProfilModel implements ProfilModel {
       final int? privacyType,
       final int? eventsCreatedCount,
       final int? applauseCount,
+      final int? totalPoint,
+      final int? pointCount,
+      final double? calculatedPoint,
       final bool? isHideEventCreatedCurrentUserToUser,
       final bool? isHideEventCreatedUserToCurrentUser,
       final bool? isHideEventJoinedCurrentUserToUser,
       final bool? isHideEventJoinedUserToCurrentUser,
       final List<TagsModel>? tags,
       final List<SocialMedias>? socialMedias,
-      final List<Images>? images}) = _$ProfilModelImpl;
+      final List<Images>? images,
+      final List<String>? fallowers}) = _$ProfilModelImpl;
 
   factory _ProfilModel.fromJson(Map<String, dynamic> json) =
       _$ProfilModelImpl.fromJson;
@@ -1126,6 +1215,12 @@ abstract class _ProfilModel implements ProfilModel {
   @override
   int? get applauseCount;
   @override
+  int? get totalPoint;
+  @override
+  int? get pointCount;
+  @override
+  double? get calculatedPoint;
+  @override
   bool? get isHideEventCreatedCurrentUserToUser;
   @override
   bool? get isHideEventCreatedUserToCurrentUser;
@@ -1139,6 +1234,8 @@ abstract class _ProfilModel implements ProfilModel {
   List<SocialMedias>? get socialMedias;
   @override
   List<Images>? get images;
+  @override
+  List<String>? get fallowers;
   @override
   @JsonKey(ignore: true)
   _$$ProfilModelImplCopyWith<_$ProfilModelImpl> get copyWith =>

@@ -543,6 +543,24 @@
   "homePage": "Ana sayfa",
   "post": "Post",
   "editAlt": "Düzenle",
-  "homePageSize": "Ana Sayfa Boyutu"
-
+  "homePageSize": "Ana Sayfa Boyutu",
+  "online": "Online",
+  "onlineLink": "Online link",
+  "fallowing": "Takip ediyorsun",
+  "comingEvents": "Yaklaşan Etkinlikler",
+  "pastEvents": "Geçmiş Etkinlikler",
+  "fallowingAlt":"takip ediyor",
+  "and": " ve ",
+  "others": "diğer kişi",
+  "rideMore": " devamını oku...",
+  "hideMore": " devamını gizle...",
+  "personalText": "Etkinlikleri Keşfet & Yeni Arkadaşlar Bul",
+  "cominityText": "Etkinlikliğini Tanıt & İnsanları Davet Et",
+  "comunityPoint": "Topluluk Puanı",
+  "pointFrom": "{count} Kişi Tarafından Puanlandı",
+  "changeAccount": "Hesap Değiştir",
+  "addTogodoAccount": "Togodo hesabı ekle",
+  "addAccount": "Hesap Ekle",
+  "signinWithAccount": "Mevcut Hesaba Giriş Yap",
+  "createNewAccount": "Yeni Hesap Oluştur"
 }

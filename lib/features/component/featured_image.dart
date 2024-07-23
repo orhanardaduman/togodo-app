@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:togodo/features/component/blurs.dart';
 
@@ -31,7 +32,20 @@ class FeaturedImageWidget extends StatelessWidget {
       children: isPortrait
           ? [
               if (isTimeline)
-                Blurs(borderRadius: borderRadius, imageUrl: imageUrl),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: CachedNetworkImage(
+                    imageUrl: '$imageUrl/true',
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => CachedNetworkImage(
+                      imageUrl: errorImage,
+                      fit: BoxFit.contain,
+                      errorWidget: (context, url, error) =>
+                          const SizedBox.shrink(),
+                    ),
+                  ),
+                ),
               FeaturedImageLinearContainer(
                 aspectRatio: aspectRatio,
                 isFull: aspectRatio == '0.5625',

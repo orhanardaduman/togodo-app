@@ -16,6 +16,7 @@ import 'package:togodo/core/helpers/index.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/route/app_route.gr.dart';
+import 'package:togodo/core/theme/app_text_theme.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/data/model/profil/profil_model.dart';
 import 'package:togodo/features/component/custom_divider.dart';
@@ -26,6 +27,7 @@ import 'package:togodo/ui/profile/view_model/profil_view_model.dart';
 class SlideProfilImage extends HookConsumerWidget {
   const SlideProfilImage({
     super.key,
+    this.userTag,
     this.images,
     this.userId,
     this.type = 0,
@@ -38,6 +40,7 @@ class SlideProfilImage extends HookConsumerWidget {
 
   final List<Images>? images;
   final String? userId;
+  final String? userTag;
   final bool isBlock;
   final bool isFriends;
   final bool isFollow;
@@ -57,12 +60,12 @@ class SlideProfilImage extends HookConsumerWidget {
       children: [
         if (images == null || images!.isEmpty)
           SizedBox(
-            height: context.sized.dynamicHeight(0.428),
+            height: context.sized.dynamicHeight(0.35),
             width: context.sized.width,
           )
         else
           CustomImageSlideshow(
-            height: context.sized.dynamicHeight(0.428),
+            height: context.sized.dynamicHeight(0.35),
             indicatorColor: MainColors.primary,
             indicatorPadding: 8,
             indicatorRadius: 4,
@@ -82,21 +85,63 @@ class SlideProfilImage extends HookConsumerWidget {
             ],
           ),
         if (userId == null)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 54, horizontal: 24),
-            child: IconButton(
-              onPressed: () {
-                router.push(
-                  SettingsRoute(
-                    userType: type,
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(
+              vertical: 54,
+            ),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    /*  showModalBottomSheet(
+                      backgroundColor: MainColors.dark2,
+                      elevation: 0,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(15)),
+                      ),
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) {
+                        //CustomMultiSelectBottomSheet
+                        return const AccountsView();
+                      },
+                    );*/
+                  },
+                  child: Row(
+                    children: [
+                      PrimaryText(
+                        "@${userTag ?? " "}",
+                        style: AppTextTheme().h4,
+                      ),
+                      Assets.icons.bold.moreDownArrow.svg(
+                        width: 24,
+                        height: 24,
+                        color: MainColors.white,
+                      ),
+                    ],
                   ),
-                );
-              },
-              icon: Assets.icons.bold.setting.svg(
-                width: 24,
-                height: 24,
-                color: MainColors.white,
-              ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {
+                    router.push(
+                      SettingsRoute(
+                        userType: type,
+                      ),
+                    );
+                  },
+                  icon: Assets.icons.bold.setting.svg(
+                    width: 24,
+                    height: 24,
+                    color: MainColors.white,
+                  ),
+                ),
+              ],
             ),
           )
         else
@@ -117,7 +162,14 @@ class SlideProfilImage extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const Spacer(),
+                Expanded(
+                  child: Center(
+                    child: PrimaryText(
+                      "@${userTag ?? " "}",
+                      style: AppTextTheme().h4,
+                    ),
+                  ),
+                ),
                 if (!isHideSettings)
                   IconButton(
                     onPressed: () {
@@ -131,9 +183,10 @@ class SlideProfilImage extends HookConsumerWidget {
                         userType,
                       );
                     },
-                    icon: Assets.icons.bold.additionalIcons.svg(
+                    icon: Assets.icons.bold.setting.svg(
                       width: 24,
                       height: 24,
+                      color: MainColors.white,
                     ),
                   ),
                 const SizedBox(width: 20),
@@ -206,7 +259,7 @@ class SlideProfilImage extends HookConsumerWidget {
           },
           theme,
         ),
-        if ((isFriends || isFollow) && userType == 0)
+        if ((isFriends || isFollow) && userType == 1)
           type == 0
               ? listTile(
                   l10n.removeFriend,

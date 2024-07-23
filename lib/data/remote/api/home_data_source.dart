@@ -55,7 +55,7 @@ abstract class HomeDataSource {
     @Query('pagination') int? pagination,
     @Query('eventId') String? eventId,
   });
-  @GET('Timeline/GetEventUsers')
+  @GET('Timeline/GetEventUsersNew')
   Future<EventAllUsersModel> getUserEvent({
     @Query('pagination') int? pagination,
     @Query('eventId') String? eventId,

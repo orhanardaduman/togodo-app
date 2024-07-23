@@ -30,6 +30,7 @@ class SelectedAssetsModel with _$SelectedAssetsModel {
     String? networkImage,
     File? localImage,
     bool? isCropped,
+    String? aspectRatio,
   }) = _SelectedAssetsModel;
 }
 
@@ -52,6 +53,7 @@ class CreateEventState with _$CreateEventState {
     @Default(null) List<ConceptImageModel>? networkImg,
     @Default(null) Users? otherUserModel,
     @Default(null) String? url,
+    @Default(false) bool isOnline,
   }) = _CreateEventState;
 }
 
@@ -78,6 +80,8 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
   TextEditingController userController = TextEditingController();
   TextEditingController eventController = TextEditingController();
   TextEditingController linkController = TextEditingController();
+  TextEditingController linkForOnline = TextEditingController();
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late final HomeRepository _repository = _ref.read(homeRepositoryProvider);
 
@@ -214,6 +218,8 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         startDateController.text = data.startTime ?? '';
         endDateController.text = data.endTime ?? '';
         linkController.text = data.ticketUrl ?? '';
+        linkForOnline.text = data.onlineUrl ?? '';
+
         if (!data.isParticipants!) {
           userController.text = data.participantsLimit.toString();
         }
@@ -259,6 +265,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     final multipartFiles = <MultipartFile>[];
     final indexList = <int>[];
     final cropList = <bool>[];
+    final aspectRatioList = <String>[];
 
     for (final file in state.selectedAssetsAll!
         .where((element) => element.localImage != null)
@@ -269,6 +276,10 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         filename: fileName,
       );
       cropList.add(file.isCropped ?? false);
+      aspectRatioList.add(
+        file.isCropped != null ? (file.aspectRatio ?? '') : '0.5625',
+      );
+
       indexList.add(file.index!);
       multipartFiles.add(multipartFile);
     }
@@ -302,10 +313,12 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         'formFiles': multipartFiles,
         'index': indexList,
         'crop': cropList,
+        'aspectRatio': aspectRatioList,
         'imageUrl': imageUrl,
         'imageIndex': imageIndex,
         'otherUserId': state.otherUserModel?.id ?? '',
         'link': linkController.text,
+        'onlineLink': linkForOnline.text,
       });
 
       print("other user id ${state.otherUserModel?.id ?? 'yok'}");
@@ -439,11 +452,17 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     userController.clear();
   }
 
+  void changeOnline() {
+    state = state.copyWith(isOnline: !state.isOnline);
+    userController.clear();
+  }
+
   /*ben KYXuGkk2nTUEfUZhddI5V3SXgPh2
   ahlam 6ruX1cLqY8Pc1cLnaRapmxnywgD3*/
   void changeFree() {
     state = state.copyWith(isFree: !state.isFree);
     eventController.clear();
+    linkForOnline.clear();
   }
 
   void changeContracy() {
@@ -612,7 +631,8 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CropView(img.localImage?.path, (data) async {
+        builder: (context) =>
+            CropView(img.localImage?.path, (data, aspectRatioData) async {
           if (data != null) {
             Navigator.pop(context);
             final tempDir = await getApplicationDocumentsDirectory();
@@ -627,6 +647,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
               index: img.index,
               localImage: file,
               isCropped: true,
+              aspectRatio: aspectRatioData,
             );
             var indexNew = newImageUrlList.indexOf(img);
             newImageUrlList.remove(img);

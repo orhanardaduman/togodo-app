@@ -9,11 +9,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i50;
-import 'package:flutter/cupertino.dart' as _i54;
-import 'package:flutter/foundation.dart' as _i56;
+import 'package:flutter/foundation.dart' as _i55;
 import 'package:flutter/material.dart' as _i51;
 import 'package:togodo/core/theme/app_theme.dart' as _i52;
-import 'package:togodo/data/model/event/event_details_model.dart' as _i55;
+import 'package:togodo/data/model/event/event_details_model.dart' as _i54;
 import 'package:togodo/data/model/event/event_model.dart' as _i53;
 import 'package:togodo/ui/auth/signin.dart' as _i38;
 import 'package:togodo/ui/auth/signup.dart' as _i39;
@@ -976,7 +975,7 @@ class EventDetailsRoute extends _i50.PageRouteInfo<EventDetailsRouteArgs> {
     String? applauseCount,
     bool isNotification = false,
     void Function()? onLikeIncrement,
-    _i54.Key? key,
+    _i51.Key? key,
     List<_i50.PageRouteInfo>? children,
   }) : super(
           EventDetailsRoute.name,
@@ -1014,7 +1013,7 @@ class EventDetailsRouteArgs {
 
   final void Function()? onLikeIncrement;
 
-  final _i54.Key? key;
+  final _i51.Key? key;
 
   @override
   String toString() {
@@ -1072,7 +1071,7 @@ class EventRatingsAllRoute
     extends _i50.PageRouteInfo<EventRatingsAllRouteArgs> {
   EventRatingsAllRoute({
     required _i51.ScrollController dragScrollController,
-    List<_i55.Ratings>? ratingsList,
+    List<_i54.Ratings>? ratingsList,
     _i51.Key? key,
     List<_i50.PageRouteInfo>? children,
   }) : super(
@@ -1100,7 +1099,7 @@ class EventRatingsAllRouteArgs {
 
   final _i51.ScrollController dragScrollController;
 
-  final List<_i55.Ratings>? ratingsList;
+  final List<_i54.Ratings>? ratingsList;
 
   final _i51.Key? key;
 
@@ -1346,7 +1345,7 @@ class JoinWithFriendsRoute
   JoinWithFriendsRoute({
     required String eventId,
     String? ticketUrl,
-    _i56.Key? key,
+    _i55.Key? key,
     List<_i50.PageRouteInfo>? children,
   }) : super(
           JoinWithFriendsRoute.name,
@@ -1375,7 +1374,7 @@ class JoinWithFriendsRouteArgs {
 
   final String? ticketUrl;
 
-  final _i56.Key? key;
+  final _i55.Key? key;
 
   @override
   String toString() {

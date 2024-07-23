@@ -162,6 +162,15 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
           isVal: state.isFree,
           onTap: model.changeFree,
         ),
+        if (state.isOnline)
+          CustomTextField(
+            isEnabled: state.isFree,
+            label: l10n.onlineLink,
+            required: state.isFree,
+            keyboardType: TextInputType.url,
+            prefixIcon: Assets.icons.bold.link.path,
+            controller: model.linkForOnline,
+          ),
         CustomCheckBoxFormField(
           label: l10n.acceptTerms,
           isBgColor: false,

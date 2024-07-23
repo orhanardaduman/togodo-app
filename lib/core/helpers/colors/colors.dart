@@ -33,6 +33,7 @@ class MainColors {
   static const Color grey100 = Color(0xfff5f5f5);
   static const Color grey50 = Color(0xfffafafa);
   static const Color bottomColor = Color(0xff181A20);
+  static const Color textColor = Color(0xffBDBDBD);
 
   // Gradients
 

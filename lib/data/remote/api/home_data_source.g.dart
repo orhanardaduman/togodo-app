@@ -296,7 +296,7 @@ class _HomeDataSource implements HomeDataSource {
     )
             .compose(
               _dio.options,
-              'Timeline/GetEventUsers',
+              'Timeline/GetEventUsersNew',
               queryParameters: queryParameters,
               data: _data,
             )

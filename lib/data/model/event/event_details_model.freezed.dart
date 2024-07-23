@@ -47,6 +47,7 @@ mixin _$EventDetailsModel {
   int? get participantsLimit => throw _privateConstructorUsedError;
   String? get price => throw _privateConstructorUsedError;
   String? get ticketUrl => throw _privateConstructorUsedError;
+  String? get onlineUrl => throw _privateConstructorUsedError;
   String? get latitude => throw _privateConstructorUsedError;
   String? get longitude => throw _privateConstructorUsedError;
   String? get mapLink => throw _privateConstructorUsedError;
@@ -103,6 +104,7 @@ abstract class $EventDetailsModelCopyWith<$Res> {
       int? participantsLimit,
       String? price,
       String? ticketUrl,
+      String? onlineUrl,
       String? latitude,
       String? longitude,
       String? mapLink,
@@ -161,6 +163,7 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
     Object? participantsLimit = freezed,
     Object? price = freezed,
     Object? ticketUrl = freezed,
+    Object? onlineUrl = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? mapLink = freezed,
@@ -285,6 +288,10 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
           ? _value.ticketUrl
           : ticketUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      onlineUrl: freezed == onlineUrl
+          ? _value.onlineUrl
+          : onlineUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -393,6 +400,7 @@ abstract class _$$EventDetailsModelImplCopyWith<$Res>
       int? participantsLimit,
       String? price,
       String? ticketUrl,
+      String? onlineUrl,
       String? latitude,
       String? longitude,
       String? mapLink,
@@ -450,6 +458,7 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
     Object? participantsLimit = freezed,
     Object? price = freezed,
     Object? ticketUrl = freezed,
+    Object? onlineUrl = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? mapLink = freezed,
@@ -574,6 +583,10 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
           ? _value.ticketUrl
           : ticketUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      onlineUrl: freezed == onlineUrl
+          ? _value.onlineUrl
+          : onlineUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -665,6 +678,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
       this.participantsLimit,
       this.price,
       this.ticketUrl,
+      this.onlineUrl,
       this.latitude,
       this.longitude,
       this.mapLink,
@@ -744,6 +758,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
   final String? price;
   @override
   final String? ticketUrl;
+  @override
+  final String? onlineUrl;
   @override
   final String? latitude;
   @override
@@ -831,7 +847,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
 
   @override
   String toString() {
-    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber)';
+    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber)';
   }
 
   @override
@@ -887,6 +903,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.ticketUrl, ticketUrl) ||
                 other.ticketUrl == ticketUrl) &&
+            (identical(other.onlineUrl, onlineUrl) ||
+                other.onlineUrl == onlineUrl) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -940,6 +958,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
         participantsLimit,
         price,
         ticketUrl,
+        onlineUrl,
         latitude,
         longitude,
         mapLink,
@@ -1000,6 +1019,7 @@ abstract class _EventDetailsModel implements EventDetailsModel {
       final int? participantsLimit,
       final String? price,
       final String? ticketUrl,
+      final String? onlineUrl,
       final String? latitude,
       final String? longitude,
       final String? mapLink,
@@ -1072,6 +1092,8 @@ abstract class _EventDetailsModel implements EventDetailsModel {
   String? get price;
   @override
   String? get ticketUrl;
+  @override
+  String? get onlineUrl;
   @override
   String? get latitude;
   @override

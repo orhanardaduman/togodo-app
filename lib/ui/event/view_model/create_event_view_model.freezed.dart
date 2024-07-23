@@ -20,6 +20,7 @@ mixin _$SelectedAssetsModel {
   String? get networkImage => throw _privateConstructorUsedError;
   File? get localImage => throw _privateConstructorUsedError;
   bool? get isCropped => throw _privateConstructorUsedError;
+  String? get aspectRatio => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SelectedAssetsModelCopyWith<SelectedAssetsModel> get copyWith =>
@@ -33,7 +34,11 @@ abstract class $SelectedAssetsModelCopyWith<$Res> {
       _$SelectedAssetsModelCopyWithImpl<$Res, SelectedAssetsModel>;
   @useResult
   $Res call(
-      {int? index, String? networkImage, File? localImage, bool? isCropped});
+      {int? index,
+      String? networkImage,
+      File? localImage,
+      bool? isCropped,
+      String? aspectRatio});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$SelectedAssetsModelCopyWithImpl<$Res, $Val extends SelectedAssetsModel>
     Object? networkImage = freezed,
     Object? localImage = freezed,
     Object? isCropped = freezed,
+    Object? aspectRatio = freezed,
   }) {
     return _then(_value.copyWith(
       index: freezed == index
@@ -71,6 +77,10 @@ class _$SelectedAssetsModelCopyWithImpl<$Res, $Val extends SelectedAssetsModel>
           ? _value.isCropped
           : isCropped // ignore: cast_nullable_to_non_nullable
               as bool?,
+      aspectRatio: freezed == aspectRatio
+          ? _value.aspectRatio
+          : aspectRatio // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -84,7 +94,11 @@ abstract class _$$SelectedAssetsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? index, String? networkImage, File? localImage, bool? isCropped});
+      {int? index,
+      String? networkImage,
+      File? localImage,
+      bool? isCropped,
+      String? aspectRatio});
 }
 
 /// @nodoc
@@ -102,6 +116,7 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
     Object? networkImage = freezed,
     Object? localImage = freezed,
     Object? isCropped = freezed,
+    Object? aspectRatio = freezed,
   }) {
     return _then(_$SelectedAssetsModelImpl(
       index: freezed == index
@@ -120,6 +135,10 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
           ? _value.isCropped
           : isCropped // ignore: cast_nullable_to_non_nullable
               as bool?,
+      aspectRatio: freezed == aspectRatio
+          ? _value.aspectRatio
+          : aspectRatio // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -128,7 +147,11 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
 
 class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
   const _$SelectedAssetsModelImpl(
-      {this.index, this.networkImage, this.localImage, this.isCropped});
+      {this.index,
+      this.networkImage,
+      this.localImage,
+      this.isCropped,
+      this.aspectRatio});
 
   @override
   final int? index;
@@ -138,10 +161,12 @@ class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
   final File? localImage;
   @override
   final bool? isCropped;
+  @override
+  final String? aspectRatio;
 
   @override
   String toString() {
-    return 'SelectedAssetsModel(index: $index, networkImage: $networkImage, localImage: $localImage, isCropped: $isCropped)';
+    return 'SelectedAssetsModel(index: $index, networkImage: $networkImage, localImage: $localImage, isCropped: $isCropped, aspectRatio: $aspectRatio)';
   }
 
   @override
@@ -155,12 +180,14 @@ class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
             (identical(other.localImage, localImage) ||
                 other.localImage == localImage) &&
             (identical(other.isCropped, isCropped) ||
-                other.isCropped == isCropped));
+                other.isCropped == isCropped) &&
+            (identical(other.aspectRatio, aspectRatio) ||
+                other.aspectRatio == aspectRatio));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, index, networkImage, localImage, isCropped);
+  int get hashCode => Object.hash(
+      runtimeType, index, networkImage, localImage, isCropped, aspectRatio);
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +202,8 @@ abstract class _SelectedAssetsModel implements SelectedAssetsModel {
       {final int? index,
       final String? networkImage,
       final File? localImage,
-      final bool? isCropped}) = _$SelectedAssetsModelImpl;
+      final bool? isCropped,
+      final String? aspectRatio}) = _$SelectedAssetsModelImpl;
 
   @override
   int? get index;
@@ -185,6 +213,8 @@ abstract class _SelectedAssetsModel implements SelectedAssetsModel {
   File? get localImage;
   @override
   bool? get isCropped;
+  @override
+  String? get aspectRatio;
   @override
   @JsonKey(ignore: true)
   _$$SelectedAssetsModelImplCopyWith<_$SelectedAssetsModelImpl> get copyWith =>
@@ -210,6 +240,7 @@ mixin _$CreateEventState {
   List<ConceptImageModel>? get networkImg => throw _privateConstructorUsedError;
   Users? get otherUserModel => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
+  bool get isOnline => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateEventStateCopyWith<CreateEventState> get copyWith =>
@@ -238,7 +269,8 @@ abstract class $CreateEventStateCopyWith<$Res> {
       DateTime? selectedStartDate,
       List<ConceptImageModel>? networkImg,
       Users? otherUserModel,
-      String? url});
+      String? url,
+      bool isOnline});
 
   $UsersCopyWith<$Res>? get otherUserModel;
 }
@@ -272,6 +304,7 @@ class _$CreateEventStateCopyWithImpl<$Res, $Val extends CreateEventState>
     Object? networkImg = freezed,
     Object? otherUserModel = freezed,
     Object? url = freezed,
+    Object? isOnline = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -338,6 +371,10 @@ class _$CreateEventStateCopyWithImpl<$Res, $Val extends CreateEventState>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
+      isOnline: null == isOnline
+          ? _value.isOnline
+          : isOnline // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -378,7 +415,8 @@ abstract class _$$CreateEventStateImplCopyWith<$Res>
       DateTime? selectedStartDate,
       List<ConceptImageModel>? networkImg,
       Users? otherUserModel,
-      String? url});
+      String? url,
+      bool isOnline});
 
   @override
   $UsersCopyWith<$Res>? get otherUserModel;
@@ -411,6 +449,7 @@ class __$$CreateEventStateImplCopyWithImpl<$Res>
     Object? networkImg = freezed,
     Object? otherUserModel = freezed,
     Object? url = freezed,
+    Object? isOnline = null,
   }) {
     return _then(_$CreateEventStateImpl(
       loading: null == loading
@@ -477,6 +516,10 @@ class __$$CreateEventStateImplCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
+      isOnline: null == isOnline
+          ? _value.isOnline
+          : isOnline // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -500,7 +543,8 @@ class _$CreateEventStateImpl implements _CreateEventState {
       this.selectedStartDate = null,
       final List<ConceptImageModel>? networkImg = null,
       this.otherUserModel = null,
-      this.url = null})
+      this.url = null,
+      this.isOnline = false})
       : _tagList = tagList,
         _selectedAssetsAll = selectedAssetsAll,
         _nullImage = nullImage,
@@ -587,10 +631,13 @@ class _$CreateEventStateImpl implements _CreateEventState {
   @override
   @JsonKey()
   final String? url;
+  @override
+  @JsonKey()
+  final bool isOnline;
 
   @override
   String toString() {
-    return 'CreateEventState(loading: $loading, name: $name, tagList: $tagList, selectedAssetsAll: $selectedAssetsAll, nullImage: $nullImage, isLicense: $isLicense, isJoinUserLimited: $isJoinUserLimited, isFree: $isFree, isContract: $isContract, image: $image, progress: $progress, step: $step, selectedStartDate: $selectedStartDate, networkImg: $networkImg, otherUserModel: $otherUserModel, url: $url)';
+    return 'CreateEventState(loading: $loading, name: $name, tagList: $tagList, selectedAssetsAll: $selectedAssetsAll, nullImage: $nullImage, isLicense: $isLicense, isJoinUserLimited: $isJoinUserLimited, isFree: $isFree, isContract: $isContract, image: $image, progress: $progress, step: $step, selectedStartDate: $selectedStartDate, networkImg: $networkImg, otherUserModel: $otherUserModel, url: $url, isOnline: $isOnline)';
   }
 
   @override
@@ -622,7 +669,9 @@ class _$CreateEventStateImpl implements _CreateEventState {
                 .equals(other._networkImg, _networkImg) &&
             (identical(other.otherUserModel, otherUserModel) ||
                 other.otherUserModel == otherUserModel) &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.isOnline, isOnline) ||
+                other.isOnline == isOnline));
   }
 
   @override
@@ -643,7 +692,8 @@ class _$CreateEventStateImpl implements _CreateEventState {
       selectedStartDate,
       const DeepCollectionEquality().hash(_networkImg),
       otherUserModel,
-      url);
+      url,
+      isOnline);
 
   @JsonKey(ignore: true)
   @override
@@ -670,7 +720,8 @@ abstract class _CreateEventState implements CreateEventState {
       final DateTime? selectedStartDate,
       final List<ConceptImageModel>? networkImg,
       final Users? otherUserModel,
-      final String? url}) = _$CreateEventStateImpl;
+      final String? url,
+      final bool isOnline}) = _$CreateEventStateImpl;
 
   @override
   bool get loading;
@@ -704,6 +755,8 @@ abstract class _CreateEventState implements CreateEventState {
   Users? get otherUserModel;
   @override
   String? get url;
+  @override
+  bool get isOnline;
   @override
   @JsonKey(ignore: true)
   _$$CreateEventStateImplCopyWith<_$CreateEventStateImpl> get copyWith =>

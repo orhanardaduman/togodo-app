@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'profil_model.freezed.dart';
 part 'profil_model.g.dart';
 
@@ -41,6 +42,9 @@ class ProfilModel with _$ProfilModel {
     int? privacyType,
     int? eventsCreatedCount,
     int? applauseCount,
+    int? totalPoint,
+    int? pointCount,
+    double? calculatedPoint,
     bool? isHideEventCreatedCurrentUserToUser,
     bool? isHideEventCreatedUserToCurrentUser,
     bool? isHideEventJoinedCurrentUserToUser,
@@ -48,6 +52,7 @@ class ProfilModel with _$ProfilModel {
     List<TagsModel>? tags,
     List<SocialMedias>? socialMedias,
     List<Images>? images,
+    List<String>? fallowers,
   }) = _ProfilModel;
 
   factory ProfilModel.fromJson(Map<String, Object?> json) =>

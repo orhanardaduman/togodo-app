@@ -111,6 +111,19 @@ class _UserTypeQuestionPageState extends ConsumerState<UserTypeQuestionPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      AutoSizeText(
+                        ln10.personalText,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: theme.textTheme.bodySmall.copyWith(
+                          color: !model.isCommunity
+                              ? MainColors.textColor
+                              : (isDark
+                                  ? MainColors.grey700
+                                  : MainColors.grey500),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -152,6 +165,19 @@ class _UserTypeQuestionPageState extends ConsumerState<UserTypeQuestionPage> {
                         style: theme.textTheme.h6.copyWith(
                           color: model.isCommunity
                               ? MainColors.primary
+                              : (isDark
+                                  ? MainColors.grey700
+                                  : MainColors.grey500),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      AutoSizeText(
+                        ln10.cominityText,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: theme.textTheme.bodySmall.copyWith(
+                          color: model.isCommunity
+                              ? MainColors.textColor
                               : (isDark
                                   ? MainColors.grey700
                                   : MainColors.grey500),

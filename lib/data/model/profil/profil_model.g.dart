@@ -47,6 +47,9 @@ _$ProfilModelImpl _$$ProfilModelImplFromJson(Map<String, dynamic> json) =>
       privacyType: json['privacyType'] as int?,
       eventsCreatedCount: json['eventsCreatedCount'] as int?,
       applauseCount: json['applauseCount'] as int?,
+      totalPoint: json['totalPoint'] as int?,
+      pointCount: json['pointCount'] as int?,
+      calculatedPoint: (json['calculatedPoint'] as num?)?.toDouble(),
       isHideEventCreatedCurrentUserToUser:
           json['isHideEventCreatedCurrentUserToUser'] as bool?,
       isHideEventCreatedUserToCurrentUser:
@@ -63,6 +66,9 @@ _$ProfilModelImpl _$$ProfilModelImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      fallowers: (json['fallowers'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
     );
 
@@ -103,6 +109,9 @@ Map<String, dynamic> _$$ProfilModelImplToJson(_$ProfilModelImpl instance) =>
       'privacyType': instance.privacyType,
       'eventsCreatedCount': instance.eventsCreatedCount,
       'applauseCount': instance.applauseCount,
+      'totalPoint': instance.totalPoint,
+      'pointCount': instance.pointCount,
+      'calculatedPoint': instance.calculatedPoint,
       'isHideEventCreatedCurrentUserToUser':
           instance.isHideEventCreatedCurrentUserToUser,
       'isHideEventCreatedUserToCurrentUser':
@@ -114,6 +123,7 @@ Map<String, dynamic> _$$ProfilModelImplToJson(_$ProfilModelImpl instance) =>
       'tags': instance.tags,
       'socialMedias': instance.socialMedias,
       'images': instance.images,
+      'fallowers': instance.fallowers,
     };
 
 _$TagsModelImpl _$$TagsModelImplFromJson(Map<String, dynamic> json) =>

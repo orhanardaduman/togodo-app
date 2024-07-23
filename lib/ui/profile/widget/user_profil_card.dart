@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:blur/blur.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +40,7 @@ class UserProfileCard extends StatefulHookConsumerWidget {
 }
 
 class _UserProfileCardState extends ConsumerState<UserProfileCard> {
-  bool _isShowMoreFriends = false;
+  bool _isShowMoreFriends = false, readMore = false;
   int _type = 0;
   @override
   void initState() {
@@ -62,9 +63,6 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
             decoration: BoxDecoration(
               color: theme.appColors.background,
               borderRadius: BorderRadius.circular(34),
-              border: Border.all(
-                color: theme.appColors.divider,
-              ),
             ),
             child: Column(
               children: [
@@ -82,19 +80,6 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                           children: [
                             UserCardCount(
                               data: widget.data!,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Container(
-                                width: 38,
-                                height: 3,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(100),
-                                  ),
-                                  color: Color(0xffe0e0e0),
-                                ),
-                              ),
                             ),
                             Row(
                               children: [
@@ -128,6 +113,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                           userModel.token != null &&
                                           userModel.token!.titleCompletion !=
                                               null &&
+                                          _type != 1 &&
                                           widget.data!.title != null)
                                         buildTitle(
                                           userModel.token!,
@@ -142,12 +128,12 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                               null &&
                                           widget.data!.bio != null)
                                         buildBio(
-                                          userModel.token!,
-                                          theme,
-                                          themeMode
-                                              ? MainColors.dark3
-                                              : MainColors.grey200,
-                                        ),
+                                            userModel.token!,
+                                            theme,
+                                            themeMode
+                                                ? MainColors.dark3
+                                                : MainColors.grey200,
+                                            l10n),
                                       if (userModel != null &&
                                           userModel.token != null &&
                                           userModel.token!.tagCompletion !=
@@ -162,7 +148,64 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                               : MainColors.grey200,
                                           router,
                                         ),
+                                      if (_type == 1)
+                                        RichText(
+                                          text: TextSpan(
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                            children: [
+                                              TextSpan(
+                                                text: (widget.data?.fallowers ??
+                                                        [])
+                                                    .map(
+                                                      (e) =>
+                                                          "$e${((widget.data?.fallowers?.indexOf(e) ?? 0) + 1) < (widget.data?.fallowers?.length ?? 0) ? ", " : ""}",
+                                                    )
+                                                    .toString()
+                                                    .replaceAll('(', '')
+                                                    .replaceAll(')', ''),
+                                              ),
+                                              if ((widget.data?.followersCount ??
+                                                          3) -
+                                                      3 >
+                                                  0)
+                                                TextSpan(
+                                                  text: l10n.and,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                        color:
+                                                            MainColors.grey700,
+                                                      ),
+                                                ),
+                                              if ((widget.data?.followersCount ??
+                                                          3) -
+                                                      3 >
+                                                  0)
+                                                TextSpan(
+                                                    text:
+                                                        '${(widget.data?.followersCount ?? 3) - 3} ${l10n.other}'),
+                                              if ((widget.data?.followersCount ??
+                                                          3) -
+                                                      3 >
+                                                  0)
+                                                TextSpan(
+                                                  text: l10n.fallowingAlt,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                        color:
+                                                            MainColors.grey700,
+                                                      ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
                                       if (userModel != null &&
+                                          _type != 1 &&
                                           userModel.token != null &&
                                           userModel.token!
                                                   .socialMediaCompletion !=
@@ -182,6 +225,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                       userModel.token != null &&
                                       !(userModel.token!.bioCompletion ??
                                           false) &&
+                                      _type != 1 &&
                                       widget.data!.bio != null &&
                                       !(userModel.token!.titleCompletion ??
                                           false) &&
@@ -242,22 +286,41 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                             else if (_type == 1 || _type == 2)
                               (widget.data?.isFollowed ?? false) ||
                                       (widget.data?.isCurrentUser ?? false)
-                                  ? const SizedBox.shrink()
-                                  : Column(
+                                  ? Column(
                                       children: [
-                                        Divider(
-                                          thickness: 1.2,
-                                          height: 11,
-                                          color: theme.appColors.divider,
-                                        ),
                                         const SizedBox(height: 14),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.spaceAround,
                                           children: <Widget>[
+                                            messageButton(theme, router),
                                             SizedBox(
                                               width: context.sized.dynamicWidth(
-                                                0.8,
+                                                0.7,
+                                              ),
+                                              height: 45,
+                                              child: CustomButton(
+                                                text: l10n.fallowing,
+                                                onPressed: model.removeFollow,
+                                                radius: 100,
+                                                bgColor: MainColors.dark3,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      children: [
+                                        const SizedBox(height: 14),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: <Widget>[
+                                            messageButton(theme, router),
+                                            SizedBox(
+                                              width: context.sized.dynamicWidth(
+                                                0.7,
                                               ),
                                               height: 45,
                                               child: CustomButton(
@@ -477,10 +540,35 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
           );
   }
 
-  Widget buildBio(Token token, AppTheme theme, Color blurColor) {
+  Widget buildBio(Token token, AppTheme theme, Color blurColor, L10n l10n) {
     // bioCompletion değerine göre blur uygula veya uygulama
-    return PrimaryText(
+    return RichText(
+      text: TextSpan(
+        style: Theme.of(context).textTheme.bodyMedium,
+        children: [
+          TextSpan(
+            text: readMore
+                ? widget.data?.bio ?? ''
+                : (widget.data?.bio ?? '').substring(0, 80),
+          ),
+          if ((widget.data?.bio?.length ?? 0) > 80)
+            TextSpan(
+              text: ' ${readMore ? l10n.hideMore : l10n.rideMore}',
+              style: const TextStyle(color: MainColors.primary),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  setState(() {
+                    readMore = !readMore;
+                  });
+                },
+            ),
+        ],
+      ),
+    );
+
+    PrimaryText(
       widget.data?.bio ?? '',
+      maxLines: 2,
       style: theme.textTheme.bodyMedium.copyWith(color: MainColors.grey600),
     );
   }

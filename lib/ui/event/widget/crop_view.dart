@@ -18,7 +18,7 @@ class CropView extends StatefulHookConsumerWidget {
     super.key,
   });
   final String? img;
-  final Function(ByteData? cropeed) onSave;
+  final Function(ByteData? cropeed, String aspectRatio) onSave;
   @override
   ConsumerState<StatefulHookConsumerWidget> createState() => _CropViewState();
 }
@@ -76,7 +76,7 @@ class _CropViewState extends ConsumerState<CropView> {
                       final data = await response?.toByteData(
                         format: ui.ImageByteFormat.png,
                       );
-                      widget.onSave(data);
+                      widget.onSave(data, controller.aspectRatio.toString());
                       isInProcess = false;
                     }
                   },
@@ -90,31 +90,43 @@ class _CropViewState extends ConsumerState<CropView> {
               ],
             ),
             Expanded(
-              child: Crop(
-                backgroundColor: Colors.transparent,
-                onChanged: (decomposition) {
-                  if (decomposition.rotation != 0.0) {
-                    controller.rotation = 0;
-                  }
-                },
-                controller: controller,
-                shape: shape,
-                helper: shape == BoxShape.rectangle
-                    ? Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2),
+              child: AspectRatio(
+                aspectRatio: controller.aspectRatio,
+                child: LayoutBuilder(
+                  builder: (context, snapshot) {
+                    return Crop(
+                      backgroundColor: Colors.transparent,
+                      onChanged: (decomposition) {
+                        if (decomposition.rotation != 0.0) {
+                          controller.rotation = 0;
+                        }
+                      },
+                      controller: controller,
+                      shape: shape,
+                      helper: shape == BoxShape.rectangle
+                          ? Container(
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
+                              ),
+                            )
+                          : null,
+                      child: Container(
+                        color: Colors.transparent,
+                        width: !isFit
+                            ? MediaQuery.of(context).size.width
+                            : (snapshot.maxHeight * controller.aspectRatio),
+                        height: !isFit
+                            ? MediaQuery.of(context).size.height
+                            : (snapshot.maxWidth * controller.aspectRatio),
+                        child: Image.file(
+                          File(
+                            widget.img ?? '',
+                          ),
                         ),
-                      )
-                    : null,
-                child: Container(
-                  width: isFit ? null : MediaQuery.of(context).size.width,
-                  height: isFit ? null : MediaQuery.of(context).size.height,
-                  color: Colors.transparent,
-                  child: Image.file(
-                    File(
-                      widget.img ?? '',
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -214,7 +226,7 @@ class _CropViewState extends ConsumerState<CropView> {
                                     ..rotation = 0
                                     ..scale = 0;
                                   setState(() {
-                                    isFit = false;
+                                    isFit = true;
                                   });
                                   Navigator.pop(context);
                                 },
