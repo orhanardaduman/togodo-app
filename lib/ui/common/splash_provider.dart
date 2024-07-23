@@ -59,6 +59,21 @@ class SplashProvider extends StateNotifier<SplashState> {
 Future<bool> getIsWelcomePage() async {
   final user = FirebaseAuth.instance.currentUser;
   try {
+    /* TODO
+    // Get a reference to the userSettings collection
+    final uid = await CacheItems.firebaseId.readSecureData();
+
+    if (uid == null && user == null) return false;
+    final docRef = FirebaseCollections.userSettings.referance.doc(
+      user?.uid ?? uid ?? '',
+    );
+    // Fetch the document
+    final docSnap = await docRef.get();
+
+    // Get the isWelcomePage field, or false if it doesn't exist
+    final bool isWelcomePage = docSnap.get('isWelcomePage') ?? false;
+
+    return isWelcomePage;*/
     if (user != null) {
       // Get a reference to the userSettings collection
       final docRef = FirebaseCollections.userSettings.referance.doc(user.uid);

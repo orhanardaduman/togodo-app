@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum CacheItems {
   uid,
+  firebaseId,
   videoAudio,
   blurCount,
   locationPopup,
@@ -30,7 +31,14 @@ enum CacheItems {
   Future<void> writeSecureDataList(String value) async {
     final preferences = await SharedPreferences.getInstance();
     final readData = preferences.getStringList(name) ?? [];
-    readData.add(value);
+    if (!readData.contains(value)) readData.add(value);
+    await preferences.setStringList(name, readData);
+  }
+
+  Future<void> removeSecureDataList(String value) async {
+    final preferences = await SharedPreferences.getInstance();
+    final readData = preferences.getStringList(name) ?? [];
+    readData.remove(value);
     await preferences.setStringList(name, readData);
   }
 
@@ -41,6 +49,15 @@ enum CacheItems {
 
   static Future<void> clearAll() async {
     final preferences = await SharedPreferences.getInstance();
+    /* TODO await preferences.remove('uid');
+    await preferences.remove('videoAudio');
+    await preferences.remove('blurCount');
+    await preferences.remove('locationPopup');
+    await preferences.remove('locationPopupShow');
+    await preferences.remove('signType');
+    await preferences.remove('token');
+    await preferences.remove('firebaseId');
+  */
     await preferences.clear();
   }
 }

@@ -4,6 +4,7 @@ import 'package:togodo/data/model/profil/profil_model.dart';
 import 'package:togodo/data/model/profil/reports_model.dart';
 import 'package:togodo/data/model/profil/user_search_model.dart';
 import 'package:togodo/data/model/result.dart';
+import 'package:togodo/ui/profile/model/user_accounts_model.dart';
 
 abstract class ProfilRepository {
   Future<Result<ProfilModel>> getProfil({String? userId});
@@ -94,4 +95,6 @@ abstract class ProfilRepository {
     int? pagination, {
     bool status = true,
   });
+
+  Future<Result<List<UserAccountsModel>>> getUserSavedAccount();
 }

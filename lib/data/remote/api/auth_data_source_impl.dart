@@ -215,8 +215,11 @@ class AuthDataSourceImpl extends ChangeNotifier implements AuthDataSource {
   @override
   Future<void> signOut() {
     return GoogleSignIn().signOut().then((_) async {
+      /* TODO final token = await CacheItems.firebaseId.readSecureData();
+      await CacheItems.users.removeSecureDataList(
+        token ?? '',
+      );*/
       await CacheItems.clearAll();
-      print("sildimi ${await CacheItems.token.readSecureData()}");
       return _firebaseAuth.signOut();
     })
         // ignore: inference_failure_on_untyped_parameter

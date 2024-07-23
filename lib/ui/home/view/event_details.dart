@@ -303,9 +303,10 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                 EventInfo(
                                   name: l10n.details,
                                   date: model.events!.date ?? '',
-                                  location: model.events?.onlineUrl ??
-                                      model.events!.location ??
-                                      "",
+                                  location: (model.events?.onlineUrl == '' ||
+                                          model.events?.onlineUrl == null)
+                                      ? model.events!.location ?? ''
+                                      : model.events?.onlineUrl ?? '',
                                   starTime: '${model.events!.startTime}',
                                   endTime: model.events!.endTime,
                                   description: model.events!.description ?? '',
@@ -314,7 +315,8 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                   height: 20,
                                 ),
                                 if (model.events!.latitude != null &&
-                                    model.events?.onlineUrl == '')
+                                    (model.events?.onlineUrl == '' ||
+                                        model.events?.onlineUrl == null))
                                   GestureDetector(
                                     onVerticalDragEnd: (details) {},
                                     child: AbsorbPointer(

@@ -9,6 +9,8 @@ import 'package:togodo/data/model/profil/profil_model.dart';
 import 'package:togodo/data/model/profil/reports_model.dart';
 import 'package:togodo/data/model/profil/user_search_model.dart';
 
+import '../../../ui/profile/model/user_accounts_model.dart';
+
 part 'profil_data_source.g.dart';
 
 final profilDataSourceProvider = Provider(ProfilDataSource.new);
@@ -168,6 +170,11 @@ abstract class ProfilDataSource {
   });
   @POST('User/AddPoint')
   Future<String> addPoint(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST('User/SavedAccountDetail')
+  Future<List<UserAccountsModel>> getSavedAccounts(
     @Body() Map<String, dynamic> data,
   );
 }

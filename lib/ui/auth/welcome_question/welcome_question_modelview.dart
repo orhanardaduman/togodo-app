@@ -117,9 +117,16 @@ class WelcomeQuestionModel extends StateNotifier<WelcomeQuestionState> {
         : null;
 
     try {
+      /*
+      TODO
+      final token = await CacheItems.token.readSecureData();
+      final firebase = FirebaseAuth.instance.currentUser;
+      */
       print(type);
       final formData = FormData.fromMap({
         'idToken': requestModel.idToken,
+        /* TODO 'idToken': firebase == null ? token : requestModel.idToken,
+        'isFirebase': firebase != null,*/
         'deviceId': requestModel.deviceId,
         'name': nameController.text,
         'surname': type == 0 ? surnameController.text : null,
@@ -143,6 +150,14 @@ class WelcomeQuestionModel extends StateNotifier<WelcomeQuestionState> {
         await CacheItems.token.writeSecureData(
           response.data!['token']['accessToken'] as String,
         );
+        /*
+        TODO
+        await CacheItems.firebaseId.writeSecureData(
+          response.data!['token']['firebaseUid'] as String,
+        );
+        await CacheItems.users.writeSecureDataList(
+          response.data!['token']['firebaseUid'] as String,
+        );*/
         userViewModel.accessTokens =
             response.data!['token']['accessToken'] as String;
         updateLoading(false);

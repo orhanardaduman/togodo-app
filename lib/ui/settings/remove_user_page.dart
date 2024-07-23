@@ -51,8 +51,11 @@ class _RemoveUserPageState extends ConsumerState<RemoveUserPage> {
       // Kullanıcının hesabını sil.
       if (user != null) {
         await _updateDeletedUserSettings(user);
+        /* TODO final token = await CacheItems.firebaseId.readSecureData();
+        print("------bura-----");
+        print(token);
+        await CacheItems.users.removeSecureDataList(token!);*/
         await CacheItems.clearAll();
-        print("sildimi ${await CacheItems.token.readSecureData()}");
 
         await user.delete();
         if (kDebugMode) {

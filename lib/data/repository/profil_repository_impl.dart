@@ -7,6 +7,9 @@ import 'package:togodo/data/model/profil/user_search_model.dart';
 import 'package:togodo/data/model/result.dart';
 import 'package:togodo/data/remote/api/profil_data_source.dart';
 import 'package:togodo/data/repository/profil_repository.dart';
+import 'package:togodo/ui/profile/model/user_accounts_model.dart';
+
+import '../../core/enums/cache_items.dart';
 
 final profilRepositoryProvider = Provider(ProfilRepositoryImpl.new);
 
@@ -387,6 +390,16 @@ class ProfilRepositoryImpl implements ProfilRepository {
       () async => _dataSource.addPoint({
         "point": point,
         "userId": userId,
+      }),
+    );
+  }
+
+  @override
+  Future<Result<List<UserAccountsModel>>> getUserSavedAccount() async {
+    final users = await CacheItems.users.readSecureDataList();
+    return Result.guardFuture(
+      () async => _dataSource.getSavedAccounts({
+        "users": users,
       }),
     );
   }

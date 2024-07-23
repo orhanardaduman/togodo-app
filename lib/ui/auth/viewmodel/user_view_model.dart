@@ -205,6 +205,22 @@ class UserViewModel extends ChangeNotifier {
           'deviceId': deviceId,
           'idToken': token,
         });
+        /* TODO final tokenOld = await CacheItems.token.readSecureData();
+
+      if (firebase != null || tokenOld != null) {
+        var token = '';
+        if (firebase != null) {
+          token = await firebase.getIdToken() ?? '';
+        } else {
+          token = tokenOld ?? '';
+        }
+        print('burda tokenr: $token');
+        log('deviceId: $deviceId');
+        final formData = FormData.fromMap({
+          'deviceId': deviceId,
+          'idToken': token,
+          'isFirebase': firebase != null,
+        });*/
 
         final response = await dio.post<Map<String, dynamic>>(
           ApiEndpoint.auth(AuthEndpoint.LOGIN),
@@ -233,6 +249,14 @@ class UserViewModel extends ChangeNotifier {
           print("profileimageirls ${profileImageUrls}");
 
           await CacheItems.token.writeSecureData(accessTokens!);
+          /* await CacheItems.firebaseId.writeSecureData(
+            _tokenModel?.token?.firebaseUid ?? '',
+          );
+
+          await CacheItems.users.writeSecureDataList(
+            _tokenModel?.token?.firebaseUid ?? '',
+          );*/
+
           await CacheItems.uid.writeSecureData(userIds!);
           //await webSocketService.connect(accessTokens!);
           notifyListeners();
@@ -419,8 +443,14 @@ class UserViewModel extends ChangeNotifier {
 
   void clear() async {
     _ref.read(welcomeQuestionModelProvider.notifier).clear();
+    /*final token = await CacheItems.firebaseId.readSecureData();
+    print("------bura-----");
+    print(token);
+    await CacheItems.users.removeSecureDataList(
+      token ?? '',
+    );*/
     await CacheItems.clearAll();
-    print("sildimi ${await CacheItems.token.readSecureData()}");
+
     final webSocketService = WebSocketService.instance;
     webSocketService.close();
     phoneController.clear();

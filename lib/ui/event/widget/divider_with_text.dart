@@ -56,7 +56,8 @@ class DividerWithTextAndIcon extends HookConsumerWidget {
                       : () async {
                           final picker = ImagePicker();
 
-                          final pickedFile = await picker.pickMultiImage();
+                          final pickedFile =
+                              await picker.pickMultiImage(imageQuality: 90);
                           List<File> deneme = [];
 
                           final file = pickedFile.fold(
