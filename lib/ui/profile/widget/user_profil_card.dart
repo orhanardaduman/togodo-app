@@ -549,7 +549,12 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
           TextSpan(
             text: readMore
                 ? widget.data?.bio ?? ''
-                : (widget.data?.bio ?? '').substring(0, 80),
+                : (widget.data?.bio ?? '').substring(
+                    0,
+                    (widget.data?.bio?.length ?? 0) > 80
+                        ? 80
+                        : widget.data?.bio?.length,
+                  ),
           ),
           if ((widget.data?.bio?.length ?? 0) > 80)
             TextSpan(
