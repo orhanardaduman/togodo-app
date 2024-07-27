@@ -159,8 +159,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                                 text: (widget.data?.fallowers ??
                                                         [])
                                                     .map(
-                                                      (e) =>
-                                                          "$e${((widget.data?.fallowers?.indexOf(e) ?? 0) + 1) < (widget.data?.fallowers?.length ?? 0) ? ", " : ""}",
+                                                      (e) => '$e ',
                                                     )
                                                     .toString()
                                                     .replaceAll('(', '')

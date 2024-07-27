@@ -772,21 +772,46 @@ void showGaleryRequest(
 }
 
 Future<BitmapDescriptor> createCustomMarkerIconFromNetwork(
-  String imageUrl,
+  String imageUrlInput,
 ) async {
-  // Ağ üzerinden görüntüyü indir
-  final response = await http.get(Uri.parse(imageUrl));
+  var imageUrl = imageUrlInput;
+  if (imageUrl == '') {
+    imageUrl =
+        'https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg';
+  }
+  late ui.Image image;
+  try {
+    // Ağ üzerinden görüntüyü indir
+    final response = await http.get(Uri.parse(imageUrl));
 
-  // İndirilen veriyi ByteData'ya dönüştür
-  final bytes = response.bodyBytes;
-  // ByteData'yı ui.Image'a dönüştür
-  final codec = await ui.instantiateImageCodec(
-    bytes,
-    targetWidth: 80 + 8, // 4pt kenarlık için her iki tarafa 8 ekleyin
-    targetHeight: 80 + 8,
-  );
-  final fi = await codec.getNextFrame();
-  final image = fi.image;
+    // İndirilen veriyi ByteData'ya dönüştür
+    final bytes = response.bodyBytes;
+    // ByteData'yı ui.Image'a dönüştür
+    final codec = await ui.instantiateImageCodec(
+      bytes,
+      targetWidth: 80 + 8, // 4pt kenarlık için her iki tarafa 8 ekleyin
+      targetHeight: 80 + 8,
+    );
+    final fi = await codec.getNextFrame();
+    image = fi.image;
+  } catch (_) {
+    final response = await http.get(
+      Uri.parse(
+        'https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg',
+      ),
+    );
+
+    // İndirilen veriyi ByteData'ya dönüştür
+    final bytes = response.bodyBytes;
+    // ByteData'yı ui.Image'a dönüştür
+    final codec = await ui.instantiateImageCodec(
+      bytes,
+      targetWidth: 80 + 8, // 4pt kenarlık için her iki tarafa 8 ekleyin
+      targetHeight: 80 + 8,
+    );
+    final fi = await codec.getNextFrame();
+    image = fi.image;
+  }
 
   // ui.Image'ı daire şeklinde kırpmak için bir PictureRecorder kullan
   final pictureRecorder = ui.PictureRecorder();

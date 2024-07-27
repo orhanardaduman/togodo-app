@@ -224,22 +224,25 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
           userController.text = data.participantsLimit.toString();
         }
         if (!data.isPrice!) eventController.text = data.price.toString();
-        initLocation = LatLng(
-          double.parse(data.latitude!),
-          double.parse(data.longitude!),
-        );
-        updateLocation(
-          GeocodingResult(
-            formattedAddress: data.location,
-            geometry: Geometry(
-              location: Location(
-                lat: double.parse(data.latitude!),
-                lng: double.parse(data.longitude!),
+        if (data.onlineUrl == null || data.onlineUrl == "") {
+          initLocation = LatLng(
+            double.parse(data.latitude ?? '0.0'),
+            double.parse(data.longitude ?? '0.0'),
+          );
+          updateLocation(
+            GeocodingResult(
+              formattedAddress: data.location,
+              geometry: Geometry(
+                location: Location(
+                  lat: double.parse(data.latitude!),
+                  lng: double.parse(data.longitude!),
+                ),
               ),
+              placeId: '',
             ),
-            placeId: '',
-          ),
-        );
+          );
+        }
+
         state = state.copyWith(
           tagList: data.tags,
           selectedAssetsAll: data.images!
