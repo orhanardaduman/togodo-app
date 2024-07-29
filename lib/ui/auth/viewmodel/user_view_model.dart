@@ -197,15 +197,8 @@ class UserViewModel extends ChangeNotifier {
     final dio = _ref.read(dioProvider);
     try {
       final firebase = FirebaseAuth.instance.currentUser;
-      if (firebase != null) {
-        final token = await firebase.getIdToken();
-        print('burda tokenr: $token');
-        log('deviceId: $deviceId');
-        final formData = FormData.fromMap({
-          'deviceId': deviceId,
-          'idToken': token,
-        });
-        /* TODO final tokenOld = await CacheItems.token.readSecureData();
+
+      final tokenOld = await CacheItems.token.readSecureData();
 
       if (firebase != null || tokenOld != null) {
         var token = '';
@@ -220,7 +213,7 @@ class UserViewModel extends ChangeNotifier {
           'deviceId': deviceId,
           'idToken': token,
           'isFirebase': firebase != null,
-        });*/
+        });
 
         final response = await dio.post<Map<String, dynamic>>(
           ApiEndpoint.auth(AuthEndpoint.LOGIN),
@@ -249,13 +242,13 @@ class UserViewModel extends ChangeNotifier {
           print("profileimageirls ${profileImageUrls}");
 
           await CacheItems.token.writeSecureData(accessTokens!);
-          /* await CacheItems.firebaseId.writeSecureData(
+          await CacheItems.firebaseId.writeSecureData(
             _tokenModel?.token?.firebaseUid ?? '',
           );
 
           await CacheItems.users.writeSecureDataList(
             _tokenModel?.token?.firebaseUid ?? '',
-          );*/
+          );
 
           await CacheItems.uid.writeSecureData(userIds!);
           //await webSocketService.connect(accessTokens!);
@@ -443,12 +436,12 @@ class UserViewModel extends ChangeNotifier {
 
   void clear() async {
     _ref.read(welcomeQuestionModelProvider.notifier).clear();
-    /*final token = await CacheItems.firebaseId.readSecureData();
+    final token = await CacheItems.firebaseId.readSecureData();
     print("------bura-----");
     print(token);
     await CacheItems.users.removeSecureDataList(
       token ?? '',
-    );*/
+    );
     await CacheItems.clearAll();
 
     final webSocketService = WebSocketService.instance;

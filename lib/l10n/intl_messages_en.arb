@@ -562,5 +562,21 @@
   "addTogodoAccount": "Add Togodo account",
   "addAccount": "Add Account",
   "signinWithAccount": "Sign In With Account",
-  "createNewAccount": "Create New Account"
+  "createNewAccount": "Create New Account",
+  "eventRateText": "Your opinon is important for us. How was the event named {eventname}?",
+  "veryGood": "Very good",
+  "bad": "Bad",
+  "askLater": "Ask later",
+  "didintAttend": "Didin't attend",
+  "rateYourExperince": "Rate your experince",
+  "thankYouUser": "Thank you {userName}!",
+  "ratingSaved": "Your rating saved.",
+  "eventRated": "Your activity has rated",
+  "eventRatedText": "Your event named {event_name} rated {star} star by {user_name}!"
+
+
+
+
+
+
 }

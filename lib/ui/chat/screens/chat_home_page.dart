@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
@@ -44,7 +43,7 @@ class _ChatHomePageState extends ConsumerState<ChatHomePage>
   refreshData() async {
     final token = await CacheItems.token.readSecureData();
     await ref.read(webSocketProvider.notifier).refreshData();
-
+    print("token ${token}");
     await ref.read(webSocketProvider.notifier).connect(token: token);
     await Future.delayed(const Duration(milliseconds: 200));
     setState(() {

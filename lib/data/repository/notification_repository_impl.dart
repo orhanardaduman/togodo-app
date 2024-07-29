@@ -4,6 +4,8 @@ import 'package:togodo/data/model/result.dart';
 import 'package:togodo/data/remote/api/notification_data_source.dart';
 import 'package:togodo/data/repository/notification_repository.dart';
 
+import '../model/event/event_rating_needed_model.dart';
+
 final notificationRepositoryProvider = Provider(NotificationRepositoryImpl.new);
 
 class NotificationRepositoryImpl implements NotificationRepository {
@@ -77,6 +79,41 @@ class NotificationRepositoryImpl implements NotificationRepository {
   Future<Result<String>> getUserHasUnread() {
     return Result.guardFuture(
       () async => _dataSource.unreadCount(),
+    );
+  }
+
+  @override
+  Future<Result<List<EventRatingNeededModel>>> getHasRatingNeeded() {
+    return Result.guardFuture(
+      () async => _dataSource.neededRatings(),
+    );
+  }
+
+  @override
+  Future<Result<void>> askLater(String eventUserId) {
+    return Result.guardFuture(
+      () async => _dataSource.askLater({
+        "eventUserId": eventUserId,
+      }),
+    );
+  }
+
+  @override
+  Future<Result<void>> neverShow(String eventUserId) {
+    return Result.guardFuture(
+      () async => _dataSource.neverShow({
+        "eventUserId": eventUserId,
+      }),
+    );
+  }
+
+  @override
+  Future<Result<void>> rate(String eventUserId, int rate) {
+    return Result.guardFuture(
+      () async => _dataSource.addPoint({
+        "point": rate,
+        "eventUserId": eventUserId,
+      }),
     );
   }
 }

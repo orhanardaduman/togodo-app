@@ -9,6 +9,8 @@ import 'package:togodo/core/network/firebase/firebase_collections.dart';
 import 'package:togodo/data/model/auth/version.dart';
 import 'package:togodo/data/remote/firebase/version_manager.dart';
 
+import '../../core/enums/cache_items.dart';
+
 class SplashProvider extends StateNotifier<SplashState> {
   SplashProvider() : super(const SplashState());
 
@@ -59,7 +61,6 @@ class SplashProvider extends StateNotifier<SplashState> {
 Future<bool> getIsWelcomePage() async {
   final user = FirebaseAuth.instance.currentUser;
   try {
-    /* TODO
     // Get a reference to the userSettings collection
     final uid = await CacheItems.firebaseId.readSecureData();
 
@@ -73,7 +74,7 @@ Future<bool> getIsWelcomePage() async {
     // Get the isWelcomePage field, or false if it doesn't exist
     final bool isWelcomePage = docSnap.get('isWelcomePage') ?? false;
 
-    return isWelcomePage;*/
+    return isWelcomePage;
     if (user != null) {
       // Get a reference to the userSettings collection
       final docRef = FirebaseCollections.userSettings.referance.doc(user.uid);

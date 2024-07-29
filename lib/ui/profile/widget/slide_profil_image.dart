@@ -24,6 +24,8 @@ import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
 import 'package:togodo/ui/profile/view_model/profil_view_model.dart';
 
+import 'accounts_view.dart';
+
 class SlideProfilImage extends HookConsumerWidget {
   const SlideProfilImage({
     super.key,
@@ -97,7 +99,7 @@ class SlideProfilImage extends HookConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    /*TODO showModalBottomSheet(
+                    showModalBottomSheet(
                       backgroundColor: MainColors.dark2,
                       elevation: 0,
                       shape: const RoundedRectangleBorder(
@@ -110,7 +112,7 @@ class SlideProfilImage extends HookConsumerWidget {
                         //CustomMultiSelectBottomSheet
                         return const AccountsView();
                       },
-                    );*/
+                    );
                   },
                   child: Row(
                     children: [

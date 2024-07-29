@@ -49,7 +49,7 @@ enum CacheItems {
 
   static Future<void> clearAll() async {
     final preferences = await SharedPreferences.getInstance();
-    /* TODO await preferences.remove('uid');
+    await preferences.remove('uid');
     await preferences.remove('videoAudio');
     await preferences.remove('blurCount');
     await preferences.remove('locationPopup');
@@ -57,7 +57,6 @@ enum CacheItems {
     await preferences.remove('signType');
     await preferences.remove('token');
     await preferences.remove('firebaseId');
-  */
-    await preferences.clear();
+    //await preferences.clear();
   }
 }

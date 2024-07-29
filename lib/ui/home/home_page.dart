@@ -41,6 +41,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         ref.read(homeViewModelProvider.notifier).fetchEventsGuest();
       } else {
         ref.read(notificationStateProvider.notifier).getHasUnread();
+        ref.read(notificationStateProvider.notifier).hasNeededRatings(context);
         ref.read(userViewModelProvider).tokenCheck();
         ref.read(homeViewModelProvider.notifier)
               ..fetchEvents()

@@ -12,6 +12,7 @@ import '../../../core/hook/use_l10n.dart';
 import '../../../core/hook/use_router.dart';
 import '../../../core/theme/app_text_theme.dart';
 import '../../auth/viewmodel/user_view_model.dart';
+import '../../chat/view_model/web_socket_notifier.dart';
 import '../view_model/saved_profiles_view_model.dart';
 
 class AccountsView extends StatefulHookConsumerWidget {
@@ -87,6 +88,9 @@ class _AccountsViewState extends ConsumerState<AccountsView> {
                         .map(
                           (e) => GestureDetector(
                             onTap: () async {
+                              ref
+                                  .read(webSocketProvider.notifier)
+                                  .closeWebSocket();
                               await GoogleSignIn().signOut();
                               final firebaseAuth = FirebaseAuth.instance;
                               await firebaseAuth.signOut();

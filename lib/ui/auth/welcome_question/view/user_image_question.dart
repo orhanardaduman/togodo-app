@@ -117,7 +117,6 @@ class _UserImageQuestionPageState extends ConsumerState<UserImageQuestionPage> {
                     final viewModelFnc = ref.read(
                       welcomeQuestionModelProvider.notifier,
                     );
-                    /* TODO
                     final firebase = FirebaseAuth.instance.currentUser;
                     final firebaseMessaging = FirebaseMessaging.instance;
                     final deviceId = await firebaseMessaging.getToken();
@@ -128,18 +127,6 @@ class _UserImageQuestionPageState extends ConsumerState<UserImageQuestionPage> {
                         deviceId: deviceId,
                         email: firebase?.email,
                         phoneNumber: firebase?.phoneNumber,
-                      ),
-                    )*/
-                    final firebase = FirebaseAuth.instance.currentUser!;
-                    final firebaseMessaging = FirebaseMessaging.instance;
-                    final deviceId = await firebaseMessaging.getToken();
-                    await viewModelFnc
-                        .firebaseLogin(
-                      FirebaseLoginModel(
-                        idToken: await firebase.getIdToken(),
-                        deviceId: deviceId,
-                        email: firebase.email,
-                        phoneNumber: firebase.phoneNumber,
                       ),
                     )
                         .then((value) async {

@@ -48,7 +48,8 @@ extension NotificationTypeExtension on String {
         return l10n.eventCommentLike;
       case 'NewEvent':
         return l10n.newEvent;
-
+      case 'EventRate':
+        return l10n.eventRated;
       default:
         return l10n.unknownNotification;
     }

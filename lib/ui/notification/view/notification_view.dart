@@ -249,7 +249,7 @@ class NotificationItemView extends HookConsumerWidget {
                         )
                       else if (data.type != 'FriendRequest')
                         PrimaryText(
-                          '${data.user?.name} ${data.type?.notificationMessage(
+                          '${(data.type != 'EventRate') ? "${data.user?.name} " : ""}${data.type?.notificationMessage(
                             l10n,
                           )}', // Replace with actual user's username
                           maxLines: 3,

@@ -4,6 +4,8 @@ import 'package:retrofit/retrofit.dart';
 import 'package:togodo/core/network/api/app_dio.dart';
 import 'package:togodo/data/model/notification/notification_model.dart';
 
+import '../../model/event/event_rating_needed_model.dart';
+
 part 'notification_data_source.g.dart';
 
 final notificationDataSourceProvider = Provider(NotificationDataSource.new);
@@ -35,4 +37,22 @@ abstract class NotificationDataSource {
   );
   @GET('User/UnreadCount')
   Future<String> unreadCount();
+
+  @GET('Event/UserRatingNeededEvents')
+  Future<List<EventRatingNeededModel>> neededRatings();
+
+  @POST('Event/NeverShow')
+  Future<dynamic> neverShow(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST('Event/AskLater')
+  Future<dynamic> askLater(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST('Event/AddUserRating')
+  Future<dynamic> addPoint(
+    @Body() Map<String, dynamic> data,
+  );
 }

@@ -562,5 +562,15 @@
   "addTogodoAccount": "Togodo hesabı ekle",
   "addAccount": "Hesap Ekle",
   "signinWithAccount": "Mevcut Hesaba Giriş Yap",
-  "createNewAccount": "Yeni Hesap Oluştur"
+  "createNewAccount": "Yeni Hesap Oluştur",
+  "eventRateText": "Fikrin bizim için önemli {eventname} adlı etkinlik nasıl geçti?",
+  "veryGood": "Çok İyi",
+  "bad": "Kötü",
+  "askLater": "Daha Sonra Hatırlat",
+  "didintAttend": "Bu Etkinliğe Katılmadım",
+  "rateYourExperince": "Deneyimini Puanla",
+  "thankYouUser": "Teşekkürler {userName}!",
+  "ratingSaved": "Değerlendirmen kaydedildi.",
+  "eventRated": "Etkinliğiniz puanlandı",
+  "eventRatedText": "{event_name} isimli etkinliğin {user_name} tarafından {star} yıldız aldı!"
 }

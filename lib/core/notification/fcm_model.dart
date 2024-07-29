@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'fcm_model.freezed.dart';
 part 'fcm_model.g.dart';
 
@@ -18,6 +19,7 @@ class FcmModel with _$FcmModel {
     String? userFullName,
     String? userProfileImage,
     String? isGroup,
+    String? rate,
   }) = _FcmModel;
 
   factory FcmModel.fromJson(Map<String, Object?> json) =>

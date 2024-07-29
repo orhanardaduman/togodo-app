@@ -28,6 +28,8 @@ import 'package:togodo/ui/event/create_event_page.dart';
 import 'package:togodo/ui/event/widget/event_rating_popup.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 import 'package:togodo/ui/notification_view_model.dart';
+
+import 'home/widget/rate_popup.dart';
 //import 'package:uni_links/uni_links.dart';
 
 class IntStateNotifier extends StateNotifier<int> {
@@ -169,6 +171,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
     _showRatings(msg);
     _wonPopup(msg);
     _chatPopup(msg);
+    _ratePopup(msg);
     _deleteEvent(msg);
   }
 
@@ -218,6 +221,24 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
             userId: msg.userId ?? '',
             isGroup: msg.isGroup ?? '',
             type: msg.type ?? '',
+          );
+        },
+      ).then((value) => _isDialogShowing = false);
+    }
+  }
+
+  void _ratePopup(FcmModel msg) {
+    if (msg.typeId == '8') {
+      if (_isDialogShowing) return;
+      _isDialogShowing = true;
+      showDialog<MessagePopUpWidget>(
+        context: context,
+        builder: (BuildContext context) {
+          return RatePopUpWidget(
+            imgUrl: msg.userProfileImage ?? '',
+            name: msg.userFullName ?? '',
+            eventName: msg.eventName ?? '',
+            rate: msg.rate ?? '',
           );
         },
       ).then((value) => _isDialogShowing = false);
