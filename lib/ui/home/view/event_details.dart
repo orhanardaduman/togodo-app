@@ -3,16 +3,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:readmore/readmore.dart';
-import 'package:togodo/core/component/button/custom_button.dart';
 import 'package:togodo/core/component/loading/loading.dart';
-import 'package:togodo/core/component/modal/custom_modal.dart';
 import 'package:togodo/core/component/primary_text.dart';
 import 'package:togodo/core/extension/device_size_extension.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
@@ -23,11 +20,9 @@ import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/features/component/custom_divider.dart';
 import 'package:togodo/features/map/map_show.dart';
-import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
 import 'package:togodo/ui/comment/comment.dart';
 import 'package:togodo/ui/common/welcome.dart';
-import 'package:togodo/ui/event/widget/event_rating_popup.dart';
 import 'package:togodo/ui/home/reels/components/event_action_button.dart';
 import 'package:togodo/ui/home/view_model/event_details_view_model.dart';
 import 'package:togodo/ui/home/widget/index.dart';
@@ -157,7 +152,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                   color: theme.appColors.divider,
                                   height: 48,
                                 ),
-                                if (model.events!.startTime != null &&
+                                /*  if (model.events!.startTime != null &&
                                     model.events!.date != null &&
                                     !isEventPassed(
                                       model.events!.date!,
@@ -165,7 +160,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                       model.events!.endTime,
                                     ))
                                   const SizedBox()
-                                else if (model.events!.startTime != null &&
+                              else if (model.events!.startTime != null &&
                                     model.events!.date != null &&
                                     model.events!.rating == null &&
                                     model.events!.rating == 0.0 &&
@@ -284,7 +279,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                   EventRatingsWidget(
                                     ratings: model.events!.rating,
                                     ratingsList: model.events!.ratings,
-                                  ),
+                                  ),*/
                                 if (model.events!.price != null &&
                                     model.events!.price != '')
                                   EventPriceDetails(

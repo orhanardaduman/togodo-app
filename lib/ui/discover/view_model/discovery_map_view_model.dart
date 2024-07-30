@@ -17,8 +17,9 @@ import 'package:togodo/data/repository/create_event_repository_impl.dart';
 import 'package:togodo/features/map/new_map_picker/new_map_picker.dart';
 import 'package:togodo/features/provider/tag_provider.dart';
 import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
-import 'package:togodo/ui/discover/view/discovery_map.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
+
+import '../view/discovery_map.dart';
 
 part 'discovery_map_view_model.freezed.dart';
 
@@ -205,6 +206,8 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
         if (iconPath != null) {
           newMarkerList.add(
             Marker(
+              anchor: const Offset(.5, .5),
+              flat: true,
               markerId: MarkerId(entry.key),
               position: entry.value.coordinates,
               onTap: () async {
