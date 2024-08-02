@@ -93,56 +93,60 @@ class PopUpWidget extends HookConsumerWidget {
                                   ProfilEditRoute(),
                                 ); // Yeni route'a git
                             },
-                            child: Column(
-                              children: <Widget>[
-                                CheckmarkWidget(
-                                  initVal:
-                                      model.profil?.titleCompletion ?? false,
-                                  label: l10n.title,
-                                  onChanged: () {
-                                    router
-                                      ..pop()
-                                      ..push(
-                                        ProfilEditRoute(),
-                                      );
-                                  },
-                                ),
-                                CheckmarkWidget(
-                                  initVal:
-                                      model.profil?.socialMediaCompletion ??
-                                          false,
-                                  onChanged: () {
-                                    router
-                                      ..pop()
-                                      ..push(
-                                        ProfilEditRoute(),
-                                      );
-                                  },
-                                  label: l10n.socialMediaAccounts,
-                                ),
-                                CheckmarkWidget(
-                                  initVal: model.profil?.tagCompletion ?? false,
-                                  onChanged: () {
-                                    router
-                                      ..pop()
-                                      ..push(
-                                        ProfilEditRoute(),
-                                      );
-                                  },
-                                  label: l10n.interests,
-                                ),
-                                CheckmarkWidget(
-                                  initVal: model.profil?.bioCompletion ?? false,
-                                  onChanged: () {
-                                    router
-                                      ..pop()
-                                      ..push(
-                                        ProfilEditRoute(),
-                                      );
-                                  },
-                                  label: l10n.biography,
-                                ),
-                              ],
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  CheckmarkWidget(
+                                    initVal:
+                                        model.profil?.titleCompletion ?? false,
+                                    label: l10n.title,
+                                    onChanged: () {
+                                      router
+                                        ..pop()
+                                        ..push(
+                                          ProfilEditRoute(),
+                                        );
+                                    },
+                                  ),
+                                  CheckmarkWidget(
+                                    initVal:
+                                        model.profil?.socialMediaCompletion ??
+                                            false,
+                                    onChanged: () {
+                                      router
+                                        ..pop()
+                                        ..push(
+                                          ProfilEditRoute(),
+                                        );
+                                    },
+                                    label: l10n.socialMediaAccounts,
+                                  ),
+                                  CheckmarkWidget(
+                                    initVal:
+                                        model.profil?.tagCompletion ?? false,
+                                    onChanged: () {
+                                      router
+                                        ..pop()
+                                        ..push(
+                                          ProfilEditRoute(),
+                                        );
+                                    },
+                                    label: l10n.interests,
+                                  ),
+                                  CheckmarkWidget(
+                                    initVal:
+                                        model.profil?.bioCompletion ?? false,
+                                    onChanged: () {
+                                      router
+                                        ..pop()
+                                        ..push(
+                                          ProfilEditRoute(),
+                                        );
+                                    },
+                                    label: l10n.biography,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

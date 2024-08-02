@@ -41,6 +41,7 @@ mixin _$EventModel {
   bool? get isClosedComment => throw _privateConstructorUsedError;
   bool? get openToJoinStatus => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
+  int? get ratingLenght => throw _privateConstructorUsedError;
   bool? get isPublish => throw _privateConstructorUsedError;
   bool? get isUserEvent => throw _privateConstructorUsedError;
   int? get likeCount => throw _privateConstructorUsedError;
@@ -83,6 +84,7 @@ abstract class $EventModelCopyWith<$Res> {
       bool? isClosedComment,
       bool? openToJoinStatus,
       double? rating,
+      int? ratingLenght,
       bool? isPublish,
       bool? isUserEvent,
       int? likeCount,
@@ -128,6 +130,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? isClosedComment = freezed,
     Object? openToJoinStatus = freezed,
     Object? rating = freezed,
+    Object? ratingLenght = freezed,
     Object? isPublish = freezed,
     Object? isUserEvent = freezed,
     Object? likeCount = freezed,
@@ -221,6 +224,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
+      ratingLenght: freezed == ratingLenght
+          ? _value.ratingLenght
+          : ratingLenght // ignore: cast_nullable_to_non_nullable
+              as int?,
       isPublish: freezed == isPublish
           ? _value.isPublish
           : isPublish // ignore: cast_nullable_to_non_nullable
@@ -295,6 +302,7 @@ abstract class _$$EventModelImplCopyWith<$Res>
       bool? isClosedComment,
       bool? openToJoinStatus,
       double? rating,
+      int? ratingLenght,
       bool? isPublish,
       bool? isUserEvent,
       int? likeCount,
@@ -339,6 +347,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? isClosedComment = freezed,
     Object? openToJoinStatus = freezed,
     Object? rating = freezed,
+    Object? ratingLenght = freezed,
     Object? isPublish = freezed,
     Object? isUserEvent = freezed,
     Object? likeCount = freezed,
@@ -432,6 +441,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
+      ratingLenght: freezed == ratingLenght
+          ? _value.ratingLenght
+          : ratingLenght // ignore: cast_nullable_to_non_nullable
+              as int?,
       isPublish: freezed == isPublish
           ? _value.isPublish
           : isPublish // ignore: cast_nullable_to_non_nullable
@@ -489,6 +502,7 @@ class _$EventModelImpl implements _EventModel {
       this.isClosedComment,
       this.openToJoinStatus,
       this.rating,
+      this.ratingLenght,
       this.isPublish,
       this.isUserEvent,
       this.likeCount,
@@ -544,6 +558,8 @@ class _$EventModelImpl implements _EventModel {
   @override
   final double? rating;
   @override
+  final int? ratingLenght;
+  @override
   final bool? isPublish;
   @override
   final bool? isUserEvent;
@@ -567,7 +583,7 @@ class _$EventModelImpl implements _EventModel {
 
   @override
   String toString() {
-    return 'EventModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, startTime: $startTime, endTime: $endTime, resolution: $resolution, joinedUserCount: $joinedUserCount, isQuotaFull: $isQuotaFull, joinedStatus: $joinedStatus, latitude: $latitude, longitude: $longitude, ticketUrl: $ticketUrl, requestStatus: $requestStatus, isCurrentUser: $isCurrentUser, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, rating: $rating, isPublish: $isPublish, isUserEvent: $isUserEvent, likeCount: $likeCount, shareCount: $shareCount, aspectRatio: $aspectRatio, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers)';
+    return 'EventModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, startTime: $startTime, endTime: $endTime, resolution: $resolution, joinedUserCount: $joinedUserCount, isQuotaFull: $isQuotaFull, joinedStatus: $joinedStatus, latitude: $latitude, longitude: $longitude, ticketUrl: $ticketUrl, requestStatus: $requestStatus, isCurrentUser: $isCurrentUser, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, rating: $rating, ratingLenght: $ratingLenght, isPublish: $isPublish, isUserEvent: $isUserEvent, likeCount: $likeCount, shareCount: $shareCount, aspectRatio: $aspectRatio, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers)';
   }
 
   @override
@@ -612,6 +628,8 @@ class _$EventModelImpl implements _EventModel {
             (identical(other.openToJoinStatus, openToJoinStatus) ||
                 other.openToJoinStatus == openToJoinStatus) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.ratingLenght, ratingLenght) ||
+                other.ratingLenght == ratingLenght) &&
             (identical(other.isPublish, isPublish) ||
                 other.isPublish == isPublish) &&
             (identical(other.isUserEvent, isUserEvent) ||
@@ -653,6 +671,7 @@ class _$EventModelImpl implements _EventModel {
         isClosedComment,
         openToJoinStatus,
         rating,
+        ratingLenght,
         isPublish,
         isUserEvent,
         likeCount,
@@ -699,6 +718,7 @@ abstract class _EventModel implements EventModel {
       final bool? isClosedComment,
       final bool? openToJoinStatus,
       final double? rating,
+      final int? ratingLenght,
       final bool? isPublish,
       final bool? isUserEvent,
       final int? likeCount,
@@ -752,6 +772,8 @@ abstract class _EventModel implements EventModel {
   bool? get openToJoinStatus;
   @override
   double? get rating;
+  @override
+  int? get ratingLenght;
   @override
   bool? get isPublish;
   @override

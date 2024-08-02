@@ -47,7 +47,6 @@ class CreateEventPage extends StatefulHookConsumerWidget {
 }
 
 class _CreateEventPageState extends ConsumerState<CreateEventPage> {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode focusNode = FocusNode();
   bool isPush = false;
   @override
@@ -111,10 +110,12 @@ class _CreateEventPageState extends ConsumerState<CreateEventPage> {
                     Padding(
                       padding: const EdgeInsets.all(24),
                       child: Form(
-                        key: formKey,
+                        key: model.formKey,
                         child: Column(
                           children: [
-                            step(state.step),
+                            step(
+                              state.step,
+                            ),
                             context.sized.emptySizedHeightBoxLow,
                             if (state.step == 2)
                               Column(
@@ -249,7 +250,7 @@ class _CreateEventPageState extends ConsumerState<CreateEventPage> {
                                             }
                                           });
                                         } else {
-                                          if (formKey.currentState!
+                                          if (model.formKey.currentState!
                                               .validate()) {
                                             model.incrementProgress();
                                           }
@@ -274,7 +275,7 @@ class _CreateEventPageState extends ConsumerState<CreateEventPage> {
   Widget step(int step) {
     switch (step) {
       case 0:
-        return const FirstStepView();
+        return FirstStepView();
       case 1:
         return SecondStepView(
           focusNode: focusNode,
@@ -286,7 +287,7 @@ class _CreateEventPageState extends ConsumerState<CreateEventPage> {
           focusNode: focusNode,
         );
       default:
-        return const FirstStepView();
+        return FirstStepView();
     }
   }
 }

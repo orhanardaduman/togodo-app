@@ -66,6 +66,7 @@ class _AddAccountViewState extends ConsumerState<AddAccountView> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * .9,
                 child: CustomButton(
+                  maxWidthTextContainer: MediaQuery.of(context).size.width * .9,
                   onPressed: () {
                     Navigator.pop(context);
                     router.push(
@@ -73,6 +74,9 @@ class _AddAccountViewState extends ConsumerState<AddAccountView> {
                     );
                   },
                   text: l10n.signinWithAccount,
+                  style: AppTextTheme().bodyXLarge.copyWith(
+                        color: Colors.white,
+                      ),
                 ),
               ),
               const SizedBox(

@@ -43,6 +43,7 @@ class EventDetailsModel
     String? longitude,
     String? mapLink,
     String? address,
+    int? ratingLenght,
     double? rating,
     VendorDetails? vendorDetails,
     List<JoinedUsers>? joinedUsers,

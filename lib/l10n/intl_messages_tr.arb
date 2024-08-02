@@ -559,7 +559,7 @@
   "comunityPoint": "Topluluk Puanı",
   "pointFrom": "{count} Kişi Tarafından Puanlandı",
   "changeAccount": "Hesap Değiştir",
-  "addTogodoAccount": "Togodo hesabı ekle",
+  "addTogodoAccount": "togodo hesabı ekle",
   "addAccount": "Hesap Ekle",
   "signinWithAccount": "Mevcut Hesaba Giriş Yap",
   "createNewAccount": "Yeni Hesap Oluştur",
@@ -572,5 +572,7 @@
   "thankYouUser": "Teşekkürler {userName}!",
   "ratingSaved": "Değerlendirmen kaydedildi.",
   "eventRated": "Etkinliğiniz puanlandı",
-  "eventRatedText": "{event_name} isimli etkinliğin {user_name} tarafından {star} yıldız aldı!"
+  "eventRatedText": "{event_name} isimli etkinliğin {user_name} tarafından {star} yıldız aldı!",
+  "deletedEvent": "<silinmiş etkinlik>"
+
 }

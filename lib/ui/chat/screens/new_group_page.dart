@@ -314,6 +314,7 @@ class _NewGroupPageState extends ConsumerState<NewGroupPage> {
                       ListView.separated(
                         itemCount: users.length,
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.only(bottom: 24),
                         itemBuilder: (context, index) {
                           final user = users[index];

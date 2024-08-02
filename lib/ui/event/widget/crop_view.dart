@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:crop/crop.dart';
@@ -18,7 +17,7 @@ class CropView extends StatefulHookConsumerWidget {
     super.key,
   });
   final String? img;
-  final Function(ByteData? cropeed, String aspectRatio) onSave;
+  final Function(ui.Image? cropeed, String aspectRatio) onSave;
   @override
   ConsumerState<StatefulHookConsumerWidget> createState() => _CropViewState();
 }
@@ -73,10 +72,11 @@ class _CropViewState extends ConsumerState<CropView> {
                     if (!isInProcess) {
                       isInProcess = true;
                       final response = await controller.crop(pixelRatio: 5);
-                      final data = await response?.toByteData(
+                      /*   final data = await response?.toByteData(
                         format: ui.ImageByteFormat.png,
-                      );
-                      widget.onSave(data, controller.aspectRatio.toString());
+                      );*/
+                      widget.onSave(
+                          response, controller.aspectRatio.toString());
                       isInProcess = false;
                     }
                   },

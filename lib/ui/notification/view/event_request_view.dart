@@ -61,7 +61,7 @@ class NotificationEventRequestView extends HookConsumerWidget {
             child: ListView.separated(
               itemCount: requestData.length,
               shrinkWrap: true,
-              physics: requestData.length < 3
+              physics: requestData.length > 3
                   ? const NeverScrollableScrollPhysics()
                   : const AlwaysScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -179,6 +179,7 @@ class NotificationEventRequestView extends HookConsumerWidget {
                               text: l10n.accept,
                               radius: 100,
                               onPressed: () {
+                                print(data.type);
                                 if (data.type == 'EventRequestToFriend') {
                                   notifier
                                       .acceptInvite(
@@ -317,9 +318,11 @@ class NotificationEventRequestView extends HookConsumerWidget {
                           },
                       ),
                       TextSpan(
-                        text: data.type!.notificationMessage(
-                          l10n,
-                        ),
+                        text: data.type!
+                            .notificationMessage(
+                              l10n,
+                            )
+                            .trim(),
                         style: theme.textTheme.bodySmall.copyWith(
                           fontWeight: FontWeight.w500,
                           color: theme.appColors.text,

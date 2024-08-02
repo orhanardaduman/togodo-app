@@ -17,7 +17,6 @@ import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/data/model/event/event_details_model.dart';
 import 'package:togodo/gen/assets.gen.dart';
-import 'package:togodo/ui/comment/comment_items.dart';
 import 'package:togodo/ui/home/widget/event_ratings_all.dart';
 import 'package:togodo/ui/settings/language_settings.dart';
 
@@ -25,10 +24,12 @@ class EventRatingsWidget extends HookConsumerWidget {
   const EventRatingsWidget({
     this.ratings,
     this.ratingsList,
+    this.count,
     super.key,
   });
   final List<Ratings>? ratingsList;
   final double? ratings;
+  final int? count;
 
   @override
   Widget build(
@@ -50,16 +51,13 @@ class EventRatingsWidget extends HookConsumerWidget {
               ),
             ),
             const Spacer(),
-            RatingBarIndicator(
-              rating: ratings ?? 0,
-              itemSize: 24,
-              itemBuilder: (context, _) => Assets.icons.bold.star.svg(
-                color: MainColors.amber,
-              ),
+            Assets.icons.bold.star.svg(
+              color: MainColors.amber,
+              width: 24,
             ),
             const SizedBox(width: 8),
             PrimaryText(
-              '$ratings/5.0',
+              '${ratings?.toStringAsFixed(2)}/($count)',
               style: theme.textTheme.bodyMedium.copyWith(
                 color: theme.appColors.text,
               ),
@@ -148,7 +146,7 @@ class EventRatingsItem extends HookConsumerWidget {
             ],
           ),
         ),
-        SizedBox(
+        /*  SizedBox(
           height: context.dyHeight(24),
         ),
         ReadMoreText(
@@ -157,7 +155,7 @@ class EventRatingsItem extends HookConsumerWidget {
         ),
         SizedBox(
           height: context.dyHeight(12),
-        ),
+        ),*/
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [

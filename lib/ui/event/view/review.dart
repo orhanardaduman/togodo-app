@@ -9,7 +9,10 @@ import 'package:togodo/ui/event/view/index.dart';
 import 'package:togodo/ui/event/widget/drag_drop_image.dart';
 
 class ReviewView extends StatefulHookConsumerWidget {
-  const ReviewView({super.key, this.focusNode});
+  const ReviewView({
+    super.key,
+    this.focusNode,
+  });
   final FocusNode? focusNode;
 
   @override
@@ -45,7 +48,7 @@ class _ReviewViewState extends ConsumerState<ReviewView> {
           ),
         ),
         const Divider(),
-        const FirstStepView(),
+        FirstStepView(),
         SecondStepView(
           isReview: true,
           focusNode: widget.focusNode,

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls, cascade_invocations, avoid_positional_boolean_parameters
 
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -192,6 +193,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         ],
         loading: false,
       );
+      formKey.currentState?.validate();
     }
   }
 
@@ -448,6 +450,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     address = (address ?? '') + (p0?.formattedAddress ?? '');
     Latitude = p0?.geometry.location.lat.toString();
     Longitude = p0?.geometry.location.lng.toString();
+    formKey.currentState?.validate();
   }
 
   void changeJoinUser() {
@@ -635,16 +638,20 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
       context,
       MaterialPageRoute(
         builder: (context) =>
-            CropView(img.localImage?.path, (data, aspectRatioData) async {
-          if (data != null) {
+            CropView(img.localImage?.path, (response, aspectRatioData) async {
+          if (response != null) {
             Navigator.pop(context);
             final tempDir = await getApplicationDocumentsDirectory();
             File file = File(
               "${tempDir.path}/${img.localImage?.path.split("/").last.split(".").first}${DateTime.now().millisecondsSinceEpoch}.png",
             );
-
-            final buffer = data.buffer.asUint8List();
-            file = await file.writeAsBytes(buffer, flush: true);
+            final data = await response.toByteData(
+              format: ImageByteFormat.png,
+            );
+            final buffer = data?.buffer.asUint8List();
+            if (buffer != null) {
+              file = await file.writeAsBytes(buffer, flush: true);
+            }
 
             var image = SelectedAssetsModel(
               index: img.index,

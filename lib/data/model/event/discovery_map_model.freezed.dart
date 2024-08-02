@@ -45,6 +45,7 @@ mixin _$DiscoveryMapModel {
   bool? get requestStatus => throw _privateConstructorUsedError;
   bool? get isQuotaFull => throw _privateConstructorUsedError;
   bool? get isCurrentUser => throw _privateConstructorUsedError;
+  int? get ratingLenght => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
   int? get likeCount => throw _privateConstructorUsedError;
   int? get shareCount => throw _privateConstructorUsedError;
@@ -90,6 +91,7 @@ abstract class $DiscoveryMapModelCopyWith<$Res> {
       bool? requestStatus,
       bool? isQuotaFull,
       bool? isCurrentUser,
+      int? ratingLenght,
       double? rating,
       int? likeCount,
       int? shareCount,
@@ -138,6 +140,7 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
     Object? requestStatus = freezed,
     Object? isQuotaFull = freezed,
     Object? isCurrentUser = freezed,
+    Object? ratingLenght = freezed,
     Object? rating = freezed,
     Object? likeCount = freezed,
     Object? shareCount = freezed,
@@ -246,6 +249,10 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
           ? _value.isCurrentUser
           : isCurrentUser // ignore: cast_nullable_to_non_nullable
               as bool?,
+      ratingLenght: freezed == ratingLenght
+          ? _value.ratingLenght
+          : ratingLenght // ignore: cast_nullable_to_non_nullable
+              as int?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -320,6 +327,7 @@ abstract class _$$DiscoveryMapModelImplCopyWith<$Res>
       bool? requestStatus,
       bool? isQuotaFull,
       bool? isCurrentUser,
+      int? ratingLenght,
       double? rating,
       int? likeCount,
       int? shareCount,
@@ -367,6 +375,7 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
     Object? requestStatus = freezed,
     Object? isQuotaFull = freezed,
     Object? isCurrentUser = freezed,
+    Object? ratingLenght = freezed,
     Object? rating = freezed,
     Object? likeCount = freezed,
     Object? shareCount = freezed,
@@ -475,6 +484,10 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
           ? _value.isCurrentUser
           : isCurrentUser // ignore: cast_nullable_to_non_nullable
               as bool?,
+      ratingLenght: freezed == ratingLenght
+          ? _value.ratingLenght
+          : ratingLenght // ignore: cast_nullable_to_non_nullable
+              as int?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -532,6 +545,7 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
       this.requestStatus,
       this.isQuotaFull,
       this.isCurrentUser,
+      this.ratingLenght,
       this.rating,
       this.likeCount,
       this.shareCount,
@@ -595,6 +609,8 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
   @override
   final bool? isCurrentUser;
   @override
+  final int? ratingLenght;
+  @override
   final double? rating;
   @override
   final int? likeCount;
@@ -624,7 +640,7 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
 
   @override
   String toString() {
-    return 'DiscoveryMapModel(id: $id, name: $name, city: $city, district: $district, description: $description, imageUrl: $imageUrl, location: $location, date: $date, createdAt: $createdAt, resolution: $resolution, likeStatus: $likeStatus, latitude: $latitude, longitude: $longitude, isUserEvent: $isUserEvent, address: $address, ticketUrl: $ticketUrl, joinedUserCount: $joinedUserCount, startTime: $startTime, endTime: $endTime, joinedStatus: $joinedStatus, openToJoinStatus: $openToJoinStatus, isClosedComment: $isClosedComment, requestStatus: $requestStatus, isQuotaFull: $isQuotaFull, isCurrentUser: $isCurrentUser, rating: $rating, likeCount: $likeCount, shareCount: $shareCount, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, tags: $tags)';
+    return 'DiscoveryMapModel(id: $id, name: $name, city: $city, district: $district, description: $description, imageUrl: $imageUrl, location: $location, date: $date, createdAt: $createdAt, resolution: $resolution, likeStatus: $likeStatus, latitude: $latitude, longitude: $longitude, isUserEvent: $isUserEvent, address: $address, ticketUrl: $ticketUrl, joinedUserCount: $joinedUserCount, startTime: $startTime, endTime: $endTime, joinedStatus: $joinedStatus, openToJoinStatus: $openToJoinStatus, isClosedComment: $isClosedComment, requestStatus: $requestStatus, isQuotaFull: $isQuotaFull, isCurrentUser: $isCurrentUser, ratingLenght: $ratingLenght, rating: $rating, likeCount: $likeCount, shareCount: $shareCount, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, tags: $tags)';
   }
 
   @override
@@ -676,6 +692,8 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
                 other.isQuotaFull == isQuotaFull) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
                 other.isCurrentUser == isCurrentUser) &&
+            (identical(other.ratingLenght, ratingLenght) ||
+                other.ratingLenght == ratingLenght) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.likeCount, likeCount) ||
                 other.likeCount == likeCount) &&
@@ -717,6 +735,7 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
         requestStatus,
         isQuotaFull,
         isCurrentUser,
+        ratingLenght,
         rating,
         likeCount,
         shareCount,
@@ -767,6 +786,7 @@ abstract class _DiscoveryMapModel implements DiscoveryMapModel {
       final bool? requestStatus,
       final bool? isQuotaFull,
       final bool? isCurrentUser,
+      final int? ratingLenght,
       final double? rating,
       final int? likeCount,
       final int? shareCount,
@@ -827,6 +847,8 @@ abstract class _DiscoveryMapModel implements DiscoveryMapModel {
   bool? get isQuotaFull;
   @override
   bool? get isCurrentUser;
+  @override
+  int? get ratingLenght;
   @override
   double? get rating;
   @override

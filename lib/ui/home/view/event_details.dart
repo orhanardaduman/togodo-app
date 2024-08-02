@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:map_location_picker/map_location_picker.dart';
@@ -26,6 +27,11 @@ import 'package:togodo/ui/common/welcome.dart';
 import 'package:togodo/ui/home/reels/components/event_action_button.dart';
 import 'package:togodo/ui/home/view_model/event_details_view_model.dart';
 import 'package:togodo/ui/home/widget/index.dart';
+
+import '../../../core/component/button/custom_button.dart';
+import '../../../core/component/modal/custom_modal.dart';
+import '../../../gen/assets.gen.dart';
+import '../../event/widget/event_rating_popup.dart';
 
 @RoutePage()
 class EventDetailsPage extends StatefulHookConsumerWidget {
@@ -152,7 +158,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                   color: theme.appColors.divider,
                                   height: 48,
                                 ),
-                                /*  if (model.events!.startTime != null &&
+                                if (model.events!.startTime != null &&
                                     model.events!.date != null &&
                                     !isEventPassed(
                                       model.events!.date!,
@@ -160,7 +166,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                       model.events!.endTime,
                                     ))
                                   const SizedBox()
-                              else if (model.events!.startTime != null &&
+                                else if (model.events!.startTime != null &&
                                     model.events!.date != null &&
                                     model.events!.rating == null &&
                                     model.events!.rating == 0.0 &&
@@ -279,7 +285,8 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                   EventRatingsWidget(
                                     ratings: model.events!.rating,
                                     ratingsList: model.events!.ratings,
-                                  ),*/
+                                    count: model.events!.ratingLenght,
+                                  ),
                                 if (model.events!.price != null &&
                                     model.events!.price != '')
                                   EventPriceDetails(

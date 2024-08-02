@@ -559,7 +559,7 @@
   "comunityPoint": "Cominity Point",
   "pointFrom": "Rated by {count} users",
   "changeAccount": "Change Account",
-  "addTogodoAccount": "Add Togodo account",
+  "addTogodoAccount": "Add togodo account",
   "addAccount": "Add Account",
   "signinWithAccount": "Sign In With Account",
   "createNewAccount": "Create New Account",
@@ -572,7 +572,8 @@
   "thankYouUser": "Thank you {userName}!",
   "ratingSaved": "Your rating saved.",
   "eventRated": "Your activity has rated",
-  "eventRatedText": "Your event named {event_name} rated {star} star by {user_name}!"
+  "eventRatedText": "Your event named {event_name} rated {star} star by {user_name}!",
+  "deletedEvent": "<deleted event>"
 
 
 

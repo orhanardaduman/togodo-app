@@ -499,18 +499,22 @@ class EventButtonState extends ConsumerState<EventButton> {
           fontWeight: FontWeight.w700,
         ),
         onPressed: () {
+          print("burda");
+          print(!(widget.model.openToJoinStatus ?? false));
           if (widget.model.isQuotaFull == true) {
             notifier.eventJoinRequest(
               widget.model.id!,
               homePage: widget.isHomePage,
               forLine: true,
             );
-          } else if (!(widget.model.openToJoinStatus ?? false)) {
-            notifier.eventJoinRequest(
-              widget.model.id!,
-              openToJoin: true,
-              homePage: widget.isHomePage,
-            );
+          } else {
+            if (!(widget.model.openToJoinStatus ?? false)) {
+              notifier.eventJoinRequest(
+                widget.model.id!,
+                openToJoin: true,
+                homePage: widget.isHomePage,
+              );
+            }
             router.push(
               JoinWithFriendsRoute(
                 eventId: widget.model.id!,

@@ -227,7 +227,7 @@ class NotificationItemView extends HookConsumerWidget {
                                   ),
                                 ),
                               TextSpan(
-                                text: ' ${data.event!.name} ',
+                                text: '${data.event!.name} ',
                                 style: theme.textTheme.bodySmall.copyWith(
                                   fontWeight: FontWeight.w500,
                                   color: theme.appColors.themeColor,
@@ -249,9 +249,9 @@ class NotificationItemView extends HookConsumerWidget {
                         )
                       else if (data.type != 'FriendRequest')
                         PrimaryText(
-                          '${(data.type != 'EventRate') ? "${data.user?.name} " : ""}${data.type?.notificationMessage(
-                            l10n,
-                          )}', // Replace with actual user's username
+                          '${(data.type != 'EventRate') ? "${data.user?.name} " : ""}${data.type != null ? data.type?.notificationMessage(
+                              l10n,
+                            ) : l10n.deletedEvent}', // Replace with actual user's username
                           maxLines: 3,
                           style: theme.textTheme.bodySmall.copyWith(
                             fontWeight: FontWeight.w500,
@@ -261,9 +261,9 @@ class NotificationItemView extends HookConsumerWidget {
                         )
                       else
                         PrimaryText(
-                          '${data.user?.name} ${data.type?.notificationMessage(
-                            l10n,
-                          )}', // Replace with actual user's username
+                          '${data.user?.name} ${data.type != null ? data.type?.notificationMessage(
+                              l10n,
+                            ) : l10n.deletedEvent}', // Replace with actual user's username
                           maxLines: 3,
                           style: theme.textTheme.bodySmall.copyWith(
                             fontWeight: FontWeight.w500,

@@ -36,7 +36,6 @@ class SavedProfilesViewModel extends StateNotifier<SavedProfilesEventsState> {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
     state = state.copyWith(loading: true);
     final token = await CacheItems.token.readSecureData();
-
     final result = await _repository.getUserSavedAccount();
     if (_isDisposed) return; // Future tamamlandıktan sonra tekrar kontrol edin
     if (result.isSuccess) {

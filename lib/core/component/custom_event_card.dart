@@ -1,7 +1,6 @@
 // ignore_for_file: no_default_cases, use_named_constants, deprecated_member_use_from_same_package
 
 import 'package:flutter/material.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/core/component/primary_text.dart';
 import 'package:togodo/core/extension/date_time.dart';
@@ -139,18 +138,21 @@ class EnventCards extends HookConsumerWidget {
             if (isShowRating && data?.rating != null && data?.rating != 0.0)
               Row(
                 children: [
-                  RatingBarIndicator(
-                    rating: data?.rating ?? 0,
-                    itemSize: 16,
-                    itemBuilder: (context, _) => Assets.icons.bold.star.svg(
-                      color: MainColors.amber,
-                    ),
+                  Assets.icons.bold.star.svg(
+                    color: MainColors.amber,
+                    width: 16,
                   ),
-                  const SizedBox(width: 8),
                   PrimaryText(
-                    '${data?.rating}/5',
+                    '${data?.rating?.toStringAsFixed(1)}',
                     style: theme.textTheme.bodySmall.copyWith(
                       color: theme.appColors.text,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  PrimaryText(
+                    ' (${data?.ratingLenght ?? 0})',
+                    style: theme.textTheme.bodySmall.copyWith(
+                      color: MainColors.textColor,
                       fontWeight: FontWeight.w700,
                     ),
                   ),

@@ -41,6 +41,7 @@ _$EventDetailsModelImpl _$$EventDetailsModelImplFromJson(
       longitude: json['longitude'] as String?,
       mapLink: json['mapLink'] as String?,
       address: json['address'] as String?,
+      ratingLenght: json['ratingLenght'] as int?,
       rating: (json['rating'] as num?)?.toDouble(),
       vendorDetails: json['vendorDetails'] == null
           ? null
@@ -105,6 +106,7 @@ Map<String, dynamic> _$$EventDetailsModelImplToJson(
       'longitude': instance.longitude,
       'mapLink': instance.mapLink,
       'address': instance.address,
+      'ratingLenght': instance.ratingLenght,
       'rating': instance.rating,
       'vendorDetails': instance.vendorDetails,
       'joinedUsers': instance.joinedUsers,

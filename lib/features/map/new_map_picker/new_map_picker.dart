@@ -124,7 +124,9 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
                       result!.geometry.location.lat,
                       result.geometry.location.lng,
                     );
-                    widget.onChange?.call(result);
+                    widget.onChange?.call(
+                      result,
+                    );
                     setState(() {});
                   },
                   onNext: (GeocodingResult? result) {
@@ -132,7 +134,9 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
                       result!.geometry.location.lat,
                       result.geometry.location.lng,
                     );
-                    widget.onChange?.call(result);
+                    widget.onChange?.call(
+                      result,
+                    );
                     setState(() {});
                   },
                   onSuggestionSelected: (PlacesDetailsResponse? result) {

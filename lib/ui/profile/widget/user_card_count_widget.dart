@@ -68,7 +68,7 @@ class UserCardCount extends HookConsumerWidget {
             ),
           ),
         const Spacer(),
-        if (type != 1)
+        if (type != 1 && type != 101)
           InkWell(
             onTap: () {
               showApplauseInfo(theme, l10n, context);

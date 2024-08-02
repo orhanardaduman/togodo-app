@@ -52,6 +52,7 @@ mixin _$EventDetailsModel {
   String? get longitude => throw _privateConstructorUsedError;
   String? get mapLink => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
+  int? get ratingLenght => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
   VendorDetails? get vendorDetails => throw _privateConstructorUsedError;
   List<JoinedUsers>? get joinedUsers => throw _privateConstructorUsedError;
@@ -109,6 +110,7 @@ abstract class $EventDetailsModelCopyWith<$Res> {
       String? longitude,
       String? mapLink,
       String? address,
+      int? ratingLenght,
       double? rating,
       VendorDetails? vendorDetails,
       List<JoinedUsers>? joinedUsers,
@@ -168,6 +170,7 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
     Object? longitude = freezed,
     Object? mapLink = freezed,
     Object? address = freezed,
+    Object? ratingLenght = freezed,
     Object? rating = freezed,
     Object? vendorDetails = freezed,
     Object? joinedUsers = freezed,
@@ -308,6 +311,10 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      ratingLenght: freezed == ratingLenght
+          ? _value.ratingLenght
+          : ratingLenght // ignore: cast_nullable_to_non_nullable
+              as int?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -405,6 +412,7 @@ abstract class _$$EventDetailsModelImplCopyWith<$Res>
       String? longitude,
       String? mapLink,
       String? address,
+      int? ratingLenght,
       double? rating,
       VendorDetails? vendorDetails,
       List<JoinedUsers>? joinedUsers,
@@ -463,6 +471,7 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? mapLink = freezed,
     Object? address = freezed,
+    Object? ratingLenght = freezed,
     Object? rating = freezed,
     Object? vendorDetails = freezed,
     Object? joinedUsers = freezed,
@@ -603,6 +612,10 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      ratingLenght: freezed == ratingLenght
+          ? _value.ratingLenght
+          : ratingLenght // ignore: cast_nullable_to_non_nullable
+              as int?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -683,6 +696,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
       this.longitude,
       this.mapLink,
       this.address,
+      this.ratingLenght,
       this.rating,
       this.vendorDetails,
       final List<JoinedUsers>? joinedUsers,
@@ -769,6 +783,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
   @override
   final String? address;
   @override
+  final int? ratingLenght;
+  @override
   final double? rating;
   @override
   final VendorDetails? vendorDetails;
@@ -847,7 +863,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
 
   @override
   String toString() {
-    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber)';
+    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, ratingLenght: $ratingLenght, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber)';
   }
 
   @override
@@ -911,6 +927,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
                 other.longitude == longitude) &&
             (identical(other.mapLink, mapLink) || other.mapLink == mapLink) &&
             (identical(other.address, address) || other.address == address) &&
+            (identical(other.ratingLenght, ratingLenght) ||
+                other.ratingLenght == ratingLenght) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.vendorDetails, vendorDetails) ||
                 other.vendorDetails == vendorDetails) &&
@@ -963,6 +981,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
         longitude,
         mapLink,
         address,
+        ratingLenght,
         rating,
         vendorDetails,
         const DeepCollectionEquality().hash(_joinedUsers),
@@ -1024,6 +1043,7 @@ abstract class _EventDetailsModel implements EventDetailsModel {
       final String? longitude,
       final String? mapLink,
       final String? address,
+      final int? ratingLenght,
       final double? rating,
       final VendorDetails? vendorDetails,
       final List<JoinedUsers>? joinedUsers,
@@ -1102,6 +1122,8 @@ abstract class _EventDetailsModel implements EventDetailsModel {
   String? get mapLink;
   @override
   String? get address;
+  @override
+  int? get ratingLenght;
   @override
   double? get rating;
   @override

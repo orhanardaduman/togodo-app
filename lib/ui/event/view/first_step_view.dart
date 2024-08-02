@@ -12,7 +12,9 @@ import 'package:togodo/ui/profile/widget/multi_chip.dart';
 import '../../../features/component/custom_checkbox.dart';
 
 class FirstStepView extends StatefulHookConsumerWidget {
-  const FirstStepView({super.key});
+  const FirstStepView({
+    super.key,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _FirstStepViewState();

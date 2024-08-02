@@ -18,6 +18,7 @@ class CustomButton extends HookConsumerWidget {
   const CustomButton({
     required this.text,
     this.leftIcon,
+    this.maxLines,
     this.leftIconColor,
     this.rightIcon,
     this.rightIconColor,
@@ -38,6 +39,7 @@ class CustomButton extends HookConsumerWidget {
     this.textWidget,
     this.shape,
   });
+  final int? maxLines;
   final String text;
   final String? leftIcon;
   final String? rightIcon;
@@ -138,6 +140,7 @@ class CustomButton extends HookConsumerWidget {
             child: textWidget ??
                 AutoSizeText(
                   text,
+                  maxLines: maxLines,
                   style: style ??
                       theme.textTheme.bodyMedium.copyWith(
                         color: textColor,

@@ -34,7 +34,7 @@ class WebSocketService {
       final baseUrl = dotenv.env['BASE_URL'] ?? Constants.instance.endpoint;
 
       _channel = IO.io(
-        'wss://$baseUrl',
+        'ws://$baseUrl',
         IO.OptionBuilder()
             .setTransports(['websocket']) // Use WebSocket transport only
             .setExtraHeaders(
