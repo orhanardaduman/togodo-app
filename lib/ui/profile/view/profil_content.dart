@@ -22,10 +22,12 @@ class ProfilContent extends HookConsumerWidget {
     required this.tabController,
     super.key,
     this.userId,
+    this.controller,
   });
   final ProfilModel? data;
   final String? userId;
   final TabController tabController;
+  final ScrollController? controller;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -33,13 +35,13 @@ class ProfilContent extends HookConsumerWidget {
     // Oluşturulan etkinliklerin gösterilip gösterilmeyeceğini kontrol eder
     final showCreatedEvents = data!.isCurrentUser!
         ? true // Mevcut kullanıcı için her zaman göster
-        : !data!
+        : data!
             .isHideEventCreatedUserToCurrentUser!; // Diğer kullanıcı için koşula bağlı göster
 
 // Katıldığım etkinliklerin gösterilip gösterilmeyeceğini kontrol eder
     final showJoinedEvents = data!.isCurrentUser!
         ? true // Mevcut kullanıcı için her zaman göster
-        : !data!
+        : data!
             .isHideEventJoinedUserToCurrentUser!; // Diğer kullanıcı için koşula bağlı göster
 
     return data != null &&
@@ -65,6 +67,7 @@ class ProfilContent extends HookConsumerWidget {
           )
         : NestedScrollView(
             physics: const BouncingScrollPhysics(),
+            controller: controller,
             headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
               return <Widget>[
                 SliverToBoxAdapter(
@@ -177,6 +180,7 @@ class ProfilContent extends HookConsumerWidget {
         SlideProfilImage(
           images: data?.images,
           userId: userId,
+          currentUserID: data?.id,
           userTag: data?.userName,
           isFriends: data?.isFriend ?? false,
           isFollow: data?.isFollowed ?? false,

@@ -1395,9 +1395,11 @@ PODS:
     - Flutter
   - ua_client_hints (1.2.0):
     - Flutter
+  - uni_links2 (0.0.1):
+    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
-  - UXCam (3.6.14)
+  - UXCam (3.6.15)
   - vibration (1.7.5):
     - Flutter
   - video_player_avfoundation (0.0.1):
@@ -1453,6 +1455,7 @@ DEPENDENCIES:
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - twitter_login (from `.symlinks/plugins/twitter_login/ios`)
   - ua_client_hints (from `.symlinks/plugins/ua_client_hints/ios`)
+  - uni_links2 (from `.symlinks/plugins/uni_links2/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
   - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/darwin`)
@@ -1594,6 +1597,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/twitter_login/ios"
   ua_client_hints:
     :path: ".symlinks/plugins/ua_client_hints/ios"
+  uni_links2:
+    :path: ".symlinks/plugins/uni_links2/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   vibration:
@@ -1694,8 +1699,9 @@ SPEC CHECKSUMS:
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
   ua_client_hints: 5887fe166a59d944cbade5eb84d60c4e417b4f55
+  uni_links2: fbc37081577fc19c6e0f7e6cdbd3baa150023635
   url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812
-  UXCam: 042b36c456c1b877c9852558353db5ac413e742d
+  UXCam: dab8e85b4c7fecdf09081d46b249099059a0451f
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
   video_player_avfoundation: 02011213dab73ae3687df27ce441fbbcc82b5579
   video_thumbnail: c4e2a3c539e247d4de13cd545344fd2d26ffafd1

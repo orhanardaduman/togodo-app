@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:togodo/core/component/input/custom_text_field.dart';
@@ -53,7 +54,7 @@ class _CustomMapPickerState extends ConsumerState<CustomMapPicker> {
     super.dispose();
   }
 
-  LatLng currentLang = const LatLng(
+  lt.LatLng currentLang = const LatLng(
     41.0551,
     29.0216,
   );

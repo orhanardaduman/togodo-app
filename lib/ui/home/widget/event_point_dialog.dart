@@ -53,8 +53,10 @@ class _EventPointDialogState extends ConsumerState<EventPointDialog> {
                   height: 10,
                 ),
                 PrimaryText(
-                  l10n.eventRateText(widget.data.eventName ?? ""),
+                  l10n.eventRateText(widget.data.eventName ?? ''),
                   textAlign: TextAlign.center,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                   style: AppTextTheme().bodyXLarge.copyWith(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,

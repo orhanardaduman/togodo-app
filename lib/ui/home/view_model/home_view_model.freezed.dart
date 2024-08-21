@@ -196,7 +196,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
+class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
       {final List<EventModel> events = const [],
       final List<EventModel> eventsDaily = const [],
@@ -251,24 +251,8 @@ class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
   final int pagination;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'HomeState(events: $events, eventsDaily: $eventsDaily, isToday: $isToday, isShimmerShow: $isShimmerShow, loading: $loading, enableShowcase: $enableShowcase, dailyIndex: $dailyIndex, forYouIndex: $forYouIndex, pagination: $pagination)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'HomeState'))
-      ..add(DiagnosticsProperty('events', events))
-      ..add(DiagnosticsProperty('eventsDaily', eventsDaily))
-      ..add(DiagnosticsProperty('isToday', isToday))
-      ..add(DiagnosticsProperty('isShimmerShow', isShimmerShow))
-      ..add(DiagnosticsProperty('loading', loading))
-      ..add(DiagnosticsProperty('enableShowcase', enableShowcase))
-      ..add(DiagnosticsProperty('dailyIndex', dailyIndex))
-      ..add(DiagnosticsProperty('forYouIndex', forYouIndex))
-      ..add(DiagnosticsProperty('pagination', pagination));
   }
 
   @override

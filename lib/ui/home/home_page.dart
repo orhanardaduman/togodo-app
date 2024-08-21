@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:togodo/core/helpers/index.dart';
 import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/route/app_route.gr.dart';
@@ -28,12 +29,9 @@ class HomePage extends StatefulHookConsumerWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  PageController controller = PageController();
-
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final userType = ref.watch(userTypeStateNotifierProvider);
       initPlugin();
@@ -41,11 +39,13 @@ class _HomePageState extends ConsumerState<HomePage> {
         ref.read(homeViewModelProvider.notifier).fetchEventsGuest();
       } else {
         ref.read(notificationStateProvider.notifier).getHasUnread();
+        ref.read(notificationStateProvider.notifier).getHasUnreadMessage();
         ref.read(notificationStateProvider.notifier).hasNeededRatings(context);
         ref.read(userViewModelProvider).tokenCheck();
         ref.read(homeViewModelProvider.notifier)
               ..fetchEvents()
-              ..getEnableShowcase() /* .then(
+              ..getEnableShowcase()
+            /* .then(
           (value) => requestLocationService(
             ref.read(appThemeProvider),
             L10n.of(context)!,
@@ -73,7 +73,6 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 
@@ -90,12 +89,18 @@ class _HomePageState extends ConsumerState<HomePage> {
       top: false,
       child: Stack(
         children: [
-          PageView(
-            controller: controller,
+          PreloadPageView(
+            controller: notifier.mainController,
+            preloadPagesCount: 2,
             onPageChanged: (value) {
               notifier.changeToday(
-                isVal: !data.isToday,
+                isVal: value == 1,
               );
+              if (value == 0) {
+                notifier.fetchEvents();
+              } else {
+                notifier.fetchEventsDaily();
+              }
             },
             children: [
               body(
@@ -118,7 +123,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ],
           ),
           ReelsAppBar(
-            controller: controller,
+            controller: notifier.mainController,
             onTopMove: notifier.moveTop,
           ),
         ],
@@ -188,7 +193,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         log('======> Clicked on back arrow <======');
       },
       onIndexChanged: (index) {
-        if (index % 8 == 0) {
+        print(index);
+        if (index % 9 == 0) {
           if (userType == UserType.guest) {
             notifier.fetchEventsGuest();
           } else {

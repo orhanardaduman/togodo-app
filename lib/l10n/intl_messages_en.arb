@@ -285,6 +285,7 @@
   "eventCancelled": "The event you joined has been cancelled. Check out the alternative events we've prepared for you 🙌",
   "eventRequestToEventOwner": "wants to join your event 🏄‍♂️",
   "eventRequestAcceptByFriend": "He accepted his desire to participate in his event 🕺",
+  "eventRequestAcceptByFriendForFriend": "You accepted his desire to participate in his event 🕺",
   "friendRequestAccept": "He accepted his friendship request 👍",
   "friendRequestReject": "He rejected his friendship request🙌",
   "eventRequestToFriend": "invited to participate in the event together 🏃🏻",
@@ -573,11 +574,11 @@
   "ratingSaved": "Your rating saved.",
   "eventRated": "Your activity has rated",
   "eventRatedText": "Your event named {event_name} rated {star} star by {user_name}!",
-  "deletedEvent": "<deleted event>"
-
-
-
-
-
+  "deletedEvent": "<deleted event>",
+  "passwordDontMatch": "Passwords don't match",
+  "passwordMustBeLonger": "Password must be longer then 6 characters",
+  "shareStartOne": "We must attend this \uD83D\uDD7A",
+  "shareStartTwo": "Isint it great",
+  "shareStartThree": "Look what i found \uD83E\uDEA9"
 
 }

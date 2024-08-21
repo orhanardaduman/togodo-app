@@ -2,15 +2,20 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animarker/flutter_map_marker_animation.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_map/flutter_map.dart' as fm;
 import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
 import 'package:togodo/core/component/custom_shadow.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/features/map/new_map_picker/new_autocomplete_view.dart';
 import 'package:togodo/features/map/new_map_picker/new_map_picker.dart';
+
+import '../../data/model/event/map_loaction_model.dart';
+import '../../ui/discover/view/discovery_map.dart';
 
 class CustomMapLocationPicker extends StatefulWidget {
   const CustomMapLocationPicker({
@@ -47,7 +52,7 @@ class CustomMapLocationPicker extends StatefulWidget {
     this.getLocation,
     this.onSuggestionSelected,
     this.onNext,
-    this.currentLatLng = const LatLng(28.8993468, 76.6250249),
+    this.currentLatLng = const lt.LatLng(28.8993468, 76.6250249),
     this.hideBackButton = false,
     this.popOnNextButtonTaped = false,
     this.backButton,
@@ -198,7 +203,7 @@ class CustomMapLocationPicker extends StatefulWidget {
 
   /// currentLatLng init location for camera position
   /// currentLatLng: Location(lat: -33.852, lng: 151.211),
-  final LatLng? currentLatLng;
+  final lt.LatLng? currentLatLng;
 
   /// Location bounds for restricting results to a radius around a location
   /// location: Location(lat: -33.867, lng: 151.195)
@@ -257,7 +262,7 @@ class CustomMapLocationPicker extends StatefulWidget {
   /// hide bottom card (default: false)
   final bool hideBottomCard;
   final bool isDarkTheme;
-  final Set<Marker>? markers;
+  final Set<AbilityModel>? markers;
   final void Function(CameraPosition)? onCameraMove;
   @override
   State<CustomMapLocationPicker> createState() =>
@@ -267,9 +272,10 @@ class CustomMapLocationPicker extends StatefulWidget {
 class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
   /// Map controller for movement & zoom
   final Completer<GoogleMapController> _controller = Completer();
+  final fm.MapController controllerMap = fm.MapController();
 
   /// initial latitude & longitude
-  late LatLng _initialPosition = currentLocation;
+  late lt.LatLng _initialPosition = currentLocation;
 
   /// initial address text
   late String _address = 'Tap on map to get address';
@@ -305,7 +311,89 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
       child: Scaffold(
         body: Stack(
           children: [
-            Animarker(
+            //https://mt0.google.com/vt/lyrs=m@221097413,traffic,transit,bike&x={x}&y={y}&z={z}
+
+            fm.FlutterMap(
+              mapController: controllerMap,
+              options: fm.MapOptions(
+                minZoom: 5,
+                maxZoom: 18,
+                initialZoom: 16,
+                initialCenter: _initialPosition,
+              ),
+              children: [
+                fm.TileLayer(
+                  urlTemplate:
+                      'https://mt0.google.com/vt/lyrs=m@221097413&x={x}&y={y}&z={z}',
+                ),
+                if (widget.markers != null)
+                  fm.MarkerLayer(
+                    markers: [
+                      for (var i in widget.markers!)
+                        fm.Marker(
+                          key: Key(i.id ?? '0'),
+                          point: i.location ?? const lt.LatLng(0, 0),
+                          width: 100,
+                          height: 100,
+                          alignment: Alignment.topCenter,
+                          child: i.isCurrent == true
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(40),
+                                  child: RippleAnimation(
+                                    color: MainColors.primary,
+                                    delay: const Duration(milliseconds: 300),
+                                    repeat: true,
+                                    minRadius: 32,
+                                    ripplesCount: 6,
+                                    duration:
+                                        const Duration(milliseconds: 6 * 300),
+                                    child: Center(
+                                      child: InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: const BoxDecoration(
+                                            color: MainColors.primary,
+                                            shape: BoxShape.circle,
+                                            border: Border.fromBorderSide(
+                                              BorderSide(
+                                                color: MainColors.primary,
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            child: Image.network(
+                                              i.iconPath ?? '',
+                                              errorBuilder: (c, s, a) {
+                                                return Container(
+                                                  color: Colors.black,
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : GestureDetector(
+                                  onTap: () {
+                                    i.onTap?.call();
+                                  },
+                                  child: BubbleWithArrow(
+                                    name: i.iconPath ?? '',
+                                  ),
+                                ),
+                        ),
+                    ],
+                  )
+              ],
+            ),
+            /* Animarker(
               rippleRadius: 0.2,
               curve: Curves.bounceOut,
               rippleColor: MainColors.primary,
@@ -313,6 +401,7 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                   const Duration(milliseconds: 2500), //Pulse ripple duration
               mapId: _controller.future.then<int>((value) => value.mapId),
               markers: widget.markers ?? {},
+
 
               child: GoogleMap(
                 minMaxZoomPreference: widget.minMaxZoomPreference,
@@ -346,7 +435,7 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                 compassEnabled: widget.compassEnabled,
                 liteModeEnabled: widget.liteModeEnabled,
               ),
-            ),
+            ),*/
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -391,7 +480,7 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                         log('placesDetails is null');
                         return;
                       }
-                      _initialPosition = LatLng(
+                      _initialPosition = lt.LatLng(
                         placesDetails.result.geometry?.location.lat ?? 0,
                         placesDetails.result.geometry?.location.lng ?? 0,
                       );
@@ -513,7 +602,7 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                                         await Geolocator.getCurrentPosition(
                                       desiredAccuracy: widget.desiredAccuracy,
                                     );
-                                    final latLng = LatLng(
+                                    final latLng = lt.LatLng(
                                       position.latitude,
                                       position.longitude,
                                     );
@@ -623,8 +712,16 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
 
   /// Camera position moved to location
   CameraPosition cameraPosition() {
+    /*
     return CameraPosition(
       target: _initialPosition,
+      zoom: _zoom,
+    );*/
+    return CameraPosition(
+      target: LatLng(
+        _initialPosition.latitude,
+        _initialPosition.longitude,
+      ),
       zoom: _zoom,
     );
   }

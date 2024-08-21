@@ -213,11 +213,12 @@ class NotificationItemView extends HookConsumerWidget {
                           ),
                         )
                       else if (data.type == 'EventRequestAcceptByEventOwner' ||
-                          data.type == 'EventRequestAcceptByFriend')
+                          data.type == 'EventRequestAcceptByFriend' ||
+                          data.type == 'EventRequestAcceptByFriendForFriend')
                         RichText(
                           text: TextSpan(
                             children: [
-                              if (data.type != 'EventRequestAcceptByFriend')
+                              if (data.type == 'EventRequestAcceptByEventOwner')
                                 TextSpan(
                                   text: '${data.user!.name},',
                                   style: theme.textTheme.bodySmall.copyWith(

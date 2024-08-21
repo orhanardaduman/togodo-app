@@ -1,9 +1,10 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:togodo/core/network/firebase/firebase_collections.dart';
 import 'package:togodo/core/notification/local_notification_service.dart';
 import 'package:togodo/core/notification/notification_model.dart';
@@ -44,11 +45,18 @@ class HomeViewModel extends StateNotifier<HomeState> {
   final Ref _ref;
   bool _isDisposed = false;
   late final HomeRepository _repository = _ref.read(homeRepositoryProvider);
-  SwiperController forYouController = SwiperController();
-  SwiperController dailyController = SwiperController();
+  PreloadPageController forYouController = PreloadPageController(
+    keepPage: false,
+  );
+  PreloadPageController dailyController = PreloadPageController(
+    keepPage: false,
+  );
+  PreloadPageController mainController = PreloadPageController(
+    keepPage: true,
+  );
   Future<void> fetchEvents() async {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
-    state = state.copyWith(loading: true);
+    state = state.copyWith(loading: false);
     final result = await _repository.getTimelineEvents(
       pagination: 0,
     );
@@ -59,13 +67,13 @@ class HomeViewModel extends StateNotifier<HomeState> {
         isShimmerShow: false,
         pagination: 1,
       );
-      Future.delayed(
+      /* Future.delayed(
         const Duration(seconds: 2),
         () async {
           await fetchEventsDaily();
           await initLocalNotification();
         },
-      );
+      );*/
     } else {
       state = state.copyWith(loading: false);
     }
@@ -261,7 +269,18 @@ class HomeViewModel extends StateNotifier<HomeState> {
         ...state.events,
       ],
       loading: false,
+      isToday: false,
     );
+
+    mainController.animateToPage(
+      0,
+      duration: const Duration(
+        milliseconds: 200,
+      ),
+      curve: Curves.easeInOut,
+    );
+
+    moveTop();
   }
 
   void updateEvent(EventModel updatedData) {
@@ -542,6 +561,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
 
   Future<bool> removeEvent(String id) {
     incrementRemoveEvent(id);
+
     return _repository.removeEvent(id).then((result) {
       return result.isSuccess;
     });
@@ -638,9 +658,21 @@ class HomeViewModel extends StateNotifier<HomeState> {
 
   void moveTop() {
     if (state.isToday) {
-      dailyController.move(0);
+      dailyController.animateToPage(
+        0,
+        duration: const Duration(
+          milliseconds: 200,
+        ),
+        curve: Curves.easeInOut,
+      );
     } else {
-      forYouController.move(0);
+      forYouController.animateToPage(
+        0,
+        duration: const Duration(
+          milliseconds: 200,
+        ),
+        curve: Curves.easeInOut,
+      );
     }
   }
 

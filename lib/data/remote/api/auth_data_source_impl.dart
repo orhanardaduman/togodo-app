@@ -27,6 +27,7 @@ class AuthDataSourceImpl extends ChangeNotifier implements AuthDataSource {
   @override
   Future<firebase.User?> signInGoogle() async {
     try {
+      await GoogleSignIn().signOut();
       final account = await GoogleSignIn().signIn();
       if (account == null) {
         return throw StateError('Maybe user canceled.');

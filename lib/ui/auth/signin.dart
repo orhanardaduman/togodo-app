@@ -36,6 +36,18 @@ class _SigninPageState extends ConsumerState<SigninPage>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    final model = ref.read(userViewModelProvider);
+    model.passwordController.addListener(() {
+      setState(() {});
+    });
+    model.emailController.addListener(() {
+      setState(() {});
+    });
+  }
+
   Container _signUpButton(
     UserViewModel model,
     StackRouter router,
@@ -49,7 +61,7 @@ class _SigninPageState extends ConsumerState<SigninPage>
         onPressed: model.phoneController.text.isNotEmpty ||
                 (model.emailController.text.isNotEmpty &&
                     model.passwordController.text.isNotEmpty &&
-                    model.passwordController.text.length > 6)
+                    model.passwordController.text.length >= 6)
             ? () async {
                 if (_formKey.currentState!.validate()) {
                   if (!model.isEmail) {

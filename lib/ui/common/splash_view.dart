@@ -9,6 +9,7 @@ import 'package:open_store/open_store.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
 import 'package:togodo/core/component/modal/custom_modal.dart';
 import 'package:togodo/core/component/primary_text.dart';
+import 'package:togodo/core/constants/base_singelton.dart';
 import 'package:togodo/core/enums/cache_items.dart';
 import 'package:togodo/core/extension/device_size_extension.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
@@ -30,7 +31,7 @@ class SplashViewPage extends StatefulHookConsumerWidget {
 }
 
 class _SplashViewPageState extends ConsumerState<SplashViewPage>
-    with _SplashViewListenMixin {
+    with _SplashViewListenMixin, BaseSingleton {
   final splashProvider =
       StateNotifierProvider<SplashProvider, SplashState>((ref) {
     return SplashProvider();
@@ -83,7 +84,7 @@ mixin _SplashViewListenMixin on ConsumerState<SplashViewPage> {
   void listenAndNavigate(
     StateNotifierProvider<SplashProvider, SplashState> provider,
     L10n l10n,
-  ) {
+  ) async {
     final router = useRouter();
     ref.read(userTypeStateNotifierProvider.notifier).setUserType(UserType.user);
     ref.listen(provider, (previous, next) {

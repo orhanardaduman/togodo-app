@@ -26,8 +26,10 @@ class CustomTextField extends StatefulHookConsumerWidget {
     this.isPrefixColor = true,
     this.isFillColor = true,
     this.isRegExp = false,
+    this.isError,
     this.onSuffixTap,
     this.onTap,
+    this.padding,
     this.focusNode,
     this.onChanged,
     this.prefixIconWidget,
@@ -38,6 +40,7 @@ class CustomTextField extends StatefulHookConsumerWidget {
     this.maxLength,
     this.onSaved,
     this.useIos = false,
+    this.validation,
   });
   final String label;
   final String? prefixIcon;
@@ -46,6 +49,9 @@ class CustomTextField extends StatefulHookConsumerWidget {
   final bool useIos;
   final bool isReadOnly;
   final bool isPassword;
+  final bool? isError;
+  final String? Function(String? val)? validation;
+  final EdgeInsetsGeometry? padding;
   final int? minLines;
   final int? maxLines;
   final TextEditingController controller;
@@ -87,7 +93,9 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
   }
 
   void _onTextChanged() {
-    _hasInput = widget.controller.text.isNotEmpty;
+    setState(() {
+      _hasInput = widget.controller.text.isNotEmpty;
+    });
   }
 
   void _onFocusChanged() {
@@ -99,7 +107,7 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
     final themeMode = ref.watch(appThemeModeProvider.notifier);
     final theme = ref.watch(appThemeProvider);
     final inputColor = widget.isEnabled
-        ? (_isError
+        ? ((_isError || true == widget.isError)
             ? MainColors.red
             : (_hasInput || _focusNode.hasFocus
                 ? MainColors.primary200
@@ -123,17 +131,22 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
       minLines: widget.minLines,
       maxLines: widget.maxLines ?? (widget.minLines ?? 1),
       // inputFormatters: widget.isRegExp ? [CustomTextInputFormatter()] : null,
-      validator: widget.isEnabled && widget.required
-          ? (value) {
-              if (value == null || value.isEmpty) {
-                _isError = true;
-                return l10n.requiredInput(widget.label);
-              } else {
-                _isError = false;
-              }
-              return null;
+      validator: widget.validation != null
+          ? (val) {
+              return widget.validation!(val);
             }
-          : null,
+          : widget.isEnabled && widget.required
+              ? (value) {
+                  if (value == null || value.isEmpty) {
+                    _isError = true;
+                    return l10n.requiredInput(widget.label);
+                  } else {
+                    _isError = false;
+                  }
+                  return null;
+                }
+              : null,
+
       style: widget.isEnabled
           ? theme.textTheme.bodyMedium.copyWith(
               color:

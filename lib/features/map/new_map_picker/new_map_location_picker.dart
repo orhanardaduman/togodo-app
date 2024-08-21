@@ -6,6 +6,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
 import 'package:togodo/core/component/custom_shadow.dart';
@@ -45,7 +46,7 @@ class NewMapLocationPicker extends StatefulWidget {
     this.getLocation,
     this.onSuggestionSelected,
     this.onNext,
-    this.currentLatLng = const LatLng(28.8993468, 76.6250249),
+    this.currentLatLng = const lt.LatLng(28.8993468, 76.6250249),
     this.hideBackButton = false,
     this.popOnNextButtonTaped = false,
     this.backButton,
@@ -195,7 +196,7 @@ class NewMapLocationPicker extends StatefulWidget {
 
   /// currentLatLng init location for camera position
   /// currentLatLng: Location(lat: -33.852, lng: 151.211),
-  final LatLng? currentLatLng;
+  final lt.LatLng? currentLatLng;
 
   /// Location bounds for restricting results to a radius around a location
   /// location: Location(lat: -33.867, lng: 151.195)
@@ -237,7 +238,7 @@ class NewMapLocationPicker extends StatefulWidget {
   final TextEditingController? searchController;
 
   /// Add your own custom markers
-  final Map<String, LatLng>? additionalMarkers;
+  final Map<String, lt.LatLng>? additionalMarkers;
 
   /// Safe area parameters (default: true)
   final bool bottom;
@@ -263,7 +264,7 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
   final Completer<GoogleMapController> _controller = Completer();
 
   /// initial latitude & longitude
-  late LatLng _initialPosition = const LatLng(28.8993468, 76.6250249);
+  late lt.LatLng _initialPosition = const lt.LatLng(28.8993468, 76.6250249);
 
   /// initial address text
   late String _address = 'Tap on map to get address';
@@ -288,7 +289,10 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
             .map(
               (e) => Marker(
                 markerId: MarkerId(e.key),
-                position: e.value,
+                position: LatLng(
+                  e.value.latitude,
+                  e.value.longitude,
+                ),
               ),
             )
             .toList() ??
@@ -298,7 +302,10 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
     markers.add(
       Marker(
         markerId: const MarkerId('one'),
-        position: _initialPosition,
+        position: LatLng(
+          _initialPosition.latitude,
+          _initialPosition.longitude,
+        ),
       ),
     );
     return WillPopScope(
@@ -320,11 +327,15 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
                 _zoom = position.zoom;
               },
               initialCameraPosition: CameraPosition(
-                target: _initialPosition,
+                target: LatLng(
+                  _initialPosition.latitude,
+                  _initialPosition.longitude,
+                ),
                 zoom: _zoom,
               ),
               onTap: (LatLng position) async {
-                _initialPosition = position;
+                _initialPosition =
+                    lt.LatLng(position.latitude, position.longitude);
                 final controller = await _controller.future;
                 await controller.animateCamera(
                   CameraUpdate.newCameraPosition(cameraPosition()),
@@ -341,7 +352,8 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
               markers: {
                 Marker(
                   markerId: const MarkerId('one'),
-                  position: _initialPosition,
+                  position: LatLng(
+                      _initialPosition.latitude, _initialPosition.longitude),
                 ),
               },
               myLocationButtonEnabled: false,
@@ -395,7 +407,7 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
                       log('placesDetails is null');
                       return;
                     }
-                    _initialPosition = LatLng(
+                    _initialPosition = lt.LatLng(
                       placesDetails.result.geometry?.location.lat ?? 0,
                       placesDetails.result.geometry?.location.lng ?? 0,
                     );
@@ -447,7 +459,7 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
                             desiredAccuracy: widget.desiredAccuracy,
                           );
                           final latLng =
-                              LatLng(position.latitude, position.longitude);
+                              lt.LatLng(position.latitude, position.longitude);
                           _initialPosition = latLng;
                           final controller = await _controller.future;
                           await controller.animateCamera(
@@ -567,7 +579,7 @@ class _NewMapLocationPickerState extends State<NewMapLocationPicker> {
   /// Camera position moved to location
   CameraPosition cameraPosition() {
     return CameraPosition(
-      target: _initialPosition,
+      target: LatLng(_initialPosition.latitude, _initialPosition.longitude),
       zoom: _zoom,
     );
   }

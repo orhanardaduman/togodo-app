@@ -36,6 +36,13 @@ class NotificationState extends StateNotifier<NotificationModel> {
     } catch (_) {}
   }
 
+  Future<void> getHasUnreadMessage() async {
+    final result = await _repository.getUserHasUnreadMessage();
+    try {
+      state = state.copyWith(newMessage: result.dataOrThrow == 'true');
+    } catch (_) {}
+  }
+
   Future<void> hasNeededRatings(BuildContext parentContext) async {
     final result = await _repository.getHasRatingNeeded();
     try {

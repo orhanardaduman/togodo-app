@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,8 +13,9 @@ import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 
-class MessagePopUpWidget extends HookConsumerWidget {
+class MessagePopUpWidget extends StatefulHookConsumerWidget {
   const MessagePopUpWidget({
+    super.key,
     required this.imgUrl,
     required this.name,
     required this.message,
@@ -20,7 +23,6 @@ class MessagePopUpWidget extends HookConsumerWidget {
     required this.userId,
     required this.isGroup,
     required this.type,
-    super.key,
   });
   final String name;
   final String imgUrl;
@@ -29,9 +31,50 @@ class MessagePopUpWidget extends HookConsumerWidget {
   final String userId;
   final String isGroup;
   final String type;
+  @override
+  ConsumerState<MessagePopUpWidget> createState() => _MessagePopUpWidgetState();
+}
+
+class _MessagePopUpWidgetState extends ConsumerState<MessagePopUpWidget> {
+  String formatMessageContent(String message, L10n l10n, String type) {
+    switch (type) {
+      case 'ImageMessage':
+        return l10n.receivedPhoto;
+      case 'VideoMessage':
+        return l10n.receivedVideo;
+      case 'EventShareMessage':
+        return l10n.receivedEvent;
+      case 'AudioMessage':
+        return l10n.receivedAudio;
+      case 'EventRequestMessage':
+        return l10n.receivedEventInvitation;
+      default:
+        return message;
+    }
+  }
+
+  late Timer _timer;
+
+  void _schedule() {
+    _timer = Timer(const Duration(seconds: 2), () {
+      Navigator.pop(context);
+    });
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    _schedule();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final themeMode = ref.watch(appThemeModeProvider.notifier).isDark;
     final theme = ref.watch(appThemeProvider);
     final router = useRouter();
@@ -58,12 +101,12 @@ class MessagePopUpWidget extends HookConsumerWidget {
               onTap: () async {
                 await router.push(
                   ChatRoute(
-                    userId: userId,
-                    roomId: chatRoomId,
-                    name: name,
-                    imageUrl: imgUrl,
+                    userId: widget.userId,
+                    roomId: widget.chatRoomId,
+                    name: widget.name,
+                    imageUrl: widget.imgUrl,
                     isOnline: false,
-                    isGroup: isGroup == 'true',
+                    isGroup: widget.isGroup == 'true',
                   ),
                 );
                 Navigator.of(context).pop();
@@ -80,7 +123,7 @@ class MessagePopUpWidget extends HookConsumerWidget {
                 child: Row(
                   children: [
                     CustomAvatarImage(
-                      imageUrl: imgUrl,
+                      imageUrl: widget.imgUrl,
                       size: 48,
                     ),
                     const SizedBox(width: 16),
@@ -93,7 +136,7 @@ class MessagePopUpWidget extends HookConsumerWidget {
                                 .copyWith(color: theme.appColors.text),
                             children: <TextSpan>[
                               TextSpan(
-                                text: name,
+                                text: widget.name,
                                 style: theme.textTheme.bodyXLarge.copyWith(
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -105,9 +148,15 @@ class MessagePopUpWidget extends HookConsumerWidget {
                             ],
                           ),
                         ),
-                        PrimaryText(
-                          formatMessageContent(message, l10n, type),
-                          style: theme.textTheme.bodyMedium,
+                        SizedBox(
+                          width: 300,
+                          child: PrimaryText(
+                            formatMessageContent(
+                                widget.message, l10n, widget.type),
+                            style: theme.textTheme.bodyMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
@@ -119,22 +168,5 @@ class MessagePopUpWidget extends HookConsumerWidget {
         ),
       ),
     );
-  }
-
-  String formatMessageContent(String message, L10n l10n, String type) {
-    switch (type) {
-      case 'ImageMessage':
-        return l10n.receivedPhoto;
-      case 'VideoMessage':
-        return l10n.receivedVideo;
-      case 'EventShareMessage':
-        return l10n.receivedEvent;
-      case 'AudioMessage':
-        return l10n.receivedAudio;
-      case 'EventRequestMessage':
-        return l10n.receivedEventInvitation;
-      default:
-        return message;
-    }
   }
 }

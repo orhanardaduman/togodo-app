@@ -12,7 +12,7 @@ import 'package:togodo/ui/profile/view_model/profil_view_model.dart';
 
 @RoutePage()
 class UserProfilePage extends StatefulHookConsumerWidget {
-  const UserProfilePage({required this.userId, super.key});
+  const UserProfilePage({@PathParam('userId') required this.userId, super.key});
   final String userId;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>

@@ -32,6 +32,8 @@ extension NotificationTypeExtension on String {
         return l10n.eventCapacityReached;
       case 'EventRequestAcceptByFriend':
         return l10n.eventRequestAcceptByFriend;
+      case 'EventRequestAcceptByFriendForFriend':
+        return l10n.eventRequestAcceptByFriendForFriend;
       case 'FriendRequestAccept':
         return l10n.friendRequestAccept;
       case 'FriendRequestDecline':

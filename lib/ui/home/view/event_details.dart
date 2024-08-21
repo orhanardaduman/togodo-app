@@ -316,7 +316,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                if (model.events!.latitude != null &&
+                                if (model.events!.latitude != '0' &&
                                     (model.events?.onlineUrl == '' ||
                                         model.events?.onlineUrl == null))
                                   GestureDetector(

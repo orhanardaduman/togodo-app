@@ -145,7 +145,28 @@ class _ConceptImageState extends ConsumerState<ConceptImage> {
                 state.networkImg!.length,
                 (index) => GestureDetector(
                   onTap: () {
-                    model.setNetworkImageIsClick(
+                    var val = state.networkImg![index].isSelected ?? false;
+
+                    if (state.selectedAssetsAll != null &&
+                        state.selectedAssetsAll!.length == 5) {
+                      if (val == true) {
+                        model.removeAssetsModel(
+                          state.networkImg![index].downloadUrl!,
+                        );
+                      }
+                    } else {
+                      if (val == true) {
+                        model.removeAssetsModel(
+                          state.networkImg![index].downloadUrl!,
+                        );
+                      } else {
+                        model.selectAllAssets(
+                          url: state.networkImg![index].downloadUrl,
+                          isNetwork: true,
+                        );
+                      }
+                    }
+                    model.setNetworkImage(
                       state.networkImg![index].downloadUrl!,
                     );
                   },
@@ -153,31 +174,8 @@ class _ConceptImageState extends ConsumerState<ConceptImage> {
                     theme: theme,
                     imgUrl: state.networkImg![index].downloadUrl!,
                     isSelected: state.networkImg![index].isSelected ?? false,
-                    isClick: state.networkImg![index].isClick ?? false,
-                    onChanged: (val) {
-                      if (state.selectedAssetsAll != null &&
-                          state.selectedAssetsAll!.length == 5) {
-                        if (val == false) {
-                          model.removeAssetsModel(
-                            state.networkImg![index].downloadUrl!,
-                          );
-                        }
-                      } else {
-                        if (val == false) {
-                          model.removeAssetsModel(
-                            state.networkImg![index].downloadUrl!,
-                          );
-                        } else {
-                          model.selectAllAssets(
-                            url: state.networkImg![index].downloadUrl,
-                            isNetwork: val!,
-                          );
-                        }
-                      }
-                      model.setNetworkImage(
-                        state.networkImg![index].downloadUrl!,
-                      );
-                    },
+                    isClick: true,
+                    onChanged: (val) {},
                   ),
                 ),
               ),
@@ -249,17 +247,19 @@ class _ImageContainer extends StatelessWidget {
           if (isClick || isSelected)
             Transform.scale(
               scale: 1.2,
-              child: Checkbox(
-                value: isSelected,
-                checkColor: MainColors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
+              child: IgnorePointer(
+                child: Checkbox(
+                  value: isSelected,
+                  checkColor: MainColors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  activeColor: MainColors.primary,
+                  side: const BorderSide(
+                    color: MainColors.primary,
+                  ),
+                  onChanged: onChanged,
                 ),
-                activeColor: MainColors.primary,
-                side: const BorderSide(
-                  color: MainColors.primary,
-                ),
-                onChanged: onChanged,
               ),
             ),
         ],

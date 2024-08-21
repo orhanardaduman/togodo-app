@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:togodo/core/component/input/custom_text_field.dart';
@@ -13,7 +14,7 @@ import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/event/create_event_page.dart';
 import 'package:togodo/ui/settings/language_settings.dart';
 
-const currentLocation = LatLng(
+const currentLocation = lt.LatLng(
   41.0551,
   29.0216,
 );
@@ -29,14 +30,14 @@ class NewCustomMapPicker extends StatefulHookConsumerWidget {
   final String label;
   final dynamic Function(GeocodingResult?)? onChange;
   final TextEditingController locationController;
-  final LatLng? initLocation;
+  final lt.LatLng? initLocation;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _NewCustomMapPickerState();
 }
 
 class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
-  late LatLng selectedLocation;
+  late lt.LatLng selectedLocation;
   @override
   void initState() {
     show();
@@ -47,7 +48,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
     selectedLocation = await getCurrentLocation();
   }
 
-  Future<LatLng> getCurrentLocation() async {
+  Future<lt.LatLng> getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -63,7 +64,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         // İzinler reddedildiyse hata fırlat
-        return const LatLng(
+        return const lt.LatLng(
           41.0551,
           29.0216,
         );
@@ -72,7 +73,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
 
     if (permission == LocationPermission.deniedForever) {
       // İzinler kalıcı olarak reddedildiyse hata fırlat
-      return const LatLng(
+      return const lt.LatLng(
         41.0551,
         29.0216,
       );
@@ -80,7 +81,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
 
     // Mevcut konumu al
     final location = await Geolocator.getCurrentPosition();
-    return LatLng(location.latitude, location.longitude);
+    return lt.LatLng(location.latitude, location.longitude);
   }
 
   @override
@@ -120,7 +121,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
                   ],
                   currentLatLng: selectedLocation,
                   onDecodeAddress: (GeocodingResult? result) {
-                    selectedLocation = LatLng(
+                    selectedLocation = lt.LatLng(
                       result!.geometry.location.lat,
                       result.geometry.location.lng,
                     );
@@ -130,7 +131,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
                     setState(() {});
                   },
                   onNext: (GeocodingResult? result) {
-                    selectedLocation = LatLng(
+                    selectedLocation = lt.LatLng(
                       result!.geometry.location.lat,
                       result.geometry.location.lng,
                     );
@@ -140,7 +141,7 @@ class _NewCustomMapPickerState extends ConsumerState<NewCustomMapPicker> {
                     setState(() {});
                   },
                   onSuggestionSelected: (PlacesDetailsResponse? result) {
-                    selectedLocation = LatLng(
+                    selectedLocation = lt.LatLng(
                       result!.result.geometry!.location.lat,
                       result.result.geometry!.location.lng,
                     );

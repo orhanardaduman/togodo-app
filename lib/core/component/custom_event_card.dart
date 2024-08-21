@@ -213,19 +213,23 @@ class EnventCards extends HookConsumerWidget {
               ),
             ),
             const SizedBox(width: 8),
-            SizedBox(
-              width: calculatedWidth - 90,
-              child: PrimaryText(
-                data?.vendorDetails?.name ?? 'Vendor Name',
-                maxLines: 1,
-                style: theme.textTheme.bodyMedium.copyWith(
-                  color: MainColors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: EventCardSize.large == size ? 14 : 10,
-                  overflow: TextOverflow.ellipsis,
+            if (data?.vendorDetails?.id !=
+                '8ebb12ec-05db-4230-aa9e-28af26600d93')
+              SizedBox(
+                width: calculatedWidth - 90,
+                child: PrimaryText(
+                  data?.vendorDetails?.imageUrl.toString() != ''
+                      ? data?.vendorDetails?.name ?? 'Vendor Name'
+                      : '',
+                  maxLines: 1,
+                  style: theme.textTheme.bodyMedium.copyWith(
+                    color: MainColors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: EventCardSize.large == size ? 14 : 10,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
         if (data?.name != null)

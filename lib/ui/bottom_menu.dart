@@ -62,6 +62,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
   bool _isEventRemoveShow = false;
   bool _isWonShowing = false;
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollControllerTwo = ScrollController();
 
   StreamSubscription<dynamic>? _streamSubscription;
   @override
@@ -70,7 +71,16 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
     final router = AutoRouter.of(context);
     _incomingLinkHandler(router);
     _initFCM();
+    //checkHasDeep(router);
   }
+
+  /* checkHasDeep(StackRouter router) async {
+    final link = await getInitialLink();
+    if (link != null) {
+      final uri = Uri.parse(link);
+      router.pushNamed(uri.path);
+    }
+  }*/
 
   void _incomingLinkHandler(StackRouter router) {
     // 1
@@ -79,6 +89,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
 
 // Subscribe to all events (initial link and further)
       _appLinks.uriLinkStream.listen((uri) {
+        print("uri deneme  " + uri.toString());
         router.pushNamed(uri.path);
       });
       // 2
@@ -249,6 +260,8 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
   void dispose() {
     firebaseMessaging.dispose();
     _scrollController.dispose();
+    _scrollControllerTwo.dispose();
+
     _streamSubscription?.cancel();
 
     super.dispose();
@@ -269,11 +282,12 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
         DiscoverRoute(),
         CreateEventRoute(),
         const LikesRoute(),
-        ProfileRoute(),
+        ProfileRoute(controller: _scrollControllerTwo),
       ],
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBarMenu(
           tabsRouter: tabsRouter,
+          controllerTwo: _scrollControllerTwo,
           controller: _scrollController,
         );
       },
@@ -285,11 +299,12 @@ class BottomNavigationBarMenu extends HookConsumerWidget {
   const BottomNavigationBarMenu({
     required this.tabsRouter,
     required this.controller,
+    required this.controllerTwo,
     super.key,
   });
 
   final TabsRouter tabsRouter;
-  final ScrollController controller;
+  final ScrollController controller, controllerTwo;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -414,9 +429,24 @@ class BottomNavigationBarMenu extends HookConsumerWidget {
         BottomNavigationBarItem(
           backgroundColor: color,
           icon: tabsRouter.activeIndex == 4
-              ? Assets.icons.bold.profile.svg(
-                  color: theme.appColors.themeColor,
-                  width: 24,
+              ? InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    /*bottomMenuState.updateBottomMenu(!bottomMenuModel);
+                    if (bottomMenuModel) {
+                    }*/
+                    controllerTwo.animateTo(
+                      0,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeInOut,
+                    );
+                    //indicator.currentState?.show(atTop: true);
+                  },
+                  child: Assets.icons.bold.profile.svg(
+                    color: theme.appColors.themeColor,
+                    width: 24,
+                  ),
                 )
               : Assets.icons.lightOutline.profile.svg(
                   color: MainColors.grey500,

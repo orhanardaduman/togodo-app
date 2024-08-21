@@ -1,14 +1,15 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:togodo/core/component/custom_refresher.dart';
 import 'package:togodo/data/model/event/event_model.dart';
 import 'package:togodo/ui/common/welcome.dart';
 import 'package:togodo/ui/home/reels/components/guest_event_button.dart';
 import 'package:togodo/ui/home/reels/components/reels_bottom_button.dart';
 import 'package:togodo/ui/home/reels/reels_page.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
+
+import '../../../core/component/custom_refresher.dart';
 
 class ReelsViewer extends HookConsumerWidget {
   const ReelsViewer({
@@ -59,7 +60,7 @@ class ReelsViewer extends HookConsumerWidget {
 
   /// function invoke when user click on back btn
   final void Function()? onClickBackArrow;
-  final SwiperController controller;
+  final PreloadPageController controller;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(homeViewModelProvider.notifier);
@@ -67,15 +68,15 @@ class ReelsViewer extends HookConsumerWidget {
     final refreshController = RefreshController();
     final index = (model.isToday ? model.dailyIndex : model.forYouIndex);
     final userType = ref.watch(userTypeStateNotifierProvider);
-
     return Stack(
       children: [
         Padding(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).size.height * .1,
           ),
-          child: Swiper(
-            loop: false,
+          child: PreloadPageView.builder(
+            preloadPagesCount: 3,
+            //loop: false,
             itemBuilder: (BuildContext context, int index) {
               return /* _index != 0 && _index & 5 == 0
                   ? QuizView(
@@ -93,7 +94,13 @@ class ReelsViewer extends HookConsumerWidget {
                               notifier.fetchEvents();
                             }
                           },
-                          onLoading: controller.next,
+                          onLoading: () {
+                            controller.animateToPage(
+                              1,
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.easeInOut,
+                            );
+                          },
                           enablePullUp: true,
                           child: reelsMain(index),
                         )
@@ -102,7 +109,7 @@ class ReelsViewer extends HookConsumerWidget {
             controller: controller,
             itemCount: reelsList.length,
             scrollDirection: Axis.vertical,
-            onIndexChanged: (value) {
+            onPageChanged: (value) {
               notifier.addIndex(value);
               onIndexChanged?.call(value);
             },
@@ -130,7 +137,7 @@ class ReelsViewer extends HookConsumerWidget {
       onLike: onLike,
       onTap: onTap,
       onShare: onShare,
-      swiperController: controller,
+      //swiperController: controller,
     );
   }
 }

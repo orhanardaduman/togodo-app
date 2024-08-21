@@ -5,6 +5,7 @@ import 'package:togodo/data/model/profil/user_search_model.dart';
 import 'package:togodo/data/repository/home_repository.dart';
 import 'package:togodo/data/repository/home_repository_impl.dart';
 import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
+
 part 'evet_join_with_friends_view_model.freezed.dart';
 
 final eventJoinedWithFriendsViewModelProvider = StateNotifierProvider.family
@@ -114,23 +115,33 @@ class EventJoinedWithFriendsViewModel
   }
 
   Future<bool> createInviteToFriend(String id) {
-    return _repository.createInviteToFriend(eventId, id).then((result) {
-      result.ifSuccess((data) async {
-        incrementChangeStatus(id);
+    incrementChangeStatus(id);
 
-        if (_isDisposed) return;
-      });
+    return _repository.createInviteToFriend(eventId, id).then((result) {
+      result
+        ..ifSuccess((data) async {
+          if (_isDisposed) return;
+        })
+        ..ifFailure((data) {
+          incrementChangeStatus(id);
+          if (_isDisposed) return;
+        });
       return result.isSuccess;
     });
   }
 
   Future<bool> removeInviteToFriend(String id) {
-    return _repository.removeInviteToFriend(eventId, id).then((result) {
-      result.ifSuccess((data) async {
-        incrementChangeStatus(id);
+    incrementChangeStatus(id);
 
-        if (_isDisposed) return;
-      });
+    return _repository.removeInviteToFriend(eventId, id).then((result) {
+      result
+        ..ifSuccess((data) async {
+          if (_isDisposed) return;
+        })
+        ..ifFailure((data) {
+          incrementChangeStatus(id);
+          if (_isDisposed) return;
+        });
       return result.isSuccess;
     });
   }

@@ -10,8 +10,9 @@ import 'package:togodo/ui/profile/widget/complete_popup_widget.dart';
 
 @RoutePage()
 class ProfilePage extends StatefulHookConsumerWidget {
-  const ProfilePage({super.key, this.userId});
+  const ProfilePage({super.key, this.userId, this.controller});
   final String? userId;
+  final ScrollController? controller;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ProfilePageState();
 }
@@ -85,6 +86,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
               data: viewModelState.profil,
               userId: widget.userId,
               tabController: _tabController,
+              controller: widget.controller,
             ),
     );
   }

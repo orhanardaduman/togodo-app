@@ -955,6 +955,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_map:
+    dependency: "direct main"
+    description:
+      name: flutter_map
+      sha256: cda8d72135b697f519287258b5294a57ce2f2a5ebf234f0e406aad4dc14c9399
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1381,6 +1389,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  hyper_lint:
+    dependency: transitive
+    description:
+      name: hyper_lint
+      sha256: "6d214b6e6e38d15f087ed9b67d461d026c9cdebb64c7a46cf1fb80350e536d33"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   image:
     dependency: transitive
     description:
@@ -1581,6 +1597,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.5.0"
+  latlong2:
+    dependency: "direct main"
+    description:
+      name: latlong2
+      sha256: "98227922caf49e6056f91b6c56945ea1c7b166f28ffcd5fb8e72fc0b453cc8fe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.1"
+  lists:
+    dependency: transitive
+    description:
+      name: lists
+      sha256: "4ca5c19ae4350de036a7e996cdd1ee39c93ac0a2b840f4915459b7d0a7d4ab27"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   loading_overlay:
     dependency: "direct main"
     description:
@@ -1661,6 +1693,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  mgrs_dart:
+    dependency: transitive
+    description:
+      name: mgrs_dart
+      sha256: fb89ae62f05fa0bb90f70c31fc870bcbcfd516c843fb554452ab3396f78586f7
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   mime:
     dependency: transitive
     description:
@@ -1942,6 +1982,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.4"
+  polylabel:
+    dependency: transitive
+    description:
+      name: polylabel
+      sha256: "41b9099afb2aa6c1730bdd8a0fab1400d287694ec7615dd8516935fa3144214b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   pool:
     dependency: transitive
     description:
@@ -1950,6 +1998,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  preload_page_view:
+    dependency: "direct main"
+    description:
+      name: preload_page_view
+      sha256: "488a10c158c5c2e9ba9d77e5dbc09b1e49e37a20df2301e5ba02992eac802b7a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  proj4dart:
+    dependency: transitive
+    description:
+      name: proj4dart
+      sha256: c8a659ac9b6864aa47c171e78d41bbe6f5e1d7bd790a5814249e6b68bc44324e
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   protobuf:
     dependency: transitive
     description:
@@ -2230,6 +2294,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  simple_ripple_animation:
+    dependency: "direct main"
+    description:
+      name: simple_ripple_animation
+      sha256: d654c4a4a4a61ec8cf52b7b06dcf1bcb311c98e0a1a98534c6355aca2a73b6fd
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.9"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -2475,6 +2547,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  uni_links2:
+    dependency: "direct main"
+    description:
+      name: uni_links2
+      sha256: e39fc8d1760750cd99a87dc8e870247b136132803e2e0bac53db6890292755c7
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.0+2"
+  uni_links2_platform_interface:
+    dependency: transitive
+    description:
+      name: uni_links2_platform_interface
+      sha256: "3d8db90639b7fb07c0e11b44bdc29c77deec9d9f22a389144fa95f67bd273975"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+2"
+  uni_links_web2:
+    dependency: transitive
+    description:
+      name: uni_links_web2
+      sha256: "7cdeddbca7b004f84f1f01e8e3f6225c49717b18f7be58c079e479ae6e654067"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0+2"
+  unicode:
+    dependency: transitive
+    description:
+      name: unicode
+      sha256: "0f69e46593d65245774d4f17125c6084d2c20b4e473a983f6e21b7d7762218f1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.1"
   universal_io:
     dependency: transitive
     description:
@@ -2723,6 +2827,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  widgets_to_image:
+    dependency: "direct main"
+    description:
+      name: widgets_to_image
+      sha256: "9a251b95d3a9f10d72420dde9b7e3b0da5eddd47fb19cad066bc68c60b0d1dfb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   win32:
     dependency: transitive
     description:
@@ -2739,6 +2851,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  wkt_parser:
+    dependency: transitive
+    description:
+      name: wkt_parser
+      sha256: "8a555fc60de3116c00aad67891bcab20f81a958e4219cc106e3c037aa3937f13"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   xdg_directories:
     dependency: transitive
     description:

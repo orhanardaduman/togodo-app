@@ -73,10 +73,6 @@ class AppRouter extends $AppRouter {
           ],
         ),
         AutoRoute(
-          path: '/userProfile/:profilId',
-          page: UserProfileRoute.page,
-        ),
-        AutoRoute(
           path: '/notification',
           page: NotificationRoute.page,
         ),
@@ -147,6 +143,10 @@ class AppRouter extends $AppRouter {
         AutoRoute(
           path: '/EventDetails/:eventId',
           page: EventDetailsRoute.page,
+        ),
+        AutoRoute(
+          path: '/userProfile/:userId',
+          page: UserProfileRoute.page,
         ),
         AutoRoute(
           path: '/blockUser',

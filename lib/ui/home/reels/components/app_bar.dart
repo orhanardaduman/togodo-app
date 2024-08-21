@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
 import 'package:togodo/core/extension/device_size_extension.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
@@ -26,7 +27,7 @@ class ReelsAppBar extends HookConsumerWidget {
     required this.onTopMove,
     super.key,
   });
-  final PageController controller;
+  final PreloadPageController controller;
   final void Function() onTopMove;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

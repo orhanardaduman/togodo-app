@@ -66,7 +66,7 @@ class _CreateEventSuccesPageState extends ConsumerState<CreateEventSuccesPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.pop(),
+      onTap: () => closePage,
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(24),

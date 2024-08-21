@@ -11,10 +11,11 @@ import 'package:togodo/core/helpers/utility.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/network/api/api_endpoint.dart';
 import 'package:togodo/core/theme/app_theme.dart';
-import 'package:togodo/features/component/custom_checkbox.dart';
 import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/event/view_model/create_event_view_model.dart';
 import 'package:togodo/ui/event/widget/index.dart';
+
+import '../widget/event_check_box.dart';
 
 class SecondStepView extends StatefulHookConsumerWidget {
   const SecondStepView({super.key, this.focusNode, this.isReview = false});
@@ -127,7 +128,7 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
           prefixIcon: Assets.icons.bold.threeUser.path,
           controller: model.userController,
         ),
-        CustomCheckBox(
+        CustomEventCheckBox(
           label: l10n.unlimited,
           isVal: state.isJoinUserLimited,
           onTap: model.changeJoinUser,
@@ -149,15 +150,22 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
           ),
           controller: model.eventController,
         ),
-        CustomTextField(
-          isEnabled: !state.isFree,
-          label: l10n.tickedUrl,
-          required: false,
-          keyboardType: TextInputType.url,
-          prefixIcon: Assets.icons.bold.link.path,
-          controller: model.linkController,
-        ),
-        CustomCheckBox(
+        if (!state.isFree)
+          CustomTextField(
+            isEnabled: !state.isFree,
+            label: l10n.tickedUrl,
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: 0,
+            ),
+            required: false,
+            keyboardType: TextInputType.url,
+            prefixIcon: Assets.icons.bold.link.path,
+            controller: model.linkController,
+          ),
+        CustomEventCheckBox(
           label: l10n.free,
           isVal: state.isFree,
           onTap: model.changeFree,
@@ -227,11 +235,11 @@ class _SecondStepViewState extends ConsumerState<SecondStepView> {
       () {
         model
           ..selectedEndDate = null
-          ..setEndDate();
+          ..setEndDate(true);
         Navigator.pop(context);
       },
       () {
-        model.setEndDate();
+        model.setEndDate(false);
         Navigator.pop(context);
       },
       isFinish: true,

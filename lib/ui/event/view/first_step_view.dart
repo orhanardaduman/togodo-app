@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:togodo/core/component/input/index.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/features/map/new_map_picker/new_map_picker.dart';
@@ -77,7 +77,7 @@ class _FirstStepViewState extends ConsumerState<FirstStepView> {
         if (!modelView.isOnline)
           NewCustomMapPicker(
             locationController: model.locationController,
-            initLocation: model.initLocation ?? const LatLng(0, 0),
+            initLocation: model.initLocation ?? const lt.LatLng(0, 0),
             label: model.address ?? l10n.location_label,
             onChange: model.updateLocation,
           ),

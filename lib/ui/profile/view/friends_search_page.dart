@@ -293,9 +293,11 @@ class UserInfoWidget extends HookConsumerWidget {
     required this.user,
     super.key,
     this.isRoute = true,
+    this.isExpanded = false,
   });
 
   final UserSearchModel user;
+  final bool isExpanded;
   final bool isRoute;
 
   @override
@@ -318,25 +320,52 @@ class UserInfoWidget extends HookConsumerWidget {
             imageUrl: user.imageUrl,
           ),
           const SizedBox(width: 16),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              PrimaryText(
-                user.name ?? '', // Replace with actual user's username
-                style: theme.textTheme.bodyLarge.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+          if (isExpanded)
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PrimaryText(
+                    user.name ?? '', // Replace with actual user's username
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodyLarge.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  PrimaryText(
+                    user.title ?? '', // Replace with actual user's username
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: MainColors.grey600,
+                    ),
+                  ),
+                ],
               ),
-              PrimaryText(
-                user.title ?? '', // Replace with actual user's username
-                style: theme.textTheme.bodySmall.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: MainColors.grey600,
+            )
+          else
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PrimaryText(
+                  user.name ?? '', // Replace with actual user's username
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyLarge.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-            ],
-          ),
+                PrimaryText(
+                  user.title ?? '', // Replace with actual user's username
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: MainColors.grey600,
+                  ),
+                ),
+              ],
+            ),
         ],
       ),
     );

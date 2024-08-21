@@ -287,6 +287,8 @@
   "eventCancelled": "Katıldığın etkinlik iptal oldu. Senin için hazırladığımız alternatif etkinliklere göz at 🙌",
   "eventRequestToEventOwner": "etkinliğine katılmak istiyor 🏄‍♂️",
   "eventRequestAcceptByFriend": "etkinliğine birlikte katılma isteğini kabul etti 🕺",
+  "eventRequestAcceptByFriendForFriend": "etkinliğine birlikte katılma isteğini kabul ettin 🕺",
+
   "friendRequestAccept": "ile artık arkadaşsınız 👍",
   "friendRequestReject": "arkadaşlık isteğini reddetti 🙌",
   "eventRequestToFriend": "etkinliğine beraber katılmaya davet etti 🏃🏻",
@@ -573,6 +575,10 @@
   "ratingSaved": "Değerlendirmen kaydedildi.",
   "eventRated": "Etkinliğiniz puanlandı",
   "eventRatedText": "{event_name} isimli etkinliğin {user_name} tarafından {star} yıldız aldı!",
-  "deletedEvent": "<silinmiş etkinlik>"
-
+  "deletedEvent": "<silinmiş etkinlik>",
+  "passwordDontMatch": "Şifreler uyuşmuyor",
+  "passwordMustBeLonger": "Şifre 6 harfden uzun olmalı",
+  "shareStartOne": "Bu etkinliği kaçırmayalım \uD83D\uDD7A",
+  "shareStartTwo": "Sence de çok iyi değil mi?",
+  "shareStartThree": "Bak ne buldum \uD83E\uDEA9"
 }

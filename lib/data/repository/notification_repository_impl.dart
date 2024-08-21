@@ -83,6 +83,13 @@ class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   @override
+  Future<Result<String>> getUserHasUnreadMessage() {
+    return Result.guardFuture(
+      () async => _dataSource.unreadCountMessage(),
+    );
+  }
+
+  @override
   Future<Result<List<EventRatingNeededModel>>> getHasRatingNeeded() {
     return Result.guardFuture(
       () async => _dataSource.neededRatings(),

@@ -9,7 +9,9 @@ class PrimaryText extends HookConsumerWidget {
     this.style,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
+  final TextOverflow? overflow;
   final String data;
   final TextStyle? style;
   final int? maxLines;
@@ -19,6 +21,7 @@ class PrimaryText extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     return Text(
       data,
+      overflow: overflow,
       maxLines: maxLines,
       textAlign: textAlign,
       style: style ??

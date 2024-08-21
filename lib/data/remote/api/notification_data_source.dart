@@ -38,6 +38,9 @@ abstract class NotificationDataSource {
   @GET('User/UnreadCount')
   Future<String> unreadCount();
 
+  @GET('User/UnreadCountMessage')
+  Future<String> unreadCountMessage();
+
   @GET('Event/UserRatingNeededEvents')
   Future<List<EventRatingNeededModel>> neededRatings();
 

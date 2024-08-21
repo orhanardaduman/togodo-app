@@ -38,7 +38,6 @@ class ProfilViewModel extends StateNotifier<ProfilState> {
   final String? userId;
   late final ProfilRepository _repository;
   bool _isDisposed = false;
-
   Future<void> fetchProfil() async {
     if (_isDisposed) return;
     state = state.copyWith(loading: true);

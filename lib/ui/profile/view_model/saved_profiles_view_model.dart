@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/data/repository/profil_repository.dart';
@@ -31,6 +32,12 @@ class SavedProfilesViewModel extends StateNotifier<SavedProfilesEventsState> {
   bool _isDisposed = false;
   late final ProfilRepository _repository = _ref.read(profilRepositoryProvider);
   final String? userId;
+  ScrollController sController = ScrollController();
+
+  scroolToTop() {
+    sController.animateTo(0,
+        duration: Duration(milliseconds: 200), curve: Curves.easeInOut);
+  }
 
   Future<void> fetchProfiles() async {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme

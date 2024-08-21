@@ -369,6 +369,7 @@ abstract class $AppRouter extends _i50.RootStackRouter {
         child: _i31.ProfilePage(
           key: args.key,
           userId: args.userId,
+          controller: args.controller,
         ),
       );
     },
@@ -458,7 +459,10 @@ abstract class $AppRouter extends _i50.RootStackRouter {
       );
     },
     UserProfileRoute.name: (routeData) {
-      final args = routeData.argsAs<UserProfileRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<UserProfileRouteArgs>(
+          orElse: () =>
+              UserProfileRouteArgs(userId: pathParams.getString('userId')));
       return _i50.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i43.UserProfilePage(
@@ -1506,12 +1510,14 @@ class ProfileRoute extends _i50.PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
     _i51.Key? key,
     String? userId,
+    _i51.ScrollController? controller,
     List<_i50.PageRouteInfo>? children,
   }) : super(
           ProfileRoute.name,
           args: ProfileRouteArgs(
             key: key,
             userId: userId,
+            controller: controller,
           ),
           initialChildren: children,
         );
@@ -1526,15 +1532,18 @@ class ProfileRouteArgs {
   const ProfileRouteArgs({
     this.key,
     this.userId,
+    this.controller,
   });
 
   final _i51.Key? key;
 
   final String? userId;
 
+  final _i51.ScrollController? controller;
+
   @override
   String toString() {
-    return 'ProfileRouteArgs{key: $key, userId: $userId}';
+    return 'ProfileRouteArgs{key: $key, userId: $userId, controller: $controller}';
   }
 }
 
@@ -1802,6 +1811,7 @@ class UserProfileRoute extends _i50.PageRouteInfo<UserProfileRouteArgs> {
             userId: userId,
             key: key,
           ),
+          rawPathParams: {'userId': userId},
           initialChildren: children,
         );
 

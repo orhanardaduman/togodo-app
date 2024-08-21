@@ -210,22 +210,29 @@ class DragCustomModal extends HookConsumerWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.9,
             width: MediaQuery.of(context).size.width,
-            child: SafeArea(
-              child: ListView(
-                padding: padding ??
-                    const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 5,
-                    ),
-                controller: controller,
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  const SizedBox(
-                    height: 80,
+            child: ClipRRect(
+              borderRadius: borderRadius ??
+                  const BorderRadius.only(
+                    topLeft: Radius.circular(52),
+                    topRight: Radius.circular(52),
                   ),
-                  child ?? const SizedBox(),
-                ],
+              child: SafeArea(
+                child: ListView(
+                  padding: padding ??
+                      const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 5,
+                      ),
+                  controller: controller,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    child ?? const SizedBox(),
+                  ],
+                ),
               ),
             ),
           ),

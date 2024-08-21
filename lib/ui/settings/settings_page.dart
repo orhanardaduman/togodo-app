@@ -21,8 +21,6 @@ import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
 import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../chat/services/connect_services.dart';
-
 @RoutePage()
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({required this.userType, super.key});

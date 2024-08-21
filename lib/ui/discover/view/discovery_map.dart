@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
 import 'package:togodo/core/component/button/custom_circle_button.dart';
@@ -41,7 +42,7 @@ class _DiscoveryMapViewPageState extends ConsumerState<DiscoveryMapViewPage> {
           notifier
             ..getPlace(value)
             ..setCurrentLocation(
-              MarkerModel(LatLng(value.latitude, value.longitude), '0'),
+              MarkerModel(lt.LatLng(value.latitude, value.longitude), '0'),
             )
             ..addAllMarkers(
                 value: value,
@@ -217,14 +218,15 @@ class BubbleWithArrow extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Assets.icons.social.customMarkes.svg(
-                width: 140,
+                width: 70,
               ),
               Positioned(
-                bottom: 50,
+                top: 0,
+                bottom: 10,
                 child: SvgPicture.asset(
                   name,
                   color: Colors.white,
-                  width: 90,
+                  width: 30,
                 ),
               ),
             ],

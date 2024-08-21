@@ -3,23 +3,21 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animarker/core/ripple_marker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
-import 'package:togodo/core/helpers/utility.dart';
 import 'package:togodo/data/model/event/discovery_map_model.dart';
 import 'package:togodo/data/model/profil/profil_model.dart';
 import 'package:togodo/data/repository/create_event_repository.dart';
 import 'package:togodo/data/repository/create_event_repository_impl.dart';
 import 'package:togodo/features/map/new_map_picker/new_map_picker.dart';
 import 'package:togodo/features/provider/tag_provider.dart';
-import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
-import 'package:widget_to_marker/widget_to_marker.dart';
 
-import '../view/discovery_map.dart';
+import '../../../data/model/event/map_loaction_model.dart';
+import '../../auth/viewmodel/user_view_model.dart';
 
 part 'discovery_map_view_model.freezed.dart';
 
@@ -35,11 +33,11 @@ class DiscoveryMapState with _$DiscoveryMapState {
     @Default(null) DiscoveryMapModel? selectedMap,
     @Default(0) int pagination,
     @Default(false) bool loading,
-    @Default(null) LatLng? currentLatLng,
+    @Default(null) lt.LatLng? currentLatLng,
     @Default(null) String? placeName,
-    @Default(null) Map<String, MarkerModel>? additionalMarkers,
+    @Default(null) Map<String, AbilityModel>? additionalMarkers,
     @Default(null) CameraPosition? position,
-    @Default(null) Set<Marker>? markers,
+    @Default(null) Set<AbilityModel>? markers,
     @Default(false) bool hideCard,
   }) = _DiscoveryMapState;
 }
@@ -125,7 +123,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
 
   Future<void> addAllMarkers(
     StackRouter router, {
-    LatLng? value,
+    lt.LatLng? value,
     bool isNewMark = true,
     String? initCity,
     required BuildContext context,
@@ -152,7 +150,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
     final result = await _repository.getDiscoverEventsMap(
       city: city,
     );
-    final newMarkers = <String, MarkerModel>{};
+    final newMarkers = <String, AbilityModel>{};
     print('data : ${result.dataOrThrow}');
     for (final element in result.dataOrThrow) {
       if (element.tags != null &&
@@ -160,12 +158,13 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
           element.latitude != null &&
           element.longitude != null) {
         if (element.tags.ext.isNotNullOrEmpty) {
-          newMarkers[element.tags!.first.id.toString()] = MarkerModel(
-            LatLng(
+          newMarkers[element.tags!.first.id.toString()] = AbilityModel(
+            location: lt.LatLng(
               double.parse(element.latitude!),
               double.parse(element.longitude!),
             ),
-            element.id!,
+            id: element.id,
+            isCurrent: false,
           );
         }
       }
@@ -173,12 +172,9 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
 
     // Mevcut marker'larla birleştirin
     final updatedMarkers =
-        Map<String, MarkerModel>.from(state.additionalMarkers ?? {})
+        Map<String, AbilityModel>.from(state.additionalMarkers ?? {})
           ..addAll(newMarkers);
-    final newMarkerList = <Marker>{};
-    final currentLocationIcon = await createCustomMarkerIconFromNetwork(
-      _ref.read(userViewModelProvider).profileImageUrl ?? '',
-    );
+    final newMarkerList = <AbilityModel>{};
     final hobyList = _ref
         .watch(hobyStateNotifierProvider(context))
         .where(
@@ -187,40 +183,28 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
         .toList();
     for (final entry in updatedMarkers.entries) {
       if (entry.key == 'currentLocation' &&
-          entry.value.coordinates != currentLocation) {
+          entry.value.location != currentLocation) {
         newMarkerList.add(
-          RippleMarker(
-            anchor: const Offset(0.5, 0.5),
-            markerId: MarkerId(entry.key),
-            icon: currentLocationIcon,
-            position: entry.value.coordinates,
-            onTap: () {
-              if (kDebugMode) {
-                print('Tapped! ');
-              }
-            },
+          AbilityModel(
+            location: entry.value.location,
+            isCurrent: true,
+            iconPath: _ref.read(userViewModelProvider).profileImageUrl ?? '',
           ),
         );
       } else {
         final iconPath = findIconPathByEntryKey(hobyList, entry.key);
         if (iconPath != null) {
           newMarkerList.add(
-            Marker(
-              anchor: const Offset(.5, .5),
-              flat: true,
-              markerId: MarkerId(entry.key),
-              position: entry.value.coordinates,
+            AbilityModel(
+              location: entry.value.location,
+              isCurrent: false,
+              id: entry.value.id,
+              iconPath: iconPath,
               onTap: () async {
                 await handleMarkerTap(
-                  entry.value.id,
+                  entry.value.id ?? '',
                 );
               },
-              icon: await BubbleWithArrow(
-                name: iconPath,
-              ).toBitmapDescriptor(
-                logicalSize: const Size(350, 350),
-                imageSize: const Size(350, 350),
-              ),
             ),
           );
         }
@@ -264,10 +248,10 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
     }
   }
 
-  void setAdditionalMarkers(String tag, MarkerModel latLng) {
+  void setAdditionalMarkers(String tag, AbilityModel latLng) {
     // Mevcut marker'ları koruyup yeni marker'ı ekleyin.
     final updatedMarkers =
-        Map<String, MarkerModel>.from(state.additionalMarkers ?? {})
+        Map<String, AbilityModel>.from(state.additionalMarkers ?? {})
           ..[tag] = latLng;
 
     // State'i güncellenmiş map ile güncelleyin.
@@ -278,12 +262,17 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
     state = state.copyWith(
       currentLatLng: latLng.coordinates,
       additionalMarkers: {
-        'currentLocation': latLng,
+        'currentLocation': AbilityModel(
+            isCurrent: true,
+            location: lt.LatLng(
+              latLng.coordinates.latitude,
+              latLng.coordinates.longitude,
+            )),
       },
     );
   }
 
-  Future<LatLng> determinePosition() async {
+  Future<lt.LatLng> determinePosition() async {
     loading();
     bool serviceEnabled;
     LocationPermission permission;
@@ -311,10 +300,10 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
     // Mevcut konumu alın
     log('location: $location');
 
-    return LatLng(location.latitude, location.longitude);
+    return lt.LatLng(location.latitude, location.longitude);
   }
 
-  Future<void> getPlace(LatLng position) async {
+  Future<void> getPlace(lt.LatLng position) async {
     try {
       final placemarks = await placemarkFromCoordinates(
         position.latitude,
@@ -349,6 +338,6 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
 
 class MarkerModel {
   MarkerModel(this.coordinates, this.id);
-  final LatLng coordinates;
+  final lt.LatLng coordinates;
   final String id;
 }

@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:togodo/core/constants/constants.dart';
@@ -96,7 +97,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
   String? Longitude;
   List<int> numberList = [];
   List<int> newIndexList = [];
-  LatLng? initLocation;
+  lt.LatLng? initLocation;
   String? draftId;
 
   void setupUserController() {
@@ -227,7 +228,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         }
         if (!data.isPrice!) eventController.text = data.price.toString();
         if (data.onlineUrl == null || data.onlineUrl == "") {
-          initLocation = LatLng(
+          initLocation = lt.LatLng(
             double.parse(data.latitude ?? '0.0'),
             double.parse(data.longitude ?? '0.0'),
           );
@@ -271,10 +272,11 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     final indexList = <int>[];
     final cropList = <bool>[];
     final aspectRatioList = <String>[];
-
+    final usedAssetModels = <SelectedAssetsModel>[];
     for (final file in state.selectedAssetsAll!
         .where((element) => element.localImage != null)
         .toList()) {
+      usedAssetModels.add(file);
       final fileName = file.localImage!.path.split('/').last;
       final multipartFile = await MultipartFile.fromFile(
         file.localImage!.path,
@@ -290,7 +292,12 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     }
     try {
       final listNetworkImage = state.selectedAssetsAll!
-          .where((element) => element.networkImage != null)
+          .where(
+            (element) =>
+                element.networkImage != null &&
+                element.localImage == null &&
+                !usedAssetModels.contains(element),
+          )
           .toList();
       final imageIndex = listNetworkImage.map((e) => e.index).toList();
       final imageUrl = listNetworkImage.map((e) => e.networkImage).toList();
@@ -637,8 +644,9 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            CropView(img.localImage?.path, (response, aspectRatioData) async {
+        builder: (context) => CropView(
+            img.localImage != null, img.localImage?.path ?? img.networkImage,
+            (response, aspectRatioData) async {
           if (response != null) {
             Navigator.pop(context);
             final tempDir = await getApplicationDocumentsDirectory();
@@ -656,6 +664,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
             var image = SelectedAssetsModel(
               index: img.index,
               localImage: file,
+              networkImage: img.networkImage,
               isCropped: true,
               aspectRatio: aspectRatioData,
             );
@@ -713,9 +722,12 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
     );
   }
 
-  void setEndDate() {
-    endDateController.text =
-        selectedEndDate == null ? "" : selectedEndDate!.formattedTime;
+  void setEndDate(bool isEmpty) {
+    endDateController.text = selectedEndDate == null
+        ? isEmpty
+            ? ""
+            : DateTime.now().add(const Duration(hours: 3)).formattedTime
+        : selectedEndDate!.formattedTime;
   }
 
   void setDate() {

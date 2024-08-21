@@ -112,13 +112,13 @@ class CustomImageBox extends HookConsumerWidget {
     // Duruma göre imageProvider'ı belirle
     final assets = getAssets();
 
-    if (assets != null && assets.networkImage != null) {
+    if (assets != null && assets.localImage != null) {
+      // Network listesinde nesne yoksa ama media listesinde varsa, onu kullan
+      imageProvider = FileImage(assets.localImage!);
+    } else if (assets != null && assets.networkImage != null) {
       isUrl = true;
       // Network listesinden bir nesne varsa, onu kullan
       imageProvider = NetworkImage(assets.networkImage!);
-    } else if (assets != null && assets.localImage != null) {
-      // Network listesinde nesne yoksa ama media listesinde varsa, onu kullan
-      imageProvider = FileImage(assets.localImage!);
     }
 
     DecorationImage? imageDecoration;
@@ -211,24 +211,23 @@ class CustomImageBox extends HookConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  if (assets?.localImage != null)
-                    InkWell(
-                      radius: 12.5,
-                      onTap: () async {
-                        // Eğer medya öğesi varsa, sil.
-                        if (index != null) {
-                          model.editAtIndex(
-                            index!,
-                            context,
-                          );
-                        }
-                      },
-                      child: Assets.icons.bold.edit.svg(
-                        color: MainColors.white,
-                        width: 15,
-                        height: 16.7,
-                      ),
+                  InkWell(
+                    radius: 12.5,
+                    onTap: () async {
+                      // Eğer medya öğesi varsa, sil.
+                      if (index != null) {
+                        model.editAtIndex(
+                          index!,
+                          context,
+                        );
+                      }
+                    },
+                    child: Assets.icons.bold.edit.svg(
+                      color: MainColors.white,
+                      width: 15,
+                      height: 16.7,
                     ),
+                  ),
                   InkWell(
                     radius: 12.5,
                     onTap: () async {

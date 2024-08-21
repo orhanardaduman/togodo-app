@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:auto_route/auto_route.dart';
@@ -179,6 +180,46 @@ Future<void> shareEventPlus(
     subject: eventDescription,
     sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
   );
+}
+
+Future<void> shareEventPlusWithImage(
+  String? image,
+  BuildContext context,
+  String eventName,
+  String eventDescription,
+  String url,
+  L10n l10n,
+) async {
+  final box = context.findRenderObject() as RenderBox?;
+  final splited = eventDescription.split(' ');
+
+  var starts = [
+    l10n.shareStartOne,
+    l10n.shareStartTwo,
+    l10n.shareStartThree,
+  ];
+  final random = Random();
+
+  final shareText = '${starts[random.nextInt(starts.length)]}\n'
+      '$eventName\n\n'
+      "${splited.sublist(0, splited.length > 12 ? 12 : splited.length)} ... *devamı togodo'da*\n\n"
+      '$url';
+  if (image != null) {
+    await Share.shareXFiles(
+      [
+        XFile(image),
+      ],
+      text: shareText,
+      subject: eventDescription,
+      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+    );
+  } else {
+    await Share.share(
+      shareText,
+      subject: eventDescription,
+      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+    );
+  }
 }
 
 void showShareDeleteInfo(
@@ -389,47 +430,38 @@ void showCustomModalBottomSheets(
     elevation: 0,
     isScrollControlled: true, // Bu tam ekran yükseklik için sayfayı izin verir.
     builder: (BuildContext context) {
-      return DraggableScrollableSheet(
-        expand: false,
-
-        initialChildSize: initialChildSize ??
-            (context.isSmallScrn ? 0.75 : 0.58), // Başlangıç boyutu
-        minChildSize: 0.3, // Minimum kaplayacağı boyut
-        builder: (_, controller) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: SingleChildScrollView(
-              controller: controller,
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: theme.mode == ThemeMode.light
-                          ? Colors.white
-                          : MainColors.dark2,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(16),
-                      ),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        ...children, // Kullanıcı tarafından sağlanan widget listesi
-                      ],
-                    ),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: theme.mode == ThemeMode.light
+                      ? Colors.white
+                      : MainColors.dark2,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(16),
                   ),
-                  const SizedBox(height: 22),
-                  CustomButton(
-                    text: l10n!.close,
-                    mode: ButtonMode.dark,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    ...children, // Kullanıcı tarafından sağlanan widget listesi
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+              const SizedBox(height: 22),
+              CustomButton(
+                text: l10n!.close,
+                mode: ButtonMode.dark,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
       );
     },
   );

@@ -12,11 +12,13 @@ import 'package:togodo/core/theme/app_theme.dart';
 
 class CropView extends StatefulHookConsumerWidget {
   const CropView(
+    this.isLocal,
     this.img,
     this.onSave, {
     super.key,
   });
   final String? img;
+  final bool isLocal;
   final Function(ui.Image? cropeed, String aspectRatio) onSave;
   @override
   ConsumerState<StatefulHookConsumerWidget> createState() => _CropViewState();
@@ -119,11 +121,15 @@ class _CropViewState extends ConsumerState<CropView> {
                         height: !isFit
                             ? MediaQuery.of(context).size.height
                             : (snapshot.maxWidth * controller.aspectRatio),
-                        child: Image.file(
-                          File(
-                            widget.img ?? '',
-                          ),
-                        ),
+                        child: widget.isLocal
+                            ? Image.file(
+                                File(
+                                  widget.img ?? '',
+                                ),
+                              )
+                            : Image.network(
+                                widget.img ?? '',
+                              ),
                       ),
                     );
                   },

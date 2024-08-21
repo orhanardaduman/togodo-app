@@ -242,7 +242,7 @@ class ChatEventRequestContent extends HookConsumerWidget {
             ),
             const SizedBox(width: 8),
             PrimaryText(
-              data.userFullName ?? 'Vendor Name',
+              data.userImageUrl == '' ? '' : data.userFullName ?? 'Vendor Name',
               style: theme.textTheme.bodyMedium.copyWith(
                 color: MainColors.white,
                 fontWeight: FontWeight.w700,

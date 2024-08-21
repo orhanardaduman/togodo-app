@@ -79,17 +79,20 @@ class OwnerIconPopupMenu extends HookConsumerWidget {
                         eventId,
                       );
                       if (page == 4) {
-                        router.pop().then(
-                          (value) {
-                            router.pop();
-                            ref
-                                .read(profilViewModelProvider(null).notifier)
-                                .fetchProfil();
-                          },
-                        );
+                        router
+                            .pushAndPopUntil(
+                          const HomeRoute(),
+                          predicate: (_) => false,
+                        )
+                            .then((value) {
+                          ref
+                              .read(profilViewModelProvider(null).notifier)
+                              .fetchProfil();
+                        });
                       } else {
-                        router.push(
+                        router.pushAndPopUntil(
                           const BottomMenuRoute(),
+                          predicate: (_) => false,
                         );
                       }
                     },

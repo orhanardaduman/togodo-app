@@ -28,6 +28,7 @@ import 'accounts_view.dart';
 
 class SlideProfilImage extends HookConsumerWidget {
   const SlideProfilImage({
+    this.currentUserID,
     super.key,
     this.userTag,
     this.images,
@@ -42,6 +43,8 @@ class SlideProfilImage extends HookConsumerWidget {
 
   final List<Images>? images;
   final String? userId;
+  final String? currentUserID;
+
   final String? userTag;
   final bool isBlock;
   final bool isFriends;
@@ -118,7 +121,9 @@ class SlideProfilImage extends HookConsumerWidget {
                     children: [
                       PrimaryText(
                         "@${userTag ?? " "}",
-                        style: AppTextTheme().h4,
+                        style: AppTextTheme().h4.copyWith(
+                              fontSize: 18,
+                            ),
                       ),
                       Assets.icons.bold.moreDownArrow.svg(
                         width: 24,
@@ -131,10 +136,38 @@ class SlideProfilImage extends HookConsumerWidget {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    router.push(
-                      SettingsRoute(
-                        userType: type,
-                      ),
+                    showCustomModalBottomSheets(
+                      context,
+                      initialChildSize: 0.3,
+                      [
+                        listTile(
+                          l10n.settings,
+                          () async {
+                            await router.pop().then(
+                                  (value) => router.push(
+                                    SettingsRoute(
+                                      userType: type,
+                                    ),
+                                  ),
+                                );
+                          },
+                          theme,
+                          isLast: isBlock,
+                        ),
+                        listTile(
+                          l10n.copyProfileUrl,
+                          isLast: true,
+                          () {
+                            copyLink(
+                              context,
+                              theme,
+                              'togodo.co/userProfile/$currentUserID',
+                            ).then((value) => router.pop());
+                          },
+                          theme,
+                        ),
+                      ],
+                      theme,
                     );
                   },
                   icon: Assets.icons.bold.setting.svg(
@@ -168,7 +201,9 @@ class SlideProfilImage extends HookConsumerWidget {
                   child: Center(
                     child: PrimaryText(
                       "@${userTag ?? " "}",
-                      style: AppTextTheme().h4,
+                      style: AppTextTheme().h4.copyWith(
+                            fontSize: 18,
+                          ),
                     ),
                   ),
                 ),
@@ -185,9 +220,9 @@ class SlideProfilImage extends HookConsumerWidget {
                         userType,
                       );
                     },
-                    icon: Assets.icons.bold.setting.svg(
-                      width: 24,
-                      height: 24,
+                    icon: Icon(
+                      Icons.more_horiz,
+                      size: 24,
                       color: MainColors.white,
                     ),
                   ),
@@ -209,11 +244,7 @@ class SlideProfilImage extends HookConsumerWidget {
   ) {
     return showCustomModalBottomSheets(
       context,
-      initialChildSize: isBlock
-          ? 0.3
-          : !isFriends
-              ? 0.3
-              : null,
+      initialChildSize: null,
       [
         listTile(
           l10n.joinedEventHide,
@@ -250,7 +281,7 @@ class SlideProfilImage extends HookConsumerWidget {
   ) {
     return showCustomModalBottomSheets(
       context,
-      initialChildSize: isBlock ? 0.4 : 0.5,
+      initialChildSize: isBlock ? 0.4 : 0.4,
       [
         listTile(
           isBlock ? l10n.unblock : l10n.block,

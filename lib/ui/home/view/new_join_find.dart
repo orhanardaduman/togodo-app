@@ -207,10 +207,12 @@ class _UserRowState extends ConsumerState<UserRow> {
     final l10n = useL10n();
     return Row(
       children: [
-        UserInfoWidget(
-          user: widget.user,
+        Expanded(
+          child: UserInfoWidget(
+            user: widget.user,
+            isExpanded: true,
+          ),
         ),
-        const Spacer(),
         SizedBox(
           width: 130,
           height: 38,
@@ -228,12 +230,12 @@ class _UserRowState extends ConsumerState<UserRow> {
                     color: MainColors.primary,
                   ),
                   onPressed: () {
+                    inrementStatus();
                     notifier
                         .removeInviteToFriend(widget.user.id!)
                         .then((value) {
-                      if (value) {
+                      if (!value) {
                         inrementStatus();
-                      } else {
                         showToast(
                           context,
                           'Hata oluştu. Lütfen tekrar deneyin.',
@@ -251,11 +253,11 @@ class _UserRowState extends ConsumerState<UserRow> {
                     color: MainColors.white,
                   ),
                   onPressed: () {
+                    inrementStatus();
                     notifier
                         .createInviteToFriend(widget.user.id!)
                         .then((value) {
                       if (value) {
-                        inrementStatus();
                       } else {
                         showToast(
                           context,
