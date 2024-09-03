@@ -159,64 +159,66 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
                   SizedBox(height: context.sized.dynamicHeight(0.1)),
                 ],
               ),
-              Positioned(
-                bottom: 24,
-                left: 24,
-                right: 24,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: context.sized.dynamicHeight(0.1),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: context.sized.dynamicWidth(0.35),
-                        child: CustomButton(
-                          text: l10n.exit_button,
-                          mode: ButtonMode.dark,
-                          onPressed: () {
-                            AutoRouter.of(context).pop();
-                          },
+              if (MediaQuery.of(context).viewInsets.bottom == 0)
+                Positioned(
+                  bottom: 24,
+                  left: 24,
+                  right: 24,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: context.sized.dynamicHeight(0.1),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: context.sized.dynamicWidth(0.35),
+                          child: CustomButton(
+                            text: l10n.exit_button,
+                            mode: ButtonMode.dark,
+                            onPressed: () {
+                              AutoRouter.of(context).pop();
+                            },
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        decoration: const BoxDecoration().buttonShadow,
-                        width: context.sized.dynamicWidth(0.5),
-                        child: CustomButton(
-                          text: l10n.save_button,
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              model.updateProfil().then((value) async {
-                                if (value == 200) {
-                                  await ref
-                                      .read(
-                                        profilViewModelProvider(null).notifier,
-                                      )
-                                      .fetchProfil()
-                                      .then((value) {
-                                    AutoRouter.of(context).pop();
-                                    NotificationService.instance
-                                        .showNotification(
-                                      l10n.info,
-                                      l10n.profileNotfications,
+                        const Spacer(),
+                        Container(
+                          decoration: const BoxDecoration().buttonShadow,
+                          width: context.sized.dynamicWidth(0.5),
+                          child: CustomButton(
+                            text: l10n.save_button,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                model.updateProfil().then((value) async {
+                                  if (value == 200) {
+                                    await ref
+                                        .read(
+                                          profilViewModelProvider(null)
+                                              .notifier,
+                                        )
+                                        .fetchProfil()
+                                        .then((value) {
+                                      AutoRouter.of(context).pop();
+                                      NotificationService.instance
+                                          .showNotification(
+                                        l10n.info,
+                                        l10n.profileNotfications,
+                                      );
+                                    });
+                                  } else {
+                                    showToast(
+                                      context,
+                                      'Hata Oluştu',
+                                      type: AlertType.error,
                                     );
-                                  });
-                                } else {
-                                  showToast(
-                                    context,
-                                    'Hata Oluştu',
-                                    type: AlertType.error,
-                                  );
-                                }
-                              });
-                            }
-                          },
+                                  }
+                                });
+                              }
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
         ),

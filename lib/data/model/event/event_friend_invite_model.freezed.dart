@@ -26,8 +26,11 @@ mixin _$EventFriendInviteModel {
   String? get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
+  String? get invateId => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
   bool? get inviteStatus => throw _privateConstructorUsedError;
+  bool? get sendByOtherUser => throw _privateConstructorUsedError;
+  bool? get inviteStatusData => throw _privateConstructorUsedError;
   bool? get isFriend => throw _privateConstructorUsedError;
   bool? get isCurrentUser => throw _privateConstructorUsedError;
   bool? get isAccepted => throw _privateConstructorUsedError;
@@ -53,8 +56,11 @@ abstract class $EventFriendInviteModelCopyWith<$Res> {
       String? name,
       String? imageUrl,
       String? title,
+      String? invateId,
       int? type,
       bool? inviteStatus,
+      bool? sendByOtherUser,
+      bool? inviteStatusData,
       bool? isFriend,
       bool? isCurrentUser,
       bool? isAccepted,
@@ -82,8 +88,11 @@ class _$EventFriendInviteModelCopyWithImpl<$Res,
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? title = freezed,
+    Object? invateId = freezed,
     Object? type = freezed,
     Object? inviteStatus = freezed,
+    Object? sendByOtherUser = freezed,
+    Object? inviteStatusData = freezed,
     Object? isFriend = freezed,
     Object? isCurrentUser = freezed,
     Object? isAccepted = freezed,
@@ -112,6 +121,10 @@ class _$EventFriendInviteModelCopyWithImpl<$Res,
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      invateId: freezed == invateId
+          ? _value.invateId
+          : invateId // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -119,6 +132,14 @@ class _$EventFriendInviteModelCopyWithImpl<$Res,
       inviteStatus: freezed == inviteStatus
           ? _value.inviteStatus
           : inviteStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sendByOtherUser: freezed == sendByOtherUser
+          ? _value.sendByOtherUser
+          : sendByOtherUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inviteStatusData: freezed == inviteStatusData
+          ? _value.inviteStatusData
+          : inviteStatusData // ignore: cast_nullable_to_non_nullable
               as bool?,
       isFriend: freezed == isFriend
           ? _value.isFriend
@@ -163,8 +184,11 @@ abstract class _$$EventFriendInviteModelImplCopyWith<$Res>
       String? name,
       String? imageUrl,
       String? title,
+      String? invateId,
       int? type,
       bool? inviteStatus,
+      bool? sendByOtherUser,
+      bool? inviteStatusData,
       bool? isFriend,
       bool? isCurrentUser,
       bool? isAccepted,
@@ -191,8 +215,11 @@ class __$$EventFriendInviteModelImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? title = freezed,
+    Object? invateId = freezed,
     Object? type = freezed,
     Object? inviteStatus = freezed,
+    Object? sendByOtherUser = freezed,
+    Object? inviteStatusData = freezed,
     Object? isFriend = freezed,
     Object? isCurrentUser = freezed,
     Object? isAccepted = freezed,
@@ -221,6 +248,10 @@ class __$$EventFriendInviteModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      invateId: freezed == invateId
+          ? _value.invateId
+          : invateId // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -228,6 +259,14 @@ class __$$EventFriendInviteModelImplCopyWithImpl<$Res>
       inviteStatus: freezed == inviteStatus
           ? _value.inviteStatus
           : inviteStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sendByOtherUser: freezed == sendByOtherUser
+          ? _value.sendByOtherUser
+          : sendByOtherUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inviteStatusData: freezed == inviteStatusData
+          ? _value.inviteStatusData
+          : inviteStatusData // ignore: cast_nullable_to_non_nullable
               as bool?,
       isFriend: freezed == isFriend
           ? _value.isFriend
@@ -266,8 +305,11 @@ class _$EventFriendInviteModelImpl implements _EventFriendInviteModel {
       this.name,
       this.imageUrl,
       this.title,
+      this.invateId,
       this.type,
       this.inviteStatus,
+      this.sendByOtherUser,
+      this.inviteStatusData,
       this.isFriend,
       this.isCurrentUser,
       this.isAccepted,
@@ -289,9 +331,15 @@ class _$EventFriendInviteModelImpl implements _EventFriendInviteModel {
   @override
   final String? title;
   @override
+  final String? invateId;
+  @override
   final int? type;
   @override
   final bool? inviteStatus;
+  @override
+  final bool? sendByOtherUser;
+  @override
+  final bool? inviteStatusData;
   @override
   final bool? isFriend;
   @override
@@ -307,7 +355,7 @@ class _$EventFriendInviteModelImpl implements _EventFriendInviteModel {
 
   @override
   String toString() {
-    return 'EventFriendInviteModel(id: $id, userId: $userId, name: $name, imageUrl: $imageUrl, title: $title, type: $type, inviteStatus: $inviteStatus, isFriend: $isFriend, isCurrentUser: $isCurrentUser, isAccepted: $isAccepted, isBlocked: $isBlocked, isFriendRequest: $isFriendRequest, isRequest: $isRequest)';
+    return 'EventFriendInviteModel(id: $id, userId: $userId, name: $name, imageUrl: $imageUrl, title: $title, invateId: $invateId, type: $type, inviteStatus: $inviteStatus, sendByOtherUser: $sendByOtherUser, inviteStatusData: $inviteStatusData, isFriend: $isFriend, isCurrentUser: $isCurrentUser, isAccepted: $isAccepted, isBlocked: $isBlocked, isFriendRequest: $isFriendRequest, isRequest: $isRequest)';
   }
 
   @override
@@ -321,9 +369,15 @@ class _$EventFriendInviteModelImpl implements _EventFriendInviteModel {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.invateId, invateId) ||
+                other.invateId == invateId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.inviteStatus, inviteStatus) ||
                 other.inviteStatus == inviteStatus) &&
+            (identical(other.sendByOtherUser, sendByOtherUser) ||
+                other.sendByOtherUser == sendByOtherUser) &&
+            (identical(other.inviteStatusData, inviteStatusData) ||
+                other.inviteStatusData == inviteStatusData) &&
             (identical(other.isFriend, isFriend) ||
                 other.isFriend == isFriend) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
@@ -347,8 +401,11 @@ class _$EventFriendInviteModelImpl implements _EventFriendInviteModel {
       name,
       imageUrl,
       title,
+      invateId,
       type,
       inviteStatus,
+      sendByOtherUser,
+      inviteStatusData,
       isFriend,
       isCurrentUser,
       isAccepted,
@@ -378,8 +435,11 @@ abstract class _EventFriendInviteModel implements EventFriendInviteModel {
       final String? name,
       final String? imageUrl,
       final String? title,
+      final String? invateId,
       final int? type,
       final bool? inviteStatus,
+      final bool? sendByOtherUser,
+      final bool? inviteStatusData,
       final bool? isFriend,
       final bool? isCurrentUser,
       final bool? isAccepted,
@@ -401,9 +461,15 @@ abstract class _EventFriendInviteModel implements EventFriendInviteModel {
   @override
   String? get title;
   @override
+  String? get invateId;
+  @override
   int? get type;
   @override
   bool? get inviteStatus;
+  @override
+  bool? get sendByOtherUser;
+  @override
+  bool? get inviteStatusData;
   @override
   bool? get isFriend;
   @override

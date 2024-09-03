@@ -95,19 +95,46 @@ class ScreenOptions extends HookConsumerWidget {
                             item.startTime!,
                             item.endTime,
                           ))
-                        Padding(
-                          padding: const EdgeInsets.only(right: 15),
-                          child: SizedBox(
-                            width: context.dyWidth(110),
-                            height: 32,
-                            child: CustomButton(
-                              text: l10n.eventPassed,
-                              bgColor: MainColors.transparentRed,
-                              style: theme.textTheme.bodyMedium.copyWith(
-                                color: MainColors.red,
-                                fontWeight: FontWeight.w700,
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: SizedBox(
+                                width: context.dyWidth(110),
+                                height: 32,
+                                child: CustomButton(
+                                  text: l10n.eventPassed,
+                                  bgColor: MainColors.transparentRed,
+                                  style: theme.textTheme.bodyMedium.copyWith(
+                                    color: MainColors.red,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  onPressed: () {
+                                    if (userType == UserType.guest) {
+                                      return showGuestInfo(theme, context);
+                                    }
+                                    router.push(
+                                      EventJoinedUserRoute(
+                                        eventId: item.id!,
+                                        isManagement: false,
+                                      ),
+                                    );
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      color: MainColors.red,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
                               ),
-                              onPressed: () {
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
                                 if (userType == UserType.guest) {
                                   return showGuestInfo(theme, context);
                                 }
@@ -118,15 +145,20 @@ class ScreenOptions extends HookConsumerWidget {
                                   ),
                                 );
                               },
-                              shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                  color: MainColors.red,
-                                  width: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: StackedWidgets(
+                                  size: context.isMediumScrn ? 32 : 28,
+                                  direction: TextDirection.rtl,
+                                  xShift: 18,
+                                  joinedUsers: item.joinedUsers!
+                                      .map((e) => e.imageUrl!)
+                                      .toList(),
+                                  imageLength: 5,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
                               ),
-                            ),
-                          ),
+                            )
+                          ],
                         )
                       else if ((item.joinedUserCount ?? 0) > 0)
                         Column(

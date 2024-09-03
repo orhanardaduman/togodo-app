@@ -61,6 +61,8 @@ abstract class HomeRepository {
   Future<Result<void>> createInviteToFriend(String eventId, String userId);
   Future<Result<void>> removeInviteToFriend(String eventId, String userId);
   Future<Result<void>> acceptRequest(String requestId);
+  Future<Result<void>> acceptInvate(String invateId);
+
   Future<Result<void>> declineRequest(String requestId);
   Future<Result<void>> eventLike(String eventId);
   Future<Result<void>> eventUnlike(String eventId);

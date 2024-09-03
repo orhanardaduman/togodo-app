@@ -13,8 +13,11 @@ class EventFriendInviteModel
     String? name,
     String? imageUrl,
     String? title,
+    String? invateId,
     int? type,
     bool? inviteStatus,
+    bool? sendByOtherUser,
+    bool? inviteStatusData,
     bool? isFriend,
     bool? isCurrentUser,
     bool? isAccepted,
@@ -33,8 +36,12 @@ mixin EventSearchProperties {
   String? get name;
   String? get title;
   String? get imageUrl;
+  String? get invateId;
   int? get type;
   bool? get inviteStatus;
+  bool? get sendByOtherUser;
+  bool? get inviteStatusData;
+
   bool? get isFriend;
   bool? get isCurrentUser;
   bool? get isAccepted;

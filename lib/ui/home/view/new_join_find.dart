@@ -3,7 +3,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/core/component/alert/alert_messages.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
@@ -45,7 +44,7 @@ final eventJoinSearchProvider =
   },
 );
 
-class NewJoinFindEvent extends HookConsumerWidget {
+class NewJoinFindEvent extends StatefulHookConsumerWidget {
   const NewJoinFindEvent({
     required this.initialChildSize,
     required this.eventId,
@@ -53,17 +52,34 @@ class NewJoinFindEvent extends HookConsumerWidget {
   });
   final double initialChildSize;
   final String eventId;
+  @override
+  ConsumerState<StatefulHookConsumerWidget> createState() =>
+      _NewJoinFindEventState();
+}
+
+class _NewJoinFindEventState extends ConsumerState<NewJoinFindEvent> {
+  final TextEditingController _keywordController = TextEditingController();
+  @override
+  void initState() {
+    _keywordController.addListener(_onKeywordChanged);
+    super.initState();
+  }
+
+  void _onKeywordChanged() {
+    if (_keywordController.text.isNotEmpty) {
+      setState(() {});
+    }
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    final keywordController = useTextEditingController();
     final router = useRouter();
     final l10n = useL10n();
 
     return DraggableScrollableSheet(
       expand: false,
-      initialChildSize: initialChildSize,
+      initialChildSize: widget.initialChildSize,
       minChildSize: 0.3,
       builder: (_, controller) {
         return SingleChildScrollView(
@@ -75,7 +91,7 @@ class NewJoinFindEvent extends HookConsumerWidget {
             controller: controller,
             child: Column(
               children: [
-                SearchField(keywordController: keywordController, l10n: l10n),
+                SearchField(keywordController: _keywordController, l10n: l10n),
                 Divider(
                   color: theme.appColors.divider,
                   height: 48,
@@ -84,8 +100,8 @@ class NewJoinFindEvent extends HookConsumerWidget {
                   router: router,
                   theme: theme,
                   l10n: l10n,
-                  keywordController: keywordController,
-                  eventId: eventId,
+                  keywordController: _keywordController,
+                  eventId: widget.eventId,
                 ),
               ],
             ),
@@ -135,6 +151,7 @@ class UsersContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print(keywordController.text);
     final userSearchFuture = ref.watch(
       eventJoinSearchProvider(
         UserSearchParam(keywordController.text, eventId),
@@ -184,16 +201,26 @@ class UserRow extends StatefulHookConsumerWidget {
 }
 
 class _UserRowState extends ConsumerState<UserRow> {
-  bool isInvitedStatus = false;
+  bool isInvitedStatus = false,
+      invatedByOtherUser = false,
+      invateHasStatus = false;
   @override
   void initState() {
     isInvitedStatus = widget.user.inviteStatus ?? false;
+    invatedByOtherUser = widget.user.sendByOtherUser ?? false;
+    invateHasStatus = widget.user.inviteStatusData ?? false;
     super.initState();
   }
 
   void inrementStatus() {
     setState(() {
       isInvitedStatus = !isInvitedStatus;
+    });
+  }
+
+  void inrementStatusAccept() {
+    setState(() {
+      invateHasStatus = true;
     });
   }
 
@@ -216,9 +243,10 @@ class _UserRowState extends ConsumerState<UserRow> {
         SizedBox(
           width: 130,
           height: 38,
-          child: isInvitedStatus
+          child: invateHasStatus
               ? CustomButton(
-                  text: l10n.invited,
+                  canter: true,
+                  text: l10n.joinedTgother,
                   bgColor: Colors.transparent,
                   shadowColor: Colors.transparent,
                   style: theme.textTheme.bodyLarge.copyWith(
@@ -229,45 +257,90 @@ class _UserRowState extends ConsumerState<UserRow> {
                   side: const BorderSide(
                     color: MainColors.primary,
                   ),
-                  onPressed: () {
-                    inrementStatus();
-                    notifier
-                        .removeInviteToFriend(widget.user.id!)
-                        .then((value) {
-                      if (!value) {
-                        inrementStatus();
-                        showToast(
-                          context,
-                          'Hata oluştu. Lütfen tekrar deneyin.',
-                          type: AlertType.error,
-                        );
-                      }
-                    });
-                  },
+                  onPressed: () {},
                 )
-              : CustomButton(
-                  text: l10n.withJoin,
-                  radius: 100,
-                  style: theme.textTheme.bodyLarge.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: MainColors.white,
-                  ),
-                  onPressed: () {
-                    inrementStatus();
-                    notifier
-                        .createInviteToFriend(widget.user.id!)
-                        .then((value) {
-                      if (value) {
-                      } else {
-                        showToast(
-                          context,
-                          'Hata oluştu. Lütfen tekrar deneyin.',
-                          type: AlertType.error,
-                        );
-                      }
-                    });
-                  },
-                ),
+              : invatedByOtherUser
+                  ? CustomButton(
+                      text: l10n.accept,
+                      maxLines: 2,
+                      bgColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      style: theme.textTheme.bodyLarge.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: MainColors.primary,
+                      ),
+                      radius: 100,
+                      side: const BorderSide(
+                        color: MainColors.primary,
+                      ),
+                      onPressed: () {
+                        inrementStatusAccept();
+                        notifier
+                            .acceptInvate(widget.user.invateId ?? '', null)
+                            .then((value) {
+                          if (!value) {
+                            inrementStatusAccept();
+                            showToast(
+                              context,
+                              'Hata oluştu. Lütfen tekrar deneyin.',
+                              type: AlertType.error,
+                            );
+                          }
+                        });
+                      },
+                    )
+                  : isInvitedStatus
+                      ? CustomButton(
+                          text: l10n.invited,
+                          bgColor: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                          style: theme.textTheme.bodyLarge.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: MainColors.primary,
+                          ),
+                          radius: 100,
+                          side: const BorderSide(
+                            color: MainColors.primary,
+                          ),
+                          onPressed: () {
+                            inrementStatus();
+                            notifier
+                                .removeInviteToFriend(widget.user.id!)
+                                .then((value) {
+                              if (!value) {
+                                inrementStatus();
+                                showToast(
+                                  context,
+                                  'Hata oluştu. Lütfen tekrar deneyin.',
+                                  type: AlertType.error,
+                                );
+                              }
+                            });
+                          },
+                        )
+                      : CustomButton(
+                          text: l10n.withJoin,
+                          radius: 100,
+                          style: theme.textTheme.bodyLarge.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: MainColors.white,
+                          ),
+                          onPressed: () {
+                            inrementStatus();
+                            notifier
+                                .createInviteToFriend(widget.user.id!)
+                                .then((value) {
+                              if (value) {
+                              } else {
+                                showToast(
+                                  context,
+                                  'Hata oluştu. Lütfen tekrar deneyin.',
+                                  type: AlertType.error,
+                                );
+                              }
+                            });
+                          },
+                        ),
         ),
       ],
     );

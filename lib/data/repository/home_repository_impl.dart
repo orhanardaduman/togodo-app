@@ -256,9 +256,7 @@ class HomeRepositoryImpl implements HomeRepository {
   }) {
     return Result.guardFuture(
       () async => _dataSource.getEventFriendInviteList(
-        pagination: pagination,
-        eventId: eventId,
-      ),
+          pagination: pagination, eventId: eventId, keyword: keyword),
     );
   }
 
@@ -450,6 +448,13 @@ class HomeRepositoryImpl implements HomeRepository {
           'eventId': eventId,
         },
       ),
+    );
+  }
+
+  @override
+  Future<Result<void>> acceptInvate(String invateId) {
+    return Result.guardFuture(
+      () async => _dataSource.acceptInvite({"inviteId": invateId}),
     );
   }
 }

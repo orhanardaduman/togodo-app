@@ -51,9 +51,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
   PreloadPageController dailyController = PreloadPageController(
     keepPage: false,
   );
-  PreloadPageController mainController = PreloadPageController(
-    keepPage: true,
-  );
+  PreloadPageController mainController = PreloadPageController();
   Future<void> fetchEvents() async {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
     state = state.copyWith(loading: false);
@@ -268,18 +266,13 @@ class HomeViewModel extends StateNotifier<HomeState> {
         data,
         ...state.events,
       ],
+      eventsDaily: [
+        data,
+        ...state.eventsDaily,
+      ],
       loading: false,
-      isToday: false,
+      isToday: state.isToday,
     );
-
-    mainController.animateToPage(
-      0,
-      duration: const Duration(
-        milliseconds: 200,
-      ),
-      curve: Curves.easeInOut,
-    );
-
     moveTop();
   }
 

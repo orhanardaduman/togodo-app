@@ -11,6 +11,7 @@ _$ReadyTemplateModelImpl _$$ReadyTemplateModelImplFromJson(
     _$ReadyTemplateModelImpl(
       id: json['id'] as String?,
       title: json['title'] as String?,
+      sortTag: json['sortTag'] as int?,
       description: json['description'] as String?,
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => TagsModel.fromJson(e as Map<String, dynamic>))
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$ReadyTemplateModelImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'sortTag': instance.sortTag,
       'description': instance.description,
       'tags': instance.tags,
       'images': instance.images,

@@ -1,16 +1,15 @@
 // ignore_for_file: avoid_dynamic_calls
 
-import 'dart:convert';
 import 'dart:developer';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:togodo/core/enums/cache_items.dart';
-import 'package:togodo/ui/auth/viewmodel/user_view_model.dart';
 import 'package:togodo/ui/chat/model/index.dart';
 import 'package:togodo/ui/chat/repo/repository/chat_event_repository.dart';
 import 'package:togodo/ui/chat/repo/repository/chat_event_repository_impl.dart';
 import 'package:togodo/ui/chat/services/connect_services.dart';
+
 part 'web_socket_notifier.freezed.dart';
 
 final webSocketProvider =
@@ -105,12 +104,18 @@ class WebSocketNotifier extends StateNotifier<WebSocketState> {
   }
 
   Future<bool> createChatRoomWithGroup(String name, List<String> userId) {
+    state = state.copyWith(
+      loading: true,
+    );
     return _repository
         .createChatRoomWithGroup(
       name,
       userId,
     )
         .then((result) {
+      state = state.copyWith(
+        loading: false,
+      );
       result.ifSuccess((data) async {
         log('Pin Chat  successfully');
         if (_isDisposed) return;

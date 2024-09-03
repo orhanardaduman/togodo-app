@@ -55,11 +55,16 @@ class Utility {
 
 bool isEventPassed(String date, String startTime, String? endTime) {
   // Tarih formatını DD.MM.YYYY'den YYYY-MM-DD'ye dönüştürüyoruz
-  final initTime = endTime ?? startTime;
+  final initTime = endTime == "" ? startTime : endTime;
+  print(initTime);
+  print(endTime);
+  print(startTime);
+  print(endTime == "");
+
   try {
     final dateParts = date.replaceAll('.', '-').split('-');
     final formattedDate = '${dateParts[0]}-${dateParts[1]}-${dateParts[2]}';
-
+    print('$formattedDate $initTime');
     // Tarih ve saat bilgisini birleştirip DateTime nesnesi oluşturuyoruz
     var eventDateTime = DateTime.parse('$formattedDate $initTime');
 
@@ -72,8 +77,10 @@ bool isEventPassed(String date, String startTime, String? endTime) {
     }
 
     // Etkinlik tarihi ve saati şu andan önceyse, etkinlik geçmiş demektir
+    print(eventDateTime.isBefore(now));
     return eventDateTime.isBefore(now);
   } catch (e) {
+    print(e);
     return false;
   }
 }
@@ -104,6 +111,39 @@ Future<void> copyLink(
     ),
   );
   await FlutterClipboard.copy(copyUrl);
+}
+
+Future<void> copyLinkNewText(
+  BuildContext context,
+  AppTheme theme,
+  String eventName,
+  String eventDescription,
+  String url,
+  L10n l10n,
+) async {
+  final splited = eventDescription.split(' ');
+
+  var starts = [
+    l10n.shareStartOne,
+    l10n.shareStartTwo,
+    l10n.shareStartThree,
+  ];
+  final random = Random();
+
+  final shareText = '${starts[random.nextInt(starts.length)]}\n'
+      '$eventName\n\n'
+      "${splited.sublist(0, splited.length > 12 ? 12 : splited.length)} ... *devamı togodo'da*\n\n"
+      '$url';
+  showToast(
+    context,
+    'Link kopyalandı! 🔗',
+    type: AlertType.custom,
+    isPosition: true,
+    style: theme.textTheme.bodyMedium.copyWith(
+      color: MainColors.black,
+    ),
+  );
+  await FlutterClipboard.copy(shareText);
 }
 
 class RefreshNullHeader extends StatelessWidget {

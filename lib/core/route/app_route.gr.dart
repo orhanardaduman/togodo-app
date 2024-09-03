@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i50;
+import 'package:flutter/cupertino.dart' as _i56;
 import 'package:flutter/foundation.dart' as _i55;
 import 'package:flutter/material.dart' as _i51;
 import 'package:togodo/core/theme/app_theme.dart' as _i52;
@@ -1551,8 +1552,8 @@ class ProfileRouteArgs {
 /// [_i32.ReadyTemplatePage]
 class ReadyTemplateRoute extends _i50.PageRouteInfo<ReadyTemplateRouteArgs> {
   ReadyTemplateRoute({
-    _i51.Key? key,
-    _i51.ScrollController? controller,
+    _i56.Key? key,
+    _i56.ScrollController? controller,
     List<_i50.PageRouteInfo>? children,
   }) : super(
           ReadyTemplateRoute.name,
@@ -1575,9 +1576,9 @@ class ReadyTemplateRouteArgs {
     this.controller,
   });
 
-  final _i51.Key? key;
+  final _i56.Key? key;
 
-  final _i51.ScrollController? controller;
+  final _i56.ScrollController? controller;
 
   @override
   String toString() {

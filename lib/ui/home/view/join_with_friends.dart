@@ -171,54 +171,99 @@ class _JoinWithFriendsPageState extends ConsumerState<JoinWithFriendsPage> {
                                         offsetX: 8,
                                         blurRadius: 24,
                                       ),
-                                      child: model.events[index].inviteStatus ??
+                                      child: model.events[index]
+                                                  .inviteStatusData ??
                                               false
                                           ? CustomButton(
-                                              text: l10n.toRequest(
-                                                model.events[index].name ?? '',
-                                              ),
+                                              text: l10n.joinedTgother,
                                               radius: 100,
-                                              onPressed: () {
-                                                notifier
-                                                    .removeInviteToFriend(
-                                                  model.events[index].id!,
-                                                )
-                                                    .then((value) {
-                                                  if (value) {
-                                                    //  inrementStatus();
-                                                  } else {
-                                                    showToast(
-                                                      context,
-                                                      'Hata oluştu. Lütfen tekrar deneyin.',
-                                                      type: AlertType.error,
-                                                    );
-                                                  }
-                                                });
-                                              },
+                                              canter: true,
+                                              onPressed: () {},
                                             )
-                                          : CustomButton(
-                                              text: l10n.withJoins(
-                                                model.events[index].name ?? '',
-                                              ),
-                                              radius: 100,
-                                              onPressed: () {
-                                                notifier
-                                                    .createInviteToFriend(
-                                                  model.events[index].id!,
+                                          : model.events[index]
+                                                      .sendByOtherUser ??
+                                                  false
+                                              ? CustomButton(
+                                                  text: l10n.accept,
+                                                  radius: 100,
+                                                  onPressed: () {
+                                                    notifier
+                                                        .acceptInvate(
+                                                            model.events[index]
+                                                                    .invateId ??
+                                                                '',
+                                                            model.events[index]
+                                                                .id)
+                                                        .then((value) {
+                                                      if (value) {
+                                                        //  inrementStatus();
+                                                      } else {
+                                                        showToast(
+                                                          context,
+                                                          'Hata oluştu. Lütfen tekrar deneyin.',
+                                                          type: AlertType.error,
+                                                        );
+                                                      }
+                                                    });
+                                                  },
                                                 )
-                                                    .then((value) {
-                                                  if (value) {
-                                                    //  inrementStatus();
-                                                  } else {
-                                                    showToast(
-                                                      context,
-                                                      'Hata oluştu. Lütfen tekrar deneyin.',
-                                                      type: AlertType.error,
-                                                    );
-                                                  }
-                                                });
-                                              },
-                                            ),
+                                              : model.events[index]
+                                                          .inviteStatus ??
+                                                      false
+                                                  ? CustomButton(
+                                                      text: l10n.toRequest(
+                                                        model.events[index]
+                                                                .name ??
+                                                            '',
+                                                      ),
+                                                      radius: 100,
+                                                      onPressed: () {
+                                                        notifier
+                                                            .removeInviteToFriend(
+                                                          model.events[index]
+                                                              .id!,
+                                                        )
+                                                            .then((value) {
+                                                          if (value) {
+                                                            //  inrementStatus();
+                                                          } else {
+                                                            showToast(
+                                                              context,
+                                                              'Hata oluştu. Lütfen tekrar deneyin.',
+                                                              type: AlertType
+                                                                  .error,
+                                                            );
+                                                          }
+                                                        });
+                                                      },
+                                                    )
+                                                  : CustomButton(
+                                                      text: l10n.withJoins(
+                                                        model.events[index]
+                                                                .name ??
+                                                            '',
+                                                      ),
+                                                      radius: 100,
+                                                      onPressed: () {
+                                                        notifier
+                                                            .createInviteToFriend(
+                                                          model.events[index]
+                                                              .id!,
+                                                        )
+                                                            .then((value) {
+                                                          if (value) {
+                                                            //  inrementStatus();
+                                                          } else {
+                                                            showToast(
+                                                              context,
+                                                              'Hata oluştu. Lütfen tekrar deneyin.',
+                                                              type: AlertType
+                                                                  .error,
+                                                            );
+                                                          }
+                                                        });
+                                                      },
+                                                    ),
                                     ),
                                   ),
                                 ],
@@ -427,9 +472,10 @@ class InviteButtonWidget extends HookConsumerWidget {
     return SizedBox(
       width: 130,
       height: 38,
-      child: data.inviteStatus ?? false
+      child: data.inviteStatusData ?? false
           ? CustomButton(
-              text: l10n.invited,
+              canter: true,
+              text: l10n.joinedTgother,
               bgColor: Colors.transparent,
               shadowColor: Colors.transparent,
               style: theme.textTheme.bodyLarge.copyWith(
@@ -441,41 +487,87 @@ class InviteButtonWidget extends HookConsumerWidget {
                 color: MainColors.primary,
                 width: 2,
               ),
-              onPressed: () {
-                notifier.removeInviteToFriend(data.id!).then((value) {
-                  if (value) {
-                    showToast(context, 'Başarılı');
-                  } else {
-                    showToast(
-                      context,
-                      'Hata oluştu. Lütfen tekrar deneyin.',
-                      type: AlertType.error,
-                    );
-                  }
-                });
-              },
+              onPressed: () {},
             )
-          : CustomButton(
-              text: l10n.withJoin,
-              radius: 100,
-              style: theme.textTheme.bodyLarge.copyWith(
-                fontWeight: FontWeight.w500,
-                color: MainColors.white,
-              ),
-              onPressed: () {
-                notifier.createInviteToFriend(data.id!).then((value) {
-                  if (value) {
-                    showToast(context, 'Başarılı');
-                  } else {
-                    showToast(
-                      context,
-                      'Hata oluştu. Lütfen tekrar deneyin.',
-                      type: AlertType.error,
-                    );
-                  }
-                });
-              },
-            ),
+          : data.sendByOtherUser ?? false
+              ? CustomButton(
+                  text: l10n.accept,
+                  bgColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  style: theme.textTheme.bodyLarge.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: MainColors.primary,
+                  ),
+                  radius: 100,
+                  side: const BorderSide(
+                    color: MainColors.primary,
+                    width: 2,
+                  ),
+                  onPressed: () {
+                    notifier
+                        .acceptInvate(data.invateId ?? '', eventId)
+                        .then((value) {
+                      if (value) {
+                        showToast(context, 'Başarılı');
+                      } else {
+                        showToast(
+                          context,
+                          'Hata oluştu. Lütfen tekrar deneyin.',
+                          type: AlertType.error,
+                        );
+                      }
+                    });
+                  },
+                )
+              : data.inviteStatus ?? false
+                  ? CustomButton(
+                      text: l10n.invited,
+                      bgColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      style: theme.textTheme.bodyLarge.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: MainColors.primary,
+                      ),
+                      radius: 100,
+                      side: const BorderSide(
+                        color: MainColors.primary,
+                        width: 2,
+                      ),
+                      onPressed: () {
+                        notifier.removeInviteToFriend(data.id!).then((value) {
+                          if (value) {
+                            showToast(context, 'Başarılı');
+                          } else {
+                            showToast(
+                              context,
+                              'Hata oluştu. Lütfen tekrar deneyin.',
+                              type: AlertType.error,
+                            );
+                          }
+                        });
+                      },
+                    )
+                  : CustomButton(
+                      text: l10n.withJoin,
+                      radius: 100,
+                      style: theme.textTheme.bodyLarge.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: MainColors.white,
+                      ),
+                      onPressed: () {
+                        notifier.createInviteToFriend(data.id!).then((value) {
+                          if (value) {
+                            showToast(context, 'Başarılı');
+                          } else {
+                            showToast(
+                              context,
+                              'Hata oluştu. Lütfen tekrar deneyin.',
+                              type: AlertType.error,
+                            );
+                          }
+                        });
+                      },
+                    ),
     );
   }
 }

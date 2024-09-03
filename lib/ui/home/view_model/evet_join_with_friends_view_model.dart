@@ -114,6 +114,22 @@ class EventJoinedWithFriendsViewModel
     state = state.copyWith(events: updatedEvents);
   }
 
+  void incrementChangeStatusAccept(String id) {
+    if (_isDisposed) return;
+
+    // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
+    final updatedEvents = state.events.map((event) {
+      if (event.id == id) {
+        // `joinedStatus` değerini tersine çevirin
+        return event.copyWith(inviteStatusData: true);
+      }
+      return event;
+    }).toList();
+
+    // Güncellenmiş events listesini state'e aktarın
+    state = state.copyWith(events: updatedEvents);
+  }
+
   Future<bool> createInviteToFriend(String id) {
     incrementChangeStatus(id);
 
@@ -124,6 +140,26 @@ class EventJoinedWithFriendsViewModel
         })
         ..ifFailure((data) {
           incrementChangeStatus(id);
+          if (_isDisposed) return;
+        });
+      return result.isSuccess;
+    });
+  }
+
+  Future<bool> acceptInvate(String id, String? eventId) {
+    if (eventId != null) {
+      incrementChangeStatusAccept(eventId);
+    }
+
+    return _repository.acceptInvate(id).then((result) {
+      result
+        ..ifSuccess((data) async {
+          if (_isDisposed) return;
+        })
+        ..ifFailure((data) {
+          if (eventId != null) {
+            incrementChangeStatusAccept(eventId);
+          }
           if (_isDisposed) return;
         });
       return result.isSuccess;

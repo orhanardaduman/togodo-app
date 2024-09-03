@@ -203,6 +203,15 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                             ],
                                           ),
                                         ),
+                                      if (_type == 0 &&
+                                          userModel != null &&
+                                          userModel.token != null &&
+                                          userModel.token!.userType == 0)
+                                        Divider(
+                                          thickness: 1.2,
+                                          height: 11,
+                                          color: theme.appColors.divider,
+                                        ),
                                       if (userModel != null &&
                                           _type != 1 &&
                                           userModel.token != null &&
@@ -267,15 +276,6 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                   ),
                                   currentUserBottom(router, l10n, theme),
                                 ],
-                              ),
-                            if (_type == 0 &&
-                                userModel != null &&
-                                userModel.token != null &&
-                                userModel.token!.userType == 0)
-                              Divider(
-                                thickness: 1.2,
-                                height: 11,
-                                color: theme.appColors.divider,
                               ),
                             if (_type == 0) const SizedBox(height: 14),
                             if (userModel != null &&

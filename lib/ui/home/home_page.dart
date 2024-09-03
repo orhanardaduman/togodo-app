@@ -44,6 +44,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         ref.read(userViewModelProvider).tokenCheck();
         ref.read(homeViewModelProvider.notifier)
               ..fetchEvents()
+              ..fetchEventsDaily()
               ..getEnableShowcase()
             /* .then(
           (value) => requestLocationService(

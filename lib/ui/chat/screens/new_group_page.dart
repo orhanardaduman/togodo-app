@@ -98,6 +98,8 @@ class _NewGroupPageState extends ConsumerState<NewGroupPage> {
     final theme = ref.watch(appThemeProvider);
     final router = useRouter();
     final notifier = ref.watch(webSocketProvider.notifier);
+    final model = ref.watch(webSocketProvider);
+
     return Scaffold(
       appBar: customAppBar(context, theme),
       body: ListView(
@@ -217,16 +219,18 @@ class _NewGroupPageState extends ConsumerState<NewGroupPage> {
                           type: AlertType.error,
                         );
                       } else {
-                        notifier
-                            .createChatRoomWithGroup(
-                          nameTextController.text,
-                          checkedUsers.keys.toList(),
-                        )
-                            .then((value) {
-                          if (value) {
-                            context.router.pop();
-                          }
-                        });
+                        if (!model.loading) {
+                          notifier
+                              .createChatRoomWithGroup(
+                            nameTextController.text,
+                            checkedUsers.keys.toList(),
+                          )
+                              .then((value) {
+                            if (value) {
+                              context.router.pop();
+                            }
+                          });
+                        }
                       }
                     },
                   ),

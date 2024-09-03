@@ -47,6 +47,7 @@ class _ChatAudioContentState extends ConsumerState<ChatAudioContent> {
   @override
   void initState() {
     super.initState();
+    print("file path ${widget.post!.first.filePath}");
     voiceController = VoiceController(
       audioSrc: widget.post!.first.filePath!,
       maxDuration: const Duration(seconds: 10),

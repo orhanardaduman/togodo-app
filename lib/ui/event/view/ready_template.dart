@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -15,10 +18,14 @@ import 'package:togodo/features/component/featured_image.dart';
 import 'package:togodo/ui/event/view_model/create_event_view_model.dart';
 import 'package:togodo/ui/event/view_model/ready_template_view_model.dart';
 
+import '../../../features/provider/tag_provider.dart';
+
 @RoutePage()
 class ReadyTemplatePage extends HookConsumerWidget {
   const ReadyTemplatePage({super.key, this.controller});
+
   final ScrollController? controller;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -55,7 +62,7 @@ class ReadyTemplatePage extends HookConsumerWidget {
                 child: model.groupedData == null
                     ? SizedBox.fromSize()
                     : GroupedHorizontalList(
-                        groupedData: model.data,
+                        groupedData: model.groupedData,
                         theme: theme,
                       ),
               ),
@@ -72,19 +79,23 @@ class GroupedHorizontalList extends HookConsumerWidget {
     required this.theme,
     super.key,
   });
-  final List<ReadyTemplateModel> groupedData;
+
+  final Map<int, List<ReadyTemplateModel>>? groupedData;
   final AppTheme theme;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(readyTemplateViewModelProvider.notifier);
+
+    final hobyProviderData = ref.watch(hobyStateNotifierProvider(context));
     // Grup isimlerini ve ilgili verileri gösteren bir liste oluştur
     return MediaQuery.removePadding(
       context: context,
       removeTop: true,
       child: ListView.builder(
-        itemCount: groupedData.length,
-        padding: const EdgeInsets.only(
-          bottom: 120,
+        itemCount: groupedData?.keys.length,
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * .3,
         ),
         itemBuilder: (
           context,
@@ -95,7 +106,8 @@ class GroupedHorizontalList extends HookConsumerWidget {
             children: [
               const SizedBox(height: 33),
               PrimaryText(
-                groupedData[index].title ?? '', // Grup ismi
+                viewModel.getTagName(
+                    groupedData?.keys.toList()[index] ?? 0, hobyProviderData),
                 style: theme.textTheme.h4.copyWith(
                   color: theme.appColors.text,
                   fontWeight: FontWeight.w700,
@@ -106,9 +118,15 @@ class GroupedHorizontalList extends HookConsumerWidget {
                 height: 238, // Yatay liste yüksekliği
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: groupedData[index].images!.length,
+                  itemCount:
+                      groupedData?[groupedData?.keys.toList()[index]]?.length,
                   itemBuilder: (context, imageIndex) {
-                    final model = groupedData[index].images![imageIndex];
+                    final model =
+                        groupedData?[groupedData?.keys.toList()[index]]
+                            ?[imageIndex];
+                    final selectedImage = model!.images!.elementAt(
+                      Random().nextInt(model.images!.length),
+                    );
                     return GestureDetector(
                       onTap: () {
                         viewModel.loading();
@@ -118,11 +136,11 @@ class GroupedHorizontalList extends HookConsumerWidget {
                             )
                             .initReadyTemplate(
                               ReadyTemplateModel(
-                                id: groupedData[index].id,
-                                description: groupedData[index].description,
-                                title: groupedData[index].title,
-                                tags: groupedData[index].tags,
-                                images: [model],
+                                id: model.id,
+                                description: model.description,
+                                title: model.title,
+                                tags: model.tags,
+                                images: [selectedImage],
                               ),
                             )
                             .then((value) {
@@ -134,7 +152,8 @@ class GroupedHorizontalList extends HookConsumerWidget {
                         width: 156,
                         margin: const EdgeInsets.only(
                           right: 14,
-                        ), // Kartlar arası boşluk
+                        ),
+                        // Kartlar arası boşluk
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
                           gradient: const LinearGradient(
@@ -151,7 +170,11 @@ class GroupedHorizontalList extends HookConsumerWidget {
                           fit: StackFit.expand,
                           children: [
                             FeaturedImageWidget(
-                              imageUrl: model.downloadUrl!,
+                              imageUrl: model?.images
+                                      ?.elementAt(Random()
+                                          .nextInt(model.images?.length ?? 0))
+                                      .downloadUrl ??
+                                  '',
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(28),
                               ),
@@ -169,10 +192,11 @@ class GroupedHorizontalList extends HookConsumerWidget {
                                   SizedBox(
                                     width: 132,
                                     child: PrimaryText(
-                                      groupedData[index].description ?? '',
+                                      model?.title ?? '',
                                       maxLines: 2,
                                       style:
                                           theme.textTheme.bodyXSmall.copyWith(
+                                        fontSize: 12,
                                         overflow: TextOverflow.ellipsis,
                                         fontWeight: FontWeight.bold,
                                         color: MainColors.white,

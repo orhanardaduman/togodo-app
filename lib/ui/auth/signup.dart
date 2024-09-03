@@ -218,6 +218,10 @@ class _SignupPageState extends ConsumerState<SignupPage>
                                     validation: (val) {
                                       if ((val?.length ?? 0) < 6) {
                                         return l10n.passwordMustBeLonger;
+                                      }
+                                      if (val !=
+                                          model.passwordAgainController.text) {
+                                        return l10n.passwordDontMatch;
                                       } else {
                                         return null;
                                       }
@@ -231,7 +235,7 @@ class _SignupPageState extends ConsumerState<SignupPage>
                                         return l10n.passwordMustBeLonger;
                                       }
                                       if (val !=
-                                          model.passwordAgainController.text) {
+                                          model.passwordController.text) {
                                         return l10n.passwordDontMatch;
                                       } else {
                                         return null;

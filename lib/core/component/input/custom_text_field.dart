@@ -133,7 +133,9 @@ class _CustomTextFieldState extends ConsumerState<CustomTextField> {
       // inputFormatters: widget.isRegExp ? [CustomTextInputFormatter()] : null,
       validator: widget.validation != null
           ? (val) {
-              return widget.validation!(val);
+              final data = widget.validation!(val);
+              _isError = data != null;
+              return data;
             }
           : widget.isEnabled && widget.required
               ? (value) {

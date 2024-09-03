@@ -38,8 +38,11 @@ class CustomButton extends HookConsumerWidget {
     this.startNull = false,
     this.textWidget,
     this.shape,
+    this.canter,
   });
   final int? maxLines;
+  final bool? canter;
+
   final String text;
   final String? leftIcon;
   final String? rightIcon;
@@ -141,6 +144,7 @@ class CustomButton extends HookConsumerWidget {
                 AutoSizeText(
                   text,
                   maxLines: maxLines,
+                  textAlign: canter != null ? TextAlign.center : null,
                   style: style ??
                       theme.textTheme.bodyMedium.copyWith(
                         color: textColor,

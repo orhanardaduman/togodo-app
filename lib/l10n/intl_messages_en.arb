@@ -579,6 +579,8 @@
   "passwordMustBeLonger": "Password must be longer then 6 characters",
   "shareStartOne": "We must attend this \uD83D\uDD7A",
   "shareStartTwo": "Isint it great",
-  "shareStartThree": "Look what i found \uD83E\uDEA9"
+  "shareStartThree": "Look what i found \uD83E\uDEA9",
+  "joinedTgother": "Joined\ntogether"
+
 
 }

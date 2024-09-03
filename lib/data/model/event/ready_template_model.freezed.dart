@@ -22,6 +22,7 @@ ReadyTemplateModel _$ReadyTemplateModelFromJson(Map<String, dynamic> json) {
 mixin _$ReadyTemplateModel {
   String? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
+  int? get sortTag => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   List<TagsModel>? get tags => throw _privateConstructorUsedError;
   List<Images>? get images => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $ReadyTemplateModelCopyWith<$Res> {
   $Res call(
       {String? id,
       String? title,
+      int? sortTag,
       String? description,
       List<TagsModel>? tags,
       List<Images>? images});
@@ -61,6 +63,7 @@ class _$ReadyTemplateModelCopyWithImpl<$Res, $Val extends ReadyTemplateModel>
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
+    Object? sortTag = freezed,
     Object? description = freezed,
     Object? tags = freezed,
     Object? images = freezed,
@@ -74,6 +77,10 @@ class _$ReadyTemplateModelCopyWithImpl<$Res, $Val extends ReadyTemplateModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      sortTag: freezed == sortTag
+          ? _value.sortTag
+          : sortTag // ignore: cast_nullable_to_non_nullable
+              as int?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -101,6 +108,7 @@ abstract class _$$ReadyTemplateModelImplCopyWith<$Res>
   $Res call(
       {String? id,
       String? title,
+      int? sortTag,
       String? description,
       List<TagsModel>? tags,
       List<Images>? images});
@@ -119,6 +127,7 @@ class __$$ReadyTemplateModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
+    Object? sortTag = freezed,
     Object? description = freezed,
     Object? tags = freezed,
     Object? images = freezed,
@@ -132,6 +141,10 @@ class __$$ReadyTemplateModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      sortTag: freezed == sortTag
+          ? _value.sortTag
+          : sortTag // ignore: cast_nullable_to_non_nullable
+              as int?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -154,6 +167,7 @@ class _$ReadyTemplateModelImpl implements _ReadyTemplateModel {
   const _$ReadyTemplateModelImpl(
       {this.id,
       this.title,
+      this.sortTag,
       this.description,
       final List<TagsModel>? tags,
       final List<Images>? images})
@@ -167,6 +181,8 @@ class _$ReadyTemplateModelImpl implements _ReadyTemplateModel {
   final String? id;
   @override
   final String? title;
+  @override
+  final int? sortTag;
   @override
   final String? description;
   final List<TagsModel>? _tags;
@@ -191,7 +207,7 @@ class _$ReadyTemplateModelImpl implements _ReadyTemplateModel {
 
   @override
   String toString() {
-    return 'ReadyTemplateModel(id: $id, title: $title, description: $description, tags: $tags, images: $images)';
+    return 'ReadyTemplateModel(id: $id, title: $title, sortTag: $sortTag, description: $description, tags: $tags, images: $images)';
   }
 
   @override
@@ -201,6 +217,7 @@ class _$ReadyTemplateModelImpl implements _ReadyTemplateModel {
             other is _$ReadyTemplateModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.sortTag, sortTag) || other.sortTag == sortTag) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
@@ -213,6 +230,7 @@ class _$ReadyTemplateModelImpl implements _ReadyTemplateModel {
       runtimeType,
       id,
       title,
+      sortTag,
       description,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_images));
@@ -236,6 +254,7 @@ abstract class _ReadyTemplateModel implements ReadyTemplateModel {
   const factory _ReadyTemplateModel(
       {final String? id,
       final String? title,
+      final int? sortTag,
       final String? description,
       final List<TagsModel>? tags,
       final List<Images>? images}) = _$ReadyTemplateModelImpl;
@@ -247,6 +266,8 @@ abstract class _ReadyTemplateModel implements ReadyTemplateModel {
   String? get id;
   @override
   String? get title;
+  @override
+  int? get sortTag;
   @override
   String? get description;
   @override

@@ -139,7 +139,10 @@ class _ShareEventState extends ConsumerState<ShareEvent> {
                   user,
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * .15,
+                  height: MediaQuery.of(context).viewInsets.bottom <
+                          (MediaQuery.of(context).size.height * .15)
+                      ? MediaQuery.of(context).size.height * .15
+                      : MediaQuery.of(context).viewInsets.bottom,
                 )
               ],
             ),
@@ -198,12 +201,15 @@ class _ShareEventState extends ConsumerState<ShareEvent> {
                       iconPath: Assets.icons.bold.link.path,
                       borderRadius: BorderRadius.circular(16),
                       onPressed: () {
-                        copyLink(
+                        copyLinkNewText(
                           context,
                           theme,
+                          widget.event!.name ?? '',
+                          widget.event!.description ?? '',
                           getEventDetailsPageUrl(
                             'EventDetails/${widget.event!.id!}',
                           ),
+                          l10n,
                         );
                       },
                     ),

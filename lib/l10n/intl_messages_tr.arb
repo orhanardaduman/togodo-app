@@ -580,5 +580,6 @@
   "passwordMustBeLonger": "Şifre 6 harfden uzun olmalı",
   "shareStartOne": "Bu etkinliği kaçırmayalım \uD83D\uDD7A",
   "shareStartTwo": "Sence de çok iyi değil mi?",
-  "shareStartThree": "Bak ne buldum \uD83E\uDEA9"
+  "shareStartThree": "Bak ne buldum \uD83E\uDEA9",
+  "joinedTgother": "Beraber\nkatılıyorsunuz"
 }

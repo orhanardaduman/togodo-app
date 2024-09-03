@@ -24,10 +24,13 @@ mixin _$UserSearchModel {
   String? get userId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get invateId => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   int? get type => throw _privateConstructorUsedError;
   bool? get isFriend => throw _privateConstructorUsedError;
   bool? get inviteStatus => throw _privateConstructorUsedError;
+  bool? get sendByOtherUser => throw _privateConstructorUsedError;
+  bool? get inviteStatusData => throw _privateConstructorUsedError;
   bool? get isCurrentUser => throw _privateConstructorUsedError;
   bool? get isFollowed => throw _privateConstructorUsedError;
   bool? get isAccepted => throw _privateConstructorUsedError;
@@ -52,10 +55,13 @@ abstract class $UserSearchModelCopyWith<$Res> {
       String? userId,
       String? name,
       String? imageUrl,
+      String? invateId,
       String? title,
       int? type,
       bool? isFriend,
       bool? inviteStatus,
+      bool? sendByOtherUser,
+      bool? inviteStatusData,
       bool? isCurrentUser,
       bool? isFollowed,
       bool? isAccepted,
@@ -81,10 +87,13 @@ class _$UserSearchModelCopyWithImpl<$Res, $Val extends UserSearchModel>
     Object? userId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? invateId = freezed,
     Object? title = freezed,
     Object? type = freezed,
     Object? isFriend = freezed,
     Object? inviteStatus = freezed,
+    Object? sendByOtherUser = freezed,
+    Object? inviteStatusData = freezed,
     Object? isCurrentUser = freezed,
     Object? isFollowed = freezed,
     Object? isAccepted = freezed,
@@ -109,6 +118,10 @@ class _$UserSearchModelCopyWithImpl<$Res, $Val extends UserSearchModel>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      invateId: freezed == invateId
+          ? _value.invateId
+          : invateId // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -124,6 +137,14 @@ class _$UserSearchModelCopyWithImpl<$Res, $Val extends UserSearchModel>
       inviteStatus: freezed == inviteStatus
           ? _value.inviteStatus
           : inviteStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sendByOtherUser: freezed == sendByOtherUser
+          ? _value.sendByOtherUser
+          : sendByOtherUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inviteStatusData: freezed == inviteStatusData
+          ? _value.inviteStatusData
+          : inviteStatusData // ignore: cast_nullable_to_non_nullable
               as bool?,
       isCurrentUser: freezed == isCurrentUser
           ? _value.isCurrentUser
@@ -166,10 +187,13 @@ abstract class _$$UserSearchModelImplCopyWith<$Res>
       String? userId,
       String? name,
       String? imageUrl,
+      String? invateId,
       String? title,
       int? type,
       bool? isFriend,
       bool? inviteStatus,
+      bool? sendByOtherUser,
+      bool? inviteStatusData,
       bool? isCurrentUser,
       bool? isFollowed,
       bool? isAccepted,
@@ -193,10 +217,13 @@ class __$$UserSearchModelImplCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? invateId = freezed,
     Object? title = freezed,
     Object? type = freezed,
     Object? isFriend = freezed,
     Object? inviteStatus = freezed,
+    Object? sendByOtherUser = freezed,
+    Object? inviteStatusData = freezed,
     Object? isCurrentUser = freezed,
     Object? isFollowed = freezed,
     Object? isAccepted = freezed,
@@ -221,6 +248,10 @@ class __$$UserSearchModelImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      invateId: freezed == invateId
+          ? _value.invateId
+          : invateId // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -236,6 +267,14 @@ class __$$UserSearchModelImplCopyWithImpl<$Res>
       inviteStatus: freezed == inviteStatus
           ? _value.inviteStatus
           : inviteStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      sendByOtherUser: freezed == sendByOtherUser
+          ? _value.sendByOtherUser
+          : sendByOtherUser // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inviteStatusData: freezed == inviteStatusData
+          ? _value.inviteStatusData
+          : inviteStatusData // ignore: cast_nullable_to_non_nullable
               as bool?,
       isCurrentUser: freezed == isCurrentUser
           ? _value.isCurrentUser
@@ -273,10 +312,13 @@ class _$UserSearchModelImpl implements _UserSearchModel {
       this.userId,
       this.name,
       this.imageUrl,
+      this.invateId,
       this.title,
       this.type,
       this.isFriend,
       this.inviteStatus,
+      this.sendByOtherUser,
+      this.inviteStatusData,
       this.isCurrentUser,
       this.isFollowed,
       this.isAccepted,
@@ -296,6 +338,8 @@ class _$UserSearchModelImpl implements _UserSearchModel {
   @override
   final String? imageUrl;
   @override
+  final String? invateId;
+  @override
   final String? title;
   @override
   final int? type;
@@ -303,6 +347,10 @@ class _$UserSearchModelImpl implements _UserSearchModel {
   final bool? isFriend;
   @override
   final bool? inviteStatus;
+  @override
+  final bool? sendByOtherUser;
+  @override
+  final bool? inviteStatusData;
   @override
   final bool? isCurrentUser;
   @override
@@ -318,7 +366,7 @@ class _$UserSearchModelImpl implements _UserSearchModel {
 
   @override
   String toString() {
-    return 'UserSearchModel(id: $id, userId: $userId, name: $name, imageUrl: $imageUrl, title: $title, type: $type, isFriend: $isFriend, inviteStatus: $inviteStatus, isCurrentUser: $isCurrentUser, isFollowed: $isFollowed, isAccepted: $isAccepted, isBlocked: $isBlocked, isRequest: $isRequest, isHide: $isHide)';
+    return 'UserSearchModel(id: $id, userId: $userId, name: $name, imageUrl: $imageUrl, invateId: $invateId, title: $title, type: $type, isFriend: $isFriend, inviteStatus: $inviteStatus, sendByOtherUser: $sendByOtherUser, inviteStatusData: $inviteStatusData, isCurrentUser: $isCurrentUser, isFollowed: $isFollowed, isAccepted: $isAccepted, isBlocked: $isBlocked, isRequest: $isRequest, isHide: $isHide)';
   }
 
   @override
@@ -331,12 +379,18 @@ class _$UserSearchModelImpl implements _UserSearchModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.invateId, invateId) ||
+                other.invateId == invateId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.isFriend, isFriend) ||
                 other.isFriend == isFriend) &&
             (identical(other.inviteStatus, inviteStatus) ||
                 other.inviteStatus == inviteStatus) &&
+            (identical(other.sendByOtherUser, sendByOtherUser) ||
+                other.sendByOtherUser == sendByOtherUser) &&
+            (identical(other.inviteStatusData, inviteStatusData) ||
+                other.inviteStatusData == inviteStatusData) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
                 other.isCurrentUser == isCurrentUser) &&
             (identical(other.isFollowed, isFollowed) ||
@@ -358,10 +412,13 @@ class _$UserSearchModelImpl implements _UserSearchModel {
       userId,
       name,
       imageUrl,
+      invateId,
       title,
       type,
       isFriend,
       inviteStatus,
+      sendByOtherUser,
+      inviteStatusData,
       isCurrentUser,
       isFollowed,
       isAccepted,
@@ -390,10 +447,13 @@ abstract class _UserSearchModel implements UserSearchModel {
       final String? userId,
       final String? name,
       final String? imageUrl,
+      final String? invateId,
       final String? title,
       final int? type,
       final bool? isFriend,
       final bool? inviteStatus,
+      final bool? sendByOtherUser,
+      final bool? inviteStatusData,
       final bool? isCurrentUser,
       final bool? isFollowed,
       final bool? isAccepted,
@@ -413,6 +473,8 @@ abstract class _UserSearchModel implements UserSearchModel {
   @override
   String? get imageUrl;
   @override
+  String? get invateId;
+  @override
   String? get title;
   @override
   int? get type;
@@ -420,6 +482,10 @@ abstract class _UserSearchModel implements UserSearchModel {
   bool? get isFriend;
   @override
   bool? get inviteStatus;
+  @override
+  bool? get sendByOtherUser;
+  @override
+  bool? get inviteStatusData;
   @override
   bool? get isCurrentUser;
   @override

@@ -194,6 +194,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
         ],
         loading: false,
       );
+      await Future.delayed(Duration(milliseconds: 200));
       formKey.currentState?.validate();
     }
   }

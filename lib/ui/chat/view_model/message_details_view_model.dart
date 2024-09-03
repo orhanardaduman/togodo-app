@@ -229,6 +229,7 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
       if (pickedFile != null && pickedFile.path.isNotEmpty) {
         // Dosya türünü kontrol et
         final fileType = getFileType(pickedFile.path);
+        print(fileType);
         if (fileType == '2') {
           // Görüntü işleme
           final croppedFile = await ImageCropper().cropImage(

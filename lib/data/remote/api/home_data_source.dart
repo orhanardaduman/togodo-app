@@ -140,7 +140,10 @@ abstract class HomeDataSource {
   Future<dynamic> acceptRequest(
     @Body() Map<String, dynamic> data,
   );
-
+  @POST('Event/AcceptInvite')
+  Future<dynamic> acceptInvite(
+    @Body() Map<String, dynamic> data,
+  );
   @DELETE('Event/DeclineRequest')
   Future<dynamic> declineRequest(
     @Body() Map<String, dynamic> data,

@@ -3,6 +3,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/data/model/event/ready_template_model.dart';
 import 'package:togodo/data/repository/create_event_repository.dart';
 import 'package:togodo/data/repository/create_event_repository_impl.dart';
+
+import '../../../data/model/profil/profil_model.dart';
+
 part 'ready_template_view_model.freezed.dart';
 
 final readyTemplateViewModelProvider = StateNotifierProvider.autoDispose<
@@ -31,6 +34,25 @@ class ReadyTemplateViewModel extends StateNotifier<ReadyTemplateState> {
   final Ref _ref;
   late final CreateEventRepository _repository =
       _ref.read(createEventRepositoryProvider);
+  String getTagName(int id, List<TagsModel> tags) {
+    var name = '';
+    for (final i in tags) {
+      if (i.id == id) {
+        name = i.name ?? '';
+        break;
+      } else {
+        if (true == i.subTags?.isNotEmpty) {
+          for (final k in i.subTags!) {
+            if (k.id == id) {
+              name = k.name ?? '';
+              break;
+            }
+          }
+        }
+      }
+    }
+    return name;
+  }
 
   Future<void> fetchTemplate() async {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
@@ -56,16 +78,19 @@ class ReadyTemplateViewModel extends StateNotifier<ReadyTemplateState> {
     List<ReadyTemplateModel> templates,
   ) {
     final groupedTemplates = <int, List<ReadyTemplateModel>>{};
+    groupedTemplates[204] = [];
+    groupedTemplates[1] = [];
+    groupedTemplates[18] = [];
+    groupedTemplates[12] = [];
+    groupedTemplates[13] = [];
 
     for (final template in templates) {
-      template.tags?.forEach((tag) {
-        final tagName = tag.id ?? 1;
-        if (groupedTemplates.containsKey(tagName)) {
-          groupedTemplates[tagName]!.add(template);
-        } else {
-          groupedTemplates[tagName] = [template];
-        }
-      });
+      final tagName = template.sortTag ?? 0;
+      if (groupedTemplates.containsKey(tagName)) {
+        groupedTemplates[tagName]!.add(template);
+      } else {
+        groupedTemplates[tagName] = [template];
+      }
     }
 
     return groupedTemplates;
