@@ -76,37 +76,39 @@ class _VideoEditorState extends ConsumerState<VideoEditor> {
       );
 
   Future<void> _exportVideo() async {
-    _exportingProgress.value = 0;
-    _isExporting.value = true;
+    if (!_isExporting.value) {
+      _exportingProgress.value = 0;
+      _isExporting.value = true;
 
-    final config = VideoFFmpegVideoEditorConfig(
-      _controller,
-      // format: VideoExportFormat.gif,
-      /*  commandBuilder: (config, videoPath, outputPath) {
+      final config = VideoFFmpegVideoEditorConfig(
+        _controller,
+        // format: VideoExportFormat.gif,
+        /*  commandBuilder: (config, videoPath, outputPath) {
         final filters = config.getExportFilters();
         /*   filters.add('hflip'); // add horizontal flip */
 
         return '-i $videoPath ${config.filtersCmd(filters)} -preset ultrafast $outputPath';
       }, */
-    );
+      );
 
-    await ExportService.runFFmpegCommand(
-      await config.getExecuteConfig(),
-      onProgress: (stats) {
-        _exportingProgress.value =
-            config.getFFmpegProgress(int.parse(stats.getTime().toString()));
-      },
-      onError: (e, s) => _showErrorSnackBar('Error on export video :('),
-      onCompleted: (file) {
-        _isExporting.value = false;
-        if (!mounted) return;
-        ref.read(messageDetailsProvider(widget.roomId).notifier)
-          ..addMediaList([file])
-          ..sendMessage(
-            isSearchRoute: widget.isSearchRoute,
-          ).then((value) => Navigator.pop(context));
-      },
-    );
+      await ExportService.runFFmpegCommand(
+        await config.getExecuteConfig(),
+        onProgress: (stats) {
+          _exportingProgress.value =
+              config.getFFmpegProgress(int.parse(stats.getTime().toString()));
+        },
+        onError: (e, s) => _showErrorSnackBar('Error on export video :('),
+        onCompleted: (file) {
+          _isExporting.value = false;
+          if (!mounted) return;
+          ref.read(messageDetailsProvider(widget.roomId).notifier)
+            ..addMediaList([file])
+            ..sendMessage(
+              isSearchRoute: widget.isSearchRoute,
+            ).then((value) => Navigator.pop(context));
+        },
+      );
+    }
   }
 
   @override
