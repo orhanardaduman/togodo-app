@@ -9,7 +9,7 @@ part of 'event_all_users_model.dart';
 _$EventAllUsersModelImpl _$$EventAllUsersModelImplFromJson(
         Map<String, dynamic> json) =>
     _$EventAllUsersModelImpl(
-      total: json['total'] as int?,
+      total: (json['total'] as num?)?.toInt(),
       users: (json['users'] as List<dynamic>?)
           ?.map(
               (e) => EventFriendInviteModel.fromJson(e as Map<String, dynamic>))

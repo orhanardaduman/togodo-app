@@ -12,7 +12,7 @@ part of 'welcome_question_modelview.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$WelcomeQuestionState {
@@ -25,7 +25,9 @@ mixin _$WelcomeQuestionState {
   File? get image => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WelcomeQuestionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WelcomeQuestionStateCopyWith<WelcomeQuestionState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +60,8 @@ class _$WelcomeQuestionStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WelcomeQuestionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,6 +138,8 @@ class __$$WelcomeQuestionStateImplCopyWithImpl<$Res>
       $Res Function(_$WelcomeQuestionStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WelcomeQuestionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -234,7 +240,7 @@ class _$WelcomeQuestionStateImpl implements _WelcomeQuestionState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WelcomeQuestionStateImpl &&
@@ -264,7 +270,9 @@ class _$WelcomeQuestionStateImpl implements _WelcomeQuestionState {
       image,
       imageUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WelcomeQuestionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WelcomeQuestionStateImplCopyWith<_$WelcomeQuestionStateImpl>
@@ -300,8 +308,11 @@ abstract class _WelcomeQuestionState implements WelcomeQuestionState {
   File? get image;
   @override
   String? get imageUrl;
+
+  /// Create a copy of WelcomeQuestionState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WelcomeQuestionStateImplCopyWith<_$WelcomeQuestionStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

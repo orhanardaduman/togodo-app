@@ -580,7 +580,33 @@
   "shareStartOne": "We must attend this \uD83D\uDD7A",
   "shareStartTwo": "Isint it great",
   "shareStartThree": "Look what i found \uD83E\uDEA9",
-  "joinedTgother": "Joined\ntogether"
+  "joinedTgother": "Joined\ntogether",
+  "matchWithGroup": "Match With Group",
+  "profileGroups": "Groups",
+  "creatingGroup": "Creating Group",
+
+  "eventDetails": "Event Details",
+  "groupDetails": "Group Details",
+  "groupMatchText": "You matched with great group for {eventname}! ",
+  "yourGroupFriends": "Here are your group friends \uD83C\uDFC4\u200D♂\uFE0F",
+  "yourGroupIsReady": "Your group is ready! Lets meet with you new friends \uD83C\uDF1F",
+  "yourGroupIsReadyBody": " group  is ready! Click for meet  \uD83C\uDF89",
+  "donTBeAlone": "Don't be alone in event \uD83E\uDD1D",
+  "letsFindGroup": "Lets find an group\n for you to join!",
+  "searchingGroup": "Searching for group",
+  "stopSearch": "Stop search",
+  "meetFriends": "Meet with you group firends\nget ready for event!",
+  "searchGroupForYou": "Search for group right for you \uD83D\uDD0E",
+  "weWillNotifyYou": "We will notify you when\ngroup is created!",
+  "cancelSearch": "Cancel Search",
+  "searchingGroupForYou": "Searching For Group",
+  "goToEventDetail": "Go To Event Details ",
+  "chat": "Chat",
+  "canStartChatWhenReady": "You can start chet here when group is ready \uD83C\uDF89",
+  "redirectingTOTicket": "Redirecting to ticket..."
+
+
+
 
 
 }

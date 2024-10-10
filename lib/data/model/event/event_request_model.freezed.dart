@@ -12,7 +12,7 @@ part of 'event_request_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 EventRequestModel _$EventRequestModelFromJson(Map<String, dynamic> json) {
   return _EventRequestModel.fromJson(json);
@@ -29,8 +29,12 @@ mixin _$EventRequestModel {
   bool? get requestStatus => throw _privateConstructorUsedError;
   Friend? get friend => throw _privateConstructorUsedError;
 
+  /// Serializes this EventRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventRequestModelCopyWith<EventRequestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$EventRequestModelCopyWithImpl<$Res, $Val extends EventRequestModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EventRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,6 +118,8 @@ class _$EventRequestModelCopyWithImpl<$Res, $Val extends EventRequestModel>
     ) as $Val);
   }
 
+  /// Create a copy of EventRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FriendCopyWith<$Res>? get friend {
@@ -155,6 +163,8 @@ class __$$EventRequestModelImplCopyWithImpl<$Res>
       $Res Function(_$EventRequestModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -243,7 +253,7 @@ class _$EventRequestModelImpl implements _EventRequestModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EventRequestModelImpl &&
@@ -260,12 +270,14 @@ class _$EventRequestModelImpl implements _EventRequestModel {
             (identical(other.friend, friend) || other.friend == friend));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, requestId, userId, name,
       imageUrl, title, date, requestStatus, friend);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventRequestModelImplCopyWith<_$EventRequestModelImpl> get copyWith =>
@@ -310,8 +322,11 @@ abstract class _EventRequestModel implements EventRequestModel {
   bool? get requestStatus;
   @override
   Friend? get friend;
+
+  /// Create a copy of EventRequestModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventRequestModelImplCopyWith<_$EventRequestModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -327,8 +342,12 @@ mixin _$Friend {
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
 
+  /// Serializes this Friend to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FriendCopyWith<Friend> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -350,6 +369,8 @@ class _$FriendCopyWithImpl<$Res, $Val extends Friend>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -397,6 +418,8 @@ class __$$FriendImplCopyWithImpl<$Res>
       _$FriendImpl _value, $Res Function(_$FriendImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -449,7 +472,7 @@ class _$FriendImpl implements _Friend {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FriendImpl &&
@@ -460,11 +483,13 @@ class _$FriendImpl implements _Friend {
             (identical(other.title, title) || other.title == title));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userId, name, imageUrl, title);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FriendImplCopyWith<_$FriendImpl> get copyWith =>
@@ -495,8 +520,11 @@ abstract class _Friend implements Friend {
   String? get imageUrl;
   @override
   String? get title;
+
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FriendImplCopyWith<_$FriendImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

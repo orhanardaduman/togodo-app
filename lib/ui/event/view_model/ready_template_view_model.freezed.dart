@@ -12,7 +12,7 @@ part of 'ready_template_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ReadyTemplateState {
@@ -23,7 +23,9 @@ mixin _$ReadyTemplateState {
   bool get loading => throw _privateConstructorUsedError;
   bool get dataLoading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReadyTemplateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReadyTemplateStateCopyWith<ReadyTemplateState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +54,8 @@ class _$ReadyTemplateStateCopyWithImpl<$Res, $Val extends ReadyTemplateState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ReadyTemplateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +114,8 @@ class __$$ReadyTemplateStateImplCopyWithImpl<$Res>
       $Res Function(_$ReadyTemplateStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ReadyTemplateState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -192,7 +198,7 @@ class _$ReadyTemplateStateImpl implements _ReadyTemplateState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyTemplateStateImpl &&
@@ -215,7 +221,9 @@ class _$ReadyTemplateStateImpl implements _ReadyTemplateState {
       loading,
       dataLoading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ReadyTemplateState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyTemplateStateImplCopyWith<_$ReadyTemplateStateImpl> get copyWith =>
@@ -241,8 +249,11 @@ abstract class _ReadyTemplateState implements ReadyTemplateState {
   bool get loading;
   @override
   bool get dataLoading;
+
+  /// Create a copy of ReadyTemplateState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyTemplateStateImplCopyWith<_$ReadyTemplateStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

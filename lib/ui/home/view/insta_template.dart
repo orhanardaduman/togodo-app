@@ -2,7 +2,6 @@
 
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -180,19 +179,19 @@ class _CustomInstagramStoryWidgetState
             attributionURL: 'https://www.togodo.app',
             imagePath: imagePath.path,
           ).then((value) async {
-            await AutoRouter.of(context).pop();
+            Navigator.of(context).pop();
           });
         } catch (e) {
           if (kDebugMode) {
             print('Error while sharing to Instagram: $e');
-            await AutoRouter.of(context).pop();
+            Navigator.of(context).pop();
           }
         }
       }
     } catch (e) {
       if (kDebugMode) {
         print('Error while sharing to Instagram: $e');
-        await AutoRouter.of(context).pop();
+        Navigator.of(context).pop();
       }
     }
   }

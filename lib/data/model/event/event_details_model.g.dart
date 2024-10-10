@@ -16,7 +16,7 @@ _$EventDetailsModelImpl _$$EventDetailsModelImplFromJson(
       location: json['location'] as String?,
       date: json['date'] as String?,
       likeStatus: json['likeStatus'] as bool?,
-      joinedUserCount: json['joinedUserCount'] as int?,
+      joinedUserCount: (json['joinedUserCount'] as num?)?.toInt(),
       joinedStatus: json['joinedStatus'] as bool?,
       isCurrentUser: json['isCurrentUser'] as bool?,
       startTime: json['startTime'] as String?,
@@ -31,9 +31,9 @@ _$EventDetailsModelImpl _$$EventDetailsModelImplFromJson(
       isUserEvent: json['isUserEvent'] as bool?,
       isClosedComment: json['isClosedComment'] as bool?,
       openToJoinStatus: json['openToJoinStatus'] as bool?,
-      likeCount: json['likeCount'] as int?,
-      shareCount: json['shareCount'] as int?,
-      participantsLimit: json['participantsLimit'] as int?,
+      likeCount: (json['likeCount'] as num?)?.toInt(),
+      participantsLimit: (json['participantsLimit'] as num?)?.toInt(),
+      shareCount: (json['shareCount'] as num?)?.toInt(),
       price: json['price'] as String?,
       ticketUrl: json['ticketUrl'] as String?,
       onlineUrl: json['onlineUrl'] as String?,
@@ -41,7 +41,7 @@ _$EventDetailsModelImpl _$$EventDetailsModelImplFromJson(
       longitude: json['longitude'] as String?,
       mapLink: json['mapLink'] as String?,
       address: json['address'] as String?,
-      ratingLenght: json['ratingLenght'] as int?,
+      ratingLenght: (json['ratingLenght'] as num?)?.toInt(),
       rating: (json['rating'] as num?)?.toDouble(),
       vendorDetails: json['vendorDetails'] == null
           ? null
@@ -68,7 +68,14 @@ _$EventDetailsModelImpl _$$EventDetailsModelImplFromJson(
       ratings: (json['ratings'] as List<dynamic>?)
           ?.map((e) => Ratings.fromJson(e as Map<String, dynamic>))
           .toList(),
-      sortNumber: json['sortNumber'] as int?,
+      sortNumber: (json['sortNumber'] as num?)?.toInt(),
+      eventGroups: json['eventGroups'] == null
+          ? null
+          : EventGroups.fromJson(json['eventGroups'] as Map<String, dynamic>),
+      groupRequest: json['groupRequest'] == null
+          ? null
+          : GroupRequestDetail.fromJson(
+              json['groupRequest'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$EventDetailsModelImplToJson(
@@ -97,8 +104,8 @@ Map<String, dynamic> _$$EventDetailsModelImplToJson(
       'isClosedComment': instance.isClosedComment,
       'openToJoinStatus': instance.openToJoinStatus,
       'likeCount': instance.likeCount,
-      'shareCount': instance.shareCount,
       'participantsLimit': instance.participantsLimit,
+      'shareCount': instance.shareCount,
       'price': instance.price,
       'ticketUrl': instance.ticketUrl,
       'onlineUrl': instance.onlineUrl,
@@ -117,6 +124,8 @@ Map<String, dynamic> _$$EventDetailsModelImplToJson(
       'request': instance.request,
       'ratings': instance.ratings,
       'sortNumber': instance.sortNumber,
+      'eventGroups': instance.eventGroups,
+      'groupRequest': instance.groupRequest,
     };
 
 _$PricesImpl _$$PricesImplFromJson(Map<String, dynamic> json) => _$PricesImpl(

@@ -7,18 +7,24 @@ import 'package:togodo/features/component/featured_image.dart';
 import 'package:togodo/ui/chat/view_model/message_details_view_model.dart';
 import 'package:togodo/ui/chat/widgets/gallery_image/custom_gallery_image.dart';
 
+import '../../../group/view_model/event_group_detail_view_model.dart';
+
 class ChatReplyContainer extends HookConsumerWidget {
   const ChatReplyContainer({
-    required this.viewModelNotifier,
-    required this.viewModel,
+    this.viewModelNotifier,
+    this.viewModel,
+    this.eventViewModelNotifier,
+    this.eventViewModel,
     super.key,
   });
-  final MessageDetailsNotifier viewModelNotifier;
-  final MessageDetailsState viewModel;
+  final MessageDetailsNotifier? viewModelNotifier;
+  final MessageDetailsState? viewModel;
+  final EventGroupDetailNotifier? eventViewModelNotifier;
+  final EventGroupDetailState? eventViewModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
-    final replyModel = viewModel.replyModel;
+    final replyModel = viewModel?.replyModel ?? eventViewModel?.replyModel;
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -86,7 +92,11 @@ class ChatReplyContainer extends HookConsumerWidget {
                 ),
               ),
               IconButton(
-                onPressed: viewModelNotifier.updateState,
+                onPressed: viewModelNotifier != null
+                    ? viewModelNotifier!.updateState
+                    : eventViewModelNotifier != null
+                        ? eventViewModelNotifier?.updateState
+                        : () {},
                 icon: Icon(
                   Icons.close,
                   color: theme.appColors.text,

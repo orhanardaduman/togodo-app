@@ -11,8 +11,14 @@ import 'package:togodo/ui/home/reels/components/event_action_button.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 
 class ReelsBottomButton extends HookConsumerWidget {
-  const ReelsBottomButton({required this.model, super.key});
+  const ReelsBottomButton(
+      {required this.showMore,
+      required this.model,
+      required this.onShowMore,
+      super.key});
   final EventModel model;
+  final bool showMore;
+  final Function(bool newValue) onShowMore;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(homeViewModelProvider.notifier);
@@ -26,8 +32,8 @@ class ReelsBottomButton extends HookConsumerWidget {
         notifier.setEnableShowcase();
       },
       blurValue: 1,
-      builder: Builder(
-        builder: (context) => SafeArea(
+      builder: (context) {
+        return SafeArea(
           child: Container(
             padding: EdgeInsets.only(
               left: 24,
@@ -38,15 +44,16 @@ class ReelsBottomButton extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 EventButton(
-                  model: model,
-                  enableShowCase: homeViewModel.enableShowcase,
-                  isHomePage: true,
-                ),
+                    model: model,
+                    enableShowCase: homeViewModel.enableShowcase,
+                    isHomePage: true,
+                    showMore: showMore,
+                    onShowMore: onShowMore),
               ],
             ),
           ),
-        ),
-      ),
+        );
+      },
       autoPlayDelay: const Duration(seconds: 3),
     );
   }

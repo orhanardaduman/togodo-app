@@ -1,6 +1,7 @@
 import 'package:togodo/data/model/notification/notification_model.dart';
 import 'package:togodo/data/model/result.dart';
 
+import '../../ui/group/model/group_model.dart';
 import '../model/event/event_rating_needed_model.dart';
 
 abstract class NotificationRepository {
@@ -18,4 +19,7 @@ abstract class NotificationRepository {
   Future<Result<void>> askLater(String eventUserId);
   Future<Result<void>> neverShow(String eventUserId);
   Future<Result<void>> rate(String eventUserId, int rate);
+  Future<Result<void>> closeDialog(String groupId);
+  Future<Result<void>> neverShowDialog(String groupId);
+  Future<Result<List<GroupDetailModelForDialog>>> hasEventDialog();
 }

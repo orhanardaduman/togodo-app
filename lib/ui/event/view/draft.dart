@@ -108,7 +108,7 @@ class _DraftPageState extends ConsumerState<DraftPage>
                             .initDraftData(viewModelState.data[index].id!)
                             .then((value) {
                           viewModel.loading();
-                          return AutoRouter.of(context).pop();
+                          return Navigator.of(context).pop();
                         });
                       },
                       child: EnventCards(
@@ -169,7 +169,7 @@ class _DraftPageState extends ConsumerState<DraftPage>
               text: l10n.createEvent,
               radius: 100,
               onPressed: () {
-                context.router.pop();
+                Navigator.of(context).pop();
               },
             ),
           ),

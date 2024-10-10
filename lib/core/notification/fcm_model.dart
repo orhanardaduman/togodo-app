@@ -20,6 +20,7 @@ class FcmModel with _$FcmModel {
     String? userProfileImage,
     String? isGroup,
     String? rate,
+    String? isEventGroup,
   }) = _FcmModel;
 
   factory FcmModel.fromJson(Map<String, Object?> json) =>

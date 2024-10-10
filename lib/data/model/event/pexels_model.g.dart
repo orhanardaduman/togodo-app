@@ -8,12 +8,12 @@ part of 'pexels_model.dart';
 
 _$PexelsModelImpl _$$PexelsModelImplFromJson(Map<String, dynamic> json) =>
     _$PexelsModelImpl(
-      page: json['page'] as int?,
-      perPage: json['perPage'] as int?,
+      page: (json['page'] as num?)?.toInt(),
+      perPage: (json['perPage'] as num?)?.toInt(),
       photos: (json['photos'] as List<dynamic>?)
           ?.map((e) => Photos.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalResults: json['totalResults'] as int?,
+      totalResults: (json['totalResults'] as num?)?.toInt(),
       nextPage: json['nextPage'] as String?,
     );
 
@@ -27,13 +27,13 @@ Map<String, dynamic> _$$PexelsModelImplToJson(_$PexelsModelImpl instance) =>
     };
 
 _$PhotosImpl _$$PhotosImplFromJson(Map<String, dynamic> json) => _$PhotosImpl(
-      id: json['id'] as int?,
-      width: json['width'] as int?,
-      height: json['height'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
       url: json['url'] as String?,
       photographer: json['photographer'] as String?,
       photographerUrl: json['photographerUrl'] as String?,
-      photographerId: json['photographerId'] as int?,
+      photographerId: (json['photographerId'] as num?)?.toInt(),
       avgColor: json['avgColor'] as String?,
       src: json['src'] == null
           ? null

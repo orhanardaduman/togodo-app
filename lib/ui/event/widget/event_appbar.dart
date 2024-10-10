@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use_from_same_package
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/core/component/primary_text.dart';
@@ -34,7 +33,7 @@ class EventAppBar extends HookConsumerWidget implements PreferredSizeWidget {
       leading: GestureDetector(
         onTap: () {
           if (state.step == 0) {
-            context.router.pop();
+            Navigator.of(context).pop();
             return;
           }
           model.incrementBackProgress();

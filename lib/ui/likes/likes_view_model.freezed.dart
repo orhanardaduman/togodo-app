@@ -12,7 +12,7 @@ part of 'likes_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LikesState {
@@ -20,7 +20,9 @@ mixin _$LikesState {
   bool get loading => throw _privateConstructorUsedError;
   int get pagination => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LikesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LikesStateCopyWith<LikesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$LikesStateCopyWithImpl<$Res, $Val extends LikesState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LikesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$LikesStateImplCopyWithImpl<$Res>
       _$LikesStateImpl _value, $Res Function(_$LikesStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LikesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,7 +148,7 @@ class _$LikesStateImpl implements _LikesState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LikesStateImpl &&
@@ -156,7 +162,9 @@ class _$LikesStateImpl implements _LikesState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_events), loading, pagination);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LikesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LikesStateImplCopyWith<_$LikesStateImpl> get copyWith =>
@@ -175,8 +183,11 @@ abstract class _LikesState implements LikesState {
   bool get loading;
   @override
   int get pagination;
+
+  /// Create a copy of LikesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LikesStateImplCopyWith<_$LikesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

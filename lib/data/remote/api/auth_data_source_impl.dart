@@ -91,8 +91,8 @@ class AuthDataSourceImpl extends ChangeNotifier implements AuthDataSource {
 
       if (result.status == LoginStatus.success) {
         // Use `result.accessToken` to make a Facebook Graph API request
-        final facebookCredential =
-            firebase.FacebookAuthProvider.credential(result.accessToken!.token);
+        final facebookCredential = firebase.FacebookAuthProvider.credential(
+            result.accessToken!.tokenString);
 
         // Sign in (or link) with the credential
         final userCredential =

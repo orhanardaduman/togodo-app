@@ -13,6 +13,7 @@ _$NotificationModelImpl _$$NotificationModelImplFromJson(
       type: json['type'] as String?,
       createdAt: json['createdAt'] as String?,
       requestId: json['requestId'] as String?,
+      eventGroupsId: json['eventGroupsId'] as String?,
       request: json['request'] as bool?,
       user: json['user'] == null
           ? null
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
       'type': instance.type,
       'createdAt': instance.createdAt,
       'requestId': instance.requestId,
+      'eventGroupsId': instance.eventGroupsId,
       'request': instance.request,
       'user': instance.user,
       'event': instance.event,

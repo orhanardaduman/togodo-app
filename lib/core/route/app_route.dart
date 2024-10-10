@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:togodo/core/route/app_route.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
@@ -188,6 +188,10 @@ class AppRouter extends $AppRouter {
         AutoRoute(
           path: '/chat',
           page: ChatRoute.page,
+        ),
+        AutoRoute(
+          path: '/group',
+          page: GroupRoute.page,
         ),
         AutoRoute(
           path: '/adminDashboard',

@@ -12,7 +12,7 @@ part of 'post_files.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PostFiles _$PostFilesFromJson(Map<String, dynamic> json) {
   return _PostFiles.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$PostFiles {
   String? get fileId => throw _privateConstructorUsedError;
   String? get filePath => throw _privateConstructorUsedError;
 
+  /// Serializes this PostFiles to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PostFiles
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PostFilesCopyWith<PostFiles> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$PostFilesCopyWithImpl<$Res, $Val extends PostFiles>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PostFiles
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$PostFilesImplCopyWithImpl<$Res>
       _$PostFilesImpl _value, $Res Function(_$PostFilesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PostFiles
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,7 +131,7 @@ class _$PostFilesImpl implements _PostFiles {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostFilesImpl &&
@@ -132,11 +140,13 @@ class _$PostFilesImpl implements _PostFiles {
                 other.filePath == filePath));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, fileId, filePath);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PostFiles
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PostFilesImplCopyWith<_$PostFilesImpl> get copyWith =>
@@ -161,8 +171,11 @@ abstract class _PostFiles implements PostFiles {
   String? get fileId;
   @override
   String? get filePath;
+
+  /// Create a copy of PostFiles
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PostFilesImplCopyWith<_$PostFilesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

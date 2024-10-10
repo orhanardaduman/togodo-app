@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:lottie/lottie.dart';
@@ -55,7 +54,7 @@ class WonWidget extends StatelessWidget {
             text: l10n.close,
             mode: ButtonMode.dark,
             onPressed: () {
-              AutoRouter.of(context).pop();
+              Navigator.of(context).pop();
             },
             radius: 100,
           ),

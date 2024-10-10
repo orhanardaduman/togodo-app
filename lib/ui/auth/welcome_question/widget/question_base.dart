@@ -48,7 +48,7 @@ class QuestionBase extends HookConsumerWidget {
                     .signOut()
                     .then((value) => router.push(const WelcomeRoute()));
               } else {
-                router.pop();
+                Navigator.of(context).pop();
               }
             },
           ),

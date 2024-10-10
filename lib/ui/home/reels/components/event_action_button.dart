@@ -24,11 +24,14 @@ import 'package:togodo/ui/event/create_event_page.dart';
 import 'package:togodo/ui/home/view/event_management.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 
+import '../../../../core/helpers/utility.dart';
 import '../../../../data/local/token_model.dart';
 
 class EventButton extends StatefulHookConsumerWidget {
   const EventButton({
+    required this.showMore,
     required this.model,
+    required this.onShowMore,
     super.key,
     this.enableShowCase = false,
     this.isHomePage = false,
@@ -37,6 +40,8 @@ class EventButton extends StatefulHookConsumerWidget {
   final EventCommonProperties model;
   final bool enableShowCase;
   final bool isHomePage;
+  final bool showMore;
+  final Function(bool newValue) onShowMore;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => EventButtonState();
@@ -44,7 +49,7 @@ class EventButton extends StatefulHookConsumerWidget {
 
 class EventButtonState extends ConsumerState<EventButton> {
   final GlobalKey _one = GlobalKey();
-
+  bool isRedirecting = false;
   @override
   void initState() {
     super.initState();
@@ -63,19 +68,109 @@ class EventButtonState extends ConsumerState<EventButton> {
     final l10n = useL10n();
     final notifier = ref.read(homeViewModelProvider.notifier);
     final userModel = ref.watch(userViewModelProvider).tokenModel;
-    return userModel != null &&
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (widget.showMore)
+          Container(
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                20,
+              ),
+              color: Color.fromRGBO(21, 34, 42, 1),
+            ),
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    launchUrls(widget.model.ticketUrl ?? '');
+                    widget.onShowMore(false);
+                  },
+                  child: PrimaryText(
+                    l10n.buyTicket,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 2,
+                  color: const Color.fromRGBO(53, 56, 61, 1),
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                TextButton(
+                  onPressed: () {
+                    warningShowDialog(
+                      l10n.leaveEvent,
+                      l10n.leaveEventInfo,
+                      l10n.leaveEvent,
+                      () async {
+                        final response = await notifier.leaveEvent(
+                          widget.model.id!,
+                          homePage: widget.isHomePage,
+                        );
+                        if (response) {
+                          // ignore: use_build_context_synchronously
+                          Navigator.of(context).pop();
+                          widget.onShowMore(false);
+                        }
+                      },
+                      theme,
+                      context,
+                    );
+                  },
+                  child: PrimaryText(
+                    l10n.leaveEvent,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        if (userModel != null &&
             userModel.token!.userType != null &&
-            userModel.token!.userType == 101
-        ? Column(
+            userModel.token!.userType == 101)
+          Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               editButton(themeMode, context),
               buttonBody(
-                  context, themeMode, l10n, theme, router, notifier, userModel),
+                context,
+                themeMode,
+                l10n,
+                theme,
+                router,
+                notifier,
+                userModel,
+              ),
             ],
           )
-        : buttonBody(
-            context, themeMode, l10n, theme, router, notifier, userModel);
+        else
+          buttonBody(
+            context,
+            themeMode,
+            l10n,
+            theme,
+            router,
+            notifier,
+            userModel,
+          ),
+      ],
+    );
   }
 
   Padding buttonBody(
@@ -175,74 +270,23 @@ class EventButtonState extends ConsumerState<EventButton> {
     HomeViewModel notifier,
     StackRouter router,
   ) {
-    return (widget.model.openToJoinStatus ?? false)
-        ? Row(
-            children: [
-              SizedBox(
-                width: context.sized.dynamicWidth(0.35),
-                child: widget.model.joinedStatus ?? false
-                    ? joinedButton(context, l10n, theme, themeMode, notifier)
-                    : joinButton(l10n, theme, themeMode, notifier),
-              ),
-              if (widget.model.openToJoinStatus ?? false) const Spacer(),
-              if (widget.model.openToJoinStatus ?? false)
-                joinWithFriendsButton(
-                  theme,
-                  l10n,
-                  context,
-                  router,
-                  notifier,
-                ),
-            ],
+    return Row(
+      children: [
+        if (isRedirecting)
+          redirectingButton(l10n, theme, themeMode, notifier)
+        else if (widget.model.joinedStatus ?? false)
+          joinedButton(context, l10n, theme, themeMode, notifier)
+        else if (widget.model.requestStatus ?? false)
+          requestWaitingButton(
+            l10n,
+            theme,
+            themeMode,
+            notifier,
           )
-        : Row(
-            children: [
-              if (widget.model.joinedStatus ?? false)
-                SizedBox(
-                  width: context.sized
-                      .dynamicWidth(context.isSmallScrn ? 0.85 : 0.88),
-                  child:
-                      joinedButton(context, l10n, theme, themeMode, notifier),
-                )
-              else if (widget.model.requestStatus ?? false)
-                SizedBox(
-                  width: context.sized
-                      .dynamicWidth(context.isSmallScrn ? 0.85 : 0.88),
-                  child: requestWaitingButton(
-                    l10n,
-                    theme,
-                    themeMode,
-                    notifier,
-                  ),
-                )
-              else if (widget.model.isQuotaFull == true)
-                SizedBox(
-                  width: context.sized
-                      .dynamicWidth(context.isSmallScrn ? 0.85 : 0.88),
-                  child:
-                      withFriendsButton(context, l10n, theme, notifier, router),
-                )
-              else
-                SizedBox(
-                  width: context.sized.dynamicWidth(0.35),
-                  child: joinButton(l10n, theme, themeMode, notifier),
-                ),
-              if (!(widget.model.joinedStatus ?? false) &&
-                  (widget.model.isQuotaFull != true) &&
-                  !(widget.model.requestStatus ?? false))
-                const Spacer(),
-              if (!(widget.model.joinedStatus ?? false) &&
-                  (widget.model.isQuotaFull != true) &&
-                  !(widget.model.requestStatus ?? false))
-                joinWithFriendsButton(
-                  theme,
-                  l10n,
-                  context,
-                  router,
-                  notifier,
-                ),
-            ],
-          );
+        else
+          joinButton(l10n, theme, themeMode, notifier),
+      ],
+    );
   }
 
   CustomButton requestWaitingButton(
@@ -277,7 +321,7 @@ class EventButtonState extends ConsumerState<EventButton> {
             );
             if (response) {
               // ignore: use_build_context_synchronously
-              await AutoRouter.of(context).pop();
+              Navigator.of(context).pop();
             }
           },
           theme,
@@ -287,32 +331,84 @@ class EventButtonState extends ConsumerState<EventButton> {
     );
   }
 
-  CustomButton joinButton(
+  SizedBox joinButton(
     L10n l10n,
     AppTheme theme,
     bool themeMode,
     HomeViewModel notifier,
   ) {
-    return CustomButton(
-      text: widget.model.isQuotaFull == true ? l10n.getInLine : l10n.join,
-      style: theme.textTheme.bodyLarge.copyWith(
-        color: themeMode ? MainColors.white : MainColors.primary,
-        fontWeight: FontWeight.w700,
-      ),
-      bgColor: MainColors.primary.withOpacity(0.2),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(
-          color: MainColors.primary400,
-          width: 3,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width - 48,
+      child: CustomButton(
+        text: (widget.model.isQuotaFull ?? false) == true
+            ? l10n.getInLine
+            : l10n.join,
+        style: theme.textTheme.bodyLarge.copyWith(
+          color: themeMode ? MainColors.white : MainColors.primary,
+          fontWeight: FontWeight.w700,
         ),
+        bgColor: MainColors.primary.withOpacity(0.2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: const BorderSide(
+            color: MainColors.primary400,
+            width: 3,
+          ),
+        ),
+        onPressed: () async {
+          if (widget.model.ticketUrl != null && widget.model.ticketUrl != '') {
+            setState(() {
+              isRedirecting = true;
+            });
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            launchUrls(widget.model.ticketUrl ?? '');
+            setState(() {
+              isRedirecting = false;
+            });
+          }
+
+          await notifier.eventJoinRequest(
+            widget.model.id!,
+            homePage: widget.isHomePage,
+          );
+        },
       ),
-      onPressed: () {
-        notifier.eventJoinRequest(
-          widget.model.id!,
-          homePage: widget.isHomePage,
-        );
-      },
+    );
+  }
+
+  Container redirectingButton(
+    L10n l10n,
+    AppTheme theme,
+    bool themeMode,
+    HomeViewModel notifier,
+  ) {
+    return Container(
+      width: MediaQuery.of(context).size.width - 48,
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: const Color.fromRGBO(24, 26, 32, 1),
+      ),
+      child: Row(
+        children: [
+          Assets.icons.bold.twoTicket.svg(
+            width: 42,
+            height: 42,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          PrimaryText(
+            l10n.redirectingTOTicket,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -324,43 +420,82 @@ class EventButtonState extends ConsumerState<EventButton> {
     HomeViewModel notifier,
   ) {
     return SizedBox(
-      width: context.sized.dynamicWidth(0.35),
-      child: CustomButton(
-        text: widget.model.isQuotaFull == true ? l10n.getInLined : l10n.joined,
-        style: theme.textTheme.bodyLarge.copyWith(
-          color: themeMode ? MainColors.white : MainColors.primary,
-          fontWeight: FontWeight.w700,
-        ),
-        bgColor:
-            themeMode ? MainColors.dark3 : MainColors.primary.withOpacity(0.2),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: themeMode
-              ? BorderSide.none
-              : const BorderSide(
-                  color: MainColors.primary400,
+      width: MediaQuery.of(context).size.width - 48,
+      height: 60,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: CustomButton(
+              text: widget.model.isQuotaFull == true
+                  ? l10n.getInLined
+                  : l10n.joined,
+              style: theme.textTheme.bodyLarge.copyWith(
+                color: MainColors.primary,
+                fontWeight: FontWeight.w700,
+              ),
+              bgColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+                side: const BorderSide(
+                  color: MainColors.primary,
                   width: 3,
                 ),
-        ),
-        onPressed: () {
-          warningShowDialog(
-            l10n.leaveEvent,
-            l10n.leaveEventInfo,
-            l10n.leaveEvent,
-            () async {
-              final response = await notifier.leaveEvent(
-                widget.model.id!,
-                homePage: widget.isHomePage,
-              );
-              if (response) {
-                // ignore: use_build_context_synchronously
-                await AutoRouter.of(context).pop();
-              }
-            },
-            theme,
-            context,
-          );
-        },
+              ),
+              onPressed: () {
+                warningShowDialog(
+                  l10n.leaveEvent,
+                  l10n.leaveEventInfo,
+                  l10n.leaveEvent,
+                  () async {
+                    final response = await notifier.leaveEvent(
+                      widget.model.id!,
+                      homePage: widget.isHomePage,
+                    );
+                    if (response) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  theme,
+                  context,
+                );
+              },
+            ),
+          ),
+          if (widget.model.ticketUrl != null && widget.model.ticketUrl != '')
+            Container(
+              margin: EdgeInsets.only(
+                left: 10,
+              ),
+              width: 60,
+              child: IconButton(
+                style: IconButton.styleFrom(
+                    backgroundColor: themeMode
+                        ? MainColors.dark3
+                        : MainColors.primary.withOpacity(0.2),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                      side: themeMode
+                          ? BorderSide.none
+                          : const BorderSide(
+                              color: MainColors.primary400,
+                              width: 3,
+                            ),
+                    )),
+                onPressed: () {
+                  widget.onShowMore(!widget.showMore);
+                },
+                icon: Icon(
+                  widget.showMore
+                      ? Icons.keyboard_arrow_down
+                      : Icons.keyboard_arrow_up,
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }

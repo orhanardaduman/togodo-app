@@ -88,7 +88,7 @@ class PopUpWidget extends HookConsumerWidget {
                           child: GestureDetector(
                             onTap: () {
                               router
-                                ..pop()
+                                ..back()
                                 ..push(
                                   ProfilEditRoute(),
                                 ); // Yeni route'a git
@@ -102,7 +102,7 @@ class PopUpWidget extends HookConsumerWidget {
                                     label: l10n.title,
                                     onChanged: () {
                                       router
-                                        ..pop()
+                                        ..back()
                                         ..push(
                                           ProfilEditRoute(),
                                         );
@@ -114,7 +114,7 @@ class PopUpWidget extends HookConsumerWidget {
                                             false,
                                     onChanged: () {
                                       router
-                                        ..pop()
+                                        ..back()
                                         ..push(
                                           ProfilEditRoute(),
                                         );
@@ -126,7 +126,7 @@ class PopUpWidget extends HookConsumerWidget {
                                         model.profil?.tagCompletion ?? false,
                                     onChanged: () {
                                       router
-                                        ..pop()
+                                        ..back()
                                         ..push(
                                           ProfilEditRoute(),
                                         );
@@ -138,7 +138,7 @@ class PopUpWidget extends HookConsumerWidget {
                                         model.profil?.bioCompletion ?? false,
                                     onChanged: () {
                                       router
-                                        ..pop()
+                                        ..back()
                                         ..push(
                                           ProfilEditRoute(),
                                         );
@@ -158,7 +158,7 @@ class PopUpWidget extends HookConsumerWidget {
                           radius: 100,
                           onPressed: () {
                             router
-                              ..pop()
+                              ..back()
                               ..push(
                                 ProfilEditRoute(),
                               ); // Yeni route'a git

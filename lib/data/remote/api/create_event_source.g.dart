@@ -6,179 +6,213 @@ part of 'create_event_source.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
 class _CreateEventSource implements CreateEventSource {
   _CreateEventSource(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   });
 
   final Dio _dio;
 
   String? baseUrl;
 
+  final ParseErrorLogger? errorLogger;
+
   @override
   Future<List<EventModel>> getCreateEvent({int? pagination}) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'pagination': pagination};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<EventModel>>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<EventModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'User/GetUserDraftEvents',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) => EventModel.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
+        .compose(
+          _dio.options,
+          'User/GetUserDraftEvents',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<EventModel> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => EventModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<List<ReadyTemplateModel>> getTemplateList() async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<ReadyTemplateModel>>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<ReadyTemplateModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'Event/GetTemplateList',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) =>
-            ReadyTemplateModel.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
+        .compose(
+          _dio.options,
+          'Event/GetTemplateList',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ReadyTemplateModel> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) =>
+              ReadyTemplateModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<List<DiscoveryModel>> getDiscoverEvents({int? tagId}) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'tagId': tagId};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<DiscoveryModel>>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<DiscoveryModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'Discover/GetDiscoverEvents',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) => DiscoveryModel.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
+        .compose(
+          _dio.options,
+          'Discover/GetDiscoverEvents',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<DiscoveryModel> _value;
+    try {
+      _value = _result.data!
+          .map(
+              (dynamic i) => DiscoveryModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<List<UserSearchWithEvents>> getUserSearchWithEvents(
       {String? keyword}) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'keyword': keyword};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<UserSearchWithEvents>>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<UserSearchWithEvents>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'Search/GetSearchUserWithEvents',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) =>
-            UserSearchWithEvents.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
+        .compose(
+          _dio.options,
+          'Search/GetSearchUserWithEvents',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<UserSearchWithEvents> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) =>
+              UserSearchWithEvents.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<List<DiscoveryMapModel>> getDiscoverEventsMap({String? city}) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'city': city};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<DiscoveryMapModel>>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<DiscoveryMapModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              'Discover/GetDiscoverEventsMap',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    var value = _result.data!
-        .map((dynamic i) =>
-            DiscoveryMapModel.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
+        .compose(
+          _dio.options,
+          'Discover/GetDiscoverEventsMap',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<DiscoveryMapModel> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) =>
+              DiscoveryMapModel.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<dynamic> saveSearch(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -193,19 +227,20 @@ class _CreateEventSource implements CreateEventSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> removeSearchHistory(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -220,9 +255,10 @@ class _CreateEventSource implements CreateEventSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

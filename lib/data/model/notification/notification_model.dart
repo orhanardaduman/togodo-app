@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'notification_model.freezed.dart';
 part 'notification_model.g.dart';
 
@@ -9,6 +10,7 @@ class NotificationModel with _$NotificationModel {
     String? type,
     String? createdAt,
     String? requestId,
+    String? eventGroupsId,
     bool? request,
     User? user,
     Event? event,

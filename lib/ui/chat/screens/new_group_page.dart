@@ -227,7 +227,7 @@ class _NewGroupPageState extends ConsumerState<NewGroupPage> {
                           )
                               .then((value) {
                             if (value) {
-                              context.router.pop();
+                              Navigator.of(context).pop();
                             }
                           });
                         }
@@ -251,7 +251,7 @@ class _NewGroupPageState extends ConsumerState<NewGroupPage> {
       centerTitle: true,
       leading: InkWell(
         onTap: () {
-          context.router.pop();
+          Navigator.of(context).pop();
         },
         child: Padding(
           padding: const EdgeInsets.only(left: 20), // Sol boşluk

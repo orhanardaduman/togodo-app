@@ -29,8 +29,8 @@ class RandomUser extends HookConsumerWidget {
         child: Wrap(
           spacing: 12,
           children: data
-              .mapIndexed(
-                (index, element) => GestureDetector(
+              .map(
+                (element) => GestureDetector(
                   onTap: () {
                     router.push(
                       UserProfileRoute(

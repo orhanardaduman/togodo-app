@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use_from_same_package
 
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
@@ -84,7 +83,7 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () {
-                  context.router.pop();
+                  Navigator.of(context).pop();
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20), // Sol boşluk

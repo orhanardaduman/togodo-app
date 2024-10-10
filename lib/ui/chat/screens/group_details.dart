@@ -277,9 +277,10 @@ class _GroupDetailsPageState extends ConsumerState<GroupDetailsPage> {
                     final response =
                         await notifier.leaveChatRoom(widget.roomId);
                     if (response) {
-                      await router.pop();
-                      await router.pop();
-                      await router.pop();
+                      router
+                        ..back()
+                        ..back()
+                        ..back();
                     }
                   },
                   theme,
@@ -376,7 +377,7 @@ class _GroupDetailsPageState extends ConsumerState<GroupDetailsPage> {
                                     user.userId!,
                                   );
                                   if (response) {
-                                    await router.pop();
+                                    Navigator.of(context).pop();
                                   }
                                 },
                                 theme,

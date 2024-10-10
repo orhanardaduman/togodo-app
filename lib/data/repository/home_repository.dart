@@ -7,6 +7,7 @@ import 'package:togodo/data/model/event/event_request_model.dart';
 import 'package:togodo/data/model/profil/user_search_model.dart';
 import 'package:togodo/data/model/result.dart';
 
+import '../../ui/chat/model/message_info_model.dart';
 import '../model/event/event_all_users_model.dart';
 
 abstract class HomeRepository {
@@ -106,5 +107,22 @@ abstract class HomeRepository {
   Future<Result<void>> updateEventSort(
     String? eventId,
     String? sortNumber,
+  );
+  Future<Result<GroupRequestDetail>> createGroupRequest(
+    String? eventId,
+  );
+
+  Future<Result<void>> deleteGroupRequest(
+    String? eventId,
+  );
+  Future<Result<List<MessageInfoModel>>> getGroupMessages(
+    String? groupId,
+  );
+  Future<Result<void>> sendMessageReaction(
+    String messageId,
+    String reaction,
+  );
+  Future<Result<void>> deleteMessage(
+    String messageId,
   );
 }

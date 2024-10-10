@@ -23,6 +23,7 @@ class MessagePopUpWidget extends StatefulHookConsumerWidget {
     required this.userId,
     required this.isGroup,
     required this.type,
+    this.isEventGroup = false,
   });
   final String name;
   final String imgUrl;
@@ -31,6 +32,7 @@ class MessagePopUpWidget extends StatefulHookConsumerWidget {
   final String userId;
   final String isGroup;
   final String type;
+  final bool isEventGroup;
   @override
   ConsumerState<MessagePopUpWidget> createState() => _MessagePopUpWidgetState();
 }
@@ -99,17 +101,26 @@ class _MessagePopUpWidgetState extends ConsumerState<MessagePopUpWidget> {
             },
             child: GestureDetector(
               onTap: () async {
-                await router.push(
-                  ChatRoute(
-                    userId: widget.userId,
-                    roomId: widget.chatRoomId,
-                    name: widget.name,
-                    imageUrl: widget.imgUrl,
-                    isOnline: false,
-                    isGroup: widget.isGroup == 'true',
-                  ),
-                );
                 Navigator.of(context).pop();
+
+                if (widget.isEventGroup) {
+                  await router.push(
+                    GroupRoute(
+                      id: widget.chatRoomId,
+                    ),
+                  );
+                } else {
+                  await router.push(
+                    ChatRoute(
+                      userId: widget.userId,
+                      roomId: widget.chatRoomId,
+                      name: widget.name,
+                      imageUrl: widget.imgUrl,
+                      isOnline: false,
+                      isGroup: widget.isGroup == 'true',
+                    ),
+                  );
+                }
               },
               child: Container(
                 height: 84,

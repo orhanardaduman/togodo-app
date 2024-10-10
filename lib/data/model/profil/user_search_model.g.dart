@@ -15,7 +15,7 @@ _$UserSearchModelImpl _$$UserSearchModelImplFromJson(
       imageUrl: json['imageUrl'] as String?,
       invateId: json['invateId'] as String?,
       title: json['title'] as String?,
-      type: json['type'] as int?,
+      type: (json['type'] as num?)?.toInt(),
       isFriend: json['isFriend'] as bool?,
       inviteStatus: json['inviteStatus'] as bool?,
       sendByOtherUser: json['sendByOtherUser'] as bool?,

@@ -145,7 +145,7 @@ class GroupedHorizontalList extends HookConsumerWidget {
                             )
                             .then((value) {
                           viewModel.loading();
-                          return AutoRouter.of(context).pop();
+                          return Navigator.of(context).pop();
                         });
                       },
                       child: Container(

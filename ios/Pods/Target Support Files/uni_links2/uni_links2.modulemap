@@ -1,6 +1,0 @@
-framework module uni_links2 {
-  umbrella header "uni_links2-umbrella.h"
-
-  export *
-  module * { export * }
-}

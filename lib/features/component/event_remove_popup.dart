@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:kartal/kartal.dart';
@@ -54,7 +53,7 @@ class EventRemoveWidget extends StatelessWidget {
           CustomButton(
             text: l10n.exploreEvents,
             onPressed: () {
-              AutoRouter.of(context).pop();
+              Navigator.of(context).pop();
             },
             radius: 100,
           ),

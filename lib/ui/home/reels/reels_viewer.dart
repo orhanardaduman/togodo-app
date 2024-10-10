@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_liquid_swipe/flutter_liquid_swipe.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -10,29 +11,30 @@ import 'package:togodo/ui/home/reels/reels_page.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 
 import '../../../core/component/custom_refresher.dart';
+import 'group_view/reels_group_view.dart';
 
-class ReelsViewer extends HookConsumerWidget {
+class ReelsViewer extends StatefulHookConsumerWidget {
   const ReelsViewer({
     required this.reelsList,
-    required this.controller,
-    super.key,
-    this.showVerifiedTick = true,
-    this.onClickMoreBtn,
-    this.onFollow,
+    this.showVerifiedTick,
+    this.onShare,
     this.onLike,
     this.onTap,
-    this.onShare,
-    this.appbarTitle,
-    this.showAppbar = true,
-    this.onClickBackArrow,
     this.onIndexChanged,
+    this.onClickMoreBtn,
+    this.onFollow,
+    this.appbarTitle,
+    this.showAppbar,
+    this.onClickBackArrow,
+    required this.controller,
+    super.key,
   });
 
   /// use reel model and provide list of reels, list contains reels object, object contains url and other parameters
   final List<EventModel> reelsList;
 
   /// use to show/hide verified tick, by default true
-  final bool showVerifiedTick;
+  final bool? showVerifiedTick;
 
   /// function invoke when user click on share btn and return reel url
   final void Function(EventCommonProperties)? onShare;
@@ -56,88 +58,197 @@ class ReelsViewer extends HookConsumerWidget {
   final String? appbarTitle;
 
   /// for show/hide appbar, by default true
-  final bool showAppbar;
+  final bool? showAppbar;
 
   /// function invoke when user click on back btn
   final void Function()? onClickBackArrow;
   final PreloadPageController controller;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.read(homeViewModelProvider.notifier);
-    final model = ref.read(homeViewModelProvider);
+  ConsumerState<ConsumerStatefulWidget> createState() => _ReelsViewerState();
+}
+
+class _ReelsViewerState extends ConsumerState<ReelsViewer> {
+  List<int> openIndexes = [];
+  int currentIndex = 0;
+  bool hasOpen = false,
+      showBuble = true,
+      _isInnerScrollable = true,
+      showMore = false,
+      loadedMore = false;
+  @override
+  Widget build(BuildContext context) {
+    final model = ref.watch(homeViewModelProvider);
+    final viewModel = ref.read(homeViewModelProvider.notifier);
+
     final refreshController = RefreshController();
-    final index = (model.isToday ? model.dailyIndex : model.forYouIndex);
+    final index = model.forYouIndex;
     final userType = ref.watch(userTypeStateNotifierProvider);
     return Stack(
       children: [
-        Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).size.height * .1,
-          ),
-          child: PreloadPageView.builder(
-            preloadPagesCount: 3,
-            //loop: false,
-            itemBuilder: (BuildContext context, int index) {
-              return /* _index != 0 && _index & 5 == 0
-                  ? QuizView(
-                      item: widget.reelsList[index - 1],
-                      controller: controller,
-                    )
-                  : */
-                  index == 0
-                      ? CustomRefresher(
-                          controller: refreshController,
-                          onRefresh: () {
-                            if (model.isToday) {
-                              notifier.fetchEventsDaily();
-                            } else {
-                              notifier.fetchEvents();
-                            }
-                          },
-                          onLoading: () {
-                            controller.animateToPage(
-                              1,
-                              duration: const Duration(milliseconds: 200),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                          enablePullUp: true,
-                          child: reelsMain(index),
-                        )
-                      : reelsMain(index);
-            },
-            controller: controller,
-            itemCount: reelsList.length,
-            scrollDirection: Axis.vertical,
-            onPageChanged: (value) {
-              notifier.addIndex(value);
-              onIndexChanged?.call(value);
-            },
-          ),
+        Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * .1,
+              ),
+              child: widget.reelsList[currentIndex].participantsLimit == null
+                  ? mainView(refreshController, viewModel)
+                  : LiquidSwipe(
+                      onPageChange: (page) {
+                        if (hasOpen != ((page ?? 0) >= 0.01)) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            setState(() {
+                              hasOpen = (page ?? 0) >= 0.01;
+                            });
+                          });
+                        }
+                      },
+                      children: [
+                        mainView(refreshController, viewModel),
+                        ReelsGroupView(
+                          item: widget.reelsList[currentIndex],
+                          showAll: !hasOpen,
+                        ),
+                      ],
+                    ),
+            ),
+            if (showMore)
+              GestureDetector(
+                onTapDown: (e) {
+                  setState(() {
+                    showMore = false;
+                  });
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  color: Colors.transparent,
+                ),
+              )
+          ],
         ),
-        if (showAppbar && reelsList.isNotEmpty && reelsList.length > index)
+        if ((widget.showAppbar ?? true) &&
+            widget.reelsList.isNotEmpty &&
+            widget.reelsList.length > index &&
+            !hasOpen)
           /*   _index != 0 && _index & 5 == 0
               ? const SizedBox.shrink()
               :  */
-          if (userType == UserType.user)
-            ReelsBottomButton(
-              model: reelsList[index],
-            )
-          else
-            const GuestEventButton(),
+          Positioned(
+            bottom: 0,
+            child: userType == UserType.user
+                ? SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: ReelsBottomButton(
+                      model: widget.reelsList[currentIndex],
+                      showMore: showMore,
+                      onShowMore: (val) {
+                        setState(() {
+                          showMore = val;
+                        });
+                      },
+                    ),
+                  )
+                : const GuestEventButton(),
+          ),
       ],
     );
   }
 
-  ReelsPage reelsMain(int index) {
-    return ReelsPage(
-      item: reelsList[index],
-      onClickMoreBtn: onClickMoreBtn,
-      onFollow: onFollow,
-      onLike: onLike,
-      onTap: onTap,
-      onShare: onShare,
-      //swiperController: controller,
+  Widget mainView(
+    RefreshController refreshController,
+    HomeViewModel viewModel,
+  ) {
+    return CustomRefresher(
+      controller: refreshController,
+      onRefresh: () {
+        viewModel.fetchEvents();
+        setState(() {
+          _isInnerScrollable = true;
+          loadedMore = true;
+        });
+      },
+      onLoading: () {
+        widget.controller.animateToPage(
+          1,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+        );
+      },
+      enablePullUp: true,
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (ScrollNotification notification) {
+          if (!loadedMore) {
+            if (notification is ScrollUpdateNotification) {
+              // Eğer iç scrollable en üstte ve yukarı kaydırma yapılıyorsa
+              if (widget.controller.position.pixels <= 0 &&
+                  notification.metrics.pixels < 0) {
+                setState(() {
+                  _isInnerScrollable = false;
+                });
+              }
+              // Eğer iç scrollable en alttaysa ve aşağı kaydırma yapılıyorsa
+              else if (widget.controller.position.pixels >=
+                      widget.controller.position.maxScrollExtent &&
+                  notification.metrics.pixels > 0) {
+                setState(() {
+                  _isInnerScrollable = false;
+                });
+              } else {
+                setState(() {
+                  _isInnerScrollable = true;
+                });
+              }
+            }
+          }
+          return false;
+        },
+        child: PreloadPageView.builder(
+          physics: _isInnerScrollable
+              ? const AlwaysScrollableScrollPhysics()
+              : const NeverScrollableScrollPhysics(),
+          preloadPagesCount: 3,
+          //loop: false,
+          itemBuilder: (BuildContext context, int index) {
+            return /* _index != 0 && _index & 5 == 0
+                              ? QuizView(
+                                  item: widget.reelsList[index - 1],
+                                  controller: controller,
+                                )
+                              : */
+                reelsMain(
+              index,
+              context,
+              viewModel,
+            );
+          },
+          controller: widget.controller,
+          itemCount: widget.reelsList.length,
+          scrollDirection: Axis.vertical,
+          onPageChanged: (value) {
+            setState(() {
+              currentIndex = value;
+              showMore = false;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  SizedBox reelsMain(int index, BuildContext context, HomeViewModel model) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: ReelsPage(
+        item: widget.reelsList[index],
+        onClickMoreBtn: widget.onClickMoreBtn,
+        onFollow: widget.onFollow,
+        onLike: widget.onLike,
+        onTap: widget.onTap,
+        onShare: widget.onShare,
+      ),
     );
   }
 }

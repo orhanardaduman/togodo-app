@@ -19,7 +19,7 @@ class App extends HookConsumerWidget {
     FlutterUxcam
         .optIntoSchematicRecordings(); // Confirm that you have user permission for screen recording
     final config = FlutterUxConfig(
-      userAppKey: 'c4qr6yh4qujy8df',
+      userAppKey: 'ddigkax8qm5aewa',
       enableAutomaticScreenNameTagging: false,
       enableCrashHandling: true,
     );

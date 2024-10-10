@@ -19,6 +19,7 @@ class EventInfo extends HookConsumerWidget {
     required this.location,
     required this.description,
     this.endTime,
+    this.spacing = 24,
     super.key,
   });
   final String name;
@@ -27,6 +28,7 @@ class EventInfo extends HookConsumerWidget {
   final String? endTime;
   final String location;
   final String description;
+  final double spacing;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -42,8 +44,8 @@ class EventInfo extends HookConsumerWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        const SizedBox(
-          height: 24,
+        SizedBox(
+          height: spacing,
         ),
         Row(
           children: <Widget>[
@@ -63,8 +65,8 @@ class EventInfo extends HookConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 24,
+        SizedBox(
+          height: spacing,
         ),
         Row(
           children: <Widget>[
@@ -91,8 +93,8 @@ class EventInfo extends HookConsumerWidget {
               ),
           ],
         ),
-        const SizedBox(
-          height: 24,
+        SizedBox(
+          height: spacing,
         ),
         Row(
           children: <Widget>[

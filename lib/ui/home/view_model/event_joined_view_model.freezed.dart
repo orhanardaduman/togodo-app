@@ -12,7 +12,7 @@ part of 'event_joined_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$EventJoinedState {
@@ -21,7 +21,9 @@ mixin _$EventJoinedState {
   int get pagination => throw _privateConstructorUsedError;
   int get totalCount => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventJoinedState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventJoinedStateCopyWith<EventJoinedState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +51,8 @@ class _$EventJoinedStateCopyWithImpl<$Res, $Val extends EventJoinedState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EventJoinedState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +105,8 @@ class __$$EventJoinedStateImplCopyWithImpl<$Res>
       $Res Function(_$EventJoinedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventJoinedState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,7 +171,7 @@ class _$EventJoinedStateImpl implements _EventJoinedState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EventJoinedStateImpl &&
@@ -185,7 +191,9 @@ class _$EventJoinedStateImpl implements _EventJoinedState {
       pagination,
       totalCount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventJoinedState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventJoinedStateImplCopyWith<_$EventJoinedStateImpl> get copyWith =>
@@ -208,8 +216,11 @@ abstract class _EventJoinedState implements EventJoinedState {
   int get pagination;
   @override
   int get totalCount;
+
+  /// Create a copy of EventJoinedState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventJoinedStateImplCopyWith<_$EventJoinedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

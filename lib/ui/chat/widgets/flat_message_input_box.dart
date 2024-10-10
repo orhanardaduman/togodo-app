@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +17,8 @@ import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/chat/services/post_service.dart';
 import 'package:togodo/ui/chat/view_model/message_details_view_model.dart';
 import 'package:togodo/ui/chat/widgets/sound_recoder_button.dart';
+
+import '../../group/view_model/event_group_detail_view_model.dart';
 
 class FlatMessageInputBox extends StatefulHookConsumerWidget {
   const FlatMessageInputBox({
@@ -185,11 +188,13 @@ class FlatMessageInputBoxItem extends StatefulHookConsumerWidget {
     required this.roomId,
     required this.focusNode,
     required this.isSearchRoute,
+    this.isNew,
     super.key,
   });
   final String roomId;
   final FocusNode focusNode;
   final bool isSearchRoute;
+  final bool? isNew;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -207,42 +212,59 @@ class _FlatMessageInputBoxItemState
   }
 
   void _handleWriting(String text) {
-    if (_postCount > 0) {
-      return;
-    }
-    final viewModelNotifier =
-        ref.read(messageDetailsProvider(widget.roomId).notifier);
-    _postCount++;
-    viewModelNotifier.writingNow(widget.roomId, isWriting: true);
-    // Mevcut zamanlayıcıyı iptal et
-    _typingTimer?.cancel();
+    if (widget.isNew == true) {
+    } else {
+      if (_postCount > 0) {
+        return;
+      }
+      final viewModelNotifier =
+          ref.read(messageDetailsProvider(widget.roomId).notifier);
+      _postCount++;
+      viewModelNotifier.writingNow(widget.roomId, isWriting: true);
+      // Mevcut zamanlayıcıyı iptal et
+      _typingTimer?.cancel();
 
-    // Yeni bir zamanlayıcı başlat
-    _typingTimer = Timer(const Duration(seconds: 10), () {
-      // Kullanıcı yazmayı durdurduğunda API'ye false gönder
-      viewModelNotifier.writingNow(widget.roomId);
-      _postCount = 0;
-    });
+      // Yeni bir zamanlayıcı başlat
+      _typingTimer = Timer(const Duration(seconds: 10), () {
+        // Kullanıcı yazmayı durdurduğunda API'ye false gönder
+        viewModelNotifier.writingNow(widget.roomId);
+        _postCount = 0;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
-    final viewModel = ref.watch(messageDetailsProvider(widget.roomId));
-    final viewModelNotifier =
-        ref.read(messageDetailsProvider(widget.roomId).notifier);
+    final viewModel = (true == widget.isNew
+        ? ref.watch(eventGroupDetailsProvider(widget.roomId))
+        : ref.watch(messageDetailsProvider(widget.roomId)));
+    final viewModelNotifier = (true == widget.isNew
+        ? ref.read(eventGroupDetailsProvider(widget.roomId).notifier)
+        : ref.read(
+            messageDetailsProvider(widget.roomId).notifier,
+          ));
     return FlatMessageInputBox(
-      controller: viewModelNotifier.textEditingController,
+      controller: true == widget.isNew
+          ? (viewModelNotifier as EventGroupDetailNotifier)
+              .textEditingController
+          : (viewModelNotifier as MessageDetailsNotifier).textEditingController,
       roundedCorners: true,
       roomId: widget.roomId,
       focusNode: widget.focusNode,
       isSearchRoute: widget.isSearchRoute,
-      onSubmitted: viewModel.isSubmit
+      onSubmitted: (true == widget.isNew
+              ? (viewModel as EventGroupDetailState).isSubmit
+              : (viewModel as MessageDetailsState).isSubmit)
           ? null
           : (p0) {
-              viewModelNotifier.sendMessage(
-                isSearchRoute: widget.isSearchRoute,
-              );
+              if (true == widget.isNew) {
+                (viewModelNotifier as EventGroupDetailNotifier).sendMessage();
+              } else {
+                (viewModelNotifier as MessageDetailsNotifier).sendMessage(
+                  isSearchRoute: widget.isSearchRoute,
+                );
+              }
             },
       onChanged: _handleWriting,
       suffix: SizedBox(
@@ -250,7 +272,11 @@ class _FlatMessageInputBoxItemState
         child: Row(
           children: [
             InkWell(
-              onTap: viewModelNotifier.updateVoidRecod,
+              onTap: true == widget.isNew
+                  ? (viewModelNotifier as EventGroupDetailNotifier)
+                      .updateVoidRecod
+                  : (viewModelNotifier as MessageDetailsNotifier)
+                      .updateVoidRecod,
               child: Assets.icons.bold.voice.svg(
                 color: theme.appColors.secondText,
               ),
@@ -259,13 +285,20 @@ class _FlatMessageInputBoxItemState
               width: 12,
             ),
             InkWell(
-              onTap: () => viewModelNotifier
-                  .pickImage(
-                    source: ImageSource.gallery,
-                    context: context,
-                    isSearchRoute: widget.isSearchRoute,
-                    roomId: widget.roomId,
-                  )
+              onTap: () => (true == widget.isNew
+                      ? (viewModelNotifier as EventGroupDetailNotifier)
+                          .pickImage(
+                          source: ImageSource.gallery,
+                          context: context,
+                          isSearchRoute: widget.isSearchRoute,
+                          roomId: widget.roomId,
+                        )
+                      : (viewModelNotifier as MessageDetailsNotifier).pickImage(
+                          source: ImageSource.gallery,
+                          context: context,
+                          isSearchRoute: widget.isSearchRoute,
+                          roomId: widget.roomId,
+                        ))
                   .then((value) => widget.focusNode.requestFocus()),
               child: Assets.icons.bold.attachment.svg(
                 color: theme.appColors.secondText,
@@ -275,11 +308,16 @@ class _FlatMessageInputBoxItemState
               width: 12,
             ),
             InkWell(
-              onTap: () => viewModelNotifier
-                  .pickImage(
-                    source: ImageSource.camera,
-                    context: context,
-                  )
+              onTap: () => (true == widget.isNew
+                      ? (viewModelNotifier as EventGroupDetailNotifier)
+                          .pickImage(
+                          source: ImageSource.camera,
+                          context: context,
+                        )
+                      : (viewModelNotifier as MessageDetailsNotifier).pickImage(
+                          source: ImageSource.camera,
+                          context: context,
+                        ))
                   .then((value) => widget.focusNode.requestFocus()),
               child: Assets.icons.bold.camera.svg(
                 color: theme.appColors.secondText,

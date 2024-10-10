@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
-import 'package:preload_page_view/preload_page_view.dart';
 import 'package:togodo/core/component/button/custom_button.dart';
-import 'package:togodo/core/extension/device_size_extension.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
@@ -23,11 +21,9 @@ import 'package:togodo/ui/notification_view_model.dart';
 
 class ReelsAppBar extends HookConsumerWidget {
   const ReelsAppBar({
-    required this.controller,
     required this.onTopMove,
     super.key,
   });
-  final PreloadPageController controller;
   final void Function() onTopMove;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,7 +42,6 @@ class ReelsAppBar extends HookConsumerWidget {
       router,
       notificationState,
       notifierNotification,
-      homeViewModel.isToday,
       theme,
       l10n,
       notifier,
@@ -61,7 +56,6 @@ class ReelsAppBar extends HookConsumerWidget {
     StackRouter router,
     NotificationModel notificationState,
     NotificationState notifierNotification,
-    bool isToday,
     AppTheme theme,
     L10n l10n,
     HomeViewModel notifier,
@@ -76,13 +70,8 @@ class ReelsAppBar extends HookConsumerWidget {
           right: 24,
           top: context.device.isAndroidDevice ? 10 : 1,
         ),
-        child: Column(
-          children: [
+        child:
             appLogo(router, notificationState, notifierNotification, userType),
-            SizedBox(height: context.isMediumScrn ? 10 : 5),
-            forYouToday(isToday, theme, l10n, notifier),
-          ],
-        ),
       ),
     );
   }
@@ -200,37 +189,10 @@ class ReelsAppBar extends HookConsumerWidget {
                   ),
             text: l10n.forYou,
             radius: 100,
-            onPressed: () {
-              controller.jumpToPage(0);
-              notifier.changeToday(isVal: false);
-            },
+            onPressed: () {},
           ),
         ),
         const SizedBox(width: 8),
-        SizedBox(
-          width: 75,
-          height: 32,
-          child: CustomButton(
-            bgColor: isToday ? null : Colors.transparent,
-            shadowColor: isToday ? null : Colors.transparent,
-            side: isToday
-                ? BorderSide.none
-                : const BorderSide(
-                    color: MainColors.disabled,
-                  ),
-            style: isToday
-                ? null
-                : theme.textTheme.bodyMedium.copyWith(
-                    color: MainColors.disabledButton,
-                  ),
-            text: l10n.today,
-            radius: 100,
-            onPressed: () {
-              controller.jumpToPage(1);
-              notifier.changeToday(isVal: true);
-            },
-          ),
-        ),
       ],
     );
   }

@@ -65,39 +65,40 @@ class OwnerIconPopupMenu extends HookConsumerWidget {
           );
         }  */
         else if (value == 'commentsClose') {
-          notifier.updateCommentPrivacy(eventId).then((value) => router.pop());
+          notifier
+              .updateCommentPrivacy(eventId)
+              .then((value) => Navigator.of(context).pop());
         } else if (value == 'delete') {
           final page = ref.watch(intStateNotifierProvider);
 
           showAlertDialog(
               theme, context, l10n.confirmDeletion, l10n.confirmDeletePost, () {
-            router.pop().then(
-                  (value) => showShareDeleteInfo(
-                    context,
-                    onPressed: (desc) {
-                      notifier.removeEvent(
-                        eventId,
-                      );
-                      if (page == 4) {
-                        router
-                            .pushAndPopUntil(
-                          const HomeRoute(),
-                          predicate: (_) => false,
-                        )
-                            .then((value) {
-                          ref
-                              .read(profilViewModelProvider(null).notifier)
-                              .fetchProfil();
-                        });
-                      } else {
-                        router.pushAndPopUntil(
-                          const BottomMenuRoute(),
-                          predicate: (_) => false,
-                        );
-                      }
-                    },
-                  ),
+            Navigator.of(context).pop();
+            showShareDeleteInfo(
+              context,
+              onPressed: (desc) {
+                notifier.removeEvent(
+                  eventId,
                 );
+                if (page == 4) {
+                  router
+                      .pushAndPopUntil(
+                    const HomeRoute(),
+                    predicate: (_) => false,
+                  )
+                      .then((value) {
+                    ref
+                        .read(profilViewModelProvider(null).notifier)
+                        .fetchProfil();
+                  });
+                } else {
+                  router.pushAndPopUntil(
+                    const BottomMenuRoute(),
+                    predicate: (_) => false,
+                  );
+                }
+              },
+            );
           });
         }
       },

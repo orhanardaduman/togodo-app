@@ -15,7 +15,7 @@ _$EventFriendInviteModelImpl _$$EventFriendInviteModelImplFromJson(
       imageUrl: json['imageUrl'] as String?,
       title: json['title'] as String?,
       invateId: json['invateId'] as String?,
-      type: json['type'] as int?,
+      type: (json['type'] as num?)?.toInt(),
       inviteStatus: json['inviteStatus'] as bool?,
       sendByOtherUser: json['sendByOtherUser'] as bool?,
       inviteStatusData: json['inviteStatusData'] as bool?,

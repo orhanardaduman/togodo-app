@@ -11,6 +11,8 @@ import 'package:togodo/data/model/result.dart';
 import 'package:togodo/data/remote/api/home_data_source.dart';
 import 'package:togodo/data/repository/home_repository.dart';
 
+import '../../ui/chat/model/message_info_model.dart';
+
 final homeRepositoryProvider = Provider(HomeRepositoryImpl.new);
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -455,6 +457,50 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Result<void>> acceptInvate(String invateId) {
     return Result.guardFuture(
       () async => _dataSource.acceptInvite({"inviteId": invateId}),
+    );
+  }
+
+  @override
+  Future<Result<GroupRequestDetail>> createGroupRequest(String? eventId) {
+    return Result.guardFuture(
+      () async => _dataSource.createGroupRequest({"eventId": eventId}),
+    );
+  }
+
+  @override
+  Future<Result<void>> deleteGroupRequest(String? eventId) {
+    return Result.guardFuture(
+      () async => _dataSource.deleteGroupRequest({"eventId": eventId}),
+    );
+  }
+
+  @override
+  Future<Result<List<MessageInfoModel>>> getGroupMessages(String? groupId) {
+    return Result.guardFuture(
+      () async => _dataSource.getGroupMessages(groupId: groupId),
+    );
+  }
+
+  @override
+  Future<Result<void>> deleteMessage(String messageId) {
+    return Result.guardFuture(
+      () async => _dataSource.deleteMessage(
+        {
+          'messageId': messageId,
+        },
+      ),
+    );
+  }
+
+  @override
+  Future<Result<void>> sendMessageReaction(String messageId, String reaction) {
+    return Result.guardFuture(
+      () async => _dataSource.sendMessageReaction(
+        {
+          'messageId': messageId,
+          'reaction': reaction,
+        },
+      ),
     );
   }
 }

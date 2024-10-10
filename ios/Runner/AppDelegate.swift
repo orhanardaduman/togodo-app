@@ -4,7 +4,7 @@ import Firebase
 import GoogleMaps
 import FBSDKCoreKit
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate, MessagingDelegate  {
   override func application(
     _ application: UIApplication,

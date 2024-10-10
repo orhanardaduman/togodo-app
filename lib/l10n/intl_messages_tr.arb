@@ -581,5 +581,29 @@
   "shareStartOne": "Bu etkinliği kaçırmayalım \uD83D\uDD7A",
   "shareStartTwo": "Sence de çok iyi değil mi?",
   "shareStartThree": "Bak ne buldum \uD83E\uDEA9",
-  "joinedTgother": "Beraber\nkatılıyorsunuz"
+  "joinedTgother": "Beraber\nkatılıyorsunuz",
+  "matchWithGroup": "Grupla Eşleş",
+  "profileGroups": "Gruplar",
+  "creatingGroup": "Grup Oluşturuluyor",
+
+  "eventDetails": "Etkinlik Detayları",
+  "groupDetails": "Grup Detayları",
+  "groupMatchText": "{eventname} etkinliği için harika bir grupla eşleştirildin! ",
+  "yourGroupFriends": "İşte grup arkadaşların \uD83C\uDFC4\u200D♂\uFE0F",
+  "yourGroupIsReady": "Grubun hazır! Yeni arkadaşlarınla tanış \uD83C\uDF1F",
+  "yourGroupIsReadyBody": "etkinliği için grubun hazır! Tanışmak için tıkla  \uD83C\uDF89",
+  "donTBeAlone": "Etkinlikte yalnız kalma \uD83E\uDD1D",
+  "letsFindGroup": "Etkinliğe beraber katılabileceğin\nnbir grup bulalım!",
+  "searchingGroup": "Grup Aranıyor",
+  "stopSearch": "Aramayı durdur",
+  "meetFriends": "Grup arkadaşlarınla tanış,\netkinliğe hazırlan!",
+  "searchGroupForYou": "Sana uygun bir grup arıyoruz \uD83D\uDD0E",
+  "weWillNotifyYou": "Grup oluşturulduğunda\nsana haber vereceğiz!",
+  "cancelSearch": "Aramayı Iptal Et",
+  "searchingGroupForYou": "Grup Arıyoruz",
+  "goToEventDetail": "Etkinlik Detaylarına Git ",
+  "chat": "Sohbet",
+  "canStartChatWhenReady": "Grubun hazır olduğunda burada sohbeti başlatabilirsin \uD83C\uDF89",
+  "redirectingTOTicket": "Bilet almaya yönlendiriyor..."
+
 }

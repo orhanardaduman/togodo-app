@@ -217,6 +217,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
       final router = AutoRouter.of(context);
       final currentRoute = router.current;
       if (currentRoute.name == 'ChatHomeRoute' ||
+          currentRoute.name == 'GroupRoute' ||
           currentRoute.name == 'ChatRoute') {
         _isDialogShowing = false;
         return;
@@ -232,6 +233,30 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
             userId: msg.userId ?? '',
             isGroup: msg.isGroup ?? '',
             type: msg.type ?? '',
+          );
+        },
+      ).then((value) => _isDialogShowing = false);
+    } else if (msg.typeId == '10') {
+      if (_isDialogShowing) return;
+      _isDialogShowing = true;
+      final router = AutoRouter.of(context);
+      final currentRoute = router.current;
+      if (currentRoute.name == 'GroupRoute') {
+        _isDialogShowing = false;
+        return;
+      }
+      showDialog<MessagePopUpWidget>(
+        context: context,
+        builder: (BuildContext context) {
+          return MessagePopUpWidget(
+            imgUrl: msg.userProfileImage ?? '',
+            name: msg.userFullName ?? '',
+            message: msg.chatContent ?? '',
+            chatRoomId: msg.chatRoomId ?? '',
+            userId: msg.userId ?? '',
+            isGroup: msg.isGroup ?? '',
+            type: msg.type ?? '',
+            isEventGroup: true,
           );
         },
       ).then((value) => _isDialogShowing = false);

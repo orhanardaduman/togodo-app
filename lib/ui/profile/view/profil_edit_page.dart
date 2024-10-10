@@ -175,7 +175,7 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
                             text: l10n.exit_button,
                             mode: ButtonMode.dark,
                             onPressed: () {
-                              AutoRouter.of(context).pop();
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -196,7 +196,7 @@ class _ProfilEditPageState extends ConsumerState<ProfilEditPage> {
                                         )
                                         .fetchProfil()
                                         .then((value) {
-                                      AutoRouter.of(context).pop();
+                                      Navigator.of(context).pop();
                                       NotificationService.instance
                                           .showNotification(
                                         l10n.info,

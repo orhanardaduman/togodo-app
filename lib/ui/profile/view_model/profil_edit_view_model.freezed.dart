@@ -12,7 +12,7 @@ part of 'profil_edit_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProfilEditState {
@@ -24,7 +24,9 @@ mixin _$ProfilEditState {
   int get type => throw _privateConstructorUsedError;
   DropDownModel? get gender => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfilEditState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfilEditStateCopyWith<ProfilEditState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,6 +59,8 @@ class _$ProfilEditStateCopyWithImpl<$Res, $Val extends ProfilEditState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfilEditState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +104,8 @@ class _$ProfilEditStateCopyWithImpl<$Res, $Val extends ProfilEditState>
     ) as $Val);
   }
 
+  /// Create a copy of ProfilEditState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ResultCopyWith<ProfilModel?, $Res>? get news {
@@ -142,6 +148,8 @@ class __$$ProfilEditStateImplCopyWithImpl<$Res>
       _$ProfilEditStateImpl _value, $Res Function(_$ProfilEditStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfilEditState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -257,7 +265,7 @@ class _$ProfilEditStateImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfilEditStateImpl &&
@@ -284,7 +292,9 @@ class _$ProfilEditStateImpl
       type,
       gender);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfilEditState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfilEditStateImplCopyWith<_$ProfilEditStateImpl> get copyWith =>
@@ -316,8 +326,11 @@ abstract class _ProfilEditState implements ProfilEditState {
   int get type;
   @override
   DropDownModel? get gender;
+
+  /// Create a copy of ProfilEditState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfilEditStateImplCopyWith<_$ProfilEditStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -10,6 +10,7 @@ import 'package:togodo/data/model/event/event_friend_invite_model.dart';
 import 'package:togodo/data/model/event/event_model.dart';
 import 'package:togodo/data/model/event/event_request_model.dart';
 import 'package:togodo/data/model/profil/user_search_model.dart';
+import 'package:togodo/ui/chat/model/index.dart';
 
 part 'home_data_source.g.dart';
 
@@ -168,4 +169,25 @@ abstract class HomeDataSource {
   Future<dynamic> updateEventSort(
     @Body() Map<String, dynamic> data,
   );
+
+  @POST('Event/GroupRequest')
+  Future<GroupRequestDetail> createGroupRequest(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @DELETE('Event/GroupRequest')
+  Future<dynamic> deleteGroupRequest(
+    @Body() Map<String, dynamic> data,
+  );
+  @GET('Chat/MessageEventGroup')
+  Future<List<MessageInfoModel>> getGroupMessages({
+    @Query('groupId') String? groupId,
+  });
+
+  @DELETE('Chat/DeleteMessageEvent')
+  Future<dynamic> deleteMessage(@Body() Map<String, dynamic> data);
+
+  // Mesaj Reaksiyonu Ekleme
+  @POST('Chat/SendMessageReactionEvent')
+  Future<dynamic> sendMessageReaction(@Body() Map<String, dynamic> data);
 }

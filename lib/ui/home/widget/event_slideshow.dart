@@ -93,7 +93,9 @@ class EventSlidesShow extends StatelessWidget {
                   vertical: 24,
                 ),
                 child: IconButton(
-                  onPressed: router.pop,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   icon: Assets.icons.lightOutline.arrowLeft.svg(
                     width: 28,
                     height: 28,

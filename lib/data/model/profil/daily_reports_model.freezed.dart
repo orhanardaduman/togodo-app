@@ -12,7 +12,7 @@ part of 'daily_reports_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 DailyReportsModel _$DailyReportsModelFromJson(Map<String, dynamic> json) {
   return _DailyReportsModel.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$DailyReportsModel {
   int? get total => throw _privateConstructorUsedError;
   int? get daily => throw _privateConstructorUsedError;
 
+  /// Serializes this DailyReportsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DailyReportsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DailyReportsModelCopyWith<DailyReportsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$DailyReportsModelCopyWithImpl<$Res, $Val extends DailyReportsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DailyReportsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$DailyReportsModelImplCopyWithImpl<$Res>
       $Res Function(_$DailyReportsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DailyReportsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,7 +132,7 @@ class _$DailyReportsModelImpl implements _DailyReportsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DailyReportsModelImpl &&
@@ -132,11 +140,13 @@ class _$DailyReportsModelImpl implements _DailyReportsModel {
             (identical(other.daily, daily) || other.daily == daily));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, total, daily);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DailyReportsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DailyReportsModelImplCopyWith<_$DailyReportsModelImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _DailyReportsModel implements DailyReportsModel {
   int? get total;
   @override
   int? get daily;
+
+  /// Create a copy of DailyReportsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DailyReportsModelImplCopyWith<_$DailyReportsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

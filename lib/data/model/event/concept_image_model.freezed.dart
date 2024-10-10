@@ -12,7 +12,7 @@ part of 'concept_image_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ConceptImageModel _$ConceptImageModelFromJson(Map<String, dynamic> json) {
   return _ConceptImageModel.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$ConceptImageModel {
   bool? get isSelected => throw _privateConstructorUsedError;
   bool? get isClick => throw _privateConstructorUsedError;
 
+  /// Serializes this ConceptImageModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConceptImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConceptImageModelCopyWith<ConceptImageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$ConceptImageModelCopyWithImpl<$Res, $Val extends ConceptImageModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConceptImageModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class __$$ConceptImageModelImplCopyWithImpl<$Res>
       $Res Function(_$ConceptImageModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConceptImageModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,7 +161,7 @@ class _$ConceptImageModelImpl implements _ConceptImageModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ConceptImageModelImpl &&
@@ -165,12 +173,14 @@ class _$ConceptImageModelImpl implements _ConceptImageModel {
             (identical(other.isClick, isClick) || other.isClick == isClick));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, number, downloadUrl, isSelected, isClick);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConceptImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConceptImageModelImplCopyWith<_$ConceptImageModelImpl> get copyWith =>
@@ -203,8 +213,11 @@ abstract class _ConceptImageModel implements ConceptImageModel {
   bool? get isSelected;
   @override
   bool? get isClick;
+
+  /// Create a copy of ConceptImageModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConceptImageModelImplCopyWith<_$ConceptImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

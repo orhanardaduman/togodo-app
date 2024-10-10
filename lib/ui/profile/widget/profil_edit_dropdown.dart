@@ -3,7 +3,6 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kartal/kartal.dart';
 import 'package:togodo/core/component/input/index.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
@@ -71,15 +70,17 @@ class _ProfilEditDropdownFieldState
           Wrap(
             runSpacing: 16,
             children: model.socialMediaController!
-                .mapIndexed(
-                  (index, e) => CustomTextField(
+                .map(
+                  (e) => CustomTextField(
                     prefixIcon: e.icon,
                     isPrefixColor: false,
                     label: l10n.pasteLink,
-                    controller: model.socialMediaLinkController[index],
+                    controller: model.socialMediaLinkController[
+                        model.socialMediaController?.indexOf(e) ?? 0],
                     onSuffixTap: () {
                       setState(() {
-                        model.socialMediaController!.removeAt(index);
+                        model.socialMediaController!.removeAt(
+                            model.socialMediaController?.indexOf(e) ?? 0);
                       });
                     },
                     suffixIcon: Assets.icons.bold.closeSquare.path,

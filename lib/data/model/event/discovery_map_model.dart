@@ -24,6 +24,7 @@ class DiscoveryMapModel
     String? latitude,
     String? longitude,
     bool? isUserEvent,
+    int? participantsLimit,
     String? address,
     String? ticketUrl,
     int? joinedUserCount,
@@ -42,6 +43,8 @@ class DiscoveryMapModel
     VendorDetails? vendorDetails,
     List<JoinedUsers>? joinedUsers,
     List<TagsModel>? tags,
+    EventGroups? eventGroups,
+    GroupRequestDetail? groupRequest,
   }) = _DiscoveryMapModel;
 
   factory DiscoveryMapModel.fromJson(Map<String, Object?> json) =>

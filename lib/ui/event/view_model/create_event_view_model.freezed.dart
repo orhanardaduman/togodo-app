@@ -12,7 +12,7 @@ part of 'create_event_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SelectedAssetsModel {
@@ -22,7 +22,9 @@ mixin _$SelectedAssetsModel {
   bool? get isCropped => throw _privateConstructorUsedError;
   String? get aspectRatio => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectedAssetsModelCopyWith<SelectedAssetsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$SelectedAssetsModelCopyWithImpl<$Res, $Val extends SelectedAssetsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectedAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +113,8 @@ class __$$SelectedAssetsModelImplCopyWithImpl<$Res>
       $Res Function(_$SelectedAssetsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectedAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,7 +176,7 @@ class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectedAssetsModelImpl &&
@@ -189,7 +195,9 @@ class _$SelectedAssetsModelImpl implements _SelectedAssetsModel {
   int get hashCode => Object.hash(
       runtimeType, index, networkImage, localImage, isCropped, aspectRatio);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectedAssetsModelImplCopyWith<_$SelectedAssetsModelImpl> get copyWith =>
@@ -215,8 +223,11 @@ abstract class _SelectedAssetsModel implements SelectedAssetsModel {
   bool? get isCropped;
   @override
   String? get aspectRatio;
+
+  /// Create a copy of SelectedAssetsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectedAssetsModelImplCopyWith<_$SelectedAssetsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -242,7 +253,9 @@ mixin _$CreateEventState {
   String? get url => throw _privateConstructorUsedError;
   bool get isOnline => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateEventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateEventStateCopyWith<CreateEventState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -285,6 +298,8 @@ class _$CreateEventStateCopyWithImpl<$Res, $Val extends CreateEventState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateEventState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -378,6 +393,8 @@ class _$CreateEventStateCopyWithImpl<$Res, $Val extends CreateEventState>
     ) as $Val);
   }
 
+  /// Create a copy of CreateEventState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UsersCopyWith<$Res>? get otherUserModel {
@@ -430,6 +447,8 @@ class __$$CreateEventStateImplCopyWithImpl<$Res>
       $Res Function(_$CreateEventStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateEventState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -641,7 +660,7 @@ class _$CreateEventStateImpl implements _CreateEventState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateEventStateImpl &&
@@ -695,7 +714,9 @@ class _$CreateEventStateImpl implements _CreateEventState {
       url,
       isOnline);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateEventState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateEventStateImplCopyWith<_$CreateEventStateImpl> get copyWith =>
@@ -757,8 +778,11 @@ abstract class _CreateEventState implements CreateEventState {
   String? get url;
   @override
   bool get isOnline;
+
+  /// Create a copy of CreateEventState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateEventStateImplCopyWith<_$CreateEventStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

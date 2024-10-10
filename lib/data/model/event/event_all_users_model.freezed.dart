@@ -12,7 +12,7 @@ part of 'event_all_users_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 EventAllUsersModel _$EventAllUsersModelFromJson(Map<String, dynamic> json) {
   return _EventAllUsersModel.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$EventAllUsersModel {
   int? get total => throw _privateConstructorUsedError;
   List<EventFriendInviteModel>? get users => throw _privateConstructorUsedError;
 
+  /// Serializes this EventAllUsersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventAllUsersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventAllUsersModelCopyWith<EventAllUsersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$EventAllUsersModelCopyWithImpl<$Res, $Val extends EventAllUsersModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EventAllUsersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$EventAllUsersModelImplCopyWithImpl<$Res>
       $Res Function(_$EventAllUsersModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventAllUsersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,7 +141,7 @@ class _$EventAllUsersModelImpl implements _EventAllUsersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EventAllUsersModelImpl &&
@@ -141,12 +149,14 @@ class _$EventAllUsersModelImpl implements _EventAllUsersModel {
             const DeepCollectionEquality().equals(other._users, _users));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, total, const DeepCollectionEquality().hash(_users));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventAllUsersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventAllUsersModelImplCopyWith<_$EventAllUsersModelImpl> get copyWith =>
@@ -173,8 +183,11 @@ abstract class _EventAllUsersModel implements EventAllUsersModel {
   int? get total;
   @override
   List<EventFriendInviteModel>? get users;
+
+  /// Create a copy of EventAllUsersModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventAllUsersModelImplCopyWith<_$EventAllUsersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

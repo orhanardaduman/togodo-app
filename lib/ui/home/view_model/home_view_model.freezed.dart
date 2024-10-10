@@ -12,21 +12,21 @@ part of 'home_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HomeState {
   List<EventModel> get events => throw _privateConstructorUsedError;
-  List<EventModel> get eventsDaily => throw _privateConstructorUsedError;
-  bool get isToday => throw _privateConstructorUsedError;
   bool get isShimmerShow => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   bool get enableShowcase => throw _privateConstructorUsedError;
-  int get dailyIndex => throw _privateConstructorUsedError;
+  bool get isJoinOpen => throw _privateConstructorUsedError;
   int get forYouIndex => throw _privateConstructorUsedError;
   int get pagination => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -38,12 +38,10 @@ abstract class $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<EventModel> events,
-      List<EventModel> eventsDaily,
-      bool isToday,
       bool isShimmerShow,
       bool loading,
       bool enableShowcase,
-      int dailyIndex,
+      bool isJoinOpen,
       int forYouIndex,
       int pagination});
 }
@@ -58,16 +56,16 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? events = null,
-    Object? eventsDaily = null,
-    Object? isToday = null,
     Object? isShimmerShow = null,
     Object? loading = null,
     Object? enableShowcase = null,
-    Object? dailyIndex = null,
+    Object? isJoinOpen = null,
     Object? forYouIndex = null,
     Object? pagination = null,
   }) {
@@ -76,14 +74,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.events
           : events // ignore: cast_nullable_to_non_nullable
               as List<EventModel>,
-      eventsDaily: null == eventsDaily
-          ? _value.eventsDaily
-          : eventsDaily // ignore: cast_nullable_to_non_nullable
-              as List<EventModel>,
-      isToday: null == isToday
-          ? _value.isToday
-          : isToday // ignore: cast_nullable_to_non_nullable
-              as bool,
       isShimmerShow: null == isShimmerShow
           ? _value.isShimmerShow
           : isShimmerShow // ignore: cast_nullable_to_non_nullable
@@ -96,10 +86,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.enableShowcase
           : enableShowcase // ignore: cast_nullable_to_non_nullable
               as bool,
-      dailyIndex: null == dailyIndex
-          ? _value.dailyIndex
-          : dailyIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      isJoinOpen: null == isJoinOpen
+          ? _value.isJoinOpen
+          : isJoinOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       forYouIndex: null == forYouIndex
           ? _value.forYouIndex
           : forYouIndex // ignore: cast_nullable_to_non_nullable
@@ -122,12 +112,10 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<EventModel> events,
-      List<EventModel> eventsDaily,
-      bool isToday,
       bool isShimmerShow,
       bool loading,
       bool enableShowcase,
-      int dailyIndex,
+      bool isJoinOpen,
       int forYouIndex,
       int pagination});
 }
@@ -140,16 +128,16 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? events = null,
-    Object? eventsDaily = null,
-    Object? isToday = null,
     Object? isShimmerShow = null,
     Object? loading = null,
     Object? enableShowcase = null,
-    Object? dailyIndex = null,
+    Object? isJoinOpen = null,
     Object? forYouIndex = null,
     Object? pagination = null,
   }) {
@@ -158,14 +146,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._events
           : events // ignore: cast_nullable_to_non_nullable
               as List<EventModel>,
-      eventsDaily: null == eventsDaily
-          ? _value._eventsDaily
-          : eventsDaily // ignore: cast_nullable_to_non_nullable
-              as List<EventModel>,
-      isToday: null == isToday
-          ? _value.isToday
-          : isToday // ignore: cast_nullable_to_non_nullable
-              as bool,
       isShimmerShow: null == isShimmerShow
           ? _value.isShimmerShow
           : isShimmerShow // ignore: cast_nullable_to_non_nullable
@@ -178,10 +158,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.enableShowcase
           : enableShowcase // ignore: cast_nullable_to_non_nullable
               as bool,
-      dailyIndex: null == dailyIndex
-          ? _value.dailyIndex
-          : dailyIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      isJoinOpen: null == isJoinOpen
+          ? _value.isJoinOpen
+          : isJoinOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       forYouIndex: null == forYouIndex
           ? _value.forYouIndex
           : forYouIndex // ignore: cast_nullable_to_non_nullable
@@ -199,16 +179,13 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
       {final List<EventModel> events = const [],
-      final List<EventModel> eventsDaily = const [],
-      this.isToday = false,
       this.isShimmerShow = false,
       this.loading = false,
       this.enableShowcase = false,
-      this.dailyIndex = 0,
+      this.isJoinOpen = false,
       this.forYouIndex = 0,
       this.pagination = 0})
-      : _events = events,
-        _eventsDaily = eventsDaily;
+      : _events = events;
 
   final List<EventModel> _events;
   @override
@@ -219,18 +196,6 @@ class _$HomeStateImpl implements _HomeState {
     return EqualUnmodifiableListView(_events);
   }
 
-  final List<EventModel> _eventsDaily;
-  @override
-  @JsonKey()
-  List<EventModel> get eventsDaily {
-    if (_eventsDaily is EqualUnmodifiableListView) return _eventsDaily;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_eventsDaily);
-  }
-
-  @override
-  @JsonKey()
-  final bool isToday;
   @override
   @JsonKey()
   final bool isShimmerShow;
@@ -242,7 +207,7 @@ class _$HomeStateImpl implements _HomeState {
   final bool enableShowcase;
   @override
   @JsonKey()
-  final int dailyIndex;
+  final bool isJoinOpen;
   @override
   @JsonKey()
   final int forYouIndex;
@@ -252,25 +217,22 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(events: $events, eventsDaily: $eventsDaily, isToday: $isToday, isShimmerShow: $isShimmerShow, loading: $loading, enableShowcase: $enableShowcase, dailyIndex: $dailyIndex, forYouIndex: $forYouIndex, pagination: $pagination)';
+    return 'HomeState(events: $events, isShimmerShow: $isShimmerShow, loading: $loading, enableShowcase: $enableShowcase, isJoinOpen: $isJoinOpen, forYouIndex: $forYouIndex, pagination: $pagination)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
             const DeepCollectionEquality().equals(other._events, _events) &&
-            const DeepCollectionEquality()
-                .equals(other._eventsDaily, _eventsDaily) &&
-            (identical(other.isToday, isToday) || other.isToday == isToday) &&
             (identical(other.isShimmerShow, isShimmerShow) ||
                 other.isShimmerShow == isShimmerShow) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.enableShowcase, enableShowcase) ||
                 other.enableShowcase == enableShowcase) &&
-            (identical(other.dailyIndex, dailyIndex) ||
-                other.dailyIndex == dailyIndex) &&
+            (identical(other.isJoinOpen, isJoinOpen) ||
+                other.isJoinOpen == isJoinOpen) &&
             (identical(other.forYouIndex, forYouIndex) ||
                 other.forYouIndex == forYouIndex) &&
             (identical(other.pagination, pagination) ||
@@ -281,16 +243,16 @@ class _$HomeStateImpl implements _HomeState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_events),
-      const DeepCollectionEquality().hash(_eventsDaily),
-      isToday,
       isShimmerShow,
       loading,
       enableShowcase,
-      dailyIndex,
+      isJoinOpen,
       forYouIndex,
       pagination);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
@@ -300,21 +262,15 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final List<EventModel> events,
-      final List<EventModel> eventsDaily,
-      final bool isToday,
       final bool isShimmerShow,
       final bool loading,
       final bool enableShowcase,
-      final int dailyIndex,
+      final bool isJoinOpen,
       final int forYouIndex,
       final int pagination}) = _$HomeStateImpl;
 
   @override
   List<EventModel> get events;
-  @override
-  List<EventModel> get eventsDaily;
-  @override
-  bool get isToday;
   @override
   bool get isShimmerShow;
   @override
@@ -322,13 +278,16 @@ abstract class _HomeState implements HomeState {
   @override
   bool get enableShowcase;
   @override
-  int get dailyIndex;
+  bool get isJoinOpen;
   @override
   int get forYouIndex;
   @override
   int get pagination;
+
+  /// Create a copy of HomeState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

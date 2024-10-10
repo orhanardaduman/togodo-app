@@ -11,7 +11,6 @@ import 'package:togodo/core/component/primary_text.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
-import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/notification/notification_view_model.dart';
@@ -71,11 +70,6 @@ class _NotificationPageState extends ConsumerState<NotificationPage> {
     );
     return PopScope(
       canPop: !widget.isNotification,
-      onPopInvoked: (pop) async {
-        await router.push(
-          const HomeRoute(),
-        );
-      },
       child: Scaffold(
         appBar: CustomAppBar(title: l10n.notifications),
         body: loading

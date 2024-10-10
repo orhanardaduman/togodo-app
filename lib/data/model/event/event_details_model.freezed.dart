@@ -12,7 +12,7 @@ part of 'event_details_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 EventDetailsModel _$EventDetailsModelFromJson(Map<String, dynamic> json) {
   return _EventDetailsModel.fromJson(json);
@@ -43,8 +43,8 @@ mixin _$EventDetailsModel {
   bool? get isClosedComment => throw _privateConstructorUsedError;
   bool? get openToJoinStatus => throw _privateConstructorUsedError;
   int? get likeCount => throw _privateConstructorUsedError;
-  int? get shareCount => throw _privateConstructorUsedError;
   int? get participantsLimit => throw _privateConstructorUsedError;
+  int? get shareCount => throw _privateConstructorUsedError;
   String? get price => throw _privateConstructorUsedError;
   String? get ticketUrl => throw _privateConstructorUsedError;
   String? get onlineUrl => throw _privateConstructorUsedError;
@@ -64,9 +64,15 @@ mixin _$EventDetailsModel {
   List<Request>? get request => throw _privateConstructorUsedError;
   List<Ratings>? get ratings => throw _privateConstructorUsedError;
   int? get sortNumber => throw _privateConstructorUsedError;
+  EventGroups? get eventGroups => throw _privateConstructorUsedError;
+  GroupRequestDetail? get groupRequest => throw _privateConstructorUsedError;
 
+  /// Serializes this EventDetailsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventDetailsModelCopyWith<EventDetailsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -101,8 +107,8 @@ abstract class $EventDetailsModelCopyWith<$Res> {
       bool? isClosedComment,
       bool? openToJoinStatus,
       int? likeCount,
-      int? shareCount,
       int? participantsLimit,
+      int? shareCount,
       String? price,
       String? ticketUrl,
       String? onlineUrl,
@@ -120,9 +126,13 @@ abstract class $EventDetailsModelCopyWith<$Res> {
       List<EventCommentModel>? eventComment,
       List<Request>? request,
       List<Ratings>? ratings,
-      int? sortNumber});
+      int? sortNumber,
+      EventGroups? eventGroups,
+      GroupRequestDetail? groupRequest});
 
   $VendorDetailsCopyWith<$Res>? get vendorDetails;
+  $EventGroupsCopyWith<$Res>? get eventGroups;
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest;
 }
 
 /// @nodoc
@@ -135,6 +145,8 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,8 +173,8 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
     Object? isClosedComment = freezed,
     Object? openToJoinStatus = freezed,
     Object? likeCount = freezed,
-    Object? shareCount = freezed,
     Object? participantsLimit = freezed,
+    Object? shareCount = freezed,
     Object? price = freezed,
     Object? ticketUrl = freezed,
     Object? onlineUrl = freezed,
@@ -181,6 +193,8 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
     Object? request = freezed,
     Object? ratings = freezed,
     Object? sortNumber = freezed,
+    Object? eventGroups = freezed,
+    Object? groupRequest = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -275,13 +289,13 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      shareCount: freezed == shareCount
-          ? _value.shareCount
-          : shareCount // ignore: cast_nullable_to_non_nullable
-              as int?,
       participantsLimit: freezed == participantsLimit
           ? _value.participantsLimit
           : participantsLimit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      shareCount: freezed == shareCount
+          ? _value.shareCount
+          : shareCount // ignore: cast_nullable_to_non_nullable
               as int?,
       price: freezed == price
           ? _value.price
@@ -355,9 +369,19 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
           ? _value.sortNumber
           : sortNumber // ignore: cast_nullable_to_non_nullable
               as int?,
+      eventGroups: freezed == eventGroups
+          ? _value.eventGroups
+          : eventGroups // ignore: cast_nullable_to_non_nullable
+              as EventGroups?,
+      groupRequest: freezed == groupRequest
+          ? _value.groupRequest
+          : groupRequest // ignore: cast_nullable_to_non_nullable
+              as GroupRequestDetail?,
     ) as $Val);
   }
 
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VendorDetailsCopyWith<$Res>? get vendorDetails {
@@ -367,6 +391,34 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
 
     return $VendorDetailsCopyWith<$Res>(_value.vendorDetails!, (value) {
       return _then(_value.copyWith(vendorDetails: value) as $Val);
+    });
+  }
+
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EventGroupsCopyWith<$Res>? get eventGroups {
+    if (_value.eventGroups == null) {
+      return null;
+    }
+
+    return $EventGroupsCopyWith<$Res>(_value.eventGroups!, (value) {
+      return _then(_value.copyWith(eventGroups: value) as $Val);
+    });
+  }
+
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest {
+    if (_value.groupRequest == null) {
+      return null;
+    }
+
+    return $GroupRequestDetailCopyWith<$Res>(_value.groupRequest!, (value) {
+      return _then(_value.copyWith(groupRequest: value) as $Val);
     });
   }
 }
@@ -403,8 +455,8 @@ abstract class _$$EventDetailsModelImplCopyWith<$Res>
       bool? isClosedComment,
       bool? openToJoinStatus,
       int? likeCount,
-      int? shareCount,
       int? participantsLimit,
+      int? shareCount,
       String? price,
       String? ticketUrl,
       String? onlineUrl,
@@ -422,10 +474,16 @@ abstract class _$$EventDetailsModelImplCopyWith<$Res>
       List<EventCommentModel>? eventComment,
       List<Request>? request,
       List<Ratings>? ratings,
-      int? sortNumber});
+      int? sortNumber,
+      EventGroups? eventGroups,
+      GroupRequestDetail? groupRequest});
 
   @override
   $VendorDetailsCopyWith<$Res>? get vendorDetails;
+  @override
+  $EventGroupsCopyWith<$Res>? get eventGroups;
+  @override
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest;
 }
 
 /// @nodoc
@@ -436,6 +494,8 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
       $Res Function(_$EventDetailsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -462,8 +522,8 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
     Object? isClosedComment = freezed,
     Object? openToJoinStatus = freezed,
     Object? likeCount = freezed,
-    Object? shareCount = freezed,
     Object? participantsLimit = freezed,
+    Object? shareCount = freezed,
     Object? price = freezed,
     Object? ticketUrl = freezed,
     Object? onlineUrl = freezed,
@@ -482,6 +542,8 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
     Object? request = freezed,
     Object? ratings = freezed,
     Object? sortNumber = freezed,
+    Object? eventGroups = freezed,
+    Object? groupRequest = freezed,
   }) {
     return _then(_$EventDetailsModelImpl(
       id: freezed == id
@@ -576,13 +638,13 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
           ? _value.likeCount
           : likeCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      shareCount: freezed == shareCount
-          ? _value.shareCount
-          : shareCount // ignore: cast_nullable_to_non_nullable
-              as int?,
       participantsLimit: freezed == participantsLimit
           ? _value.participantsLimit
           : participantsLimit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      shareCount: freezed == shareCount
+          ? _value.shareCount
+          : shareCount // ignore: cast_nullable_to_non_nullable
               as int?,
       price: freezed == price
           ? _value.price
@@ -656,6 +718,14 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
           ? _value.sortNumber
           : sortNumber // ignore: cast_nullable_to_non_nullable
               as int?,
+      eventGroups: freezed == eventGroups
+          ? _value.eventGroups
+          : eventGroups // ignore: cast_nullable_to_non_nullable
+              as EventGroups?,
+      groupRequest: freezed == groupRequest
+          ? _value.groupRequest
+          : groupRequest // ignore: cast_nullable_to_non_nullable
+              as GroupRequestDetail?,
     ));
   }
 }
@@ -687,8 +757,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
       this.isClosedComment,
       this.openToJoinStatus,
       this.likeCount,
-      this.shareCount,
       this.participantsLimit,
+      this.shareCount,
       this.price,
       this.ticketUrl,
       this.onlineUrl,
@@ -706,7 +776,9 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
       final List<EventCommentModel>? eventComment,
       final List<Request>? request,
       final List<Ratings>? ratings,
-      this.sortNumber})
+      this.sortNumber,
+      this.eventGroups,
+      this.groupRequest})
       : _joinedUsers = joinedUsers,
         _images = images,
         _tags = tags,
@@ -765,9 +837,9 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
   @override
   final int? likeCount;
   @override
-  final int? shareCount;
-  @override
   final int? participantsLimit;
+  @override
+  final int? shareCount;
   @override
   final String? price;
   @override
@@ -860,14 +932,18 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
 
   @override
   final int? sortNumber;
+  @override
+  final EventGroups? eventGroups;
+  @override
+  final GroupRequestDetail? groupRequest;
 
   @override
   String toString() {
-    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, ratingLenght: $ratingLenght, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber)';
+    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, participantsLimit: $participantsLimit, shareCount: $shareCount, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, ratingLenght: $ratingLenght, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber, eventGroups: $eventGroups, groupRequest: $groupRequest)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EventDetailsModelImpl &&
@@ -912,10 +988,10 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
                 other.openToJoinStatus == openToJoinStatus) &&
             (identical(other.likeCount, likeCount) ||
                 other.likeCount == likeCount) &&
-            (identical(other.shareCount, shareCount) ||
-                other.shareCount == shareCount) &&
             (identical(other.participantsLimit, participantsLimit) ||
                 other.participantsLimit == participantsLimit) &&
+            (identical(other.shareCount, shareCount) ||
+                other.shareCount == shareCount) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.ticketUrl, ticketUrl) ||
                 other.ticketUrl == ticketUrl) &&
@@ -942,10 +1018,14 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
             const DeepCollectionEquality().equals(other._request, _request) &&
             const DeepCollectionEquality().equals(other._ratings, _ratings) &&
             (identical(other.sortNumber, sortNumber) ||
-                other.sortNumber == sortNumber));
+                other.sortNumber == sortNumber) &&
+            (identical(other.eventGroups, eventGroups) ||
+                other.eventGroups == eventGroups) &&
+            (identical(other.groupRequest, groupRequest) ||
+                other.groupRequest == groupRequest));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -972,8 +1052,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
         isClosedComment,
         openToJoinStatus,
         likeCount,
-        shareCount,
         participantsLimit,
+        shareCount,
         price,
         ticketUrl,
         onlineUrl,
@@ -991,10 +1071,14 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
         const DeepCollectionEquality().hash(_eventComment),
         const DeepCollectionEquality().hash(_request),
         const DeepCollectionEquality().hash(_ratings),
-        sortNumber
+        sortNumber,
+        eventGroups,
+        groupRequest
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventDetailsModelImplCopyWith<_$EventDetailsModelImpl> get copyWith =>
@@ -1034,8 +1118,8 @@ abstract class _EventDetailsModel implements EventDetailsModel {
       final bool? isClosedComment,
       final bool? openToJoinStatus,
       final int? likeCount,
-      final int? shareCount,
       final int? participantsLimit,
+      final int? shareCount,
       final String? price,
       final String? ticketUrl,
       final String? onlineUrl,
@@ -1053,7 +1137,9 @@ abstract class _EventDetailsModel implements EventDetailsModel {
       final List<EventCommentModel>? eventComment,
       final List<Request>? request,
       final List<Ratings>? ratings,
-      final int? sortNumber}) = _$EventDetailsModelImpl;
+      final int? sortNumber,
+      final EventGroups? eventGroups,
+      final GroupRequestDetail? groupRequest}) = _$EventDetailsModelImpl;
 
   factory _EventDetailsModel.fromJson(Map<String, dynamic> json) =
       _$EventDetailsModelImpl.fromJson;
@@ -1105,9 +1191,9 @@ abstract class _EventDetailsModel implements EventDetailsModel {
   @override
   int? get likeCount;
   @override
-  int? get shareCount;
-  @override
   int? get participantsLimit;
+  @override
+  int? get shareCount;
   @override
   String? get price;
   @override
@@ -1145,7 +1231,14 @@ abstract class _EventDetailsModel implements EventDetailsModel {
   @override
   int? get sortNumber;
   @override
-  @JsonKey(ignore: true)
+  EventGroups? get eventGroups;
+  @override
+  GroupRequestDetail? get groupRequest;
+
+  /// Create a copy of EventDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventDetailsModelImplCopyWith<_$EventDetailsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1160,8 +1253,12 @@ mixin _$Prices {
   String? get fee => throw _privateConstructorUsedError;
   String? get currency => throw _privateConstructorUsedError;
 
+  /// Serializes this Prices to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Prices
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PricesCopyWith<Prices> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1183,6 +1280,8 @@ class _$PricesCopyWithImpl<$Res, $Val extends Prices>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Prices
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1225,6 +1324,8 @@ class __$$PricesImplCopyWithImpl<$Res>
       _$PricesImpl _value, $Res Function(_$PricesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Prices
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1270,7 +1371,7 @@ class _$PricesImpl implements _Prices {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PricesImpl &&
@@ -1280,11 +1381,13 @@ class _$PricesImpl implements _Prices {
                 other.currency == currency));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, fee, currency);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Prices
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PricesImplCopyWith<_$PricesImpl> get copyWith =>
@@ -1312,8 +1415,11 @@ abstract class _Prices implements Prices {
   String? get fee;
   @override
   String? get currency;
+
+  /// Create a copy of Prices
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PricesImplCopyWith<_$PricesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1327,8 +1433,12 @@ mixin _$Request {
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
+  /// Serializes this Request to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Request
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestCopyWith<Request> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1350,6 +1460,8 @@ class _$RequestCopyWithImpl<$Res, $Val extends Request>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Request
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1387,6 +1499,8 @@ class __$$RequestImplCopyWithImpl<$Res>
       _$RequestImpl _value, $Res Function(_$RequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Request
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1425,7 +1539,7 @@ class _$RequestImpl implements _Request {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestImpl &&
@@ -1434,11 +1548,13 @@ class _$RequestImpl implements _Request {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, imageUrl, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Request
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestImplCopyWith<_$RequestImpl> get copyWith =>
@@ -1462,8 +1578,11 @@ abstract class _Request implements Request {
   String? get imageUrl;
   @override
   String? get name;
+
+  /// Create a copy of Request
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestImplCopyWith<_$RequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1482,8 +1601,12 @@ mixin _$Ratings {
   double? get rating => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
 
+  /// Serializes this Ratings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Ratings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RatingsCopyWith<Ratings> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1512,6 +1635,8 @@ class _$RatingsCopyWithImpl<$Res, $Val extends Ratings>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Ratings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1581,6 +1706,8 @@ class __$$RatingsImplCopyWithImpl<$Res>
       _$RatingsImpl _value, $Res Function(_$RatingsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Ratings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1661,7 +1788,7 @@ class _$RatingsImpl implements _Ratings {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RatingsImpl &&
@@ -1677,12 +1804,14 @@ class _$RatingsImpl implements _Ratings {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, name, userId, imageUrl, description, rating, createdAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Ratings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RatingsImplCopyWith<_$RatingsImpl> get copyWith =>
@@ -1722,8 +1851,11 @@ abstract class _Ratings implements Ratings {
   double? get rating;
   @override
   String? get createdAt;
+
+  /// Create a copy of Ratings
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RatingsImplCopyWith<_$RatingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

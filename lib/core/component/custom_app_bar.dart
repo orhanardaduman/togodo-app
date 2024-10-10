@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use_from_same_package, prefer_null_aware_method_calls
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/core/component/primary_text.dart';
@@ -48,7 +47,7 @@ class CustomAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                 if (onTap != null) {
                   onTap!();
                 } else {
-                  context.router.pop();
+                  Navigator.of(context).pop();
                 }
               },
               child: Padding(

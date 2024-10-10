@@ -27,16 +27,12 @@ class GuestEventButton extends HookConsumerWidget {
           children: [
             Row(
               children: [
-                joinedButton(
-                  context,
-                  l10n,
-                  theme,
-                ),
-                const Spacer(),
-                withFriendsButton(
-                  context,
-                  l10n,
-                  theme,
+                Expanded(
+                  child: joinedButton(
+                    context,
+                    l10n,
+                    theme,
+                  ),
                 ),
               ],
             ),

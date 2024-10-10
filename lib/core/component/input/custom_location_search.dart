@@ -7,7 +7,6 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:searchfield/searchfield.dart';
-import 'package:togodo/core/component/input/custom_phone_field.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/theme/app_theme.dart';
@@ -131,22 +130,12 @@ class _CustomLocationSearchFieldState
         color: themeMode.isDark ? MainColors.dark2 : MainColors.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      searchStyle: theme.textTheme.bodyMedium.copyWith(
-        color: inputColor,
-        fontWeight: FontWeight.w500,
-      ),
       onSuggestionTap: (suggestion) {
         FocusScope.of(context).unfocus();
         return null;
       },
-      searchInputDecoration: FormStyle.decoration(
-        widget.label,
-        widget.isFillColor
-            ? (_hasInput || _focusNode.hasFocus
-                ? MainColors.transparentBlue
-                : (themeMode.isDark ? MainColors.dark2 : MainColors.grey50))
-            : (themeMode.isDark ? MainColors.dark2 : MainColors.grey50),
-        hintStyle: theme.textTheme.bodyMedium.copyWith(
+      searchInputDecoration: SearchInputDecoration(
+        searchStyle: theme.textTheme.bodyMedium.copyWith(
           color: inputColor,
           fontWeight: FontWeight.w500,
         ),
@@ -207,7 +196,23 @@ class _CustomLocationSearchFieldState
                 ),
               )
             : null,
-      ),
+        hintStyle: theme.textTheme.bodyMedium.copyWith(
+          color: inputColor,
+          fontWeight: FontWeight.w500,
+        ),
+        helperText: widget.label,
+      )
+
+      /*FormStyle.decoration(
+        widget.isFillColor
+            ? (_hasInput || _focusNode.hasFocus
+                ? MainColors.transparentBlue
+                : (themeMode.isDark ? MainColors.dark2 : MainColors.grey50))
+            : (themeMode.isDark ? MainColors.dark2 : MainColors.grey50),
+
+
+      )*/
+      ,
       controller: widget.controller,
     );
   }

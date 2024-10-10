@@ -12,7 +12,7 @@ part of 'discovery_map_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 DiscoveryMapModel _$DiscoveryMapModelFromJson(Map<String, dynamic> json) {
   return _DiscoveryMapModel.fromJson(json);
@@ -34,6 +34,7 @@ mixin _$DiscoveryMapModel {
   String? get latitude => throw _privateConstructorUsedError;
   String? get longitude => throw _privateConstructorUsedError;
   bool? get isUserEvent => throw _privateConstructorUsedError;
+  int? get participantsLimit => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get ticketUrl => throw _privateConstructorUsedError;
   int? get joinedUserCount => throw _privateConstructorUsedError;
@@ -52,9 +53,15 @@ mixin _$DiscoveryMapModel {
   VendorDetails? get vendorDetails => throw _privateConstructorUsedError;
   List<JoinedUsers>? get joinedUsers => throw _privateConstructorUsedError;
   List<TagsModel>? get tags => throw _privateConstructorUsedError;
+  EventGroups? get eventGroups => throw _privateConstructorUsedError;
+  GroupRequestDetail? get groupRequest => throw _privateConstructorUsedError;
 
+  /// Serializes this DiscoveryMapModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DiscoveryMapModelCopyWith<DiscoveryMapModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -80,6 +87,7 @@ abstract class $DiscoveryMapModelCopyWith<$Res> {
       String? latitude,
       String? longitude,
       bool? isUserEvent,
+      int? participantsLimit,
       String? address,
       String? ticketUrl,
       int? joinedUserCount,
@@ -97,9 +105,13 @@ abstract class $DiscoveryMapModelCopyWith<$Res> {
       int? shareCount,
       VendorDetails? vendorDetails,
       List<JoinedUsers>? joinedUsers,
-      List<TagsModel>? tags});
+      List<TagsModel>? tags,
+      EventGroups? eventGroups,
+      GroupRequestDetail? groupRequest});
 
   $VendorDetailsCopyWith<$Res>? get vendorDetails;
+  $EventGroupsCopyWith<$Res>? get eventGroups;
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest;
 }
 
 /// @nodoc
@@ -112,6 +124,8 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,6 +143,7 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? isUserEvent = freezed,
+    Object? participantsLimit = freezed,
     Object? address = freezed,
     Object? ticketUrl = freezed,
     Object? joinedUserCount = freezed,
@@ -147,6 +162,8 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
     Object? vendorDetails = freezed,
     Object? joinedUsers = freezed,
     Object? tags = freezed,
+    Object? eventGroups = freezed,
+    Object? groupRequest = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -205,6 +222,10 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
           ? _value.isUserEvent
           : isUserEvent // ignore: cast_nullable_to_non_nullable
               as bool?,
+      participantsLimit: freezed == participantsLimit
+          ? _value.participantsLimit
+          : participantsLimit // ignore: cast_nullable_to_non_nullable
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -277,9 +298,19 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagsModel>?,
+      eventGroups: freezed == eventGroups
+          ? _value.eventGroups
+          : eventGroups // ignore: cast_nullable_to_non_nullable
+              as EventGroups?,
+      groupRequest: freezed == groupRequest
+          ? _value.groupRequest
+          : groupRequest // ignore: cast_nullable_to_non_nullable
+              as GroupRequestDetail?,
     ) as $Val);
   }
 
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VendorDetailsCopyWith<$Res>? get vendorDetails {
@@ -289,6 +320,34 @@ class _$DiscoveryMapModelCopyWithImpl<$Res, $Val extends DiscoveryMapModel>
 
     return $VendorDetailsCopyWith<$Res>(_value.vendorDetails!, (value) {
       return _then(_value.copyWith(vendorDetails: value) as $Val);
+    });
+  }
+
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EventGroupsCopyWith<$Res>? get eventGroups {
+    if (_value.eventGroups == null) {
+      return null;
+    }
+
+    return $EventGroupsCopyWith<$Res>(_value.eventGroups!, (value) {
+      return _then(_value.copyWith(eventGroups: value) as $Val);
+    });
+  }
+
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest {
+    if (_value.groupRequest == null) {
+      return null;
+    }
+
+    return $GroupRequestDetailCopyWith<$Res>(_value.groupRequest!, (value) {
+      return _then(_value.copyWith(groupRequest: value) as $Val);
     });
   }
 }
@@ -316,6 +375,7 @@ abstract class _$$DiscoveryMapModelImplCopyWith<$Res>
       String? latitude,
       String? longitude,
       bool? isUserEvent,
+      int? participantsLimit,
       String? address,
       String? ticketUrl,
       int? joinedUserCount,
@@ -333,10 +393,16 @@ abstract class _$$DiscoveryMapModelImplCopyWith<$Res>
       int? shareCount,
       VendorDetails? vendorDetails,
       List<JoinedUsers>? joinedUsers,
-      List<TagsModel>? tags});
+      List<TagsModel>? tags,
+      EventGroups? eventGroups,
+      GroupRequestDetail? groupRequest});
 
   @override
   $VendorDetailsCopyWith<$Res>? get vendorDetails;
+  @override
+  $EventGroupsCopyWith<$Res>? get eventGroups;
+  @override
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest;
 }
 
 /// @nodoc
@@ -347,6 +413,8 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
       $Res Function(_$DiscoveryMapModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -364,6 +432,7 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? isUserEvent = freezed,
+    Object? participantsLimit = freezed,
     Object? address = freezed,
     Object? ticketUrl = freezed,
     Object? joinedUserCount = freezed,
@@ -382,6 +451,8 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
     Object? vendorDetails = freezed,
     Object? joinedUsers = freezed,
     Object? tags = freezed,
+    Object? eventGroups = freezed,
+    Object? groupRequest = freezed,
   }) {
     return _then(_$DiscoveryMapModelImpl(
       id: freezed == id
@@ -440,6 +511,10 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
           ? _value.isUserEvent
           : isUserEvent // ignore: cast_nullable_to_non_nullable
               as bool?,
+      participantsLimit: freezed == participantsLimit
+          ? _value.participantsLimit
+          : participantsLimit // ignore: cast_nullable_to_non_nullable
+              as int?,
       address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -512,6 +587,14 @@ class __$$DiscoveryMapModelImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagsModel>?,
+      eventGroups: freezed == eventGroups
+          ? _value.eventGroups
+          : eventGroups // ignore: cast_nullable_to_non_nullable
+              as EventGroups?,
+      groupRequest: freezed == groupRequest
+          ? _value.groupRequest
+          : groupRequest // ignore: cast_nullable_to_non_nullable
+              as GroupRequestDetail?,
     ));
   }
 }
@@ -534,6 +617,7 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
       this.latitude,
       this.longitude,
       this.isUserEvent,
+      this.participantsLimit,
       this.address,
       this.ticketUrl,
       this.joinedUserCount,
@@ -551,7 +635,9 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
       this.shareCount,
       this.vendorDetails,
       final List<JoinedUsers>? joinedUsers,
-      final List<TagsModel>? tags})
+      final List<TagsModel>? tags,
+      this.eventGroups,
+      this.groupRequest})
       : _joinedUsers = joinedUsers,
         _tags = tags;
 
@@ -586,6 +672,8 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
   final String? longitude;
   @override
   final bool? isUserEvent;
+  @override
+  final int? participantsLimit;
   @override
   final String? address;
   @override
@@ -639,12 +727,17 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
   }
 
   @override
+  final EventGroups? eventGroups;
+  @override
+  final GroupRequestDetail? groupRequest;
+
+  @override
   String toString() {
-    return 'DiscoveryMapModel(id: $id, name: $name, city: $city, district: $district, description: $description, imageUrl: $imageUrl, location: $location, date: $date, createdAt: $createdAt, resolution: $resolution, likeStatus: $likeStatus, latitude: $latitude, longitude: $longitude, isUserEvent: $isUserEvent, address: $address, ticketUrl: $ticketUrl, joinedUserCount: $joinedUserCount, startTime: $startTime, endTime: $endTime, joinedStatus: $joinedStatus, openToJoinStatus: $openToJoinStatus, isClosedComment: $isClosedComment, requestStatus: $requestStatus, isQuotaFull: $isQuotaFull, isCurrentUser: $isCurrentUser, ratingLenght: $ratingLenght, rating: $rating, likeCount: $likeCount, shareCount: $shareCount, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, tags: $tags)';
+    return 'DiscoveryMapModel(id: $id, name: $name, city: $city, district: $district, description: $description, imageUrl: $imageUrl, location: $location, date: $date, createdAt: $createdAt, resolution: $resolution, likeStatus: $likeStatus, latitude: $latitude, longitude: $longitude, isUserEvent: $isUserEvent, participantsLimit: $participantsLimit, address: $address, ticketUrl: $ticketUrl, joinedUserCount: $joinedUserCount, startTime: $startTime, endTime: $endTime, joinedStatus: $joinedStatus, openToJoinStatus: $openToJoinStatus, isClosedComment: $isClosedComment, requestStatus: $requestStatus, isQuotaFull: $isQuotaFull, isCurrentUser: $isCurrentUser, ratingLenght: $ratingLenght, rating: $rating, likeCount: $likeCount, shareCount: $shareCount, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, tags: $tags, eventGroups: $eventGroups, groupRequest: $groupRequest)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DiscoveryMapModelImpl &&
@@ -672,6 +765,8 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
                 other.longitude == longitude) &&
             (identical(other.isUserEvent, isUserEvent) ||
                 other.isUserEvent == isUserEvent) &&
+            (identical(other.participantsLimit, participantsLimit) ||
+                other.participantsLimit == participantsLimit) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.ticketUrl, ticketUrl) ||
                 other.ticketUrl == ticketUrl) &&
@@ -703,10 +798,14 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
                 other.vendorDetails == vendorDetails) &&
             const DeepCollectionEquality()
                 .equals(other._joinedUsers, _joinedUsers) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.eventGroups, eventGroups) ||
+                other.eventGroups == eventGroups) &&
+            (identical(other.groupRequest, groupRequest) ||
+                other.groupRequest == groupRequest));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -724,6 +823,7 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
         latitude,
         longitude,
         isUserEvent,
+        participantsLimit,
         address,
         ticketUrl,
         joinedUserCount,
@@ -741,10 +841,14 @@ class _$DiscoveryMapModelImpl implements _DiscoveryMapModel {
         shareCount,
         vendorDetails,
         const DeepCollectionEquality().hash(_joinedUsers),
-        const DeepCollectionEquality().hash(_tags)
+        const DeepCollectionEquality().hash(_tags),
+        eventGroups,
+        groupRequest
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DiscoveryMapModelImplCopyWith<_$DiscoveryMapModelImpl> get copyWith =>
@@ -775,6 +879,7 @@ abstract class _DiscoveryMapModel implements DiscoveryMapModel {
       final String? latitude,
       final String? longitude,
       final bool? isUserEvent,
+      final int? participantsLimit,
       final String? address,
       final String? ticketUrl,
       final int? joinedUserCount,
@@ -792,7 +897,9 @@ abstract class _DiscoveryMapModel implements DiscoveryMapModel {
       final int? shareCount,
       final VendorDetails? vendorDetails,
       final List<JoinedUsers>? joinedUsers,
-      final List<TagsModel>? tags}) = _$DiscoveryMapModelImpl;
+      final List<TagsModel>? tags,
+      final EventGroups? eventGroups,
+      final GroupRequestDetail? groupRequest}) = _$DiscoveryMapModelImpl;
 
   factory _DiscoveryMapModel.fromJson(Map<String, dynamic> json) =
       _$DiscoveryMapModelImpl.fromJson;
@@ -825,6 +932,8 @@ abstract class _DiscoveryMapModel implements DiscoveryMapModel {
   String? get longitude;
   @override
   bool? get isUserEvent;
+  @override
+  int? get participantsLimit;
   @override
   String? get address;
   @override
@@ -862,7 +971,14 @@ abstract class _DiscoveryMapModel implements DiscoveryMapModel {
   @override
   List<TagsModel>? get tags;
   @override
-  @JsonKey(ignore: true)
+  EventGroups? get eventGroups;
+  @override
+  GroupRequestDetail? get groupRequest;
+
+  /// Create a copy of DiscoveryMapModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DiscoveryMapModelImplCopyWith<_$DiscoveryMapModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

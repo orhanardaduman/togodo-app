@@ -3,7 +3,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:multi_select_flutter/util/multi_select_actions.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:multi_select_flutter/util/multi_select_list_type.dart';
@@ -436,8 +435,8 @@ class _CustomMultiSelectBottomSheetState<T>
                           child: Wrap(
                             runSpacing: 10,
                             spacing: 10,
-                            children: _items.mapIndexed(
-                              (index, element) {
+                            children: _items.map(
+                              (element) {
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -513,8 +512,8 @@ class _CustomMultiSelectBottomSheetState<T>
       child: Wrap(
         runSpacing: 10,
         spacing: 10,
-        children: items.mapIndexed(
-          (index, tag) {
+        children: items.map(
+          (tag) {
             return Column(
               children: [
                 buildChipItemSub(

@@ -27,12 +27,10 @@ final homeViewModelProvider =
 class HomeState with _$HomeState {
   const factory HomeState({
     @Default([]) List<EventModel> events,
-    @Default([]) List<EventModel> eventsDaily,
-    @Default(false) bool isToday,
     @Default(false) bool isShimmerShow,
     @Default(false) bool loading,
     @Default(false) bool enableShowcase,
-    @Default(0) int dailyIndex,
+    @Default(false) bool isJoinOpen,
     @Default(0) int forYouIndex,
     @Default(0) int pagination,
   }) = _HomeState;
@@ -46,12 +44,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
   bool _isDisposed = false;
   late final HomeRepository _repository = _ref.read(homeRepositoryProvider);
   PreloadPageController forYouController = PreloadPageController(
-    keepPage: false,
+    keepPage: true,
   );
-  PreloadPageController dailyController = PreloadPageController(
-    keepPage: false,
-  );
-  PreloadPageController mainController = PreloadPageController();
   Future<void> fetchEvents() async {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
     state = state.copyWith(loading: false);
@@ -77,24 +71,6 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }
   }
 
-  Future<void> fetchEventsDaily() async {
-    if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
-    state = state.copyWith(loading: true);
-    final result = await _repository.getTimelineEventsDaily(
-      pagination: 0,
-    );
-    if (result.isSuccess) {
-      state = state.copyWith(
-        eventsDaily: result.dataOrThrow,
-        loading: false,
-        isShimmerShow: false,
-        pagination: 1,
-      );
-    } else {
-      state = state.copyWith(loading: false);
-    }
-  }
-
   Future<void> fetchEventsGuest() async {
     if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
     state = state.copyWith(loading: true);
@@ -103,7 +79,6 @@ class HomeViewModel extends StateNotifier<HomeState> {
     );
     if (result.isSuccess) {
       state = state.copyWith(
-        eventsDaily: result.dataOrThrow,
         events: result.dataOrThrow,
         loading: false,
         isShimmerShow: false,
@@ -133,27 +108,14 @@ class HomeViewModel extends StateNotifier<HomeState> {
   }
 
   void addIndex(int index) {
-    state = state.isToday
-        ? state.copyWith(dailyIndex: index)
-        : state.copyWith(forYouIndex: index);
+    state = state.copyWith(
+      forYouIndex: index,
+      isJoinOpen: false,
+    );
   }
 
-  Future<void> fetchMoreReelsDaily() async {
-    if (_isDisposed) return; // Eğer disposed ise daha fazla ilerleme
-    if (state.loading) {
-      return;
-    }
-    final result =
-        await _repository.getTimelineEventsDaily(pagination: state.pagination);
-    if (_isDisposed) return; // Future tamamlandıktan sonra tekrar kontrol edin
-    if (result.isSuccess) {
-      if (_isDisposed) return; // Her async işlem sonrası tekrar kontrol edin
-      final newNews = result.dataOrThrow;
-      state = state.copyWith(
-        events: [...state.events, ...newNews],
-        pagination: state.pagination + 1,
-      );
-    } else {}
+  void toggleJoin(bool isOpen) {
+    state = state.copyWith(isJoinOpen: isOpen);
   }
 
   Future<void> fetchMoreReels() async {
@@ -250,12 +212,6 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }
   }
 
-  void changeToday({required bool isVal}) {
-    state = state.copyWith(
-      isToday: isVal,
-    );
-  }
-
   void loading() {
     state = state.copyWith(loading: !state.loading);
   }
@@ -266,12 +222,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
         data,
         ...state.events,
       ],
-      eventsDaily: [
-        data,
-        ...state.eventsDaily,
-      ],
       loading: false,
-      isToday: state.isToday,
     );
     moveTop();
   }
@@ -294,7 +245,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
   void incrementComment(String id) {
     if (_isDisposed) return;
 
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -306,11 +257,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   void incrementLeaveJoinEvent(
@@ -318,7 +266,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
   ) {
     if (_isDisposed) return;
 
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -340,18 +288,51 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
+  }
+
+  void incrementGroupRequest(String id, GroupRequestDetail requestDetail) {
+    if (_isDisposed) return;
+
+    final update = state.events;
+    // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
+    final updatedEvents = update.map((event) {
+      if (event.id == id) {
+        return event.copyWith(groupRequest: requestDetail);
+      }
+      return event;
+    }).toList();
+
+    // Güncellenmiş events listesini state'e aktarın
+
+    state = state.copyWith(events: updatedEvents);
+  }
+
+  void setDeleteGroupRequest(
+    String id,
+  ) {
+    if (_isDisposed) return;
+
+    final update = state.events;
+    // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
+    final updatedEvents = update.map((event) {
+      if (event.id == id) {
+        return event.copyWith(groupRequest: null);
+      }
+      return event;
+    }).toList();
+
+    // Güncellenmiş events listesini state'e aktarın
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   void incrementNotificationJoinStatus(
     String id, {
     bool openToJoin = false,
   }) {
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -376,11 +357,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   void incrementJoinEvent(
@@ -389,7 +367,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
   }) {
     if (_isDisposed) return;
 
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -407,11 +385,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   void incrementLineEvent(
@@ -420,7 +395,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
   }) {
     if (_isDisposed) return;
 
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -433,16 +408,13 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   Future<void> toggleLike(String id) async {
     // İlk olarak arayüzde değişikliği uygula
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     final isLiked = update.firstWhere((event) => event.id == id).likeStatus;
     incrementLike(
       id,
@@ -466,14 +438,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
           (event) => event.id != eventId,
         )
         .toList();
-    final updatedEventss = state.eventsDaily
-        .where(
-          (event) => event.id != eventId,
-        )
-        .toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    state = state.copyWith(eventsDaily: updatedEventss);
     state = state.copyWith(events: updatedEvents);
   }
 
@@ -484,7 +450,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
     // Engellenen kullanının eventlerini silmek için
     if (_isDisposed) return;
     // `state.events` listesinde `userId`'ye göre event'i bulun ve silin
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update
         .where(
@@ -495,16 +461,13 @@ class HomeViewModel extends StateNotifier<HomeState> {
         .toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   void incrementLike(String id) {
     if (_isDisposed) return;
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -519,11 +482,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   Future<bool> eventJoinRequest(
@@ -579,6 +539,59 @@ class HomeViewModel extends StateNotifier<HomeState> {
     });
   }
 
+  Future<void> createGroupRequest(
+    String id, {
+    bool homePage = false,
+  }) {
+    return _repository.createGroupRequest(id).then((result) {
+      if (!homePage) {
+        incrementGroupRequest(
+          id,
+          result.dataOrThrow,
+        );
+        _ref
+            .read(eventDetailsViewModelProvider(id).notifier)
+            .incrementGroupRequest(
+              id,
+              result.dataOrThrow,
+            );
+      } else {
+        incrementGroupRequest(
+          id,
+          result.dataOrThrow,
+        );
+      }
+      incrementJoinEvent(id, openToJoin: false);
+      _ref
+          .read(eventDetailsViewModelProvider(id).notifier)
+          .incrementJoinEvent(id, openToJoinStatus: false);
+      return result.isSuccess;
+    });
+  }
+
+  Future<void> deleteGroupRequest(
+    String id, {
+    bool homePage = false,
+  }) {
+    return _repository.deleteGroupRequest(id).then((result) {
+      if (!homePage) {
+        setDeleteGroupRequest(
+          id,
+        );
+        _ref
+            .read(eventDetailsViewModelProvider(id).notifier)
+            .setDeleteGroupRequest(
+              id,
+            );
+      } else {
+        setDeleteGroupRequest(
+          id,
+        );
+      }
+      return result.isSuccess;
+    });
+  }
+
   Future<bool> updateCommentPrivacy(String id) {
     incrementComment(id);
     return _repository.updateCommentPrivacy(id).then((result) {
@@ -609,7 +622,7 @@ class HomeViewModel extends StateNotifier<HomeState> {
   ) {
     if (_isDisposed) return;
 
-    final update = state.isToday ? state.eventsDaily : state.events;
+    final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
@@ -620,11 +633,8 @@ class HomeViewModel extends StateNotifier<HomeState> {
     }).toList();
 
     // Güncellenmiş events listesini state'e aktarın
-    if (state.isToday) {
-      state = state.copyWith(eventsDaily: updatedEvents);
-    } else {
-      state = state.copyWith(events: updatedEvents);
-    }
+
+    state = state.copyWith(events: updatedEvents);
   }
 
   Future<bool> updateApplauseCount(int applauseCount) {
@@ -650,30 +660,19 @@ class HomeViewModel extends StateNotifier<HomeState> {
   }
 
   void moveTop() {
-    if (state.isToday) {
-      dailyController.animateToPage(
-        0,
-        duration: const Duration(
-          milliseconds: 200,
-        ),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      forYouController.animateToPage(
-        0,
-        duration: const Duration(
-          milliseconds: 200,
-        ),
-        curve: Curves.easeInOut,
-      );
-    }
+    forYouController.animateToPage(
+      0,
+      duration: const Duration(
+        milliseconds: 200,
+      ),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
   void dispose() {
     _isDisposed = true;
     forYouController.dispose();
-    dailyController.dispose();
     super.dispose();
   }
 }

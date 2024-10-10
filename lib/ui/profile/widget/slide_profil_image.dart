@@ -143,13 +143,12 @@ class SlideProfilImage extends HookConsumerWidget {
                         listTile(
                           l10n.settings,
                           () async {
-                            await router.pop().then(
-                                  (value) => router.push(
-                                    SettingsRoute(
-                                      userType: type,
-                                    ),
-                                  ),
-                                );
+                            Navigator.of(context).pop();
+                            await router.push(
+                              SettingsRoute(
+                                userType: type,
+                              ),
+                            );
                           },
                           theme,
                           isLast: isBlock,
@@ -162,7 +161,7 @@ class SlideProfilImage extends HookConsumerWidget {
                               context,
                               theme,
                               'togodo.co/userProfile/$currentUserID',
-                            ).then((value) => router.pop());
+                            ).then((value) => Navigator.of(context).pop());
                           },
                           theme,
                         ),
@@ -187,7 +186,7 @@ class SlideProfilImage extends HookConsumerWidget {
             child: Row(
               children: [
                 IconButton(
-                  onPressed: router.pop,
+                  onPressed: router.back,
                   icon: Padding(
                     padding: const EdgeInsets.only(left: 20), // Sol boşluk
                     child: Assets.icons.lightOutline.arrowLeft.svg(
@@ -252,7 +251,7 @@ class SlideProfilImage extends HookConsumerWidget {
             //oluşturulan etkinliklerin gizlenmesi false
             model
                 .createHiddenEvent(status: false)
-                .then((value) => router.pop());
+                .then((value) => Navigator.of(context).pop());
           },
           theme,
         ),
@@ -261,7 +260,9 @@ class SlideProfilImage extends HookConsumerWidget {
           isLast: true,
           () {
             //katıldığın etkinliklerin gizlenmesi true - default var
-            model.createHiddenEvent().then((value) => router.pop());
+            model
+                .createHiddenEvent()
+                .then((value) => Navigator.of(context).pop());
           },
           theme,
         ),
@@ -287,8 +288,12 @@ class SlideProfilImage extends HookConsumerWidget {
           isBlock ? l10n.unblock : l10n.block,
           () {
             isBlock
-                ? model.unblockRelation().then((value) => router.pop())
-                : model.blockRelation().then((value) => router.pop());
+                ? model
+                    .unblockRelation()
+                    .then((value) => Navigator.of(context).pop())
+                : model
+                    .blockRelation()
+                    .then((value) => Navigator.of(context).pop());
           },
           theme,
         ),
@@ -297,36 +302,39 @@ class SlideProfilImage extends HookConsumerWidget {
               ? listTile(
                   l10n.removeFriend,
                   () {
-                    model.removeFriend().then((value) => router.pop());
+                    model
+                        .removeFriend()
+                        .then((value) => Navigator.of(context).pop());
                   },
                   theme,
                 )
               : listTile(
                   l10n.unfollow,
                   () {
-                    model.removeFollow().then((value) => router.pop());
+                    model
+                        .removeFollow()
+                        .then((value) => Navigator.of(context).pop());
                   },
                   theme,
                 ),
         listTile(
           l10n.report,
           () async {
-            await router.pop().then(
-                  (value) => showReportSheet(
-                    context,
-                    onPressed: (type, reportDescription) {
-                      ref
-                          .read(
-                            profilViewModelProvider(null).notifier,
-                          )
-                          .createReporUser(
-                            userId!,
-                            reportDescription,
-                          );
-                      router.pop();
-                    },
-                  ),
-                );
+            Navigator.of(context).pop();
+            showReportSheet(
+              context,
+              onPressed: (type, reportDescription) {
+                ref
+                    .read(
+                      profilViewModelProvider(null).notifier,
+                    )
+                    .createReporUser(
+                      userId!,
+                      reportDescription,
+                    );
+                Navigator.of(context).pop();
+              },
+            );
           },
           theme,
           isLast: isBlock,
@@ -335,16 +343,15 @@ class SlideProfilImage extends HookConsumerWidget {
           listTile(
             l10n.hideActivities,
             () async {
-              await router.pop().then(
-                    (value) => profilHideSettings(
-                      context,
-                      l10n,
-                      model,
-                      router,
-                      theme,
-                      ref,
-                    ),
-                  );
+              Navigator.of(context).pop();
+              profilHideSettings(
+                context,
+                l10n,
+                model,
+                router,
+                theme,
+                ref,
+              );
             },
             theme,
           ),
@@ -357,7 +364,7 @@ class SlideProfilImage extends HookConsumerWidget {
                 context,
                 theme,
                 'togodo.co/userProfile/$userId',
-              ).then((value) => router.pop());
+              ).then((value) => Navigator.of(context).pop());
             },
             theme,
           ),
@@ -417,7 +424,7 @@ class SlideProfilImage extends HookConsumerWidget {
                   text: l10n.close,
                   mode: ButtonMode.dark,
                   onPressed: () {
-                    AutoRouter.of(context).pop();
+                    Navigator.of(context).pop();
                   },
                   radius: 100,
                 ),

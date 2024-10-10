@@ -24,15 +24,11 @@ class WebSocketService {
       WebSocketService._privateConstructor();
 
   IO.Socket? _channel;
+
   bool isConnected = false;
   Future<void> connect(String token) async {
-    print("deneme socket connect");
-    print("gelen token: $token ");
-    print("_chenl data : $_channel ");
-
     if (_channel == null) {
       final baseUrl = dotenv.env['BASE_URL'] ?? Constants.instance.endpoint;
-
       _channel = IO.io(
         'wss://$baseUrl',
         IO.OptionBuilder()

@@ -12,7 +12,7 @@ part of 'auth_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AuthModel _$AuthModelFromJson(Map<String, dynamic> json) {
   return _AuthModel.fromJson(json);
@@ -28,8 +28,12 @@ mixin _$AuthModel {
   bool? get google => throw _privateConstructorUsedError;
   bool? get otp => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthModelCopyWith<AuthModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,6 +63,8 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,6 +135,8 @@ class __$$AuthModelImplCopyWithImpl<$Res>
       _$AuthModelImpl _value, $Res Function(_$AuthModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,7 +217,7 @@ class _$AuthModelImpl implements _AuthModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthModelImpl &&
@@ -223,12 +231,14 @@ class _$AuthModelImpl implements _AuthModel {
             (identical(other.otp, otp) || other.otp == otp));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, facebook, apple, email, twitter, google, otp);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
@@ -269,8 +279,11 @@ abstract class _AuthModel implements AuthModel {
   bool? get google;
   @override
   bool? get otp;
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

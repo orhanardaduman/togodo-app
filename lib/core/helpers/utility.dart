@@ -327,7 +327,7 @@ void showReportBase(
                     text: l10n.close,
                     mode: ButtonMode.dark,
                     onPressed: () {
-                      AutoRouter.of(context).pop();
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],
@@ -446,7 +446,7 @@ void showAlertDialog(
               text: l10n.giveUp,
               mode: ButtonMode.dark,
               onPressed: () {
-                AutoRouter.of(context).pop();
+                Navigator.of(context).pop();
               },
               radius: 100,
             ),
@@ -539,7 +539,7 @@ void showGuestInfo(
       elevation: 0,
       child: GestureDetector(
         onTap: () {
-          AutoRouter.of(context).pop();
+          Navigator.of(context).pop();
         },
         child: CustomModal(
           maxHeight: 365,
@@ -749,7 +749,7 @@ void showLocationRequest(
               text: l10n.close,
               mode: ButtonMode.dark,
               onPressed: () {
-                AutoRouter.of(context).pop();
+                Navigator.of(context).pop();
               },
               radius: 100,
             ),
@@ -759,7 +759,7 @@ void showLocationRequest(
             CustomButton(
               text: l10n.permissionLocation,
               onPressed: () async {
-                await AutoRouter.of(context).pop();
+                Navigator.of(context).pop();
                 //  await Geolocator.requestPermission();
                 await _openDeviceSettings();
               },
@@ -820,7 +820,7 @@ void showGaleryRequest(
               text: l10n.close,
               mode: ButtonMode.dark,
               onPressed: () {
-                AutoRouter.of(context).pop();
+                Navigator.of(context).pop();
               },
               radius: 100,
             ),
@@ -830,7 +830,7 @@ void showGaleryRequest(
             CustomButton(
               text: l10n.goToSettings,
               onPressed: () async {
-                await AutoRouter.of(context).pop();
+                Navigator.of(context).pop();
                 //  await Geolocator.requestPermission();
                 await _openDeviceSettings();
               },
@@ -990,7 +990,7 @@ void showApplauseInfo(
               text: l10n.close,
               mode: ButtonMode.dark,
               onPressed: () {
-                AutoRouter.of(context).pop();
+                Navigator.of(context).pop();
               },
               radius: 100,
             ),

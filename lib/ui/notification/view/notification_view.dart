@@ -106,7 +106,7 @@ class NotificationItemView extends HookConsumerWidget {
   ) {
     final bgColor =
         theme.mode == ThemeMode.light ? MainColors.grey100 : MainColors.dark2;
-    final user = data.user!;
+    final user = data.user ?? User();
     return Container(
       padding: const EdgeInsets.all(9),
       decoration: BoxDecoration(
@@ -139,7 +139,14 @@ class NotificationItemView extends HookConsumerWidget {
               const SizedBox(width: 8),
               InkWell(
                 onTap: () {
-                  if (data.event != null && data.event!.id != null) {
+                  print(data.type);
+                  print(data.toJson());
+
+                  if (data.type == 'EventGroup') {
+                    router.push(
+                      GroupRoute(id: data.eventGroupsId ?? ''),
+                    );
+                  } else if (data.event != null && data.event!.id != null) {
                     router.push(
                       EventDetailsRoute(
                         eventId: data.event!.id!,
@@ -168,13 +175,19 @@ class NotificationItemView extends HookConsumerWidget {
                     children: [
                       Row(
                         children: [
-                          PrimaryText(
-                            user.name ??
-                                '', // Replace with actual user's username
-                            style: theme.textTheme.bodyLarge.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: theme.appColors.text,
-                              overflow: TextOverflow.ellipsis,
+                          SizedBox(
+                            width: context.dyWidth(200),
+                            child: PrimaryText(
+                              data.type == 'EventGroup'
+                                  ? l10n.yourGroupIsReady
+                                  : user.name ??
+                                      '', // Replace with actual user's username
+                              maxLines: data.type == 'EventGroup' ? 2 : 1,
+                              style: theme.textTheme.bodyLarge.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: theme.appColors.text,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
                         ],
@@ -187,7 +200,8 @@ class NotificationItemView extends HookConsumerWidget {
                           data.type == 'NewEvent' ||
                           data.type == 'EventComment' ||
                           data.type == 'EventCommentLike' ||
-                          data.type == 'EventUpdateLocationToUser')
+                          data.type == 'EventCommentLike' ||
+                          data.type == 'EventGroup')
                         RichText(
                           text: TextSpan(
                             children: [

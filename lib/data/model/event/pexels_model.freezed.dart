@@ -12,7 +12,7 @@ part of 'pexels_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PexelsModel _$PexelsModelFromJson(Map<String, dynamic> json) {
   return _PexelsModel.fromJson(json);
@@ -26,8 +26,12 @@ mixin _$PexelsModel {
   int? get totalResults => throw _privateConstructorUsedError;
   String? get nextPage => throw _privateConstructorUsedError;
 
+  /// Serializes this PexelsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PexelsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PexelsModelCopyWith<PexelsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$PexelsModelCopyWithImpl<$Res, $Val extends PexelsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PexelsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$PexelsModelImplCopyWithImpl<$Res>
       _$PexelsModelImpl _value, $Res Function(_$PexelsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PexelsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,7 +207,7 @@ class _$PexelsModelImpl with DiagnosticableTreeMixin implements _PexelsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PexelsModelImpl &&
@@ -212,12 +220,14 @@ class _$PexelsModelImpl with DiagnosticableTreeMixin implements _PexelsModel {
                 other.nextPage == nextPage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, page, perPage,
       const DeepCollectionEquality().hash(_photos), totalResults, nextPage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PexelsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PexelsModelImplCopyWith<_$PexelsModelImpl> get copyWith =>
@@ -252,8 +262,11 @@ abstract class _PexelsModel implements PexelsModel {
   int? get totalResults;
   @override
   String? get nextPage;
+
+  /// Create a copy of PexelsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PexelsModelImplCopyWith<_$PexelsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -276,8 +289,12 @@ mixin _$Photos {
   bool? get liked => throw _privateConstructorUsedError;
   String? get alt => throw _privateConstructorUsedError;
 
+  /// Serializes this Photos to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Photos
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PhotosCopyWith<Photos> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -312,6 +329,8 @@ class _$PhotosCopyWithImpl<$Res, $Val extends Photos>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Photos
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -375,6 +394,8 @@ class _$PhotosCopyWithImpl<$Res, $Val extends Photos>
     ) as $Val);
   }
 
+  /// Create a copy of Photos
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SrcCopyWith<$Res>? get src {
@@ -420,6 +441,8 @@ class __$$PhotosImplCopyWithImpl<$Res>
       _$PhotosImpl _value, $Res Function(_$PhotosImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Photos
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -551,7 +574,7 @@ class _$PhotosImpl extends _Photos with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PhotosImpl &&
@@ -572,12 +595,14 @@ class _$PhotosImpl extends _Photos with DiagnosticableTreeMixin {
             (identical(other.alt, alt) || other.alt == alt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, width, height, url,
       photographer, photographerUrl, photographerId, avgColor, src, liked, alt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Photos
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PhotosImplCopyWith<_$PhotosImpl> get copyWith =>
@@ -630,8 +655,11 @@ abstract class _Photos extends Photos {
   bool? get liked;
   @override
   String? get alt;
+
+  /// Create a copy of Photos
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PhotosImplCopyWith<_$PhotosImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -651,8 +679,12 @@ mixin _$Src {
   String? get landscape => throw _privateConstructorUsedError;
   String? get tiny => throw _privateConstructorUsedError;
 
+  /// Serializes this Src to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Src
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SrcCopyWith<Src> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -681,6 +713,8 @@ class _$SrcCopyWithImpl<$Res, $Val extends Src> implements $SrcCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Src
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -753,6 +787,8 @@ class __$$SrcImplCopyWithImpl<$Res> extends _$SrcCopyWithImpl<$Res, _$SrcImpl>
   __$$SrcImplCopyWithImpl(_$SrcImpl _value, $Res Function(_$SrcImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Src
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -856,7 +892,7 @@ class _$SrcImpl with DiagnosticableTreeMixin implements _Src {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SrcImpl &&
@@ -873,12 +909,14 @@ class _$SrcImpl with DiagnosticableTreeMixin implements _Src {
             (identical(other.tiny, tiny) || other.tiny == tiny));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, original, large2x, large, medium,
       small, portrait, landscape, tiny);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Src
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SrcImplCopyWith<_$SrcImpl> get copyWith =>
@@ -921,8 +959,11 @@ abstract class _Src implements Src {
   String? get landscape;
   @override
   String? get tiny;
+
+  /// Create a copy of Src
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SrcImplCopyWith<_$SrcImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

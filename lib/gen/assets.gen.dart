@@ -7,32 +7,59 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// Directory path: assets/icons/Bold
   $AssetsIconsBoldGen get bold => const $AssetsIconsBoldGen();
+
+  /// Directory path: assets/icons/Broken
   $AssetsIconsBrokenGen get broken => const $AssetsIconsBrokenGen();
+
+  /// Directory path: assets/icons/Bulk
   $AssetsIconsBulkGen get bulk => const $AssetsIconsBulkGen();
+
+  /// Directory path: assets/icons/Curved
   $AssetsIconsCurvedGen get curved => const $AssetsIconsCurvedGen();
+
+  /// Directory path: assets/icons/Hoby
   $AssetsIconsHobyGen get hoby => const $AssetsIconsHobyGen();
+
+  /// Directory path: assets/icons/Light
   $AssetsIconsLightGen get light => const $AssetsIconsLightGen();
+
+  /// Directory path: assets/icons/Light-Outline
   $AssetsIconsLightOutlineGen get lightOutline =>
       const $AssetsIconsLightOutlineGen();
+
+  /// Directory path: assets/icons/Logo
   $AssetsIconsLogoGen get logo => const $AssetsIconsLogoGen();
+
+  /// Directory path: assets/icons/Social
   $AssetsIconsSocialGen get social => const $AssetsIconsSocialGen();
+
+  /// Directory path: assets/icons/Two-tone
   $AssetsIconsTwoToneGen get twoTone => const $AssetsIconsTwoToneGen();
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/Dark
   $AssetsImagesDarkGen get dark => const $AssetsImagesDarkGen();
+
+  /// Directory path: assets/images/Light
   $AssetsImagesLightGen get light => const $AssetsImagesLightGen();
+
+  /// Directory path: assets/images/Other
   $AssetsImagesOtherGen get other => const $AssetsImagesOtherGen();
+
+  /// Directory path: assets/images/Stock
   $AssetsImagesStockGen get stock => const $AssetsImagesStockGen();
 }
 
@@ -482,6 +509,10 @@ class $AssetsIconsBoldGen {
   SvgGenImage get twoUser =>
       const SvgGenImage('assets/icons/Bold/two-User.svg');
 
+  /// File path: assets/icons/Bold/two_ticket.svg
+  SvgGenImage get twoTicket =>
+      const SvgGenImage('assets/icons/Bold/two_ticket.svg');
+
   /// File path: assets/icons/Bold/username.svg
   SvgGenImage get username =>
       const SvgGenImage('assets/icons/Bold/username.svg');
@@ -594,6 +625,7 @@ class $AssetsIconsBoldGen {
         smile,
         threeUser,
         twoUser,
+        twoTicket,
         username,
         verify
       ];
@@ -3081,6 +3113,9 @@ class $AssetsIconsLightOutlineGen {
 class $AssetsIconsLogoGen {
   const $AssetsIconsLogoGen();
 
+  /// File path: assets/icons/Logo/round.svg
+  SvgGenImage get round => const SvgGenImage('assets/icons/Logo/round.svg');
+
   /// File path: assets/icons/Logo/template.svg
   SvgGenImage get template =>
       const SvgGenImage('assets/icons/Logo/template.svg');
@@ -3115,6 +3150,7 @@ class $AssetsIconsLogoGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        round,
         template,
         togodoLogotype,
         togodoDark,
@@ -3852,16 +3888,27 @@ class $AssetsImagesStockGen {
 class Assets {
   Assets._();
 
+  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv, aEnv];
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,
@@ -3881,7 +3928,7 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
     FilterQuality filterQuality = FilterQuality.low,
@@ -3933,11 +3980,24 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName);
+  const SvgGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = false;
+
+  const SvgGenImage.vec(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = true;
 
   final String _assetName;
+  final Size? size;
+  final Set<String> flavors;
+  final bool _isVecFormat;
 
-  SvgPicture svg({
+  _svg.SvgPicture svg({
     Key? key,
     bool matchTextDirection = false,
     AssetBundle? bundle,
@@ -3950,19 +4010,32 @@ class SvgGenImage {
     WidgetBuilder? placeholderBuilder,
     String? semanticsLabel,
     bool excludeFromSemantics = false,
-    SvgTheme theme = const SvgTheme(),
+    _svg.SvgTheme? theme,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
     @deprecated bool cacheColorFilter = false,
   }) {
-    return SvgPicture.asset(
-      _assetName,
+    final _svg.BytesLoader loader;
+    if (_isVecFormat) {
+      loader = _vg.AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = _svg.SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
+    return _svg.SvgPicture(
+      loader,
       key: key,
       matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
       width: width,
       height: height,
       fit: fit,
@@ -3971,10 +4044,8 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter,
-      color: color,
-      colorBlendMode: colorBlendMode,
+      colorFilter: colorFilter ??
+          (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );

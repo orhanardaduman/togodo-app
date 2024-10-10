@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -166,8 +164,8 @@ class _SearchUserForAdminViewState
                                 spacing: 24,
                                 runSpacing: 24,
                                 children: user
-                                    .mapIndexed(
-                                      (index, element) => GestureDetector(
+                                    .map(
+                                      (element) => GestureDetector(
                                         onTap: () {
                                           widget.onTap(
                                             element,

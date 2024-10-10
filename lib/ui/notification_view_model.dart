@@ -6,6 +6,7 @@ import 'package:togodo/data/repository/notification_repository.dart';
 import 'package:togodo/data/repository/notification_repository_impl.dart';
 
 import '../data/model/event/event_rating_needed_model.dart';
+import 'home/widget/event_group_dialog.dart';
 import 'home/widget/event_point_dialog.dart';
 
 final notificationStateProvider =
@@ -57,6 +58,24 @@ class NotificationState extends StateNotifier<NotificationModel> {
     } catch (_) {}
   }
 
+  Future<void> hasNeedEventGroup(BuildContext parentContext) async {
+    final result = await _repository.hasEventDialog();
+    print(result);
+    try {
+      if (result.dataOrThrow.isNotEmpty) {
+        showDialog(
+            context: parentContext,
+            builder: (context) => EventGroupDialog(
+                  data: result.dataOrThrow.first,
+                )).then((_) {
+          cloeDialog(
+            result.dataOrThrow.first.id,
+          );
+        });
+      }
+    } catch (_) {}
+  }
+
   Future<void> rate(EventRatingNeededModel model, int rate) async {
     final result = await _repository.rate(model.id ?? "", rate);
   }
@@ -67,6 +86,14 @@ class NotificationState extends StateNotifier<NotificationModel> {
 
   Future<void> neverAsk(EventRatingNeededModel model) async {
     final result = await _repository.neverShow(model.id ?? "");
+  }
+
+  Future<void> cloeDialog(String id) async {
+    final result = await _repository.closeDialog(id);
+  }
+
+  Future<void> neverShowDialog(String id) async {
+    final result = await _repository.neverShowDialog(id);
   }
 }
 

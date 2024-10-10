@@ -3,15 +3,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/ui/chat/view_model/message_details_view_model.dart';
+import 'package:togodo/ui/group/view_model/event_group_detail_view_model.dart';
 
 class ChatFileContainer extends HookConsumerWidget {
   const ChatFileContainer({
-    required this.viewModelNotifier,
-    required this.viewModel,
+    this.viewModelNotifier,
+    this.viewModel,
+    this.eventViewModelNotifier,
+    this.eventViewModel,
     super.key,
   });
-  final MessageDetailsNotifier viewModelNotifier;
-  final MessageDetailsState viewModel;
+  final MessageDetailsNotifier? viewModelNotifier;
+  final MessageDetailsState? viewModel;
+  final EventGroupDetailNotifier? eventViewModelNotifier;
+  final EventGroupDetailState? eventViewModel;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -25,14 +30,18 @@ class ChatFileContainer extends HookConsumerWidget {
       child: ListView.builder(
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        itemCount: viewModel.mediaList.ext.isNotNullOrEmpty ? 1 : 0,
+        itemCount: (viewModel?.mediaList ?? eventViewModel?.mediaList)
+                .ext
+                .isNotNullOrEmpty
+            ? 1
+            : 0,
         itemBuilder: (context, index) {
           return Wrap(
             runSpacing: 20,
             spacing: 20,
-            children: viewModel.mediaList
-                .mapIndexed(
-                  (index, e) => Stack(
+            children: (viewModel?.mediaList ?? eventViewModel?.mediaList ?? [])
+                .map(
+                  (e) => Stack(
                     children: [
                       InkWell(
                         child: Container(
@@ -66,9 +75,15 @@ class ChatFileContainer extends HookConsumerWidget {
                             ),
                             color: Colors.white,
                             onPressed: () {
-                              viewModelNotifier.removeMedia(
-                                index,
-                              );
+                              if (viewModelNotifier != null) {
+                                viewModelNotifier!.removeMedia(
+                                  index,
+                                );
+                              } else if (eventViewModelNotifier != null) {
+                                eventViewModelNotifier!.removeMedia(
+                                  index,
+                                );
+                              }
                             },
                           ),
                         ),

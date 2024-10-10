@@ -4,6 +4,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:togodo/core/network/api/app_dio.dart';
 import 'package:togodo/data/model/notification/notification_model.dart';
 
+import '../../../ui/group/model/group_model.dart';
 import '../../model/event/event_rating_needed_model.dart';
 
 part 'notification_data_source.g.dart';
@@ -58,4 +59,17 @@ abstract class NotificationDataSource {
   Future<dynamic> addPoint(
     @Body() Map<String, dynamic> data,
   );
+
+  @GET('Event/EventGroupCloseDialog')
+  Future<dynamic> closeDialog(
+    @Query('groupId') String? groupId,
+  );
+
+  @GET('Event/EventGroupNeverShowDialog')
+  Future<dynamic> neverShowDialog(
+    @Query('groupId') String? groupId,
+  );
+
+  @GET('Event/UserEventGroupsDialog')
+  Future<List<GroupDetailModelForDialog>> hasEventDialog();
 }

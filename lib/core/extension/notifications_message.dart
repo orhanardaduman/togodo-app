@@ -52,6 +52,9 @@ extension NotificationTypeExtension on String {
         return l10n.newEvent;
       case 'EventRate':
         return l10n.eventRated;
+      case 'EventGroup':
+        return l10n.yourGroupIsReadyBody;
+
       default:
         return l10n.unknownNotification;
     }

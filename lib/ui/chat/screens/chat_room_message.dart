@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use_from_same_package
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
@@ -97,7 +98,7 @@ class _ChatRoomMessageState extends ConsumerState<ChatRoomMessage>
           onTap: () {
             viewModelNotifier.closeChatWebSocket();
             if (!widget.isNotificationRoute) {
-              router.pop();
+              Navigator.of(context).pop();
             } else {
               router.push(
                 ChatHomeRoute(isNotificationRoute: widget.isNotificationRoute),

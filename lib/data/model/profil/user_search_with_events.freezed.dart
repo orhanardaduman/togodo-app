@@ -12,7 +12,7 @@ part of 'user_search_with_events.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserSearchWithEvents _$UserSearchWithEventsFromJson(Map<String, dynamic> json) {
   return _UserSearchWithEvents.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$UserSearchWithEvents {
   List<Users>? get users => throw _privateConstructorUsedError;
   List<EventModel>? get events => throw _privateConstructorUsedError;
 
+  /// Serializes this UserSearchWithEvents to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserSearchWithEvents
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserSearchWithEventsCopyWith<UserSearchWithEvents> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$UserSearchWithEventsCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserSearchWithEvents
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +93,8 @@ class __$$UserSearchWithEventsImplCopyWithImpl<$Res>
       $Res Function(_$UserSearchWithEventsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserSearchWithEvents
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,7 +162,7 @@ class _$UserSearchWithEventsImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserSearchWithEventsImpl &&
@@ -162,14 +170,16 @@ class _$UserSearchWithEventsImpl
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_users),
       const DeepCollectionEquality().hash(_events));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserSearchWithEvents
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserSearchWithEventsImplCopyWith<_$UserSearchWithEventsImpl>
@@ -197,8 +207,11 @@ abstract class _UserSearchWithEvents implements UserSearchWithEvents {
   List<Users>? get users;
   @override
   List<EventModel>? get events;
+
+  /// Create a copy of UserSearchWithEvents
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserSearchWithEventsImplCopyWith<_$UserSearchWithEventsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -214,8 +227,12 @@ mixin _$Users {
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
 
+  /// Serializes this Users to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Users
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UsersCopyWith<Users> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -237,6 +254,8 @@ class _$UsersCopyWithImpl<$Res, $Val extends Users>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Users
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -284,6 +303,8 @@ class __$$UsersImplCopyWithImpl<$Res>
       _$UsersImpl _value, $Res Function(_$UsersImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Users
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -347,7 +368,7 @@ class _$UsersImpl with DiagnosticableTreeMixin implements _Users {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UsersImpl &&
@@ -358,11 +379,13 @@ class _$UsersImpl with DiagnosticableTreeMixin implements _Users {
             (identical(other.title, title) || other.title == title));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, imageUrl, title);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Users
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UsersImplCopyWith<_$UsersImpl> get copyWith =>
@@ -393,8 +416,11 @@ abstract class _Users implements Users {
   String? get imageUrl;
   @override
   String? get title;
+
+  /// Create a copy of Users
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UsersImplCopyWith<_$UsersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

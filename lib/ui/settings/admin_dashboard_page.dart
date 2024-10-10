@@ -443,7 +443,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                               text: l10n.exit_button,
                               mode: ButtonMode.dark,
                               onPressed: () {
-                                AutoRouter.of(context).pop();
+                                Navigator.of(context).pop();
                               },
                             ),
                           ),
@@ -464,7 +464,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                                     model.clear();
                                     FocusScope.of(context).unfocus();
                                     model.getData();
-                                    AutoRouter.of(context).pop();
+                                    Navigator.of(context).pop();
                                   });
                                 }
                               },

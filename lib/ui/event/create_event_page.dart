@@ -89,183 +89,174 @@ class _CreateEventPageState extends ConsumerState<CreateEventPage> {
                     isEdit: model.isDraft,
                   ),
                 ),
-          body: Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    if (state.step == 0)
-                      !model.isDraft
-                          ? const ReadyTemplateWidget()
-                          : Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: PrimaryText(
-                                l10n.updateEvent,
-                                style: theme.textTheme.h5.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                ),
+          body: Expanded(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                if (state.step == 0)
+                  !model.isDraft
+                      ? const ReadyTemplateWidget()
+                      : Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: PrimaryText(
+                            l10n.updateEvent,
+                            style: theme.textTheme.h5.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Form(
+                    key: model.formKey,
+                    child: Column(
+                      children: [
+                        step(
+                          state.step,
+                        ),
+                        context.sized.emptySizedHeightBoxLow,
+                        if (state.step == 2)
+                          Column(
+                            children: [
+                              CustomButton(
+                                text: l10n.previewEvent,
+                                onPressed: () async {
+                                  if (state.selectedAssetsAll == null ||
+                                      state.selectedAssetsAll!.isEmpty) {
+                                    showToast(
+                                      context,
+                                      'Lütfen en az bir resim ekleyiniz',
+                                      type: AlertType.error,
+                                      gravity: ToastGravity.TOP,
+                                    );
+                                  } else {
+                                    model.incrementProgress();
+                                  }
+                                },
                               ),
-                            ),
-                    Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Form(
-                        key: model.formKey,
-                        child: Column(
-                          children: [
-                            step(
-                              state.step,
-                            ),
-                            context.sized.emptySizedHeightBoxLow,
-                            if (state.step == 2)
-                              Column(
-                                children: [
-                                  CustomButton(
-                                    text: l10n.previewEvent,
-                                    onPressed: () async {
-                                      if (state.selectedAssetsAll == null ||
-                                          state.selectedAssetsAll!.isEmpty) {
+                              context.sized.emptySizedHeightBoxLow,
+                              if (!model.isUpdates)
+                                TextButton(
+                                  onPressed: () async {
+                                    await model
+                                        .post(
+                                      isPublish: false,
+                                    )
+                                        .then((value) {
+                                      if (value != null) {
+                                        if (widget.isProfil) {
+                                          ref
+                                              .read(
+                                                profilViewModelProvider(
+                                                  null,
+                                                ).notifier,
+                                              )
+                                              .fetchProfil();
+                                        }
+                                        ;
+                                      } else {
                                         showToast(
                                           context,
-                                          'Lütfen en az bir resim ekleyiniz',
+                                          'Hata',
                                           type: AlertType.error,
-                                          gravity: ToastGravity.TOP,
                                         );
-                                      } else {
+                                      }
+                                    });
+                                  },
+                                  child: PrimaryText(
+                                    l10n.saveDraft,
+                                    style: theme.textTheme.bodyLarge.copyWith(
+                                      color: MainColors.primary,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          )
+                        else
+                          CustomButton(
+                            text: state.step == 3
+                                ? (model.isUpdates
+                                    ? l10n.updateEvent
+                                    : l10n.createEvent)
+                                : l10n.go,
+                            onPressed: isPush
+                                ? null
+                                : () async {
+                                    if (state.step == 3) {
+                                      setState(() {
+                                        isPush = true;
+                                      });
+                                      await model.post().then((value) async {
+                                        if (value != null) {
+                                          ref
+                                              .read(
+                                                homeViewModelProvider.notifier,
+                                              )
+                                              .loading();
+                                          if (widget.isProfil) {
+                                            await ref
+                                                .watch(
+                                                  tabEventsDraftViewModelProvider(
+                                                    widget.userId,
+                                                  ).notifier,
+                                                )
+                                                .fetchEvents();
+                                          }
+                                          Navigator.of(context).pop();
+                                          if (model.isUpdates) {
+                                            model.updateLoading(true);
+                                            ref
+                                                .read(
+                                                  homeViewModelProvider
+                                                      .notifier,
+                                                )
+                                                .updateEvent(value);
+
+                                            Future.delayed(
+                                              const Duration(seconds: 2),
+                                              () async {
+                                                Navigator.of(context).pop();
+                                              },
+                                            );
+                                            if (Platform.isAndroid) {
+                                              Navigator.of(context).pop();
+                                            }
+                                          } else {
+                                            await router.push(
+                                              CreateEventSuccesRoute(
+                                                theme: theme,
+                                                data: value,
+                                                title: l10n.succesEventCreated,
+                                              ),
+                                            );
+                                            if (Platform.isAndroid) {
+                                              Navigator.of(context).pop();
+                                            }
+                                          }
+                                        } else {
+                                          showToast(
+                                            context,
+                                            'Hata',
+                                            type: AlertType.error,
+                                          );
+                                        }
+                                      });
+                                    } else {
+                                      if (model.formKey.currentState!
+                                          .validate()) {
                                         model.incrementProgress();
                                       }
-                                    },
-                                  ),
-                                  context.sized.emptySizedHeightBoxLow,
-                                  if (!model.isUpdates)
-                                    TextButton(
-                                      onPressed: () async {
-                                        await model
-                                            .post(
-                                          isPublish: false,
-                                        )
-                                            .then((value) {
-                                          if (value != null) {
-                                            if (widget.isProfil) {
-                                              ref
-                                                  .read(
-                                                    profilViewModelProvider(
-                                                      null,
-                                                    ).notifier,
-                                                  )
-                                                  .fetchProfil();
-                                            }
-                                            router.pop();
-                                          } else {
-                                            showToast(
-                                              context,
-                                              'Hata',
-                                              type: AlertType.error,
-                                            );
-                                          }
-                                        });
-                                      },
-                                      child: PrimaryText(
-                                        l10n.saveDraft,
-                                        style:
-                                            theme.textTheme.bodyLarge.copyWith(
-                                          color: MainColors.primary,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              )
-                            else
-                              CustomButton(
-                                text: state.step == 3
-                                    ? (model.isUpdates
-                                        ? l10n.updateEvent
-                                        : l10n.createEvent)
-                                    : l10n.go,
-                                onPressed: isPush
-                                    ? null
-                                    : () async {
-                                        if (state.step == 3) {
-                                          setState(() {
-                                            isPush = true;
-                                          });
-                                          await model
-                                              .post()
-                                              .then((value) async {
-                                            if (value != null) {
-                                              ref
-                                                  .read(
-                                                    homeViewModelProvider
-                                                        .notifier,
-                                                  )
-                                                  .loading();
-                                              if (widget.isProfil) {
-                                                await ref
-                                                    .watch(
-                                                      tabEventsDraftViewModelProvider(
-                                                        widget.userId,
-                                                      ).notifier,
-                                                    )
-                                                    .fetchEvents();
-                                              }
-                                              await router.pop();
-                                              if (model.isUpdates) {
-                                                model.updateLoading(true);
-                                                ref
-                                                    .read(
-                                                      homeViewModelProvider
-                                                          .notifier,
-                                                    )
-                                                    .updateEvent(value);
-
-                                                Future.delayed(
-                                                  const Duration(seconds: 2),
-                                                  () async {
-                                                    await router.pop();
-                                                  },
-                                                );
-                                                if (Platform.isAndroid) {
-                                                  await router.pop();
-                                                }
-                                              } else {
-                                                await router.push(
-                                                  CreateEventSuccesRoute(
-                                                    theme: theme,
-                                                    data: value,
-                                                    title:
-                                                        l10n.succesEventCreated,
-                                                  ),
-                                                );
-                                                if (Platform.isAndroid) {
-                                                  await router.pop();
-                                                }
-                                              }
-                                            } else {
-                                              showToast(
-                                                context,
-                                                'Hata',
-                                                type: AlertType.error,
-                                              );
-                                            }
-                                          });
-                                        } else {
-                                          if (model.formKey.currentState!
-                                              .validate()) {
-                                            model.incrementProgress();
-                                          }
-                                        }
-                                        return;
-                                      },
-                              ),
-                          ],
-                        ),
-                      ),
+                                    }
+                                    return;
+                                  },
+                          ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

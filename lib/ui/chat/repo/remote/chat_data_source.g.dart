@@ -6,26 +6,29 @@ part of 'chat_data_source.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
 class _ChatDataSource implements ChatDataSource {
   _ChatDataSource(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   });
 
   final Dio _dio;
 
   String? baseUrl;
 
+  final ParseErrorLogger? errorLogger;
+
   @override
   Future<dynamic> createChatRoomWithGroup(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -40,19 +43,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> addUserToGroupChat(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -67,19 +71,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> assignGroupChatManager(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -94,19 +99,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> removeGroupChatRoomUser(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -121,19 +127,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> sendMessage(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -148,19 +155,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> sendMessageRange(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -175,19 +183,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> deleteMessage(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -202,19 +211,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> sendMessageReaction(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -229,19 +239,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> sendForwardMessageToRoom(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -256,19 +267,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> muteOrUnmuteChatRoom(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -283,19 +295,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> leaveChatRoom(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -310,19 +323,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> writingTo(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -337,19 +351,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> closeChatRoom(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -364,19 +379,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> pinChat(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -391,19 +407,20 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   @override
   Future<dynamic> updateGroupChatRoom(Map<String, dynamic> data) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+    final _options = _setStreamType<dynamic>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -418,9 +435,10 @@ class _ChatDataSource implements ChatDataSource {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
-    final value = _result.data;
-    return value;
+        )));
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

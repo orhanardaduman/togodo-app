@@ -12,7 +12,6 @@ import 'package:togodo/core/component/primary_text.dart';
 import 'package:togodo/core/constants/base_singelton.dart';
 import 'package:togodo/core/enums/cache_items.dart';
 import 'package:togodo/core/extension/device_size_extension.dart';
-import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/network/api/app_dio.dart';
@@ -227,15 +226,18 @@ Future<dynamic> showDialogs(
               style: theme.textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
+            /*
+            TODO
             SizedBox(
               height: context.dyHeight(20),
             ),
+
             if (theme.mode == ThemeMode.dark)
               CustomButton(
                 text: l10n.close,
                 mode: ButtonMode.dark,
                 onPressed: () {
-                  AutoRouter.of(context).pop();
+                  Navigator.of(context).pop();
                 },
                 radius: 100,
               )
@@ -250,10 +252,11 @@ Future<dynamic> showDialogs(
                 ),
                 mode: ButtonMode.dark,
                 onPressed: () {
-                  AutoRouter.of(context).pop();
+                  Navigator.of(context).pop();
                 },
                 radius: 100,
               ),
+            */
             SizedBox(
               height: context.dyHeight(12),
             ),

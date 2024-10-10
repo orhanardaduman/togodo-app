@@ -12,7 +12,7 @@ part of 'profil_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProfilState {
@@ -27,7 +27,9 @@ mixin _$ProfilState {
   int get complateRate => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProfilStateCopyWith<ProfilState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +64,8 @@ class _$ProfilStateCopyWithImpl<$Res, $Val extends ProfilState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +114,8 @@ class _$ProfilStateCopyWithImpl<$Res, $Val extends ProfilState>
     ) as $Val);
   }
 
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ResultCopyWith<ProfilModel?, $Res>? get profilData {
@@ -122,6 +128,8 @@ class _$ProfilStateCopyWithImpl<$Res, $Val extends ProfilState>
     });
   }
 
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProfilModelCopyWith<$Res>? get profil {
@@ -167,6 +175,8 @@ class __$$ProfilStateImplCopyWithImpl<$Res>
       _$ProfilStateImpl _value, $Res Function(_$ProfilStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -287,7 +297,7 @@ class _$ProfilStateImpl implements _ProfilState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfilStateImpl &&
@@ -318,7 +328,9 @@ class _$ProfilStateImpl implements _ProfilState {
       complateRate,
       name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfilStateImplCopyWith<_$ProfilStateImpl> get copyWith =>
@@ -352,8 +364,11 @@ abstract class _ProfilState implements ProfilState {
   int get complateRate;
   @override
   String get name;
+
+  /// Create a copy of ProfilState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProfilStateImplCopyWith<_$ProfilStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

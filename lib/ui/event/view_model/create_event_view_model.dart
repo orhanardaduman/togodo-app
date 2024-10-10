@@ -649,7 +649,7 @@ class CreateEventViewModel extends StateNotifier<CreateEventState> {
             img.localImage != null, img.localImage?.path ?? img.networkImage,
             (response, aspectRatioData) async {
           if (response != null) {
-            Navigator.pop(context);
+            Navigator.of(context).pop();
             final tempDir = await getApplicationDocumentsDirectory();
             File file = File(
               "${tempDir.path}/${img.localImage?.path.split("/").last.split(".").first}${DateTime.now().millisecondsSinceEpoch}.png",

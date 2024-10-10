@@ -12,7 +12,7 @@ part of 'discovery_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 DiscoveryModel _$DiscoveryModelFromJson(Map<String, dynamic> json) {
   return _DiscoveryModel.fromJson(json);
@@ -24,8 +24,12 @@ mixin _$DiscoveryModel {
   List<EventModel>? get near => throw _privateConstructorUsedError;
   List<EventModel>? get soon => throw _privateConstructorUsedError;
 
+  /// Serializes this DiscoveryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DiscoveryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DiscoveryModelCopyWith<DiscoveryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$DiscoveryModelCopyWithImpl<$Res, $Val extends DiscoveryModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DiscoveryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$DiscoveryModelImplCopyWithImpl<$Res>
       _$DiscoveryModelImpl _value, $Res Function(_$DiscoveryModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DiscoveryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -172,7 +180,7 @@ class _$DiscoveryModelImpl implements _DiscoveryModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DiscoveryModelImpl &&
@@ -181,7 +189,7 @@ class _$DiscoveryModelImpl implements _DiscoveryModel {
             const DeepCollectionEquality().equals(other._soon, _soon));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -189,7 +197,9 @@ class _$DiscoveryModelImpl implements _DiscoveryModel {
       const DeepCollectionEquality().hash(_near),
       const DeepCollectionEquality().hash(_soon));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DiscoveryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DiscoveryModelImplCopyWith<_$DiscoveryModelImpl> get copyWith =>
@@ -219,8 +229,11 @@ abstract class _DiscoveryModel implements DiscoveryModel {
   List<EventModel>? get near;
   @override
   List<EventModel>? get soon;
+
+  /// Create a copy of DiscoveryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DiscoveryModelImplCopyWith<_$DiscoveryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

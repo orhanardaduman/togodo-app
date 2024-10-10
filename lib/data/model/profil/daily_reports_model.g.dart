@@ -9,8 +9,8 @@ part of 'daily_reports_model.dart';
 _$DailyReportsModelImpl _$$DailyReportsModelImplFromJson(
         Map<String, dynamic> json) =>
     _$DailyReportsModelImpl(
-      total: json['total'] as int?,
-      daily: json['daily'] as int?,
+      total: (json['total'] as num?)?.toInt(),
+      daily: (json['daily'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$DailyReportsModelImplToJson(

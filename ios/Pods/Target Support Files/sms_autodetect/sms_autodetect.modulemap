@@ -1,6 +1,0 @@
-framework module sms_autodetect {
-  umbrella header "sms_autodetect-umbrella.h"
-
-  export *
-  module * { export * }
-}

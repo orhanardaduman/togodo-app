@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use_from_same_package
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -103,7 +102,7 @@ class _RatingPopupViewState extends ConsumerState<RatingPopupView> {
             );
             widget.onDissmissed?.call();
 
-            AutoRouter.of(context).pop();
+            Navigator.of(context).pop();
             showToast(
               context,
               'Başarılı',
@@ -123,7 +122,7 @@ class _RatingPopupViewState extends ConsumerState<RatingPopupView> {
             );
             widget.onDissmissed?.call();
 
-            AutoRouter.of(context).pop();
+            Navigator.of(context).pop();
             showToast(
               context,
               'Başarılı',
@@ -137,7 +136,7 @@ class _RatingPopupViewState extends ConsumerState<RatingPopupView> {
           mode: ButtonMode.dark,
           onPressed: () {
             widget.onDissmissed?.call();
-            AutoRouter.of(context).pop();
+            Navigator.of(context).pop();
           },
           radius: 100,
         ),

@@ -89,57 +89,70 @@ Future<void> navigateBasedOnType(
   StackRouter router,
 ) async {
   final data = FcmModel.fromJson(message.data);
-  switch (data.type) {
-    case 'EventLike':
-    case 'EventComment':
-    case 'EventUpdateLocationToUser':
-    case 'EventUpdateTimeToUser':
-    case 'EventUpdateDateToUser':
-      await router.push(
-        EventDetailsRoute(
-          eventId: data.eventId!,
-          isNotification: true,
-        ),
-      );
-
-    case 'EventRequestToOwner':
-    case 'EventRequestToEventOwner':
-    case 'EventRequestToFriend':
-    case 'EventRequestAcceptByEventOwner':
-    case 'EventRequestAcceptByFriend':
-    case 'FriendRequest':
-      await router.push(
-        NotificationRoute(isNotification: true),
-      );
-
-    case 'TextMessage':
-    case 'ImageMessage':
-    case 'VideoMessage':
-    case 'EventShareMessage':
-    case 'AudioMessage':
-    case 'EventRequestMessage':
-      await router.push(
-        ChatRoute(
-          userId: data.userId ?? '',
-          roomId: data.chatRoomId,
-          name: data.userFullName!,
-          imageUrl: data.userProfileImage!,
-          isOnline: false,
-          isNotificationRoute: true,
-          isGroup: data.isGroup == 'true',
-        ),
-      );
-
-    case 'Applause':
-      if (data.eventId != null) {
+  if ('1' == data.isEventGroup) {
+    await router.push(
+      GroupRoute(
+        id: data.chatRoomId ?? '',
+      ),
+    );
+  } else {
+    switch (data.type) {
+      case 'EventLike':
+      case 'EventComment':
+      case 'EventUpdateLocationToUser':
+      case 'EventUpdateTimeToUser':
+      case 'EventUpdateDateToUser':
         await router.push(
           EventDetailsRoute(
             eventId: data.eventId!,
-            applauseCount: data.applauseCount,
             isNotification: true,
           ),
         );
-      } /* else {
+
+      case 'EventRequestToOwner':
+      case 'EventRequestToEventOwner':
+      case 'EventRequestToFriend':
+      case 'EventRequestAcceptByEventOwner':
+      case 'EventRequestAcceptByFriend':
+      case 'FriendRequest':
+        await router.push(
+          NotificationRoute(isNotification: true),
+        );
+
+      case 'TextMessage':
+      case 'ImageMessage':
+      case 'VideoMessage':
+      case 'EventShareMessage':
+      case 'AudioMessage':
+      case 'EventRequestMessage':
+        await router.push(
+          ChatRoute(
+            userId: data.userId ?? '',
+            roomId: data.chatRoomId,
+            name: data.userFullName!,
+            imageUrl: data.userProfileImage!,
+            isOnline: false,
+            isNotificationRoute: true,
+            isGroup: data.isGroup == 'true',
+          ),
+        );
+      case 'EventGroup':
+        await router.push(
+          GroupRoute(
+            id: data.requestId ?? '',
+          ),
+        );
+      case 'EventGroupMessage':
+      case 'Applause':
+        if (data.eventId != null) {
+          await router.push(
+            EventDetailsRoute(
+              eventId: data.eventId!,
+              applauseCount: data.applauseCount,
+              isNotification: true,
+            ),
+          );
+        } /* else {
         showApplauseWon(
           theme,
           l10n,
@@ -148,7 +161,8 @@ Future<void> navigateBasedOnType(
         );
       }
  */
-    default:
-      break;
+      default:
+        break;
+    }
   }
 }

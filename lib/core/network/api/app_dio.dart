@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -8,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kartal/kartal.dart';
 import 'package:togodo/core/constants/constants.dart';
 import 'package:togodo/core/enums/cache_items.dart';
-import 'package:ua_client_hints/ua_client_hints.dart';
 
 final dioProvider =
     StateNotifierProvider<DioNotifier, Dio>((ref) => DioNotifier());

@@ -9,7 +9,7 @@ part of 'concept_image_model.dart';
 _$ConceptImageModelImpl _$$ConceptImageModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ConceptImageModelImpl(
-      number: json['number'] as int?,
+      number: (json['number'] as num?)?.toInt(),
       downloadUrl: json['downloadUrl'] as String?,
       isSelected: json['isSelected'] as bool?,
       isClick: json['isClick'] as bool?,

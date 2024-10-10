@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -134,9 +132,8 @@ class _PexelsFindEventState extends ConsumerState<PexelsFindEvent> {
                     child: Wrap(
                       spacing: 24,
                       runSpacing: 24,
-                      children: users.photos!.mapIndexed(
-                        (index, element) {
-                          log(element.src!.large.toString());
+                      children: users.photos!.map(
+                        (element) {
                           return GestureDetector(
                             onTap: () {},
                             child: Column(

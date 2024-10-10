@@ -183,7 +183,7 @@ class BlockUserPage extends HookConsumerWidget {
                             text: l10n.yes,
                             onPressed: () async {
                               await notifier.unblockRelation(user.id!);
-                              await router.pop();
+                              Navigator.of(context).pop();
                             },
                             radius: 100,
                           ),
@@ -194,7 +194,7 @@ class BlockUserPage extends HookConsumerWidget {
                             mode: ButtonMode.dark,
                             text: l10n.no,
                             onPressed: () {
-                              AutoRouter.of(context).pop();
+                              Navigator.of(context).pop();
                             },
                             radius: 100,
                           ),

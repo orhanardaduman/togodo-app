@@ -34,8 +34,8 @@ class EventDetailsModel
     bool? isClosedComment,
     bool? openToJoinStatus,
     int? likeCount,
-    int? shareCount,
     int? participantsLimit,
+    int? shareCount,
     String? price,
     String? ticketUrl,
     String? onlineUrl,
@@ -54,6 +54,8 @@ class EventDetailsModel
     List<Request>? request,
     List<Ratings>? ratings,
     int? sortNumber,
+    EventGroups? eventGroups,
+    GroupRequestDetail? groupRequest,
   }) = _EventDetailsModel;
 
   factory EventDetailsModel.fromJson(Map<String, Object?> json) =>

@@ -12,7 +12,7 @@ part of 'fcm_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FcmModel _$FcmModelFromJson(Map<String, dynamic> json) {
   return _FcmModel.fromJson(json);
@@ -34,9 +34,14 @@ mixin _$FcmModel {
   String? get userProfileImage => throw _privateConstructorUsedError;
   String? get isGroup => throw _privateConstructorUsedError;
   String? get rate => throw _privateConstructorUsedError;
+  String? get isEventGroup => throw _privateConstructorUsedError;
 
+  /// Serializes this FcmModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FcmModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FcmModelCopyWith<FcmModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,7 +65,8 @@ abstract class $FcmModelCopyWith<$Res> {
       String? userFullName,
       String? userProfileImage,
       String? isGroup,
-      String? rate});
+      String? rate,
+      String? isEventGroup});
 }
 
 /// @nodoc
@@ -73,6 +79,8 @@ class _$FcmModelCopyWithImpl<$Res, $Val extends FcmModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FcmModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -90,6 +98,7 @@ class _$FcmModelCopyWithImpl<$Res, $Val extends FcmModel>
     Object? userProfileImage = freezed,
     Object? isGroup = freezed,
     Object? rate = freezed,
+    Object? isEventGroup = freezed,
   }) {
     return _then(_value.copyWith(
       deviceId: freezed == deviceId
@@ -148,6 +157,10 @@ class _$FcmModelCopyWithImpl<$Res, $Val extends FcmModel>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as String?,
+      isEventGroup: freezed == isEventGroup
+          ? _value.isEventGroup
+          : isEventGroup // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -174,7 +187,8 @@ abstract class _$$FcmModelImplCopyWith<$Res>
       String? userFullName,
       String? userProfileImage,
       String? isGroup,
-      String? rate});
+      String? rate,
+      String? isEventGroup});
 }
 
 /// @nodoc
@@ -185,6 +199,8 @@ class __$$FcmModelImplCopyWithImpl<$Res>
       _$FcmModelImpl _value, $Res Function(_$FcmModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FcmModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -202,6 +218,7 @@ class __$$FcmModelImplCopyWithImpl<$Res>
     Object? userProfileImage = freezed,
     Object? isGroup = freezed,
     Object? rate = freezed,
+    Object? isEventGroup = freezed,
   }) {
     return _then(_$FcmModelImpl(
       deviceId: freezed == deviceId
@@ -260,6 +277,10 @@ class __$$FcmModelImplCopyWithImpl<$Res>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as String?,
+      isEventGroup: freezed == isEventGroup
+          ? _value.isEventGroup
+          : isEventGroup // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -281,7 +302,8 @@ class _$FcmModelImpl implements _FcmModel {
       this.userFullName,
       this.userProfileImage,
       this.isGroup,
-      this.rate});
+      this.rate,
+      this.isEventGroup});
 
   factory _$FcmModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FcmModelImplFromJson(json);
@@ -314,14 +336,16 @@ class _$FcmModelImpl implements _FcmModel {
   final String? isGroup;
   @override
   final String? rate;
+  @override
+  final String? isEventGroup;
 
   @override
   String toString() {
-    return 'FcmModel(deviceId: $deviceId, typeId: $typeId, userId: $userId, type: $type, eventId: $eventId, eventName: $eventName, requestId: $requestId, chatRoomId: $chatRoomId, chatContent: $chatContent, applauseCount: $applauseCount, userFullName: $userFullName, userProfileImage: $userProfileImage, isGroup: $isGroup, rate: $rate)';
+    return 'FcmModel(deviceId: $deviceId, typeId: $typeId, userId: $userId, type: $type, eventId: $eventId, eventName: $eventName, requestId: $requestId, chatRoomId: $chatRoomId, chatContent: $chatContent, applauseCount: $applauseCount, userFullName: $userFullName, userProfileImage: $userProfileImage, isGroup: $isGroup, rate: $rate, isEventGroup: $isEventGroup)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FcmModelImpl &&
@@ -346,10 +370,12 @@ class _$FcmModelImpl implements _FcmModel {
             (identical(other.userProfileImage, userProfileImage) ||
                 other.userProfileImage == userProfileImage) &&
             (identical(other.isGroup, isGroup) || other.isGroup == isGroup) &&
-            (identical(other.rate, rate) || other.rate == rate));
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.isEventGroup, isEventGroup) ||
+                other.isEventGroup == isEventGroup));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -366,9 +392,12 @@ class _$FcmModelImpl implements _FcmModel {
       userFullName,
       userProfileImage,
       isGroup,
-      rate);
+      rate,
+      isEventGroup);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FcmModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FcmModelImplCopyWith<_$FcmModelImpl> get copyWith =>
@@ -397,7 +426,8 @@ abstract class _FcmModel implements FcmModel {
       final String? userFullName,
       final String? userProfileImage,
       final String? isGroup,
-      final String? rate}) = _$FcmModelImpl;
+      final String? rate,
+      final String? isEventGroup}) = _$FcmModelImpl;
 
   factory _FcmModel.fromJson(Map<String, dynamic> json) =
       _$FcmModelImpl.fromJson;
@@ -431,7 +461,12 @@ abstract class _FcmModel implements FcmModel {
   @override
   String? get rate;
   @override
-  @JsonKey(ignore: true)
+  String? get isEventGroup;
+
+  /// Create a copy of FcmModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FcmModelImplCopyWith<_$FcmModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

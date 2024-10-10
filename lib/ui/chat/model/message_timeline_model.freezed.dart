@@ -12,7 +12,7 @@ part of 'message_timeline_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MessageTimelineModel _$MessageTimelineModelFromJson(Map<String, dynamic> json) {
   return _MessageTimelineModel.fromJson(json);
@@ -45,8 +45,12 @@ mixin _$MessageTimelineModel {
   int? get unseenMessagesCount => throw _privateConstructorUsedError;
   List<GroupJoinedUsers>? get joinedUsers => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageTimelineModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageTimelineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageTimelineModelCopyWith<MessageTimelineModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -95,6 +99,8 @@ class _$MessageTimelineModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageTimelineModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -267,6 +273,8 @@ class __$$MessageTimelineModelImplCopyWithImpl<$Res>
       $Res Function(_$MessageTimelineModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageTimelineModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -491,7 +499,7 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageTimelineModelImpl &&
@@ -542,7 +550,7 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
                 .equals(other._joinedUsers, _joinedUsers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -572,7 +580,9 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
         const DeepCollectionEquality().hash(_joinedUsers)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageTimelineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageTimelineModelImplCopyWith<_$MessageTimelineModelImpl>
@@ -666,8 +676,11 @@ abstract class _MessageTimelineModel implements MessageTimelineModel {
   int? get unseenMessagesCount;
   @override
   List<GroupJoinedUsers>? get joinedUsers;
+
+  /// Create a copy of MessageTimelineModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageTimelineModelImplCopyWith<_$MessageTimelineModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -685,8 +698,12 @@ mixin _$GroupJoinedUsers {
   bool? get isCurrentUser => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
 
+  /// Serializes this GroupJoinedUsers to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GroupJoinedUsers
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GroupJoinedUsersCopyWith<GroupJoinedUsers> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -716,6 +733,8 @@ class _$GroupJoinedUsersCopyWithImpl<$Res, $Val extends GroupJoinedUsers>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GroupJoinedUsers
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -780,6 +799,8 @@ class __$$GroupJoinedUsersImplCopyWithImpl<$Res>
       $Res Function(_$GroupJoinedUsersImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GroupJoinedUsers
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -852,7 +873,7 @@ class _$GroupJoinedUsersImpl implements _GroupJoinedUsers {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GroupJoinedUsersImpl &&
@@ -869,12 +890,14 @@ class _$GroupJoinedUsersImpl implements _GroupJoinedUsers {
                 other.userName == userName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userImageUrl, userId,
       userFullName, isManager, isCurrentUser, userName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GroupJoinedUsers
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupJoinedUsersImplCopyWith<_$GroupJoinedUsersImpl> get copyWith =>
@@ -913,8 +936,11 @@ abstract class _GroupJoinedUsers implements GroupJoinedUsers {
   bool? get isCurrentUser;
   @override
   String? get userName;
+
+  /// Create a copy of GroupJoinedUsers
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GroupJoinedUsersImplCopyWith<_$GroupJoinedUsersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

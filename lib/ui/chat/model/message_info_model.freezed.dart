@@ -12,7 +12,7 @@ part of 'message_info_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MessageInfoModel _$MessageInfoModelFromJson(Map<String, dynamic> json) {
   return _MessageInfoModel.fromJson(json);
@@ -53,8 +53,12 @@ mixin _$MessageInfoModel {
       throw _privateConstructorUsedError;
   PostInfo? get eventInfo => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageInfoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageInfoModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageInfoModelCopyWith<MessageInfoModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -111,6 +115,8 @@ class _$MessageInfoModelCopyWithImpl<$Res, $Val extends MessageInfoModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -274,6 +280,8 @@ class _$MessageInfoModelCopyWithImpl<$Res, $Val extends MessageInfoModel>
     ) as $Val);
   }
 
+  /// Create a copy of MessageInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PostInfoCopyWith<$Res>? get eventInfo {
@@ -340,6 +348,8 @@ class __$$MessageInfoModelImplCopyWithImpl<$Res>
       $Res Function(_$MessageInfoModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -631,7 +641,7 @@ class _$MessageInfoModelImpl implements _MessageInfoModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageInfoModelImpl &&
@@ -694,7 +704,7 @@ class _$MessageInfoModelImpl implements _MessageInfoModel {
                 other.eventInfo == eventInfo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -731,7 +741,9 @@ class _$MessageInfoModelImpl implements _MessageInfoModel {
         eventInfo
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageInfoModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageInfoModelImplCopyWith<_$MessageInfoModelImpl> get copyWith =>
@@ -845,8 +857,11 @@ abstract class _MessageInfoModel implements MessageInfoModel {
   List<MessageReactionsModel>? get messageReactions;
   @override
   PostInfo? get eventInfo;
+
+  /// Create a copy of MessageInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageInfoModelImplCopyWith<_$MessageInfoModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -861,8 +876,12 @@ mixin _$MessageReactionsModel {
   String? get userId => throw _privateConstructorUsedError;
   String? get reaction => throw _privateConstructorUsedError;
 
+  /// Serializes this MessageReactionsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MessageReactionsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageReactionsModelCopyWith<MessageReactionsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -887,6 +906,8 @@ class _$MessageReactionsModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageReactionsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -927,6 +948,8 @@ class __$$MessageReactionsModelImplCopyWithImpl<$Res>
       $Res Function(_$MessageReactionsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageReactionsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -965,7 +988,7 @@ class _$MessageReactionsModelImpl implements _MessageReactionsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageReactionsModelImpl &&
@@ -974,11 +997,13 @@ class _$MessageReactionsModelImpl implements _MessageReactionsModel {
                 other.reaction == reaction));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userId, reaction);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageReactionsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageReactionsModelImplCopyWith<_$MessageReactionsModelImpl>
@@ -1005,8 +1030,11 @@ abstract class _MessageReactionsModel implements MessageReactionsModel {
   String? get userId;
   @override
   String? get reaction;
+
+  /// Create a copy of MessageReactionsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageReactionsModelImplCopyWith<_$MessageReactionsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

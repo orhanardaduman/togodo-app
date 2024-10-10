@@ -226,7 +226,7 @@ class _BlockUserItemState extends ConsumerState<BlockUserItem> {
                                 user.id!,
                                 status: widget.status,
                               );
-                              await router.pop();
+                              Navigator.of(context).pop();
                             },
                             radius: 100,
                           ),
@@ -237,7 +237,7 @@ class _BlockUserItemState extends ConsumerState<BlockUserItem> {
                             mode: ButtonMode.dark,
                             text: l10n.no,
                             onPressed: () {
-                              AutoRouter.of(context).pop();
+                              Navigator.of(context).pop();
                             },
                             radius: 100,
                           ),

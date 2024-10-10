@@ -12,7 +12,7 @@ part of 'user_search_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserSearchModel _$UserSearchModelFromJson(Map<String, dynamic> json) {
   return _UserSearchModel.fromJson(json);
@@ -38,8 +38,12 @@ mixin _$UserSearchModel {
   bool? get isRequest => throw _privateConstructorUsedError;
   bool? get isHide => throw _privateConstructorUsedError;
 
+  /// Serializes this UserSearchModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserSearchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserSearchModelCopyWith<UserSearchModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -80,6 +84,8 @@ class _$UserSearchModelCopyWithImpl<$Res, $Val extends UserSearchModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserSearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -210,6 +216,8 @@ class __$$UserSearchModelImplCopyWithImpl<$Res>
       _$UserSearchModelImpl _value, $Res Function(_$UserSearchModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserSearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -370,7 +378,7 @@ class _$UserSearchModelImpl implements _UserSearchModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserSearchModelImpl &&
@@ -404,7 +412,7 @@ class _$UserSearchModelImpl implements _UserSearchModel {
             (identical(other.isHide, isHide) || other.isHide == isHide));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -426,7 +434,9 @@ class _$UserSearchModelImpl implements _UserSearchModel {
       isRequest,
       isHide);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserSearchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserSearchModelImplCopyWith<_$UserSearchModelImpl> get copyWith =>
@@ -498,8 +508,11 @@ abstract class _UserSearchModel implements UserSearchModel {
   bool? get isRequest;
   @override
   bool? get isHide;
+
+  /// Create a copy of UserSearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserSearchModelImplCopyWith<_$UserSearchModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

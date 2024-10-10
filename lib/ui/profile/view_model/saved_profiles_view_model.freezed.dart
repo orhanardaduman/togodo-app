@@ -12,7 +12,7 @@ part of 'saved_profiles_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SavedProfilesEventsState {
@@ -20,7 +20,9 @@ mixin _$SavedProfilesEventsState {
   bool get loading => throw _privateConstructorUsedError;
   String get currentToken => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SavedProfilesEventsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SavedProfilesEventsStateCopyWith<SavedProfilesEventsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$SavedProfilesEventsStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SavedProfilesEventsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,6 +95,8 @@ class __$$SavedProfilesEventsStateImplCopyWithImpl<$Res>
       $Res Function(_$SavedProfilesEventsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SavedProfilesEventsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,7 +152,7 @@ class _$SavedProfilesEventsStateImpl implements _SavedProfilesEventsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SavedProfilesEventsStateImpl &&
@@ -160,7 +166,9 @@ class _$SavedProfilesEventsStateImpl implements _SavedProfilesEventsState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_users), loading, currentToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SavedProfilesEventsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SavedProfilesEventsStateImplCopyWith<_$SavedProfilesEventsStateImpl>
@@ -180,8 +188,11 @@ abstract class _SavedProfilesEventsState implements SavedProfilesEventsState {
   bool get loading;
   @override
   String get currentToken;
+
+  /// Create a copy of SavedProfilesEventsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SavedProfilesEventsStateImplCopyWith<_$SavedProfilesEventsStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

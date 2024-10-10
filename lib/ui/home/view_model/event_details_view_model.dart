@@ -12,6 +12,8 @@ import 'package:togodo/ui/common/welcome.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 import 'package:togodo/ui/likes/likes_view_model.dart';
 
+import '../../../data/model/event/event_model.dart';
+
 part 'event_details_view_model.freezed.dart';
 
 final eventDetailsViewModelProvider = StateNotifierProvider.autoDispose
@@ -159,6 +161,34 @@ class EventDetailsViewModel extends StateNotifier<EventDetailsState> {
       requestStatus: false,
       openToJoinStatus: false,
       joinedUsers: updated,
+    );
+
+    // Güncellenmiş events listesini state'e aktarın
+    state = state.copyWith(events: updatedEvents);
+  }
+
+  void incrementGroupRequest(String id, GroupRequestDetail requestDetail) {
+    if (_isDisposed) return;
+    final update = state.events;
+
+    // Güncellenmiş events listesini state'e aktarın
+
+    final updatedEvents = update!.copyWith(
+      groupRequest: requestDetail,
+    );
+
+    // Güncellenmiş events listesini state'e aktarın
+    state = state.copyWith(events: updatedEvents);
+  }
+
+  void setDeleteGroupRequest(String id) {
+    if (_isDisposed) return;
+    final update = state.events;
+
+    // Güncellenmiş events listesini state'e aktarın
+
+    final updatedEvents = update!.copyWith(
+      groupRequest: null,
     );
 
     // Güncellenmiş events listesini state'e aktarın

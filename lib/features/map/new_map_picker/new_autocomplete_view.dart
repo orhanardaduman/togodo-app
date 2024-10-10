@@ -3,7 +3,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart' hide ErrorBuilder;
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
@@ -72,11 +71,7 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
     this.loadingBuilder,
     this.noItemsFoundBuilder,
     this.scrollController,
-    this.suggestionsBoxController,
-    this.suggestionsBoxDecoration = const SuggestionsBoxDecoration(),
     this.suggestionsBoxVerticalOffset = 5.0,
-    this.textFieldConfiguration = const TextFieldConfiguration(),
-    this.transitionBuilder,
     this.decoration,
     this.valueTransformer,
     this.enabled = true,
@@ -215,11 +210,9 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
   /// The decoration of the material sheet that contains the suggestions.
   ///
   /// If null, default decoration with an elevation of 4.0 is used
-  final SuggestionsBoxDecoration suggestionsBoxDecoration;
 
   /// Used to control the `_SuggestionsBox`. Allows manual control to
   /// open, close, toggle, or resize the `_SuggestionsBox`.
-  final SuggestionsBoxController? suggestionsBoxController;
 
   /// The duration to wait after the user stops typing before calling
   /// [suggestionsCallback]
@@ -295,7 +288,6 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
   /// To fully remove the animation, just return `suggestionsBox`
   ///
   /// If not specified, a [SizeTransition](https://docs.flutter.io/flutter/widgets/SizeTransition-class.html) is shown.
-  final AnimationTransitionBuilder? transitionBuilder;
 
   /// The duration that [transitionBuilder] animation takes.
   ///
@@ -326,7 +318,6 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
 
   /// The configuration of the [TextField](https://docs.flutter.io/flutter/material/TextField-class.html)
   /// that the TypeAhead widget displays
-  final TextFieldConfiguration textFieldConfiguration;
 
   /// How far below the text field should the suggestions box be
   ///
@@ -547,39 +538,26 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
               );
               return predictions;
             },
-            onSuggestionSelected: (value) async {
+            onSelected: (value) async {
               textController.value.selection = TextSelection.collapsed(
                 offset: textController.value.text.length,
               );
               await _getDetailsByPlaceId(value.placeId ?? '', context);
               onSuggestionSelected?.call(value);
             },
-            hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
+            hideWithKeyboard: hideSuggestionsOnKeyboardHide,
             initialValue: initialValue,
             validator: validator,
-            suggestionsBoxDecoration: suggestionsBoxDecoration,
             scrollController: scrollController,
             animationDuration: animationDuration,
-            animationStart: animationStart,
             autoFlipDirection: autoFlipDirection,
             debounceDuration: debounceDuration,
-            direction: direction,
             errorBuilder: errorBuilder,
             focusNode: focusNode,
-            getImmediateSuggestions: getImmediateSuggestions,
-            hideKeyboard: hideKeyboard,
-            hideOnEmpty: hideOnEmpty,
+            hideOnEmpty: !hideOnEmpty,
             hideOnError: hideOnError,
             hideOnLoading: hideOnLoading,
-            keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-            keepSuggestionsOnSuggestionSelected:
-                keepSuggestionsOnSuggestionSelected,
             loadingBuilder: loadingBuilder,
-            noItemsFoundBuilder: noItemsFoundBuilder,
-            suggestionsBoxController: suggestionsBoxController,
-            suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
-            textFieldConfiguration: textFieldConfiguration,
-            transitionBuilder: transitionBuilder,
             valueTransformer: valueTransformer,
             enabled: enabled,
             autovalidateMode: autovalidateMode,

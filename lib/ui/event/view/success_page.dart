@@ -52,7 +52,7 @@ class _CreateEventSuccesPageState extends ConsumerState<CreateEventSuccesPage> {
     Future.delayed(const Duration(seconds: 3), () {
       ref.read(homeViewModelProvider.notifier).initEvent(widget.data);
       //  final useL10ns = L10n.of(context)!;
-      context.router.pop();
+      Navigator.of(context).pop();
     });
   }
 

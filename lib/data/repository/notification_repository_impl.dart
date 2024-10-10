@@ -4,6 +4,7 @@ import 'package:togodo/data/model/result.dart';
 import 'package:togodo/data/remote/api/notification_data_source.dart';
 import 'package:togodo/data/repository/notification_repository.dart';
 
+import '../../ui/group/model/group_model.dart';
 import '../model/event/event_rating_needed_model.dart';
 
 final notificationRepositoryProvider = Provider(NotificationRepositoryImpl.new);
@@ -121,6 +122,27 @@ class NotificationRepositoryImpl implements NotificationRepository {
         "point": rate,
         "eventUserId": eventUserId,
       }),
+    );
+  }
+
+  @override
+  Future<Result<void>> closeDialog(String groupId) {
+    return Result.guardFuture(
+      () async => _dataSource.closeDialog(groupId),
+    );
+  }
+
+  @override
+  Future<Result<void>> neverShowDialog(String groupId) {
+    return Result.guardFuture(
+      () async => _dataSource.neverShowDialog(groupId),
+    );
+  }
+
+  @override
+  Future<Result<List<GroupDetailModelForDialog>>> hasEventDialog() {
+    return Result.guardFuture(
+      () async => _dataSource.hasEventDialog(),
     );
   }
 }

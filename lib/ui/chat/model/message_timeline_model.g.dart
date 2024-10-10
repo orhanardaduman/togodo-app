@@ -33,7 +33,7 @@ _$MessageTimelineModelImpl _$$MessageTimelineModelImplFromJson(
       isGroupChat: json['isGroupChat'] as bool?,
       isSeenGroupChat: json['isSeenGroupChat'] as bool?,
       repliedMessageId: json['repliedMessageId'] as String?,
-      unseenMessagesCount: json['unseenMessagesCount'] as int?,
+      unseenMessagesCount: (json['unseenMessagesCount'] as num?)?.toInt(),
       joinedUsers: (json['joinedUsers'] as List<dynamic>?)
           ?.map((e) => GroupJoinedUsers.fromJson(e as Map<String, dynamic>))
           .toList(),

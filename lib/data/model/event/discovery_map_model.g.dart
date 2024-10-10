@@ -23,9 +23,10 @@ _$DiscoveryMapModelImpl _$$DiscoveryMapModelImplFromJson(
       latitude: json['latitude'] as String?,
       longitude: json['longitude'] as String?,
       isUserEvent: json['isUserEvent'] as bool?,
+      participantsLimit: (json['participantsLimit'] as num?)?.toInt(),
       address: json['address'] as String?,
       ticketUrl: json['ticketUrl'] as String?,
-      joinedUserCount: json['joinedUserCount'] as int?,
+      joinedUserCount: (json['joinedUserCount'] as num?)?.toInt(),
       startTime: json['startTime'] as String?,
       endTime: json['endTime'] as String?,
       joinedStatus: json['joinedStatus'] as bool?,
@@ -34,10 +35,10 @@ _$DiscoveryMapModelImpl _$$DiscoveryMapModelImplFromJson(
       requestStatus: json['requestStatus'] as bool?,
       isQuotaFull: json['isQuotaFull'] as bool?,
       isCurrentUser: json['isCurrentUser'] as bool?,
-      ratingLenght: json['ratingLenght'] as int?,
+      ratingLenght: (json['ratingLenght'] as num?)?.toInt(),
       rating: (json['rating'] as num?)?.toDouble(),
-      likeCount: json['likeCount'] as int?,
-      shareCount: json['shareCount'] as int?,
+      likeCount: (json['likeCount'] as num?)?.toInt(),
+      shareCount: (json['shareCount'] as num?)?.toInt(),
       vendorDetails: json['vendorDetails'] == null
           ? null
           : VendorDetails.fromJson(
@@ -48,6 +49,13 @@ _$DiscoveryMapModelImpl _$$DiscoveryMapModelImplFromJson(
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => TagsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      eventGroups: json['eventGroups'] == null
+          ? null
+          : EventGroups.fromJson(json['eventGroups'] as Map<String, dynamic>),
+      groupRequest: json['groupRequest'] == null
+          ? null
+          : GroupRequestDetail.fromJson(
+              json['groupRequest'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DiscoveryMapModelImplToJson(
@@ -67,6 +75,7 @@ Map<String, dynamic> _$$DiscoveryMapModelImplToJson(
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'isUserEvent': instance.isUserEvent,
+      'participantsLimit': instance.participantsLimit,
       'address': instance.address,
       'ticketUrl': instance.ticketUrl,
       'joinedUserCount': instance.joinedUserCount,
@@ -85,4 +94,6 @@ Map<String, dynamic> _$$DiscoveryMapModelImplToJson(
       'vendorDetails': instance.vendorDetails,
       'joinedUsers': instance.joinedUsers,
       'tags': instance.tags,
+      'eventGroups': instance.eventGroups,
+      'groupRequest': instance.groupRequest,
     };

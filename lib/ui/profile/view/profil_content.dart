@@ -12,9 +12,10 @@ import 'package:togodo/ui/profile/view/tab_created_events.dart';
 import 'package:togodo/ui/profile/view/tab_events.dart';
 import 'package:togodo/ui/profile/view/tab_events_draft.dart';
 import 'package:togodo/ui/profile/view/tab_events_joined.dart';
-import 'package:togodo/ui/profile/view/tab_events_request.dart';
 import 'package:togodo/ui/profile/widget/block_container.dart';
 import 'package:togodo/ui/profile/widget/index.dart';
+
+import '../user_groups/pages/user_groups_page.dart';
 
 class ProfilContent extends HookConsumerWidget {
   const ProfilContent({
@@ -105,7 +106,7 @@ class ProfilContent extends HookConsumerWidget {
                                   text: l10n.eventsTab,
                                 ),
                                 Tab(
-                                  text: l10n.requestsTab,
+                                  text: l10n.profileGroups,
                                 ),
                                 Tab(
                                   text: l10n.created,
@@ -157,8 +158,8 @@ class ProfilContent extends HookConsumerWidget {
                             TabEventsView(
                               isCurrentUser: data?.isCurrentUser ?? false,
                             ),
-                            TabEventsRequestView(
-                              isCurrentUser: data?.isCurrentUser ?? false,
+                            UserGroupsPage(
+                              id: userId,
                             ),
                             const TabEventsDraftView(),
                           ],

@@ -67,6 +67,9 @@ class _CropViewState extends ConsumerState<CropView> {
           children: [
             CustomAppBar(
               title: l10n.edit,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
               hasEdit: true,
               actions: [
                 TextButton(

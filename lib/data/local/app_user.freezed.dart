@@ -12,7 +12,7 @@ part of 'app_user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AppUser {
@@ -22,7 +22,9 @@ mixin _$AppUser {
   String? get email => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppUserCopyWith<AppUser> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -49,6 +51,8 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +110,8 @@ class __$$AppUserImplCopyWithImpl<$Res>
       _$AppUserImpl _value, $Res Function(_$AppUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,7 +169,7 @@ class _$AppUserImpl implements _AppUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppUserImpl &&
@@ -180,7 +186,9 @@ class _$AppUserImpl implements _AppUser {
   int get hashCode =>
       Object.hash(runtimeType, userId, imageUrl, name, email, phoneNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>
@@ -205,8 +213,11 @@ abstract class _AppUser implements AppUser {
   String? get email;
   @override
   String? get phoneNumber;
+
+  /// Create a copy of AppUser
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

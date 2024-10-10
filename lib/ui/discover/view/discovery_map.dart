@@ -114,7 +114,7 @@ class _DiscoveryMapViewPageState extends ConsumerState<DiscoveryMapViewPage> {
                     ),
                     leftIcon: Assets.icons.bold.category.path,
                     radius: 100,
-                    onPressed: router.pop,
+                    onPressed: router.back,
                   ),
                 ),
                 if (!model.hideCard)

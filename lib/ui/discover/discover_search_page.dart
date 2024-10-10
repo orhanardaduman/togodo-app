@@ -199,8 +199,8 @@ class _DiscoverSearchPageState extends ConsumerState<DiscoverSearchPage> {
                                 spacing: 24,
                                 runSpacing: 24,
                                 children: user
-                                    .mapIndexed(
-                                      (index, element) => GestureDetector(
+                                    .map(
+                                      (element) => GestureDetector(
                                         onTap: () {
                                           notifier.saveSearch(
                                             userId: element.id,

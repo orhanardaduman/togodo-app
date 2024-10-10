@@ -12,7 +12,7 @@ part of 'firebase_login_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FirebaseLoginModel _$FirebaseLoginModelFromJson(Map<String, dynamic> json) {
   return _FirebaseLoginModel.fromJson(json);
@@ -29,8 +29,12 @@ mixin _$FirebaseLoginModel {
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
 
+  /// Serializes this FirebaseLoginModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FirebaseLoginModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FirebaseLoginModelCopyWith<FirebaseLoginModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$FirebaseLoginModelCopyWithImpl<$Res, $Val extends FirebaseLoginModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FirebaseLoginModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +144,8 @@ class __$$FirebaseLoginModelImplCopyWithImpl<$Res>
       $Res Function(_$FirebaseLoginModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FirebaseLoginModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -226,7 +234,7 @@ class _$FirebaseLoginModelImpl implements _FirebaseLoginModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FirebaseLoginModelImpl &&
@@ -244,12 +252,14 @@ class _$FirebaseLoginModelImpl implements _FirebaseLoginModel {
                 other.imagePath == imagePath));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, idToken, deviceId, location,
       name, email, surname, phoneNumber, imagePath);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FirebaseLoginModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FirebaseLoginModelImplCopyWith<_$FirebaseLoginModelImpl> get copyWith =>
@@ -294,8 +304,11 @@ abstract class _FirebaseLoginModel implements FirebaseLoginModel {
   String? get phoneNumber;
   @override
   String? get imagePath;
+
+  /// Create a copy of FirebaseLoginModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FirebaseLoginModelImplCopyWith<_$FirebaseLoginModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

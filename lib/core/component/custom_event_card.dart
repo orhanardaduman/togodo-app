@@ -24,6 +24,7 @@ class EnventCards extends HookConsumerWidget {
     this.height,
     this.onLikeChanged,
     this.isShowRating = false,
+    this.isShowVendor = true,
     this.radius = 28,
   });
   final EventCardSize size;
@@ -32,6 +33,8 @@ class EnventCards extends HookConsumerWidget {
   final EventCommonProperties? data;
   final double? radius;
   final bool isShowRating;
+  final bool isShowVendor;
+
   final void Function({required bool isLiked})? onLikeChanged;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -190,48 +193,49 @@ class EnventCards extends HookConsumerWidget {
           ],
         ),
         const Spacer(),
-        Row(
-          children: [
-            Container(
-              width: EventCardSize.large == size ? 20 : 16,
-              height: EventCardSize.large == size ? 20 : 16,
-              decoration: BoxDecoration(
-                image: data?.vendorDetails != null
-                    ? DecorationImage(
-                        image: NetworkImage(
-                          data?.vendorDetails?.imageUrl ?? '',
+        if (isShowVendor)
+          Row(
+            children: [
+              Container(
+                width: EventCardSize.large == size ? 20 : 16,
+                height: EventCardSize.large == size ? 20 : 16,
+                decoration: BoxDecoration(
+                  image: data?.vendorDetails != null
+                      ? DecorationImage(
+                          image: NetworkImage(
+                            data?.vendorDetails?.imageUrl ?? '',
+                          ),
+                          fit: BoxFit.cover,
+                        )
+                      : DecorationImage(
+                          image: AssetImage(
+                            Assets.images.stock.avatar.path,
+                          ),
+                          fit: BoxFit.cover,
                         ),
-                        fit: BoxFit.cover,
-                      )
-                    : DecorationImage(
-                        image: AssetImage(
-                          Assets.images.stock.avatar.path,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                borderRadius: BorderRadius.circular(99.9994888305664),
-              ),
-            ),
-            const SizedBox(width: 8),
-            if (data?.vendorDetails?.id !=
-                '8ebb12ec-05db-4230-aa9e-28af26600d93')
-              SizedBox(
-                width: calculatedWidth - 90,
-                child: PrimaryText(
-                  data?.vendorDetails?.imageUrl.toString() != ''
-                      ? data?.vendorDetails?.name ?? 'Vendor Name'
-                      : '',
-                  maxLines: 1,
-                  style: theme.textTheme.bodyMedium.copyWith(
-                    color: MainColors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: EventCardSize.large == size ? 14 : 10,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  borderRadius: BorderRadius.circular(99.9994888305664),
                 ),
               ),
-          ],
-        ),
+              const SizedBox(width: 8),
+              if (data?.vendorDetails?.id !=
+                  '8ebb12ec-05db-4230-aa9e-28af26600d93')
+                SizedBox(
+                  width: calculatedWidth - 90,
+                  child: PrimaryText(
+                    data?.vendorDetails?.imageUrl.toString() != ''
+                        ? data?.vendorDetails?.name ?? 'Vendor Name'
+                        : '',
+                    maxLines: 1,
+                    style: theme.textTheme.bodyMedium.copyWith(
+                      color: MainColors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: EventCardSize.large == size ? 14 : 10,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+            ],
+          ),
         if (data?.name != null)
           SizedBox(
             width: calculatedWidth - 24,

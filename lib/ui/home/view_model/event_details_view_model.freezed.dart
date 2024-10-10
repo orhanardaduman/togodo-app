@@ -12,7 +12,7 @@ part of 'event_details_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$EventDetailsState {
@@ -23,7 +23,9 @@ mixin _$EventDetailsState {
       throw _privateConstructorUsedError; // Eğer yoruma cevap veriliyorsa dolu  olacak
   bool get isReplyComment => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventDetailsStateCopyWith<EventDetailsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +57,8 @@ class _$EventDetailsStateCopyWithImpl<$Res, $Val extends EventDetailsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -88,6 +92,8 @@ class _$EventDetailsStateCopyWithImpl<$Res, $Val extends EventDetailsState>
     ) as $Val);
   }
 
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EventDetailsModelCopyWith<$Res>? get events {
@@ -100,6 +106,8 @@ class _$EventDetailsStateCopyWithImpl<$Res, $Val extends EventDetailsState>
     });
   }
 
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EventCommentModelCopyWith<$Res>? get replyModel {
@@ -142,6 +150,8 @@ class __$$EventDetailsStateImplCopyWithImpl<$Res>
       $Res Function(_$EventDetailsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,7 +219,7 @@ class _$EventDetailsStateImpl implements _EventDetailsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EventDetailsStateImpl &&
@@ -227,7 +237,9 @@ class _$EventDetailsStateImpl implements _EventDetailsState {
   int get hashCode => Object.hash(
       runtimeType, events, loading, pagination, replyModel, isReplyComment);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventDetailsStateImplCopyWith<_$EventDetailsStateImpl> get copyWith =>
@@ -250,11 +262,15 @@ abstract class _EventDetailsState implements EventDetailsState {
   @override
   int get pagination;
   @override
-  EventCommentModel? get replyModel;
-  @override // Eğer yoruma cevap veriliyorsa dolu  olacak
-  bool get isReplyComment;
+  EventCommentModel?
+      get replyModel; // Eğer yoruma cevap veriliyorsa dolu  olacak
   @override
-  @JsonKey(ignore: true)
+  bool get isReplyComment;
+
+  /// Create a copy of EventDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventDetailsStateImplCopyWith<_$EventDetailsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

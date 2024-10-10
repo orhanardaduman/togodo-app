@@ -18,7 +18,7 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       startTime: json['startTime'] as String?,
       endTime: json['endTime'] as String?,
       resolution: json['resolution'] as String?,
-      joinedUserCount: json['joinedUserCount'] as int?,
+      joinedUserCount: (json['joinedUserCount'] as num?)?.toInt(),
       isQuotaFull: json['isQuotaFull'] as bool?,
       joinedStatus: json['joinedStatus'] as bool?,
       latitude: json['latitude'] as String?,
@@ -29,11 +29,12 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       isClosedComment: json['isClosedComment'] as bool?,
       openToJoinStatus: json['openToJoinStatus'] as bool?,
       rating: (json['rating'] as num?)?.toDouble(),
-      ratingLenght: json['ratingLenght'] as int?,
+      ratingLenght: (json['ratingLenght'] as num?)?.toInt(),
       isPublish: json['isPublish'] as bool?,
       isUserEvent: json['isUserEvent'] as bool?,
-      likeCount: json['likeCount'] as int?,
-      shareCount: json['shareCount'] as int?,
+      likeCount: (json['likeCount'] as num?)?.toInt(),
+      shareCount: (json['shareCount'] as num?)?.toInt(),
+      participantsLimit: (json['participantsLimit'] as num?)?.toInt(),
       aspectRatio: json['aspectRatio'] as String?,
       vendorDetails: json['vendorDetails'] == null
           ? null
@@ -42,6 +43,13 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       joinedUsers: (json['joinedUsers'] as List<dynamic>?)
           ?.map((e) => JoinedUsers.fromJson(e as Map<String, dynamic>))
           .toList(),
+      groupRequest: json['groupRequest'] == null
+          ? null
+          : GroupRequestDetail.fromJson(
+              json['groupRequest'] as Map<String, dynamic>),
+      eventGroups: json['eventGroups'] == null
+          ? null
+          : EventGroups.fromJson(json['eventGroups'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
@@ -72,9 +80,12 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'isUserEvent': instance.isUserEvent,
       'likeCount': instance.likeCount,
       'shareCount': instance.shareCount,
+      'participantsLimit': instance.participantsLimit,
       'aspectRatio': instance.aspectRatio,
       'vendorDetails': instance.vendorDetails,
       'joinedUsers': instance.joinedUsers,
+      'groupRequest': instance.groupRequest,
+      'eventGroups': instance.eventGroups,
     };
 
 _$VendorDetailsImpl _$$VendorDetailsImplFromJson(Map<String, dynamic> json) =>
@@ -93,6 +104,64 @@ Map<String, dynamic> _$$VendorDetailsImplToJson(_$VendorDetailsImpl instance) =>
       'name': instance.name,
       'surname': instance.surname,
       'imageUrl': instance.imageUrl,
+    };
+
+_$GroupRequestDetailImpl _$$GroupRequestDetailImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GroupRequestDetailImpl(
+      id: json['id'] as String?,
+      isStatisfied: json['isStatisfied'] as bool?,
+      isDeleted: json['isDeleted'] as bool?,
+      eventId: json['eventId'] as String?,
+      aspNetUsers: json['aspNetUsers'] == null
+          ? null
+          : GroupUsers.fromJson(json['aspNetUsers'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$GroupRequestDetailImplToJson(
+        _$GroupRequestDetailImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'isStatisfied': instance.isStatisfied,
+      'isDeleted': instance.isDeleted,
+      'eventId': instance.eventId,
+      'aspNetUsers': instance.aspNetUsers,
+    };
+
+_$GroupUsersImpl _$$GroupUsersImplFromJson(Map<String, dynamic> json) =>
+    _$GroupUsersImpl(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      title: json['title'] as String?,
+    );
+
+Map<String, dynamic> _$$GroupUsersImplToJson(_$GroupUsersImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'surname': instance.surname,
+      'imageUrl': instance.imageUrl,
+      'title': instance.title,
+    };
+
+_$EventGroupsImpl _$$EventGroupsImplFromJson(Map<String, dynamic> json) =>
+    _$EventGroupsImpl(
+      id: json['id'] as String?,
+      requests: (json['requests'] as List<dynamic>?)
+          ?.map((e) => GroupRequestDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      event: json['event'] == null
+          ? null
+          : EventModel.fromJson(json['event'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$EventGroupsImplToJson(_$EventGroupsImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'requests': instance.requests,
+      'event': instance.event,
     };
 
 _$JoinedUsersImpl _$$JoinedUsersImplFromJson(Map<String, dynamic> json) =>

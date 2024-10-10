@@ -41,7 +41,6 @@ class ImageHandler {
     final croppedImage = await _imageCropper.cropImage(
       sourcePath: imageFile.path,
       compressQuality: compressQuality,
-      cropStyle: cropStyle,
       uiSettings: [
         IOSUiSettings(),
         AndroidUiSettings(

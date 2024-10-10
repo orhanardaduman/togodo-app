@@ -12,7 +12,7 @@ part of 'token_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TokenModel _$TokenModelFromJson(Map<String, dynamic> json) {
   return _TokenModel.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$TokenModel {
   String? get userId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
+  /// Serializes this TokenModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TokenModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TokenModelCopyWith<TokenModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TokenModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +87,8 @@ class _$TokenModelCopyWithImpl<$Res, $Val extends TokenModel>
     ) as $Val);
   }
 
+  /// Create a copy of TokenModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TokenCopyWith<$Res>? get token {
@@ -117,6 +125,8 @@ class __$$TokenModelImplCopyWithImpl<$Res>
       _$TokenModelImpl _value, $Res Function(_$TokenModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TokenModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,7 +180,7 @@ class _$TokenModelImpl implements _TokenModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TokenModelImpl &&
@@ -181,12 +191,14 @@ class _$TokenModelImpl implements _TokenModel {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, token, profileImageUrl, userId, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TokenModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TokenModelImplCopyWith<_$TokenModelImpl> get copyWith =>
@@ -218,8 +230,11 @@ abstract class _TokenModel implements TokenModel {
   String? get userId;
   @override
   String? get name;
+
+  /// Create a copy of TokenModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TokenModelImplCopyWith<_$TokenModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -243,8 +258,12 @@ mixin _$Token {
   bool? get bioCompletion => throw _privateConstructorUsedError;
   String? get expiration => throw _privateConstructorUsedError;
 
+  /// Serializes this Token to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Token
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TokenCopyWith<Token> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -278,6 +297,8 @@ class _$TokenCopyWithImpl<$Res, $Val extends Token>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Token
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -377,6 +398,8 @@ class __$$TokenImplCopyWithImpl<$Res>
       _$TokenImpl _value, $Res Function(_$TokenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Token
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -497,7 +520,7 @@ class _$TokenImpl implements _Token {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TokenImpl &&
@@ -526,7 +549,7 @@ class _$TokenImpl implements _Token {
                 other.expiration == expiration));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -543,7 +566,9 @@ class _$TokenImpl implements _Token {
       bioCompletion,
       expiration);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Token
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TokenImplCopyWith<_$TokenImpl> get copyWith =>
@@ -598,8 +623,11 @@ abstract class _Token implements Token {
   bool? get bioCompletion;
   @override
   String? get expiration;
+
+  /// Create a copy of Token
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TokenImplCopyWith<_$TokenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

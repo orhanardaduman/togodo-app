@@ -17,7 +17,6 @@ import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/helpers/utility.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
-import 'package:togodo/core/route/app_route.gr.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/features/component/custom_divider.dart';
 import 'package:togodo/features/map/map_show.dart';
@@ -32,6 +31,9 @@ import '../../../core/component/button/custom_button.dart';
 import '../../../core/component/modal/custom_modal.dart';
 import '../../../gen/assets.gen.dart';
 import '../../event/widget/event_rating_popup.dart';
+import '../reels/group_view_mini/mini_first_view.dart';
+import '../reels/group_view_mini/mini_has_group_view.dart';
+import '../reels/group_view_mini/mini_search_view.dart';
 
 @RoutePage()
 class EventDetailsPage extends StatefulHookConsumerWidget {
@@ -56,6 +58,7 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
   FocusNode focusNode = FocusNode();
   //final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController = RefreshController();
+  bool showMore = false;
   @override
   void dispose() {
     focusNode.dispose();
@@ -95,9 +98,9 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
     return PopScope(
       canPop: !widget.isNotification,
       onPopInvoked: (pop) async {
-        await router.push(
-          const HomeRoute(),
-        );
+        // await router.push(
+        //   const HomeRoute(),
+        // );
       },
       child: GestureDetector(
         onTap: () {
@@ -126,6 +129,32 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                if (model.events?.participantsLimit == 0 &&
+                                    (model.events!.eventGroups != null
+                                        ? true
+                                        : !isEventPassed(
+                                            model.events!.date!,
+                                            model.events!.startTime!,
+                                            model.events!.endTime,
+                                          )))
+                                  AnimatedSwitcher(
+                                    duration: const Duration(microseconds: 200),
+                                    child: model.events!.eventGroups != null
+                                        ? MiniHasGroupView(item: model.events!)
+                                        : model.events!.groupRequest != null
+                                            ? MiniGroupSearchView(
+                                                item: model.events!,
+                                              )
+                                            : MiniReelsGroupFirstView(
+                                                item: model.events!,
+                                              ),
+                                  ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
                                 PrimaryText(
                                   l10n.eventDetail,
                                   style: theme.textTheme.h5.copyWith(
@@ -513,6 +542,14 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                         ],
                       ),
                     ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          showMore = false;
+                        });
+                      },
+                      child: SizedBox.expand(),
+                    ),
                     if (userType == UserType.user &&
                         model.events!.date != null &&
                         model.events!.startTime != null &&
@@ -533,6 +570,12 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                           ),
                           child: EventButton(
                             model: model.events!,
+                            showMore: showMore,
+                            onShowMore: (val) {
+                              setState(() {
+                                showMore = val;
+                              });
+                            },
                           ),
                         ),
                       ),

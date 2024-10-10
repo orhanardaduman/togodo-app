@@ -12,7 +12,7 @@ part of 'message_details_view_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MessageDetailsState {
@@ -28,7 +28,9 @@ mixin _$MessageDetailsState {
   bool get isGrupChat => throw _privateConstructorUsedError;
   int get messageType => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MessageDetailsStateCopyWith<MessageDetailsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -65,6 +67,8 @@ class _$MessageDetailsStateCopyWithImpl<$Res, $Val extends MessageDetailsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MessageDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,6 +132,8 @@ class _$MessageDetailsStateCopyWithImpl<$Res, $Val extends MessageDetailsState>
     ) as $Val);
   }
 
+  /// Create a copy of MessageDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MessageInfoModelCopyWith<$Res>? get replyModel {
@@ -174,6 +180,8 @@ class __$$MessageDetailsStateImplCopyWithImpl<$Res>
       $Res Function(_$MessageDetailsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MessageDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -308,7 +316,7 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageDetailsStateImpl &&
@@ -348,7 +356,9 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
       isGrupChat,
       messageType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MessageDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MessageDetailsStateImplCopyWith<_$MessageDetailsStateImpl> get copyWith =>
@@ -392,8 +402,11 @@ abstract class _MessageDetailsState implements MessageDetailsState {
   bool get isGrupChat;
   @override
   int get messageType;
+
+  /// Create a copy of MessageDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MessageDetailsStateImplCopyWith<_$MessageDetailsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

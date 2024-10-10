@@ -28,27 +28,27 @@ _$ProfilModelImpl _$$ProfilModelImplFromJson(Map<String, dynamic> json) =>
       surname: json['surname'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       email: json['email'] as String?,
-      gender: json['gender'] as int?,
-      age: json['age'] as int?,
-      type: json['type'] as int?,
+      gender: (json['gender'] as num?)?.toInt(),
+      age: (json['age'] as num?)?.toInt(),
+      type: (json['type'] as num?)?.toInt(),
       birthdayDate: json['birthdayDate'] as String?,
       userName: json['userName'] as String?,
       bio: json['bio'] as String?,
       title: json['title'] as String?,
       location: json['location'] as String?,
-      completionRate: json['completionRate'] as int?,
+      completionRate: (json['completionRate'] as num?)?.toInt(),
       titleCompletion: json['titleCompletion'] as bool?,
       socialMediaCompletion: json['socialMediaCompletion'] as bool?,
       tagCompletion: json['tagCompletion'] as bool?,
       bioCompletion: json['bioCompletion'] as bool?,
       isFollowed: json['isFollowed'] as bool?,
-      friendCount: json['friendCount'] as int?,
-      followersCount: json['followersCount'] as int?,
-      privacyType: json['privacyType'] as int?,
-      eventsCreatedCount: json['eventsCreatedCount'] as int?,
-      applauseCount: json['applauseCount'] as int?,
-      totalPoint: json['totalPoint'] as int?,
-      pointCount: json['pointCount'] as int?,
+      friendCount: (json['friendCount'] as num?)?.toInt(),
+      followersCount: (json['followersCount'] as num?)?.toInt(),
+      privacyType: (json['privacyType'] as num?)?.toInt(),
+      eventsCreatedCount: (json['eventsCreatedCount'] as num?)?.toInt(),
+      applauseCount: (json['applauseCount'] as num?)?.toInt(),
+      totalPoint: (json['totalPoint'] as num?)?.toInt(),
+      pointCount: (json['pointCount'] as num?)?.toInt(),
       calculatedPoint: (json['calculatedPoint'] as num?)?.toDouble(),
       isHideEventCreatedCurrentUserToUser:
           json['isHideEventCreatedCurrentUserToUser'] as bool?,
@@ -128,7 +128,7 @@ Map<String, dynamic> _$$ProfilModelImplToJson(_$ProfilModelImpl instance) =>
 
 _$TagsModelImpl _$$TagsModelImplFromJson(Map<String, dynamic> json) =>
     _$TagsModelImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       iconPath: json['iconPath'] as String?,
       subTags: (json['subTags'] as List<dynamic>?)
@@ -150,7 +150,7 @@ _$SocialMediasImpl _$$SocialMediasImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       icon: json['icon'] as String?,
       url: json['url'] as String?,
-      number: json['number'] as int?,
+      number: (json['number'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$SocialMediasImplToJson(_$SocialMediasImpl instance) =>
@@ -164,7 +164,7 @@ Map<String, dynamic> _$$SocialMediasImplToJson(_$SocialMediasImpl instance) =>
 
 _$ImagesImpl _$$ImagesImplFromJson(Map<String, dynamic> json) => _$ImagesImpl(
       downloadUrl: json['downloadUrl'] as String?,
-      number: json['number'] as int?,
+      number: (json['number'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ImagesImplToJson(_$ImagesImpl instance) =>

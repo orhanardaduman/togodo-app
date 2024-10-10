@@ -8,7 +8,7 @@ part of 'hoby_model.dart';
 
 _$HobyModelImpl _$$HobyModelImplFromJson(Map<String, dynamic> json) =>
     _$HobyModelImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 

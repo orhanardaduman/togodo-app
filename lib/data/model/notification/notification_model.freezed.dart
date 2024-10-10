@@ -12,7 +12,7 @@ part of 'notification_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
   return _NotificationModel.fromJson(json);
@@ -24,12 +24,17 @@ mixin _$NotificationModel {
   String? get type => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get requestId => throw _privateConstructorUsedError;
+  String? get eventGroupsId => throw _privateConstructorUsedError;
   bool? get request => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
   Event? get event => throw _privateConstructorUsedError;
 
+  /// Serializes this NotificationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NotificationModelCopyWith<NotificationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +50,7 @@ abstract class $NotificationModelCopyWith<$Res> {
       String? type,
       String? createdAt,
       String? requestId,
+      String? eventGroupsId,
       bool? request,
       User? user,
       Event? event});
@@ -63,6 +69,8 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -70,6 +78,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     Object? type = freezed,
     Object? createdAt = freezed,
     Object? requestId = freezed,
+    Object? eventGroupsId = freezed,
     Object? request = freezed,
     Object? user = freezed,
     Object? event = freezed,
@@ -91,6 +100,10 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as String?,
+      eventGroupsId: freezed == eventGroupsId
+          ? _value.eventGroupsId
+          : eventGroupsId // ignore: cast_nullable_to_non_nullable
+              as String?,
       request: freezed == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
@@ -106,6 +119,8 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     ) as $Val);
   }
 
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res>? get user {
@@ -118,6 +133,8 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     });
   }
 
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $EventCopyWith<$Res>? get event {
@@ -144,6 +161,7 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
       String? type,
       String? createdAt,
       String? requestId,
+      String? eventGroupsId,
       bool? request,
       User? user,
       Event? event});
@@ -162,6 +180,8 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
       $Res Function(_$NotificationModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,6 +189,7 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
     Object? type = freezed,
     Object? createdAt = freezed,
     Object? requestId = freezed,
+    Object? eventGroupsId = freezed,
     Object? request = freezed,
     Object? user = freezed,
     Object? event = freezed,
@@ -189,6 +210,10 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
       requestId: freezed == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      eventGroupsId: freezed == eventGroupsId
+          ? _value.eventGroupsId
+          : eventGroupsId // ignore: cast_nullable_to_non_nullable
               as String?,
       request: freezed == request
           ? _value.request
@@ -214,6 +239,7 @@ class _$NotificationModelImpl implements _NotificationModel {
       this.type,
       this.createdAt,
       this.requestId,
+      this.eventGroupsId,
       this.request,
       this.user,
       this.event});
@@ -230,6 +256,8 @@ class _$NotificationModelImpl implements _NotificationModel {
   @override
   final String? requestId;
   @override
+  final String? eventGroupsId;
+  @override
   final bool? request;
   @override
   final User? user;
@@ -238,11 +266,11 @@ class _$NotificationModelImpl implements _NotificationModel {
 
   @override
   String toString() {
-    return 'NotificationModel(id: $id, type: $type, createdAt: $createdAt, requestId: $requestId, request: $request, user: $user, event: $event)';
+    return 'NotificationModel(id: $id, type: $type, createdAt: $createdAt, requestId: $requestId, eventGroupsId: $eventGroupsId, request: $request, user: $user, event: $event)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NotificationModelImpl &&
@@ -252,17 +280,21 @@ class _$NotificationModelImpl implements _NotificationModel {
                 other.createdAt == createdAt) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
+            (identical(other.eventGroupsId, eventGroupsId) ||
+                other.eventGroupsId == eventGroupsId) &&
             (identical(other.request, request) || other.request == request) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.event, event) || other.event == event));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, type, createdAt, requestId, request, user, event);
+  int get hashCode => Object.hash(runtimeType, id, type, createdAt, requestId,
+      eventGroupsId, request, user, event);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
@@ -283,6 +315,7 @@ abstract class _NotificationModel implements NotificationModel {
       final String? type,
       final String? createdAt,
       final String? requestId,
+      final String? eventGroupsId,
       final bool? request,
       final User? user,
       final Event? event}) = _$NotificationModelImpl;
@@ -299,13 +332,18 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   String? get requestId;
   @override
+  String? get eventGroupsId;
+  @override
   bool? get request;
   @override
   User? get user;
   @override
   Event? get event;
+
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -323,8 +361,12 @@ mixin _$User {
   String? get friendName => throw _privateConstructorUsedError;
   String? get friendImageUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of User
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -352,6 +394,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of User
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -414,6 +458,8 @@ class __$$UserImplCopyWithImpl<$Res>
   __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of User
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -486,7 +532,7 @@ class _$UserImpl implements _User {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
@@ -502,12 +548,14 @@ class _$UserImpl implements _User {
                 other.friendImageUrl == friendImageUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, name, imageUrl, friendId, friendName, friendImageUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of User
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
@@ -544,8 +592,11 @@ abstract class _User implements User {
   String? get friendName;
   @override
   String? get friendImageUrl;
+
+  /// Create a copy of User
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -559,8 +610,12 @@ mixin _$Event {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
+  /// Serializes this Event to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $EventCopyWith<Event> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -582,6 +637,8 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -619,6 +676,8 @@ class __$$EventImplCopyWithImpl<$Res>
       _$EventImpl _value, $Res Function(_$EventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -657,7 +716,7 @@ class _$EventImpl implements _Event {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EventImpl &&
@@ -665,11 +724,13 @@ class _$EventImpl implements _Event {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EventImplCopyWith<_$EventImpl> get copyWith =>
@@ -692,8 +753,11 @@ abstract class _Event implements Event {
   String? get id;
   @override
   String? get name;
+
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EventImplCopyWith<_$EventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

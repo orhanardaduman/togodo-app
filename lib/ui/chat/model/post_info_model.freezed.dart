@@ -12,7 +12,7 @@ part of 'post_info_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PostInfo _$PostInfoFromJson(Map<String, dynamic> json) {
   return _PostInfo.fromJson(json);
@@ -30,8 +30,12 @@ mixin _$PostInfo {
   String? get eventName => throw _privateConstructorUsedError;
   String? get eventLocation => throw _privateConstructorUsedError;
 
+  /// Serializes this PostInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PostInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PostInfoCopyWith<PostInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,6 +67,8 @@ class _$PostInfoCopyWithImpl<$Res, $Val extends PostInfo>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PostInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,6 +151,8 @@ class __$$PostInfoImplCopyWithImpl<$Res>
       _$PostInfoImpl _value, $Res Function(_$PostInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PostInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -241,7 +249,7 @@ class _$PostInfoImpl implements _PostInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostInfoImpl &&
@@ -264,7 +272,7 @@ class _$PostInfoImpl implements _PostInfo {
                 other.eventLocation == eventLocation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -278,7 +286,9 @@ class _$PostInfoImpl implements _PostInfo {
       eventName,
       eventLocation);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PostInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PostInfoImplCopyWith<_$PostInfoImpl> get copyWith =>
@@ -325,8 +335,11 @@ abstract class _PostInfo implements PostInfo {
   String? get eventName;
   @override
   String? get eventLocation;
+
+  /// Create a copy of PostInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PostInfoImplCopyWith<_$PostInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

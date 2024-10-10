@@ -44,6 +44,8 @@ class ApiEndpoint {
         return 'Event/CreateRequest';
       case AuthEndpoint.DELETE_USER:
         return 'User/DeleteAccount';
+      case AuthEndpoint.SEND_MESSAGE_GROUP:
+        return 'Chat/SendMessageEventGroup';
     }
   }
 }
@@ -75,5 +77,6 @@ enum AuthEndpoint {
   CREATE_EVENT_REQUEST,
   DELETE_USER,
   CHECK_USER,
-  TEST
+  TEST,
+  SEND_MESSAGE_GROUP,
 }
