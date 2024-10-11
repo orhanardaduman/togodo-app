@@ -92,26 +92,30 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * .1,
               ),
-              child: widget.reelsList[currentIndex].participantsLimit == null
-                  ? mainView(refreshController, viewModel)
-                  : LiquidSwipe(
-                      onPageChange: (page) {
-                        if (hasOpen != ((page ?? 0) >= 0.01)) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            setState(() {
-                              hasOpen = (page ?? 0) >= 0.01;
-                            });
-                          });
-                        }
-                      },
-                      children: [
-                        mainView(refreshController, viewModel),
-                        ReelsGroupView(
-                          item: widget.reelsList[currentIndex],
-                          showAll: !hasOpen,
+              child:
+                  (widget.reelsList[currentIndex].participantsLimit ?? 0) == 0
+                      ? LiquidSwipe(
+                          onPageChange: (page) {
+                            if (hasOpen != ((page ?? 0) >= 0.01)) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                setState(() {
+                                  hasOpen = (page ?? 0) >= 0.01;
+                                });
+                              });
+                            }
+                          },
+                          children: [
+                            mainView(refreshController, viewModel),
+                            ReelsGroupView(
+                              item: widget.reelsList[currentIndex],
+                              showAll: !hasOpen,
+                            ),
+                          ],
+                        )
+                      : mainView(
+                          refreshController,
+                          viewModel,
                         ),
-                      ],
-                    ),
             ),
             if (showMore)
               GestureDetector(

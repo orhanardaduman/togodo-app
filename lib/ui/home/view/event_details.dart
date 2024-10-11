@@ -132,7 +132,8 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                 const SizedBox(
                                   height: 12,
                                 ),
-                                if (model.events?.participantsLimit == 0 &&
+                                if ((model.events?.participantsLimit ?? 0) ==
+                                        0 &&
                                     (model.events!.eventGroups != null
                                         ? true
                                         : !isEventPassed(

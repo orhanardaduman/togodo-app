@@ -28,6 +28,7 @@ class _CropViewState extends ConsumerState<CropView> {
   final controller = CropController(aspectRatio: 9 / 16);
   BoxShape shape = BoxShape.rectangle;
   ui.Image? imageData;
+
   bool isFit = true;
   bool isInProcess = false;
   @override
@@ -40,12 +41,26 @@ class _CropViewState extends ConsumerState<CropView> {
   }
 
   getImageData() async {
-    final file = File(
-      widget.img ?? '',
-    );
-    imageData = await decodeImageFromList(file.readAsBytesSync());
+    if (widget.img?.contains("https:") == true) {
+      final Image image = Image.network(widget.img ?? '');
 
-    if (mounted) setState(() {});
+      image.image.resolve(ImageConfiguration()).addListener(
+        ImageStreamListener((ImageInfo info, bool _) {
+          setState(() {
+            imageData = info.image;
+          });
+        }),
+      );
+
+      if (mounted) setState(() {});
+    } else {
+      final file = File(
+        widget.img ?? '',
+      );
+      imageData = await decodeImageFromList(file.readAsBytesSync());
+
+      if (mounted) setState(() {});
+    }
   }
 
   @override
