@@ -1,8 +1,9 @@
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_liquid_swipe/flutter_liquid_swipe.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:togodo/data/model/event/event_model.dart';
 import 'package:togodo/ui/common/welcome.dart';
 import 'package:togodo/ui/home/reels/components/guest_event_button.dart';
@@ -10,7 +11,6 @@ import 'package:togodo/ui/home/reels/components/reels_bottom_button.dart';
 import 'package:togodo/ui/home/reels/reels_page.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 
-import '../../../core/component/custom_refresher.dart';
 import 'group_view/reels_group_view.dart';
 
 class ReelsViewer extends StatefulHookConsumerWidget {
@@ -81,7 +81,6 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
     final model = ref.watch(homeViewModelProvider);
     final viewModel = ref.read(homeViewModelProvider.notifier);
 
-    final refreshController = RefreshController();
     final index = model.forYouIndex;
     final userType = ref.watch(userTypeStateNotifierProvider);
     return Stack(
@@ -92,30 +91,30 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * .1,
               ),
-              child:
-                  (widget.reelsList[currentIndex].participantsLimit ?? 0) == 0
-                      ? LiquidSwipe(
-                          onPageChange: (page) {
-                            if (hasOpen != ((page ?? 0) >= 0.01)) {
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                setState(() {
-                                  hasOpen = (page ?? 0) >= 0.01;
-                                });
-                              });
-                            }
-                          },
-                          children: [
-                            mainView(refreshController, viewModel),
-                            ReelsGroupView(
-                              item: widget.reelsList[currentIndex],
-                              showAll: !hasOpen,
-                            ),
-                          ],
-                        )
-                      : mainView(
-                          refreshController,
-                          viewModel,
-                        ),
+              child: LiquidSwipe(
+                showSide:
+                    (widget.reelsList[currentIndex].participantsLimit ?? 0) ==
+                        0,
+                onPageChange: (page) {
+                  if (hasOpen != ((page ?? 0) >= 0.01)) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      setState(() {
+                        hasOpen = (page ?? 0) >= 0.01;
+                      });
+                    });
+                  }
+                },
+                children: [
+                  mainView(
+                    viewModel,
+                    userType == UserType.guest,
+                  ),
+                  ReelsGroupView(
+                    item: widget.reelsList[currentIndex],
+                    showAll: !hasOpen,
+                  ),
+                ],
+              ),
             ),
             if (showMore)
               GestureDetector(
@@ -161,82 +160,78 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
   }
 
   Widget mainView(
-    RefreshController refreshController,
     HomeViewModel viewModel,
+    bool isGuest,
   ) {
-    return CustomRefresher(
-      controller: refreshController,
-      onRefresh: () {
-        viewModel.fetchEvents();
+    return CustomRefreshIndicator(
+      onRefresh: () async {
+        await viewModel.fetchEvents();
         setState(() {
           _isInnerScrollable = true;
-          loadedMore = true;
         });
       },
-      onLoading: () {
-        widget.controller.animateToPage(
-          1,
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeInOut,
+      builder: (context, child, controller) {
+        return SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              AnimatedContainer(
+                padding: const EdgeInsets.only(bottom: 5),
+                duration: const Duration(
+                  milliseconds: 200,
+                ),
+                width: MediaQuery.of(context).size.width,
+                height: !controller.side.isNone
+                    ? MediaQuery.of(context).size.height * .1
+                    : 0,
+                color: Colors.transparent,
+                child: const Align(
+                  alignment: Alignment.bottomCenter,
+                  child: CupertinoActivityIndicator(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Expanded(child: child),
+            ],
+          ),
         );
       },
-      enablePullUp: true,
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (ScrollNotification notification) {
-          if (!loadedMore) {
-            if (notification is ScrollUpdateNotification) {
-              // Eğer iç scrollable en üstte ve yukarı kaydırma yapılıyorsa
-              if (widget.controller.position.pixels <= 0 &&
-                  notification.metrics.pixels < 0) {
-                setState(() {
-                  _isInnerScrollable = false;
-                });
-              }
-              // Eğer iç scrollable en alttaysa ve aşağı kaydırma yapılıyorsa
-              else if (widget.controller.position.pixels >=
-                      widget.controller.position.maxScrollExtent &&
-                  notification.metrics.pixels > 0) {
-                setState(() {
-                  _isInnerScrollable = false;
-                });
-              } else {
-                setState(() {
-                  _isInnerScrollable = true;
-                });
-              }
+      child: PreloadPageView.builder(
+        physics: const AlwaysScrollableScrollPhysics(),
+
+        preloadPagesCount: 3,
+        //loop: false,
+        itemBuilder: (BuildContext context, int index) {
+          return /* _index != 0 && _index & 5 == 0
+                            ? QuizView(
+                                item: widget.reelsList[index - 1],
+                                controller: controller,
+                              )
+                            : */
+              reelsMain(
+            index,
+            context,
+            viewModel,
+          );
+        },
+        controller: widget.controller,
+        itemCount: widget.reelsList.length,
+        scrollDirection: Axis.vertical,
+        onPageChanged: (value) {
+          setState(() {
+            currentIndex = value;
+            showMore = false;
+          });
+          if (value % 8 == 0) {
+            if (isGuest) {
+              viewModel.fetchMoreReelsGuest();
+            } else {
+              viewModel.fetchMoreReels();
             }
           }
-          return false;
         },
-        child: PreloadPageView.builder(
-          physics: _isInnerScrollable
-              ? const AlwaysScrollableScrollPhysics()
-              : const NeverScrollableScrollPhysics(),
-          preloadPagesCount: 3,
-          //loop: false,
-          itemBuilder: (BuildContext context, int index) {
-            return /* _index != 0 && _index & 5 == 0
-                              ? QuizView(
-                                  item: widget.reelsList[index - 1],
-                                  controller: controller,
-                                )
-                              : */
-                reelsMain(
-              index,
-              context,
-              viewModel,
-            );
-          },
-          controller: widget.controller,
-          itemCount: widget.reelsList.length,
-          scrollDirection: Axis.vertical,
-          onPageChanged: (value) {
-            setState(() {
-              currentIndex = value;
-              showMore = false;
-            });
-          },
-        ),
       ),
     );
   }

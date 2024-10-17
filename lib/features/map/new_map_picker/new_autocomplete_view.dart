@@ -13,6 +13,8 @@ import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/gen/assets.gen.dart';
 
+import '../../../data/model/event/discovery_map_model.dart';
+
 ValueNotifier<T> useState<T>(T initialData) {
   return ValueNotifier<T>(initialData);
 }
@@ -86,7 +88,15 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
     this.maintainBottomViewPadding = false,
     this.right = true,
     this.top = true,
+    this.isNew = false,
+    this.events,
+    this.onEventSelected,
   });
+
+  final bool isNew;
+
+  final List<DiscoveryMapModel>? events;
+  final void Function(DiscoveryMapModel?)? onEventSelected;
 
   /// API key for the map & places
   final String apiKey;
@@ -472,100 +482,182 @@ class NewPlacesAutocomplete extends HookConsumerWidget {
               ),
         child: ClipRRect(
           borderRadius: borderRadius,
-          child: FormBuilderTypeAhead<Prediction>(
-            decoration: decoration ??
-                InputDecoration(
-                  hintText: searchHintText,
-                  border: InputBorder.none,
-                  fillColor: theme.mode == ThemeMode.dark
-                      ? MainColors.dark3
-                      : MainColors.white,
-                  filled: true,
-                  prefixIcon: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    splashColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        left: 20,
-                        right: 10,
+          child: isNew
+              ? FormBuilderTypeAhead<DiscoveryMapModel>(
+                  decoration: decoration ??
+                      InputDecoration(
+                        hintText: searchHintText,
+                        border: InputBorder.none,
+                        fillColor: theme.mode == ThemeMode.dark
+                            ? MainColors.dark3
+                            : MainColors.white,
+                        filled: true,
+                        prefixIcon: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          splashColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                              right: 10,
+                            ),
+                            child: Assets.icons.light.arrowLeft.svg(
+                              color: theme.appColors.text,
+                              width: 20,
+                            ),
+                          ),
+                        ),
+                        suffixIcon: (showClearButton && initialValue == null)
+                            ? IconButton(
+                                icon:
+                                    const Icon(Icons.close, color: Colors.grey),
+                                onPressed: () => textController.value.clear(),
+                              )
+                            : suffixIcon,
                       ),
-                      child: Assets.icons.light.arrowLeft.svg(
-                        color: theme.appColors.text,
-                        width: 20,
+                  name: 'Search',
+                  controller:
+                      initialValue == null ? textController.value : null,
+                  selectionToTextTransformer: (result) {
+                    return result.name ?? '';
+                  },
+                  itemBuilder: (context, content) {
+                    return ListTile(
+                      title: PrimaryText(
+                        content.name ?? '',
+                        style: theme.textTheme.bodyMedium.copyWith(
+                          color: theme.appColors.text,
+                        ),
                       ),
-                    ),
-                  ),
-                  suffixIcon: (showClearButton && initialValue == null)
-                      ? IconButton(
-                          icon: const Icon(Icons.close, color: Colors.grey),
-                          onPressed: () => textController.value.clear(),
-                        )
-                      : suffixIcon,
+                    );
+                  },
+                  suggestionsCallback: (query) {
+                    final predictions = events
+                        ?.where((e) => (e.name?.toLowerCase() ?? '')
+                            .contains(query.toLowerCase()))
+                        .toList();
+                    return predictions;
+                  },
+                  onSelected: (value) {
+                    print("içerde $value");
+                    onEventSelected?.call(value);
+                  },
+                  hideWithKeyboard: hideSuggestionsOnKeyboardHide,
+                  scrollController: scrollController,
+                  animationDuration: animationDuration,
+                  autoFlipDirection: autoFlipDirection,
+                  debounceDuration: debounceDuration,
+                  errorBuilder: errorBuilder,
+                  focusNode: focusNode,
+                  hideOnEmpty: !hideOnEmpty,
+                  hideOnError: hideOnError,
+                  hideOnLoading: hideOnLoading,
+                  loadingBuilder: loadingBuilder,
+                  enabled: enabled,
+                  autovalidateMode: autovalidateMode,
+                  onChanged: onEventSelected,
+                  onReset: onReset,
+                  onSaved: onEventSelected,
+                  key: key,
+                )
+              : FormBuilderTypeAhead<Prediction>(
+                  decoration: decoration ??
+                      InputDecoration(
+                        hintText: searchHintText,
+                        border: InputBorder.none,
+                        fillColor: theme.mode == ThemeMode.dark
+                            ? MainColors.dark3
+                            : MainColors.white,
+                        filled: true,
+                        prefixIcon: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          splashColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                              right: 10,
+                            ),
+                            child: Assets.icons.light.arrowLeft.svg(
+                              color: theme.appColors.text,
+                              width: 20,
+                            ),
+                          ),
+                        ),
+                        suffixIcon: (showClearButton && initialValue == null)
+                            ? IconButton(
+                                icon:
+                                    const Icon(Icons.close, color: Colors.grey),
+                                onPressed: () => textController.value.clear(),
+                              )
+                            : suffixIcon,
+                      ),
+                  name: 'Search',
+                  controller:
+                      initialValue == null ? textController.value : null,
+                  selectionToTextTransformer: (result) {
+                    return result.description ?? '';
+                  },
+                  itemBuilder: itemBuilder ??
+                      (context, content) {
+                        return ListTile(
+                          title: PrimaryText(
+                            content.description ?? '',
+                            style: theme.textTheme.bodyMedium.copyWith(
+                              color: theme.appColors.text,
+                            ),
+                          ),
+                        );
+                      },
+                  suggestionsCallback: (query) async {
+                    final predictions = await autoCompleteState().search(
+                      query,
+                      apiKey,
+                      language: language,
+                      sessionToken: sessionToken,
+                      region: region,
+                      components: components,
+                      location: location,
+                      offset: offset,
+                      origin: origin,
+                      radius: radius,
+                      strictbounds: strictbounds,
+                      types: types,
+                    );
+                    return predictions;
+                  },
+                  onSelected: (value) async {
+                    textController.value.selection = TextSelection.collapsed(
+                      offset: textController.value.text.length,
+                    );
+                    await _getDetailsByPlaceId(value.placeId ?? '', context);
+                    onSuggestionSelected?.call(value);
+                  },
+                  hideWithKeyboard: hideSuggestionsOnKeyboardHide,
+                  initialValue: initialValue,
+                  validator: validator,
+                  scrollController: scrollController,
+                  animationDuration: animationDuration,
+                  autoFlipDirection: autoFlipDirection,
+                  debounceDuration: debounceDuration,
+                  errorBuilder: errorBuilder,
+                  focusNode: focusNode,
+                  hideOnEmpty: !hideOnEmpty,
+                  hideOnError: hideOnError,
+                  hideOnLoading: hideOnLoading,
+                  loadingBuilder: loadingBuilder,
+                  valueTransformer: valueTransformer,
+                  enabled: enabled,
+                  autovalidateMode: autovalidateMode,
+                  onChanged: onChanged,
+                  onReset: onReset,
+                  onSaved: onSaved,
+                  key: key,
                 ),
-            name: 'Search',
-            controller: initialValue == null ? textController.value : null,
-            selectionToTextTransformer: (result) {
-              return result.description ?? '';
-            },
-            itemBuilder: itemBuilder ??
-                (context, content) {
-                  return ListTile(
-                    title: PrimaryText(
-                      content.description ?? '',
-                      style: theme.textTheme.bodyMedium.copyWith(
-                        color: theme.appColors.text,
-                      ),
-                    ),
-                  );
-                },
-            suggestionsCallback: (query) async {
-              final predictions = await autoCompleteState().search(
-                query,
-                apiKey,
-                language: language,
-                sessionToken: sessionToken,
-                region: region,
-                components: components,
-                location: location,
-                offset: offset,
-                origin: origin,
-                radius: radius,
-                strictbounds: strictbounds,
-                types: types,
-              );
-              return predictions;
-            },
-            onSelected: (value) async {
-              textController.value.selection = TextSelection.collapsed(
-                offset: textController.value.text.length,
-              );
-              await _getDetailsByPlaceId(value.placeId ?? '', context);
-              onSuggestionSelected?.call(value);
-            },
-            hideWithKeyboard: hideSuggestionsOnKeyboardHide,
-            initialValue: initialValue,
-            validator: validator,
-            scrollController: scrollController,
-            animationDuration: animationDuration,
-            autoFlipDirection: autoFlipDirection,
-            debounceDuration: debounceDuration,
-            errorBuilder: errorBuilder,
-            focusNode: focusNode,
-            hideOnEmpty: !hideOnEmpty,
-            hideOnError: hideOnError,
-            hideOnLoading: hideOnLoading,
-            loadingBuilder: loadingBuilder,
-            valueTransformer: valueTransformer,
-            enabled: enabled,
-            autovalidateMode: autovalidateMode,
-            onChanged: onChanged,
-            onReset: onReset,
-            onSaved: onSaved,
-            key: key,
-          ),
         ),
       ),
     );

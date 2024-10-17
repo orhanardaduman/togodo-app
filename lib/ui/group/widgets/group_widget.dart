@@ -24,6 +24,22 @@ class GroupWidget extends StatefulHookConsumerWidget {
 }
 
 class _GroupWidgetState extends ConsumerState<GroupWidget> {
+  final controller = ScrollController();
+  FocusNode focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        controller.animateTo(
+          controller.position.maxScrollExtent,
+          duration: Duration(seconds: 2),
+          curve: Curves.fastOutSlowIn,
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(appThemeProvider);
@@ -31,6 +47,7 @@ class _GroupWidgetState extends ConsumerState<GroupWidget> {
     final l10n = useL10n();
 
     return SingleChildScrollView(
+      controller: controller,
       child: Column(
         children: [
           Column(
@@ -118,11 +135,23 @@ class _GroupWidgetState extends ConsumerState<GroupWidget> {
             ),
             child: EventInfo(
               spacing: 12,
+              isNew: true,
               name: widget.model?.detailModel.eventModel.name ?? '',
               date: widget.model?.detailModel.eventModel.date ?? '',
               location: (widget.model?.detailModel.eventModel.onlineUrl == '' ||
                       widget.model?.detailModel.eventModel.onlineUrl == null)
-                  ? widget.model?.detailModel.eventModel.location ?? ''
+                  ? (widget.model?.detailModel.eventModel.location ?? ',')
+                          .contains("Türkiye")
+                      ? (widget.model?.detailModel.eventModel.location ?? ',')
+                          .split(",")[
+                              (widget.model?.detailModel.eventModel.location ??
+                                          ',')
+                                      .split(",")
+                                      .length -
+                                  2]
+                          .split(" ")
+                          .last
+                      : (widget.model?.detailModel.eventModel.location ?? '')
                   : widget.model?.detailModel.eventModel.onlineUrl ?? '',
               starTime: '${widget.model?.detailModel.eventModel.startTime}',
               endTime: widget.model?.detailModel.eventModel.endTime,
@@ -182,6 +211,7 @@ class _GroupWidgetState extends ConsumerState<GroupWidget> {
           ),
           GroupChatMessages(
             groupId: widget.model?.detailModel.id ?? '',
+            focusNode: focusNode,
           ),
         ],
       ),

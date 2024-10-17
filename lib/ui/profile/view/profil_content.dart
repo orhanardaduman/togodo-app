@@ -85,6 +85,7 @@ class ProfilContent extends HookConsumerWidget {
                         labelColor: MainColors.primary,
                         indicator: TabIndicator(),
                         unselectedLabelColor: MainColors.dark3,
+                        dividerColor: MainColors.dark3,
                         labelStyle: theme.textTheme.bodyMedium.copyWith(
                           fontWeight: FontWeight.w700,
                         ),

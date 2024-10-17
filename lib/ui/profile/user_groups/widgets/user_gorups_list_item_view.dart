@@ -53,8 +53,10 @@ class UserGorupsListItemView extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UserGroupsGridView(
-                    item: model?.groups,
+                  Center(
+                    child: UserGroupsGridView(
+                      item: model?.groups,
+                    ),
                   ),
                   const Spacer(),
                   if (model?.groups?.id == null)

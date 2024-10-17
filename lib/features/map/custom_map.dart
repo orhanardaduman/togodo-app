@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_map/flutter_map.dart' as fm;
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as lt;
 import 'package:map_location_picker/map_location_picker.dart';
@@ -14,10 +15,12 @@ import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/features/map/new_map_picker/new_autocomplete_view.dart';
 import 'package:togodo/features/map/new_map_picker/new_map_picker.dart';
 
+import '../../data/model/event/discovery_map_model.dart';
 import '../../data/model/event/map_loaction_model.dart';
 import '../../ui/discover/view/discovery_map.dart';
+import '../../ui/discover/view_model/discovery_map_view_model.dart';
 
-class CustomMapLocationPicker extends StatefulWidget {
+class CustomMapLocationPicker extends StatefulHookConsumerWidget {
   const CustomMapLocationPicker({
     required this.apiKey,
     required this.isDarkTheme,
@@ -86,7 +89,15 @@ class CustomMapLocationPicker extends StatefulWidget {
     this.hideBottomCard = false,
     this.onCameraMove,
     this.onDecodeAddress,
+    this.isNew = false,
+    this.events,
+    this.onEventSelected,
   });
+
+  final bool isNew;
+
+  final List<DiscoveryMapModel>? events;
+  final void Function(DiscoveryMapModel?)? onEventSelected;
 
   /// Padding around the map
   final EdgeInsets padding;
@@ -265,13 +276,13 @@ class CustomMapLocationPicker extends StatefulWidget {
   final Set<AbilityModel>? markers;
   final void Function(CameraPosition)? onCameraMove;
   @override
-  State<CustomMapLocationPicker> createState() =>
+  ConsumerState<CustomMapLocationPicker> createState() =>
       _CustomMapLocationPickerState();
 }
 
-class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
+class _CustomMapLocationPickerState
+    extends ConsumerState<CustomMapLocationPicker> {
   /// Map controller for movement & zoom
-  final Completer<GoogleMapController> _controller = Completer();
   final fm.MapController controllerMap = fm.MapController();
 
   /// initial latitude & longitude
@@ -304,6 +315,7 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    final model = ref.watch(discoveryMapViewModelProvider.notifier);
 
     return PopScope(
       // ignore: avoid_bool_literals_in_conditional_expressions
@@ -320,6 +332,10 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                 maxZoom: 18,
                 initialZoom: 16,
                 initialCenter: _initialPosition,
+                interactionOptions: const fm.InteractionOptions(
+                  rotationThreshold: 30000000000,
+                  enableMultiFingerGestureRace: true,
+                ),
               ),
               children: [
                 fm.TileLayer(
@@ -331,7 +347,6 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                     markers: [
                       for (var i in widget.markers!)
                         fm.Marker(
-                          key: Key(i.id ?? '0'),
                           point: i.location ?? const lt.LatLng(0, 0),
                           width: 100,
                           height: 100,
@@ -475,6 +490,18 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                     topCardMargin: widget.topCardMargin,
                     topCardShape: widget.topCardShape,
                     types: widget.types,
+                    isNew: widget.isNew,
+                    events: widget.events,
+                    onEventSelected: (event) {
+                      if (event != null) {
+                        _initialPosition = lt.LatLng(
+                          double.tryParse(event?.latitude ?? "0") ?? 0,
+                          double.tryParse(event?.longitude ?? "0") ?? 0,
+                        );
+                        controllerMap.move(_initialPosition, _zoom);
+                        model.handleMarkerTap(event.id ?? '');
+                      }
+                    },
                     onGetDetailsByPlaceId: (placesDetails) async {
                       if (placesDetails == null) {
                         log('placesDetails is null');
@@ -484,10 +511,9 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                         placesDetails.result.geometry?.location.lat ?? 0,
                         placesDetails.result.geometry?.location.lng ?? 0,
                       );
-                      final controller = await _controller.future;
-                      await controller.animateCamera(
-                        CameraUpdate.newCameraPosition(cameraPosition()),
-                      );
+
+                      controllerMap.move(_initialPosition, _zoom);
+
                       _address = placesDetails.result.formattedAddress ?? '';
                       widget.onSuggestionSelected?.call(placesDetails);
                       _geocodingResult = GeocodingResult(
@@ -607,12 +633,9 @@ class _CustomMapLocationPickerState extends State<CustomMapLocationPicker> {
                                       position.longitude,
                                     );
                                     _initialPosition = latLng;
-                                    final controller = await _controller.future;
-                                    await controller.animateCamera(
-                                      CameraUpdate.newCameraPosition(
-                                        cameraPosition(),
-                                      ),
-                                    );
+
+                                    controllerMap.move(_initialPosition, _zoom);
+
                                     await _decodeAddress(
                                       Location(
                                         lat: position.latitude,

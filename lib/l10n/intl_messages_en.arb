@@ -603,7 +603,8 @@
   "goToEventDetail": "Go To Event Details ",
   "chat": "Chat",
   "canStartChatWhenReady": "You can start chet here when group is ready \uD83C\uDF89",
-  "redirectingTOTicket": "Redirecting to ticket..."
+  "redirectingTOTicket": "Redirecting to ticket...",
+  "sending": "Sending "
 
 
 

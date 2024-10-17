@@ -103,6 +103,7 @@ class _DiscoveryTabBarState extends ConsumerState<DiscoveryTabBar>
                   strokeWidth: 4,
                 ),
                 unselectedLabelColor: MainColors.dark3,
+                dividerColor: MainColors.dark3,
                 labelStyle: theme.textTheme.bodyLarge.copyWith(
                   fontWeight: FontWeight.w700,
                 ),

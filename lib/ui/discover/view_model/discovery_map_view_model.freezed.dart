@@ -22,7 +22,7 @@ mixin _$DiscoveryMapState {
   bool get loading => throw _privateConstructorUsedError;
   lt.LatLng? get currentLatLng => throw _privateConstructorUsedError;
   String? get placeName => throw _privateConstructorUsedError;
-  Map<String, AbilityModel>? get additionalMarkers =>
+  Set<AbilityModel>? get additionalMarkers =>
       throw _privateConstructorUsedError;
   CameraPosition? get position => throw _privateConstructorUsedError;
   Set<AbilityModel>? get markers => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $DiscoveryMapStateCopyWith<$Res> {
       bool loading,
       lt.LatLng? currentLatLng,
       String? placeName,
-      Map<String, AbilityModel>? additionalMarkers,
+      Set<AbilityModel>? additionalMarkers,
       CameraPosition? position,
       Set<AbilityModel>? markers,
       bool hideCard});
@@ -110,7 +110,7 @@ class _$DiscoveryMapStateCopyWithImpl<$Res, $Val extends DiscoveryMapState>
       additionalMarkers: freezed == additionalMarkers
           ? _value.additionalMarkers
           : additionalMarkers // ignore: cast_nullable_to_non_nullable
-              as Map<String, AbilityModel>?,
+              as Set<AbilityModel>?,
       position: freezed == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -156,7 +156,7 @@ abstract class _$$DiscoveryMapStateImplCopyWith<$Res>
       bool loading,
       lt.LatLng? currentLatLng,
       String? placeName,
-      Map<String, AbilityModel>? additionalMarkers,
+      Set<AbilityModel>? additionalMarkers,
       CameraPosition? position,
       Set<AbilityModel>? markers,
       bool hideCard});
@@ -217,7 +217,7 @@ class __$$DiscoveryMapStateImplCopyWithImpl<$Res>
       additionalMarkers: freezed == additionalMarkers
           ? _value._additionalMarkers
           : additionalMarkers // ignore: cast_nullable_to_non_nullable
-              as Map<String, AbilityModel>?,
+              as Set<AbilityModel>?,
       position: freezed == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -246,7 +246,7 @@ class _$DiscoveryMapStateImpl
       this.loading = false,
       this.currentLatLng = null,
       this.placeName = null,
-      final Map<String, AbilityModel>? additionalMarkers = null,
+      final Set<AbilityModel>? additionalMarkers = null,
       this.position = null,
       final Set<AbilityModel>? markers = null,
       this.hideCard = false})
@@ -278,16 +278,16 @@ class _$DiscoveryMapStateImpl
   @override
   @JsonKey()
   final String? placeName;
-  final Map<String, AbilityModel>? _additionalMarkers;
+  final Set<AbilityModel>? _additionalMarkers;
   @override
   @JsonKey()
-  Map<String, AbilityModel>? get additionalMarkers {
+  Set<AbilityModel>? get additionalMarkers {
     final value = _additionalMarkers;
     if (value == null) return null;
-    if (_additionalMarkers is EqualUnmodifiableMapView)
+    if (_additionalMarkers is EqualUnmodifiableSetView)
       return _additionalMarkers;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableSetView(value);
   }
 
   @override
@@ -386,7 +386,7 @@ abstract class _DiscoveryMapState implements DiscoveryMapState {
       final bool loading,
       final lt.LatLng? currentLatLng,
       final String? placeName,
-      final Map<String, AbilityModel>? additionalMarkers,
+      final Set<AbilityModel>? additionalMarkers,
       final CameraPosition? position,
       final Set<AbilityModel>? markers,
       final bool hideCard}) = _$DiscoveryMapStateImpl;
@@ -404,7 +404,7 @@ abstract class _DiscoveryMapState implements DiscoveryMapState {
   @override
   String? get placeName;
   @override
-  Map<String, AbilityModel>? get additionalMarkers;
+  Set<AbilityModel>? get additionalMarkers;
   @override
   CameraPosition? get position;
   @override

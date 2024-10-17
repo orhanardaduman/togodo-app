@@ -604,6 +604,7 @@
   "goToEventDetail": "Etkinlik Detaylarına Git ",
   "chat": "Sohbet",
   "canStartChatWhenReady": "Grubun hazır olduğunda burada sohbeti başlatabilirsin \uD83C\uDF89",
-  "redirectingTOTicket": "Bilet almaya yönlendiriyor..."
+  "redirectingTOTicket": "Bilet almaya yönlendiriyor...",
+  "sending": "Gönderiliyor "
 
 }

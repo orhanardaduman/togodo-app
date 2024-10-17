@@ -34,6 +34,7 @@ class EventGroupDetailState with _$EventGroupDetailState {
     @Default([]) List<File> mediaList,
     @Default(null) MessageInfoModel? replyModel,
     @Default(false) bool loading,
+    @Default(false) bool sending,
     @Default(false) bool isSubmit,
     @Default(false) bool isReply,
     @Default(false) bool isWriting,
@@ -151,7 +152,9 @@ class EventGroupDetailNotifier extends StateNotifier<EventGroupDetailState> {
 
   Future<void> sendMessage() async {
     if (_isDisposed) return;
-
+    state = state.copyWith(
+      sending: state.mediaList.isNotEmpty,
+    );
     if (state.mediaList.ext.isNotNullOrEmpty ||
         textEditingController.text != '') {
       try {
@@ -177,6 +180,9 @@ class EventGroupDetailNotifier extends StateNotifier<EventGroupDetailState> {
       } catch (e) {
         resetFile();
       }
+      state = state.copyWith(
+        sending: false,
+      );
     }
   }
 

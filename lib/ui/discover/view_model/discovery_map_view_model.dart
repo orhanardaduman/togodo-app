@@ -35,7 +35,7 @@ class DiscoveryMapState with _$DiscoveryMapState {
     @Default(false) bool loading,
     @Default(null) lt.LatLng? currentLatLng,
     @Default(null) String? placeName,
-    @Default(null) Map<String, AbilityModel>? additionalMarkers,
+    @Default(null) Set<AbilityModel>? additionalMarkers,
     @Default(null) CameraPosition? position,
     @Default(null) Set<AbilityModel>? markers,
     @Default(false) bool hideCard,
@@ -65,6 +65,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
         data: result.dataOrThrow,
         pagination: 0,
         loading: false,
+        selectedMap: null,
       );
     } else {
       state = state.copyWith(loading: false);
@@ -150,7 +151,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
     final result = await _repository.getDiscoverEventsMap(
       city: city,
     );
-    final newMarkers = <String, AbilityModel>{};
+    final newMarkers = <AbilityModel>[];
     print('data : ${result.dataOrThrow}');
     for (final element in result.dataOrThrow) {
       if (element.tags != null &&
@@ -158,22 +159,24 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
           element.latitude != null &&
           element.longitude != null) {
         if (element.tags.ext.isNotNullOrEmpty) {
-          newMarkers[element.tags!.first.id.toString()] = AbilityModel(
-            location: lt.LatLng(
-              double.parse(element.latitude!),
-              double.parse(element.longitude!),
+          newMarkers.add(
+            AbilityModel(
+              location: lt.LatLng(
+                double.parse(element.latitude!),
+                double.parse(element.longitude!),
+              ),
+              id: element.id,
+              isCurrent: false,
+              tag: element.tags!.first.id.toString(),
             ),
-            id: element.id,
-            isCurrent: false,
           );
         }
       }
     }
 
     // Mevcut marker'larla birleştirin
-    final updatedMarkers =
-        Map<String, AbilityModel>.from(state.additionalMarkers ?? {})
-          ..addAll(newMarkers);
+    final updatedMarkers = Set<AbilityModel>.from(state.additionalMarkers ?? {})
+      ..addAll(newMarkers);
     final newMarkerList = <AbilityModel>{};
     final hobyList = _ref
         .watch(hobyStateNotifierProvider(context))
@@ -181,33 +184,33 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
           (element) => element.id! > 0 && element.id! < 20,
         )
         .toList();
-    for (final entry in updatedMarkers.entries) {
-      if (entry.key == 'currentLocation' &&
-          entry.value.location != currentLocation) {
+    for (final entry in updatedMarkers) {
+      if (true == entry.isCurrent && entry.location != currentLocation) {
         newMarkerList.add(
           AbilityModel(
-            location: entry.value.location,
+            location: entry.location,
             isCurrent: true,
             iconPath: _ref.read(userViewModelProvider).profileImageUrl ?? '',
           ),
         );
       } else {
-        final iconPath = findIconPathByEntryKey(hobyList, entry.key);
-        if (iconPath != null) {
-          newMarkerList.add(
-            AbilityModel(
-              location: entry.value.location,
-              isCurrent: false,
-              id: entry.value.id,
-              iconPath: iconPath,
-              onTap: () async {
-                await handleMarkerTap(
-                  entry.value.id ?? '',
-                );
-              },
-            ),
-          );
-        }
+        final iconPath = findIconPathByEntryKey(hobyList, entry.tag ?? '');
+        newMarkerList.add(
+          AbilityModel(
+            location: entry.location,
+            isCurrent: false,
+            id: entry.id,
+            iconPath: iconPath,
+            onTap: () async {
+              state = state.copyWith(
+                hideCard: false,
+              );
+              await handleMarkerTap(
+                entry.id ?? '',
+              );
+            },
+          ),
+        );
       }
     }
     print('markers : ${newMarkerList.toString()}');
@@ -223,6 +226,7 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
   Future<void> handleMarkerTap(String key) async {
     state = state.copyWith(
       selectedMap: state.data.firstWhere((element) => element.id == key),
+      hideCard: false,
     );
   }
 
@@ -251,23 +255,23 @@ class DiscoveryMapViewModel extends StateNotifier<DiscoveryMapState> {
   void setAdditionalMarkers(String tag, AbilityModel latLng) {
     // Mevcut marker'ları koruyup yeni marker'ı ekleyin.
     final updatedMarkers =
-        Map<String, AbilityModel>.from(state.additionalMarkers ?? {})
-          ..[tag] = latLng;
+        Set<AbilityModel>.from(state.additionalMarkers ?? {});
 
     // State'i güncellenmiş map ile güncelleyin.
-    state = state.copyWith(additionalMarkers: updatedMarkers);
+    state = state.copyWith(additionalMarkers: {...updatedMarkers, latLng});
   }
 
   void setCurrentLocation(MarkerModel latLng) {
     state = state.copyWith(
       currentLatLng: latLng.coordinates,
       additionalMarkers: {
-        'currentLocation': AbilityModel(
-            isCurrent: true,
-            location: lt.LatLng(
-              latLng.coordinates.latitude,
-              latLng.coordinates.longitude,
-            )),
+        AbilityModel(
+          isCurrent: true,
+          location: lt.LatLng(
+            latLng.coordinates.latitude,
+            latLng.coordinates.longitude,
+          ),
+        ),
       },
     );
   }

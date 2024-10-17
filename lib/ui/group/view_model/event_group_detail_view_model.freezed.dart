@@ -20,6 +20,7 @@ mixin _$EventGroupDetailState {
   List<File> get mediaList => throw _privateConstructorUsedError;
   MessageInfoModel? get replyModel => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  bool get sending => throw _privateConstructorUsedError;
   bool get isSubmit => throw _privateConstructorUsedError;
   bool get isReply => throw _privateConstructorUsedError;
   bool get isWriting => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $EventGroupDetailStateCopyWith<$Res> {
       List<File> mediaList,
       MessageInfoModel? replyModel,
       bool loading,
+      bool sending,
       bool isSubmit,
       bool isReply,
       bool isWriting,
@@ -77,6 +79,7 @@ class _$EventGroupDetailStateCopyWithImpl<$Res,
     Object? mediaList = null,
     Object? replyModel = freezed,
     Object? loading = null,
+    Object? sending = null,
     Object? isSubmit = null,
     Object? isReply = null,
     Object? isWriting = null,
@@ -101,6 +104,10 @@ class _$EventGroupDetailStateCopyWithImpl<$Res,
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sending: null == sending
+          ? _value.sending
+          : sending // ignore: cast_nullable_to_non_nullable
               as bool,
       isSubmit: null == isSubmit
           ? _value.isSubmit
@@ -162,6 +169,7 @@ abstract class _$$EventGroupDetailStateImplCopyWith<$Res>
       List<File> mediaList,
       MessageInfoModel? replyModel,
       bool loading,
+      bool sending,
       bool isSubmit,
       bool isReply,
       bool isWriting,
@@ -192,6 +200,7 @@ class __$$EventGroupDetailStateImplCopyWithImpl<$Res>
     Object? mediaList = null,
     Object? replyModel = freezed,
     Object? loading = null,
+    Object? sending = null,
     Object? isSubmit = null,
     Object? isReply = null,
     Object? isWriting = null,
@@ -216,6 +225,10 @@ class __$$EventGroupDetailStateImplCopyWithImpl<$Res>
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sending: null == sending
+          ? _value.sending
+          : sending // ignore: cast_nullable_to_non_nullable
               as bool,
       isSubmit: null == isSubmit
           ? _value.isSubmit
@@ -257,6 +270,7 @@ class _$EventGroupDetailStateImpl implements _EventGroupDetailState {
       final List<File> mediaList = const [],
       this.replyModel = null,
       this.loading = false,
+      this.sending = false,
       this.isSubmit = false,
       this.isReply = false,
       this.isWriting = false,
@@ -293,6 +307,9 @@ class _$EventGroupDetailStateImpl implements _EventGroupDetailState {
   final bool loading;
   @override
   @JsonKey()
+  final bool sending;
+  @override
+  @JsonKey()
   final bool isSubmit;
   @override
   @JsonKey()
@@ -315,7 +332,7 @@ class _$EventGroupDetailStateImpl implements _EventGroupDetailState {
 
   @override
   String toString() {
-    return 'EventGroupDetailState(chatData: $chatData, mediaList: $mediaList, replyModel: $replyModel, loading: $loading, isSubmit: $isSubmit, isReply: $isReply, isWriting: $isWriting, isVoiceRecord: $isVoiceRecord, connectionStatus: $connectionStatus, isGrupChat: $isGrupChat, messageType: $messageType)';
+    return 'EventGroupDetailState(chatData: $chatData, mediaList: $mediaList, replyModel: $replyModel, loading: $loading, sending: $sending, isSubmit: $isSubmit, isReply: $isReply, isWriting: $isWriting, isVoiceRecord: $isVoiceRecord, connectionStatus: $connectionStatus, isGrupChat: $isGrupChat, messageType: $messageType)';
   }
 
   @override
@@ -329,6 +346,7 @@ class _$EventGroupDetailStateImpl implements _EventGroupDetailState {
             (identical(other.replyModel, replyModel) ||
                 other.replyModel == replyModel) &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.sending, sending) || other.sending == sending) &&
             (identical(other.isSubmit, isSubmit) ||
                 other.isSubmit == isSubmit) &&
             (identical(other.isReply, isReply) || other.isReply == isReply) &&
@@ -351,6 +369,7 @@ class _$EventGroupDetailStateImpl implements _EventGroupDetailState {
       const DeepCollectionEquality().hash(_mediaList),
       replyModel,
       loading,
+      sending,
       isSubmit,
       isReply,
       isWriting,
@@ -375,6 +394,7 @@ abstract class _EventGroupDetailState implements EventGroupDetailState {
       final List<File> mediaList,
       final MessageInfoModel? replyModel,
       final bool loading,
+      final bool sending,
       final bool isSubmit,
       final bool isReply,
       final bool isWriting,
@@ -391,6 +411,8 @@ abstract class _EventGroupDetailState implements EventGroupDetailState {
   MessageInfoModel? get replyModel;
   @override
   bool get loading;
+  @override
+  bool get sending;
   @override
   bool get isSubmit;
   @override

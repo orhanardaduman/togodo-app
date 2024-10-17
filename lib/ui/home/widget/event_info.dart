@@ -21,6 +21,7 @@ class EventInfo extends HookConsumerWidget {
     this.endTime,
     this.spacing = 24,
     super.key,
+    this.isNew = false,
   });
   final String name;
   final String date;
@@ -29,6 +30,7 @@ class EventInfo extends HookConsumerWidget {
   final String location;
   final String description;
   final double spacing;
+  final bool isNew;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);
@@ -58,41 +60,43 @@ class EventInfo extends HookConsumerWidget {
               width: 8,
             ),
             PrimaryText(
-              '${date.getFormattedDate(language)} ${date.getFormattedDay(language)}',
+              '${date.getFormattedDate(language)} ${date.getFormattedDay(language)} ${isNew ? "$starTime ${endTime != "" && endTime != null ? "- $endTime" : ""} " : ""}',
               style: theme.textTheme.bodyLarge.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
           ],
         ),
-        SizedBox(
-          height: spacing,
-        ),
-        Row(
-          children: <Widget>[
-            Assets.icons.bold.timeSquare.svg(
-              width: 20,
-              height: 20,
-              color: MainColors.primary,
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            PrimaryText(
-              starTime,
-              style: theme.textTheme.bodyLarge.copyWith(
-                fontWeight: FontWeight.w700,
+        if (!isNew)
+          SizedBox(
+            height: spacing,
+          ),
+        if (!isNew)
+          Row(
+            children: <Widget>[
+              Assets.icons.bold.timeSquare.svg(
+                width: 20,
+                height: 20,
+                color: MainColors.primary,
               ),
-            ),
-            if (endTime != null)
+              const SizedBox(
+                width: 8,
+              ),
               PrimaryText(
-                ' - $endTime',
+                starTime,
                 style: theme.textTheme.bodyLarge.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
-          ],
-        ),
+              if (endTime != null)
+                PrimaryText(
+                  ' - $endTime',
+                  style: theme.textTheme.bodyLarge.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+            ],
+          ),
         SizedBox(
           height: spacing,
         ),

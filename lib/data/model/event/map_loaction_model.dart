@@ -9,10 +9,12 @@ class AbilityModel {
     this.isCurrent,
     this.iconPath,
     this.onTap,
+    this.tag,
   });
   String? id;
   String? iconPath;
   LatLng? location;
+  String? tag;
   VoidCallback? onTap;
   bool? isCurrent = false;
 }

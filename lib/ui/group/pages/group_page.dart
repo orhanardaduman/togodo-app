@@ -58,8 +58,9 @@ class _GroupPageState extends ConsumerState<GroupPage> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: CustomAppBar(title: l10n.groupDetails),
-        body: widget.id == ""
+        body: widget.id == ''
             ? EmptyGroupView(
                 eventModel: widget.eventModel,
               )

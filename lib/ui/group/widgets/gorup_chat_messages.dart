@@ -3,10 +3,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jumping_dot/jumping_dot.dart';
 import 'package:kartal/kartal.dart';
 import 'package:swipe_to/swipe_to.dart';
 import 'package:togodo/core/component/primary_text.dart';
 import 'package:togodo/core/extension/time_ago_extension.dart';
+import 'package:togodo/core/helpers/colors/colors.dart';
 import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/hook/use_router.dart';
 import 'package:togodo/core/theme/app_theme.dart';
@@ -22,10 +24,11 @@ import '../../chat/widgets/chat_send/chat_reply_container.dart';
 class GroupChatMessages extends StatefulHookConsumerWidget {
   const GroupChatMessages({
     required this.groupId,
+    required this.focusNode,
     super.key,
   });
   final String groupId;
-
+  final FocusNode focusNode;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _ChatRoomMessageState();
@@ -34,7 +37,6 @@ class GroupChatMessages extends StatefulHookConsumerWidget {
 class _ChatRoomMessageState extends ConsumerState<GroupChatMessages>
     with AutomaticKeepAliveClientMixin {
   final ScrollController _controllerListView = ScrollController();
-  FocusNode focusNode = FocusNode();
   Map<String, GlobalKey> messageKeys = {};
 
   @override
@@ -62,7 +64,6 @@ class _ChatRoomMessageState extends ConsumerState<GroupChatMessages>
         final dateB = b.createdAt!;
         return dateB.compareTo(dateA);
       });
-    print(sortedData);
 
     final uniqueDays = sortedData
         .map((element) => element.createdAt!.formatAsChatTime(language))
@@ -230,7 +231,29 @@ class _ChatRoomMessageState extends ConsumerState<GroupChatMessages>
             ),
           ),
         Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
+            Visibility(
+              visible: viewModel.sending,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Row(
+                    children: [
+                      PrimaryText(
+                        l10n.sending,
+                      ),
+                      JumpingDots(
+                        color: MainColors.primary,
+                        radius: 5,
+                        numberOfDots: 3,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             if (viewModel.mediaList.isNotEmpty)
               ChatFileContainer(
                 eventViewModel: viewModel,
@@ -247,7 +270,7 @@ class _ChatRoomMessageState extends ConsumerState<GroupChatMessages>
               ),
             FlatMessageInputBoxItem(
               roomId: widget.groupId,
-              focusNode: focusNode,
+              focusNode: widget.focusNode,
               isSearchRoute: false,
               isNew: true,
             ),
@@ -263,7 +286,7 @@ class _ChatRoomMessageState extends ConsumerState<GroupChatMessages>
   void fncSwipe(
     MessageInfoModel element,
   ) {
-    focusNode.requestFocus();
+    widget.focusNode.requestFocus();
     return ref
         .read(
           eventGroupDetailsProvider(widget.groupId).notifier,
@@ -294,7 +317,7 @@ class _ChatRoomMessageState extends ConsumerState<GroupChatMessages>
       messages: messages,
       isGroup: true,
       onSwipe: () {
-        focusNode.requestFocus();
+        widget.focusNode.requestFocus();
         ref
             .read(eventGroupDetailsProvider(widget.groupId).notifier)
             .updateState(isReply: true, replyModel: messages);

@@ -85,6 +85,7 @@ class _ChatHomePageState extends ConsumerState<ChatHomePage>
                             indicator: TabIndicator(),
                             indicatorSize: TabBarIndicatorSize.tab,
                             unselectedLabelColor: MainColors.dark3,
+                            dividerColor: MainColors.dark3,
                             labelStyle: theme.textTheme.bodyXLarge.copyWith(
                               fontWeight: FontWeight.bold,
                             ),

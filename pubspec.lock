@@ -430,6 +430,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.2+1"
+  custom_refresh_indicator:
+    dependency: "direct dev"
+    description:
+      name: custom_refresh_indicator
+      sha256: c34dd1dfb1f6b9ee2db9c5972586dba5e4445d79f8431f6ab098a6e963ccd39c
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
   dart_earcut:
     dependency: transitive
     description:
@@ -1673,6 +1681,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.8.0"
+  jumping_dot:
+    dependency: "direct main"
+    description:
+      name: jumping_dot
+      sha256: "031d8f45a41b95df7d7438f7ce5f3105503cbe5432b6c9dd10cf9b6f0a8d6472"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.7"
   just_audio:
     dependency: "direct main"
     description:

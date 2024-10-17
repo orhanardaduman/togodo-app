@@ -97,6 +97,9 @@ class _DiscoveryMapViewPageState extends ConsumerState<DiscoveryMapViewPage> {
               ],
               markers: model.markers,
               topCardColor: Colors.transparent,
+              isNew: true,
+              events: model.data,
+              onEventSelected: (event) {},
             ),
           Positioned(
             bottom: context.dyHeight(47),

@@ -58,7 +58,11 @@ class _MessagePopUpWidgetState extends ConsumerState<MessagePopUpWidget> {
   late Timer _timer;
 
   void _schedule() {
-    _timer = Timer(const Duration(seconds: 2), () {
+    _timer = Timer(
+        Duration(
+          seconds: widget.isEventGroup ? 4 : 2,
+          milliseconds: widget.isEventGroup ? 500 : 0,
+        ), () {
       Navigator.pop(context);
     });
   }
