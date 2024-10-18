@@ -36,6 +36,7 @@ class DiscoveryMapModel
     bool? requestStatus,
     bool? isQuotaFull,
     bool? isCurrentUser,
+    bool? joinStatus,
     int? ratingLenght,
     double? rating,
     int? likeCount,

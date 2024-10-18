@@ -86,7 +86,11 @@ bool isEventPassed(String date, String startTime, String? endTime) {
 }
 
 Future<void> launchUrls(String url) async {
-  if (!await launchUrl(Uri.parse(url))) {
+  if (!await launchUrl(
+    Uri.parse(
+      url.contains("http") ? url : 'https://$url',
+    ),
+  )) {
     // ignore: only_throw_errors
     throw 'Could not launch $url'; // username //
   }
@@ -468,7 +472,8 @@ void showCustomModalBottomSheets(
     context: context,
     backgroundColor: Colors.transparent,
     elevation: 0,
-    isScrollControlled: true, // Bu tam ekran yükseklik için sayfayı izin verir.
+    isScrollControlled: true,
+    // Bu tam ekran yükseklik için sayfayı izin verir.
     builder: (BuildContext context) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),

@@ -229,6 +229,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                         ),
                                     ],
                                   ),
+
                                   if (userModel != null &&
                                       userModel.token != null &&
                                       !(userModel.token!.bioCompletion ??
@@ -278,6 +279,27 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                 ],
                               ),
                             if (_type == 0) const SizedBox(height: 14),
+                            if(
+                            !(widget.data?.isCurrentUser ?? false) &&
+                                (widget.data!.isFriend ?? false)
+                            )
+                              Column(
+                                children: [
+
+                                  PrimaryText(l10n.allReadyFriend,
+                                    style: theme.textTheme.bodyMedium.copyWith(
+                                      color: _isShowMoreFriends
+                                          ? MainColors.primary
+                                          : (theme.mode == ThemeMode.dark
+                                          ? MainColors.grey50
+                                          : MainColors.grey600),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+
+                                ],
+                              ),
                             if (userModel != null &&
                                 userModel.token != null &&
                                 userModel.token!.userType == 1)

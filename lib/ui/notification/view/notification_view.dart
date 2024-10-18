@@ -25,8 +25,10 @@ class NotificationItemView extends HookConsumerWidget {
     required this.isNotNullOrEmpty,
     super.key,
   });
+
   final List<NotificationModel> notData;
   final bool isNotNullOrEmpty;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = useRouter();
@@ -132,9 +134,24 @@ class NotificationItemView extends HookConsumerWidget {
                     );
                   }
                 },
-                child: CustomAvatarImage(
-                  imageUrl: user.imageUrl,
-                ),
+                child: data.type == 'EventGroup'
+                    ? Container(
+                        width: 48.0,
+                        height: 48.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: MainColors.primary,
+                        ),
+                        child: Center(
+                          child:  PrimaryText(
+                            '🎉',
+                            style: theme.textTheme.bodyXLarge,
+                          ),
+                        ),
+                      )
+                    : CustomAvatarImage(
+                        imageUrl: user.imageUrl,
+                      ),
               ),
               const SizedBox(width: 8),
               InkWell(
@@ -266,7 +283,8 @@ class NotificationItemView extends HookConsumerWidget {
                         PrimaryText(
                           '${(data.type != 'EventRate') ? "${data.user?.name} " : ""}${data.type != null ? data.type?.notificationMessage(
                               l10n,
-                            ) : l10n.deletedEvent}', // Replace with actual user's username
+                            ) : l10n.deletedEvent}',
+                          // Replace with actual user's username
                           maxLines: 3,
                           style: theme.textTheme.bodySmall.copyWith(
                             fontWeight: FontWeight.w500,
@@ -278,7 +296,8 @@ class NotificationItemView extends HookConsumerWidget {
                         PrimaryText(
                           '${data.user?.name} ${data.type != null ? data.type?.notificationMessage(
                               l10n,
-                            ) : l10n.deletedEvent}', // Replace with actual user's username
+                            ) : l10n.deletedEvent}',
+                          // Replace with actual user's username
                           maxLines: 3,
                           style: theme.textTheme.bodySmall.copyWith(
                             fontWeight: FontWeight.w500,

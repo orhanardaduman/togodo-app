@@ -29,6 +29,7 @@ import 'package:togodo/ui/event/widget/event_rating_popup.dart';
 import 'package:togodo/ui/home/view_model/home_view_model.dart';
 import 'package:togodo/ui/notification_view_model.dart';
 
+import 'auth/viewmodel/user_view_model.dart';
 import 'home/widget/rate_popup.dart';
 //import 'package:uni_links/uni_links.dart';
 
@@ -65,6 +66,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
   final ScrollController _scrollControllerTwo = ScrollController();
 
   StreamSubscription<dynamic>? _streamSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -294,10 +296,13 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userModel = ref.watch(userViewModelProvider).tokenModel;
+
     firebaseMessaging.setNotifications(
       context,
       AutoRouter.of(context),
       ref,
+      userModel?.userId ?? '',
     );
     return AutoTabsScaffold(
       extendBody: true,
@@ -330,6 +335,7 @@ class BottomNavigationBarMenu extends HookConsumerWidget {
 
   final TabsRouter tabsRouter;
   final ScrollController controller, controllerTwo;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(appThemeProvider);

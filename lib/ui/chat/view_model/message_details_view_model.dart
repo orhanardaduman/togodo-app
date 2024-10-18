@@ -33,6 +33,7 @@ class MessageDetailsState with _$MessageDetailsState {
     @Default([]) List<File> mediaList,
     @Default(null) MessageInfoModel? replyModel,
     @Default(false) bool loading,
+    @Default(false) bool sending,
     @Default(false) bool isSubmit,
     @Default(false) bool isReply,
     @Default(false) bool isWriting,
@@ -56,13 +57,11 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
   late final ChatRepository _repository = _ref.read(chatRepositoryProvider);
   WebSocketService webSocketService = WebSocketService.instance;
   Future<void> connect({bool isSearchRoute = false}) async {
-    print("detal connectde ${isSearchRoute}");
 
     if (_isDisposed) return;
     state = state.copyWith(loading: true);
     final userModelView = _ref.read(userViewModelProvider);
     await webSocketService.connect(userModelView.accessToken!);
-    print("burda sinklemesi lazim room Id ${roomId}");
     await webSocketService.sink(
         isSearchRoute, roomId, userModelView.accessToken!);
 
@@ -134,6 +133,9 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
 
     if (state.mediaList.ext.isNotNullOrEmpty ||
         textEditingController.text != '') {
+      state = state.copyWith(
+        sending:true,
+      );
       try {
         state = state.copyWith(isSubmit: true);
 
@@ -154,6 +156,9 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
       } catch (e) {
         resetFile();
       }
+      state = state.copyWith(
+        sending: false,
+      );
     }
   }
 

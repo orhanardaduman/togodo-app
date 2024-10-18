@@ -18,6 +18,7 @@ class EventDetailsModel
     String? location,
     String? date,
     bool? likeStatus,
+    bool? joinStatus,
     int? joinedUserCount,
     bool? joinedStatus,
     bool? isCurrentUser,

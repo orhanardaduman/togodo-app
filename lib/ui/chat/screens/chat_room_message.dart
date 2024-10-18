@@ -3,6 +3,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jumping_dot/jumping_dot.dart';
 import 'package:kartal/kartal.dart';
 import 'package:swipe_to/swipe_to.dart';
 import 'package:togodo/core/component/primary_text.dart';
@@ -18,6 +19,8 @@ import 'package:togodo/ui/chat/widgets/chat_send/chat_file_container.dart';
 import 'package:togodo/ui/chat/widgets/chat_send/chat_reply_container.dart';
 import 'package:togodo/ui/chat/widgets/index.dart';
 import 'package:togodo/ui/settings/language_settings.dart';
+
+import '../../../core/helpers/colors/colors.dart';
 
 class ChatRoomMessage extends StatefulHookConsumerWidget {
   const ChatRoomMessage({
@@ -55,7 +58,7 @@ class _ChatRoomMessageState extends ConsumerState<ChatRoomMessage>
   void dispose() {
     _controller.dispose();
     _controllerListView.dispose();
-
+    ref.read(messageDetailsProvider(widget.roomId).notifier).closeChatWebSocket();
     super.dispose();
   }
 
@@ -96,14 +99,7 @@ class _ChatRoomMessageState extends ConsumerState<ChatRoomMessage>
         isWriting: viewModel.isWriting,
         prefixWidget: InkWell(
           onTap: () {
-            viewModelNotifier.closeChatWebSocket();
-            if (!widget.isNotificationRoute) {
               Navigator.of(context).pop();
-            } else {
-              router.push(
-                ChatHomeRoute(isNotificationRoute: widget.isNotificationRoute),
-              );
-            }
           },
           child: Padding(
             padding: const EdgeInsets.only(left: 20), // Sol boşluk
@@ -151,6 +147,27 @@ class _ChatRoomMessageState extends ConsumerState<ChatRoomMessage>
       ),
       footer: Column(
         children: [
+          Visibility(
+            visible: viewModel.sending,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Row(
+                  children: [
+                    PrimaryText(
+                      l10n.sending,
+                    ),
+                    JumpingDots(
+                      color: MainColors.primary,
+                      radius: 5,
+                      numberOfDots: 3,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           if (viewModel.mediaList.isNotEmpty)
             ChatFileContainer(
               viewModelNotifier: viewModelNotifier,

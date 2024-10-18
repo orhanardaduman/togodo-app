@@ -92,6 +92,7 @@ class _TabEventsViewState extends ConsumerState<TabEventsView> {
                         child: EnventCards(
                           data: data.events[index],
                           isShowRating: true,
+                          showRequestSend: widget.userId == null,
                         ),
                       );
                     },

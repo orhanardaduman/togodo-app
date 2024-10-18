@@ -605,6 +605,7 @@
   "chat": "Sohbet",
   "canStartChatWhenReady": "Grubun hazır olduğunda burada sohbeti başlatabilirsin \uD83C\uDF89",
   "redirectingTOTicket": "Bilet almaya yönlendiriyor...",
-  "sending": "Gönderiliyor "
+  "sending": "Gönderiliyor ",
+  "allReadyFriend": "Arkadaşsınız"
 
 }

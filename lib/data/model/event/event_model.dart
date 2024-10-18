@@ -26,6 +26,7 @@ class EventModel with _$EventModel implements EventCommonProperties {
     bool? isCurrentUser,
     bool? isClosedComment,
     bool? openToJoinStatus,
+    bool? joinStatus,
     double? rating,
     int? ratingLenght,
     bool? isPublish,
@@ -142,6 +143,7 @@ mixin EventCommonProperties {
   bool? get joinedStatus;
 
   bool? get requestStatus;
+  bool? get joinStatus;
 
   bool? get isClosedComment;
 

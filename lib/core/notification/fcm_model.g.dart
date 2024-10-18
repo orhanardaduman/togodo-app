@@ -23,6 +23,7 @@ _$FcmModelImpl _$$FcmModelImplFromJson(Map<String, dynamic> json) =>
       isGroup: json['isGroup'] as String?,
       rate: json['rate'] as String?,
       isEventGroup: json['isEventGroup'] as String?,
+      toUser: json['toUser'] as String?,
     );
 
 Map<String, dynamic> _$$FcmModelImplToJson(_$FcmModelImpl instance) =>
@@ -42,4 +43,5 @@ Map<String, dynamic> _$$FcmModelImplToJson(_$FcmModelImpl instance) =>
       'isGroup': instance.isGroup,
       'rate': instance.rate,
       'isEventGroup': instance.isEventGroup,
+      'toUser': instance.toUser,
     };

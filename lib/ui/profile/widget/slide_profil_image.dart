@@ -186,8 +186,9 @@ class SlideProfilImage extends HookConsumerWidget {
             child: Row(
               children: [
                 IconButton(
-                  onPressed: router.back,
-                  icon: Padding(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  },                  icon: Padding(
                     padding: const EdgeInsets.only(left: 20), // Sol boşluk
                     child: Assets.icons.lightOutline.arrowLeft.svg(
                       width: 28,

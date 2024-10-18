@@ -1,17 +1,20 @@
 // ignore_for_file: no_default_cases, use_named_constants, deprecated_member_use_from_same_package
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/core/component/primary_text.dart';
 import 'package:togodo/core/extension/date_time.dart';
 import 'package:togodo/core/extension/device_size_extension.dart';
 import 'package:togodo/core/helpers/colors/colors.dart';
+import 'package:togodo/core/hook/use_l10n.dart';
 import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/data/model/event/event_model.dart';
 import 'package:togodo/features/component/featured_image.dart';
 import 'package:togodo/features/component/like_button.dart';
 import 'package:togodo/gen/assets.gen.dart';
 import 'package:togodo/ui/settings/language_settings.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum EventCardSize { small, medium, large, custom }
 
@@ -26,6 +29,7 @@ class EnventCards extends HookConsumerWidget {
     this.isShowRating = false,
     this.isShowVendor = true,
     this.radius = 28,
+    this.showRequestSend =false,
   });
   final EventCardSize size;
   final double? width;
@@ -34,12 +38,14 @@ class EnventCards extends HookConsumerWidget {
   final double? radius;
   final bool isShowRating;
   final bool isShowVendor;
+  final bool showRequestSend;
 
   final void Function({required bool isLiked})? onLikeChanged;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final language = ref.watch(languageProvider);
     final theme = ref.watch(appThemeProvider);
+    final l10n = useL10n();
     double calculatedWidth;
     double calculatedHeight;
     double subFontSize;
@@ -116,6 +122,7 @@ class EnventCards extends HookConsumerWidget {
               context,
               calculatedWidth,
               language,
+                l10n,
             ),
           ),
         ],
@@ -131,6 +138,7 @@ class EnventCards extends HookConsumerWidget {
     BuildContext context,
     double calculatedWidth,
     String language,
+      L10n l10n,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,6 +201,45 @@ class EnventCards extends HookConsumerWidget {
           ],
         ),
         const Spacer(),
+        if(showRequestSend && data?.joinStatus == false)
+          Container(
+            padding: const EdgeInsets.all(
+              5,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                4,
+              ),
+              border: Border.all(
+                color: const Color.fromRGBO(
+                  255,
+                  235,
+                  79,
+                  1,
+                ),
+                width: 2,
+              ),
+              color: const Color.fromRGBO(
+                255,
+                235,
+                79,
+                .2,
+              ),
+            ),
+            child: PrimaryText(
+              l10n.requestSent,
+              style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+                color: Color.fromRGBO(
+                  255,
+                  235,
+                  79,
+                  1,
+                ),
+              ),
+            ),
+          ),
         if (isShowVendor)
           Row(
             children: [
@@ -216,6 +263,7 @@ class EnventCards extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(99.9994888305664),
                 ),
               ),
+
               const SizedBox(width: 8),
               if (data?.vendorDetails?.id !=
                   '8ebb12ec-05db-4230-aa9e-28af26600d93')
@@ -236,6 +284,8 @@ class EnventCards extends HookConsumerWidget {
                 ),
             ],
           ),
+
+//          padding: const EdgeInsets.only(right: 15)
         if (data?.name != null)
           SizedBox(
             width: calculatedWidth - 24,

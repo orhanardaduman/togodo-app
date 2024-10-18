@@ -152,11 +152,12 @@ class EventGroupDetailNotifier extends StateNotifier<EventGroupDetailState> {
 
   Future<void> sendMessage() async {
     if (_isDisposed) return;
-    state = state.copyWith(
-      sending: state.mediaList.isNotEmpty,
-    );
+
     if (state.mediaList.ext.isNotNullOrEmpty ||
         textEditingController.text != '') {
+      state = state.copyWith(
+        sending:true,
+      );
       try {
         state = state.copyWith(isSubmit: true);
         final text = textEditingController.text;

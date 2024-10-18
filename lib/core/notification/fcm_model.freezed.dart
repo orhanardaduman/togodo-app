@@ -35,6 +35,7 @@ mixin _$FcmModel {
   String? get isGroup => throw _privateConstructorUsedError;
   String? get rate => throw _privateConstructorUsedError;
   String? get isEventGroup => throw _privateConstructorUsedError;
+  String? get toUser => throw _privateConstructorUsedError;
 
   /// Serializes this FcmModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -66,7 +67,8 @@ abstract class $FcmModelCopyWith<$Res> {
       String? userProfileImage,
       String? isGroup,
       String? rate,
-      String? isEventGroup});
+      String? isEventGroup,
+      String? toUser});
 }
 
 /// @nodoc
@@ -99,6 +101,7 @@ class _$FcmModelCopyWithImpl<$Res, $Val extends FcmModel>
     Object? isGroup = freezed,
     Object? rate = freezed,
     Object? isEventGroup = freezed,
+    Object? toUser = freezed,
   }) {
     return _then(_value.copyWith(
       deviceId: freezed == deviceId
@@ -161,6 +164,10 @@ class _$FcmModelCopyWithImpl<$Res, $Val extends FcmModel>
           ? _value.isEventGroup
           : isEventGroup // ignore: cast_nullable_to_non_nullable
               as String?,
+      toUser: freezed == toUser
+          ? _value.toUser
+          : toUser // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -188,7 +195,8 @@ abstract class _$$FcmModelImplCopyWith<$Res>
       String? userProfileImage,
       String? isGroup,
       String? rate,
-      String? isEventGroup});
+      String? isEventGroup,
+      String? toUser});
 }
 
 /// @nodoc
@@ -219,6 +227,7 @@ class __$$FcmModelImplCopyWithImpl<$Res>
     Object? isGroup = freezed,
     Object? rate = freezed,
     Object? isEventGroup = freezed,
+    Object? toUser = freezed,
   }) {
     return _then(_$FcmModelImpl(
       deviceId: freezed == deviceId
@@ -281,6 +290,10 @@ class __$$FcmModelImplCopyWithImpl<$Res>
           ? _value.isEventGroup
           : isEventGroup // ignore: cast_nullable_to_non_nullable
               as String?,
+      toUser: freezed == toUser
+          ? _value.toUser
+          : toUser // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -303,7 +316,8 @@ class _$FcmModelImpl implements _FcmModel {
       this.userProfileImage,
       this.isGroup,
       this.rate,
-      this.isEventGroup});
+      this.isEventGroup,
+      this.toUser});
 
   factory _$FcmModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FcmModelImplFromJson(json);
@@ -338,10 +352,12 @@ class _$FcmModelImpl implements _FcmModel {
   final String? rate;
   @override
   final String? isEventGroup;
+  @override
+  final String? toUser;
 
   @override
   String toString() {
-    return 'FcmModel(deviceId: $deviceId, typeId: $typeId, userId: $userId, type: $type, eventId: $eventId, eventName: $eventName, requestId: $requestId, chatRoomId: $chatRoomId, chatContent: $chatContent, applauseCount: $applauseCount, userFullName: $userFullName, userProfileImage: $userProfileImage, isGroup: $isGroup, rate: $rate, isEventGroup: $isEventGroup)';
+    return 'FcmModel(deviceId: $deviceId, typeId: $typeId, userId: $userId, type: $type, eventId: $eventId, eventName: $eventName, requestId: $requestId, chatRoomId: $chatRoomId, chatContent: $chatContent, applauseCount: $applauseCount, userFullName: $userFullName, userProfileImage: $userProfileImage, isGroup: $isGroup, rate: $rate, isEventGroup: $isEventGroup, toUser: $toUser)';
   }
 
   @override
@@ -372,7 +388,8 @@ class _$FcmModelImpl implements _FcmModel {
             (identical(other.isGroup, isGroup) || other.isGroup == isGroup) &&
             (identical(other.rate, rate) || other.rate == rate) &&
             (identical(other.isEventGroup, isEventGroup) ||
-                other.isEventGroup == isEventGroup));
+                other.isEventGroup == isEventGroup) &&
+            (identical(other.toUser, toUser) || other.toUser == toUser));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -393,7 +410,8 @@ class _$FcmModelImpl implements _FcmModel {
       userProfileImage,
       isGroup,
       rate,
-      isEventGroup);
+      isEventGroup,
+      toUser);
 
   /// Create a copy of FcmModel
   /// with the given fields replaced by the non-null parameter values.
@@ -427,7 +445,8 @@ abstract class _FcmModel implements FcmModel {
       final String? userProfileImage,
       final String? isGroup,
       final String? rate,
-      final String? isEventGroup}) = _$FcmModelImpl;
+      final String? isEventGroup,
+      final String? toUser}) = _$FcmModelImpl;
 
   factory _FcmModel.fromJson(Map<String, dynamic> json) =
       _$FcmModelImpl.fromJson;
@@ -462,6 +481,8 @@ abstract class _FcmModel implements FcmModel {
   String? get rate;
   @override
   String? get isEventGroup;
+  @override
+  String? get toUser;
 
   /// Create a copy of FcmModel
   /// with the given fields replaced by the non-null parameter values.

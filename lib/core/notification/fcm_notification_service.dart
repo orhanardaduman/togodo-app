@@ -31,17 +31,23 @@ class FCM {
     BuildContext context,
     StackRouter router,
     WidgetRef ref,
+    String currentUserId,
   ) {
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      navigateBasedOnType(
-        message,
-        router,
-      );
+      if (message.data["toUser"] == currentUserId) {
+        navigateBasedOnType(
+          message,
+          router,
+        );
+      }
     });
     FirebaseMessaging.onMessage.listen(
       (message) {
         try {
-          streamCtlr.sink.add(FcmModel.fromJson(message.data));
+          final model = FcmModel.fromJson(message.data);
+          if (model.toUser == currentUserId) {
+            streamCtlr.sink.add(model);
+          }
         } catch (e) {
           log('Error while receiving a message: $e');
         }
@@ -152,7 +158,8 @@ Future<void> navigateBasedOnType(
               isNotification: true,
             ),
           );
-        } /* else {
+        }
+      /* else {
         showApplauseWon(
           theme,
           l10n,

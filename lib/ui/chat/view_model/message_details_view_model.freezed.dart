@@ -20,6 +20,7 @@ mixin _$MessageDetailsState {
   List<File> get mediaList => throw _privateConstructorUsedError;
   MessageInfoModel? get replyModel => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  bool get sending => throw _privateConstructorUsedError;
   bool get isSubmit => throw _privateConstructorUsedError;
   bool get isReply => throw _privateConstructorUsedError;
   bool get isWriting => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $MessageDetailsStateCopyWith<$Res> {
       List<File> mediaList,
       MessageInfoModel? replyModel,
       bool loading,
+      bool sending,
       bool isSubmit,
       bool isReply,
       bool isWriting,
@@ -76,6 +78,7 @@ class _$MessageDetailsStateCopyWithImpl<$Res, $Val extends MessageDetailsState>
     Object? mediaList = null,
     Object? replyModel = freezed,
     Object? loading = null,
+    Object? sending = null,
     Object? isSubmit = null,
     Object? isReply = null,
     Object? isWriting = null,
@@ -100,6 +103,10 @@ class _$MessageDetailsStateCopyWithImpl<$Res, $Val extends MessageDetailsState>
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sending: null == sending
+          ? _value.sending
+          : sending // ignore: cast_nullable_to_non_nullable
               as bool,
       isSubmit: null == isSubmit
           ? _value.isSubmit
@@ -160,6 +167,7 @@ abstract class _$$MessageDetailsStateImplCopyWith<$Res>
       List<File> mediaList,
       MessageInfoModel? replyModel,
       bool loading,
+      bool sending,
       bool isSubmit,
       bool isReply,
       bool isWriting,
@@ -189,6 +197,7 @@ class __$$MessageDetailsStateImplCopyWithImpl<$Res>
     Object? mediaList = null,
     Object? replyModel = freezed,
     Object? loading = null,
+    Object? sending = null,
     Object? isSubmit = null,
     Object? isReply = null,
     Object? isWriting = null,
@@ -213,6 +222,10 @@ class __$$MessageDetailsStateImplCopyWithImpl<$Res>
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      sending: null == sending
+          ? _value.sending
+          : sending // ignore: cast_nullable_to_non_nullable
               as bool,
       isSubmit: null == isSubmit
           ? _value.isSubmit
@@ -254,6 +267,7 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
       final List<File> mediaList = const [],
       this.replyModel = null,
       this.loading = false,
+      this.sending = false,
       this.isSubmit = false,
       this.isReply = false,
       this.isWriting = false,
@@ -290,6 +304,9 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
   final bool loading;
   @override
   @JsonKey()
+  final bool sending;
+  @override
+  @JsonKey()
   final bool isSubmit;
   @override
   @JsonKey()
@@ -312,7 +329,7 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
 
   @override
   String toString() {
-    return 'MessageDetailsState(chatData: $chatData, mediaList: $mediaList, replyModel: $replyModel, loading: $loading, isSubmit: $isSubmit, isReply: $isReply, isWriting: $isWriting, isVoiceRecord: $isVoiceRecord, connectionStatus: $connectionStatus, isGrupChat: $isGrupChat, messageType: $messageType)';
+    return 'MessageDetailsState(chatData: $chatData, mediaList: $mediaList, replyModel: $replyModel, loading: $loading, sending: $sending, isSubmit: $isSubmit, isReply: $isReply, isWriting: $isWriting, isVoiceRecord: $isVoiceRecord, connectionStatus: $connectionStatus, isGrupChat: $isGrupChat, messageType: $messageType)';
   }
 
   @override
@@ -326,6 +343,7 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
             (identical(other.replyModel, replyModel) ||
                 other.replyModel == replyModel) &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.sending, sending) || other.sending == sending) &&
             (identical(other.isSubmit, isSubmit) ||
                 other.isSubmit == isSubmit) &&
             (identical(other.isReply, isReply) || other.isReply == isReply) &&
@@ -348,6 +366,7 @@ class _$MessageDetailsStateImpl implements _MessageDetailsState {
       const DeepCollectionEquality().hash(_mediaList),
       replyModel,
       loading,
+      sending,
       isSubmit,
       isReply,
       isWriting,
@@ -372,6 +391,7 @@ abstract class _MessageDetailsState implements MessageDetailsState {
       final List<File> mediaList,
       final MessageInfoModel? replyModel,
       final bool loading,
+      final bool sending,
       final bool isSubmit,
       final bool isReply,
       final bool isWriting,
@@ -388,6 +408,8 @@ abstract class _MessageDetailsState implements MessageDetailsState {
   MessageInfoModel? get replyModel;
   @override
   bool get loading;
+  @override
+  bool get sending;
   @override
   bool get isSubmit;
   @override
