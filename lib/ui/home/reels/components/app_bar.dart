@@ -105,16 +105,7 @@ class ReelsAppBar extends HookConsumerWidget {
           ),
         ),
         const Spacer(),
-        if (userType != UserType.guest)
-          IconButton(
-            onPressed: () {
-              if (userType == UserType.guest) {
-                return;
-              }
-              router.push(const DiscoverSearchRoute());
-            },
-            icon: Assets.icons.bold.newSearch.svg(),
-          ),
+
         if (userType != UserType.guest)
           IconButton(
             onPressed: () {

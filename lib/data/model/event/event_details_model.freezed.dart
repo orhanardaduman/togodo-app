@@ -28,6 +28,7 @@ mixin _$EventDetailsModel {
   String? get date => throw _privateConstructorUsedError;
   bool? get likeStatus => throw _privateConstructorUsedError;
   bool? get joinStatus => throw _privateConstructorUsedError;
+  bool? get searching => throw _privateConstructorUsedError;
   int? get joinedUserCount => throw _privateConstructorUsedError;
   bool? get joinedStatus => throw _privateConstructorUsedError;
   bool? get isCurrentUser => throw _privateConstructorUsedError;
@@ -93,6 +94,7 @@ abstract class $EventDetailsModelCopyWith<$Res> {
       String? date,
       bool? likeStatus,
       bool? joinStatus,
+      bool? searching,
       int? joinedUserCount,
       bool? joinedStatus,
       bool? isCurrentUser,
@@ -160,6 +162,7 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
     Object? date = freezed,
     Object? likeStatus = freezed,
     Object? joinStatus = freezed,
+    Object? searching = freezed,
     Object? joinedUserCount = freezed,
     Object? joinedStatus = freezed,
     Object? isCurrentUser = freezed,
@@ -231,6 +234,10 @@ class _$EventDetailsModelCopyWithImpl<$Res, $Val extends EventDetailsModel>
       joinStatus: freezed == joinStatus
           ? _value.joinStatus
           : joinStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      searching: freezed == searching
+          ? _value.searching
+          : searching // ignore: cast_nullable_to_non_nullable
               as bool?,
       joinedUserCount: freezed == joinedUserCount
           ? _value.joinedUserCount
@@ -447,6 +454,7 @@ abstract class _$$EventDetailsModelImplCopyWith<$Res>
       String? date,
       bool? likeStatus,
       bool? joinStatus,
+      bool? searching,
       int? joinedUserCount,
       bool? joinedStatus,
       bool? isCurrentUser,
@@ -515,6 +523,7 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
     Object? date = freezed,
     Object? likeStatus = freezed,
     Object? joinStatus = freezed,
+    Object? searching = freezed,
     Object? joinedUserCount = freezed,
     Object? joinedStatus = freezed,
     Object? isCurrentUser = freezed,
@@ -586,6 +595,10 @@ class __$$EventDetailsModelImplCopyWithImpl<$Res>
       joinStatus: freezed == joinStatus
           ? _value.joinStatus
           : joinStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      searching: freezed == searching
+          ? _value.searching
+          : searching // ignore: cast_nullable_to_non_nullable
               as bool?,
       joinedUserCount: freezed == joinedUserCount
           ? _value.joinedUserCount
@@ -755,6 +768,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
       this.date,
       this.likeStatus,
       this.joinStatus,
+      this.searching,
       this.joinedUserCount,
       this.joinedStatus,
       this.isCurrentUser,
@@ -820,6 +834,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
   final bool? likeStatus;
   @override
   final bool? joinStatus;
+  @override
+  final bool? searching;
   @override
   final int? joinedUserCount;
   @override
@@ -955,7 +971,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
 
   @override
   String toString() {
-    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinStatus: $joinStatus, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, participantsLimit: $participantsLimit, shareCount: $shareCount, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, ratingLenght: $ratingLenght, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber, eventGroups: $eventGroups, groupRequest: $groupRequest)';
+    return 'EventDetailsModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, joinStatus: $joinStatus, searching: $searching, joinedUserCount: $joinedUserCount, joinedStatus: $joinedStatus, isCurrentUser: $isCurrentUser, startTime: $startTime, endTime: $endTime, resolution: $resolution, isPrice: $isPrice, isQuotaFull: $isQuotaFull, isPublish: $isPublish, requestStatus: $requestStatus, isParticipants: $isParticipants, isContract: $isContract, isUserEvent: $isUserEvent, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, likeCount: $likeCount, participantsLimit: $participantsLimit, shareCount: $shareCount, price: $price, ticketUrl: $ticketUrl, onlineUrl: $onlineUrl, latitude: $latitude, longitude: $longitude, mapLink: $mapLink, address: $address, ratingLenght: $ratingLenght, rating: $rating, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, images: $images, tags: $tags, prices: $prices, eventComment: $eventComment, request: $request, ratings: $ratings, sortNumber: $sortNumber, eventGroups: $eventGroups, groupRequest: $groupRequest)';
   }
 
   @override
@@ -976,6 +992,8 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
                 other.likeStatus == likeStatus) &&
             (identical(other.joinStatus, joinStatus) ||
                 other.joinStatus == joinStatus) &&
+            (identical(other.searching, searching) ||
+                other.searching == searching) &&
             (identical(other.joinedUserCount, joinedUserCount) ||
                 other.joinedUserCount == joinedUserCount) &&
             (identical(other.joinedStatus, joinedStatus) ||
@@ -1055,6 +1073,7 @@ class _$EventDetailsModelImpl implements _EventDetailsModel {
         date,
         likeStatus,
         joinStatus,
+        searching,
         joinedUserCount,
         joinedStatus,
         isCurrentUser,
@@ -1122,6 +1141,7 @@ abstract class _EventDetailsModel implements EventDetailsModel {
       final String? date,
       final bool? likeStatus,
       final bool? joinStatus,
+      final bool? searching,
       final int? joinedUserCount,
       final bool? joinedStatus,
       final bool? isCurrentUser,
@@ -1180,6 +1200,8 @@ abstract class _EventDetailsModel implements EventDetailsModel {
   bool? get likeStatus;
   @override
   bool? get joinStatus;
+  @override
+  bool? get searching;
   @override
   int? get joinedUserCount;
   @override

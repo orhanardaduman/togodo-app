@@ -41,6 +41,7 @@ mixin _$EventModel {
   bool? get isClosedComment => throw _privateConstructorUsedError;
   bool? get openToJoinStatus => throw _privateConstructorUsedError;
   bool? get joinStatus => throw _privateConstructorUsedError;
+  bool? get searching => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
   int? get ratingLenght => throw _privateConstructorUsedError;
   bool? get isPublish => throw _privateConstructorUsedError;
@@ -92,6 +93,7 @@ abstract class $EventModelCopyWith<$Res> {
       bool? isClosedComment,
       bool? openToJoinStatus,
       bool? joinStatus,
+      bool? searching,
       double? rating,
       int? ratingLenght,
       bool? isPublish,
@@ -146,6 +148,7 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
     Object? isClosedComment = freezed,
     Object? openToJoinStatus = freezed,
     Object? joinStatus = freezed,
+    Object? searching = freezed,
     Object? rating = freezed,
     Object? ratingLenght = freezed,
     Object? isPublish = freezed,
@@ -243,6 +246,10 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
       joinStatus: freezed == joinStatus
           ? _value.joinStatus
           : joinStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      searching: freezed == searching
+          ? _value.searching
+          : searching // ignore: cast_nullable_to_non_nullable
               as bool?,
       rating: freezed == rating
           ? _value.rating
@@ -368,6 +375,7 @@ abstract class _$$EventModelImplCopyWith<$Res>
       bool? isClosedComment,
       bool? openToJoinStatus,
       bool? joinStatus,
+      bool? searching,
       double? rating,
       int? ratingLenght,
       bool? isPublish,
@@ -423,6 +431,7 @@ class __$$EventModelImplCopyWithImpl<$Res>
     Object? isClosedComment = freezed,
     Object? openToJoinStatus = freezed,
     Object? joinStatus = freezed,
+    Object? searching = freezed,
     Object? rating = freezed,
     Object? ratingLenght = freezed,
     Object? isPublish = freezed,
@@ -521,6 +530,10 @@ class __$$EventModelImplCopyWithImpl<$Res>
           ? _value.joinStatus
           : joinStatus // ignore: cast_nullable_to_non_nullable
               as bool?,
+      searching: freezed == searching
+          ? _value.searching
+          : searching // ignore: cast_nullable_to_non_nullable
+              as bool?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -598,6 +611,7 @@ class _$EventModelImpl implements _EventModel {
       this.isClosedComment,
       this.openToJoinStatus,
       this.joinStatus,
+      this.searching,
       this.rating,
       this.ratingLenght,
       this.isPublish,
@@ -658,6 +672,8 @@ class _$EventModelImpl implements _EventModel {
   @override
   final bool? joinStatus;
   @override
+  final bool? searching;
+  @override
   final double? rating;
   @override
   final int? ratingLenght;
@@ -692,7 +708,7 @@ class _$EventModelImpl implements _EventModel {
 
   @override
   String toString() {
-    return 'EventModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, startTime: $startTime, endTime: $endTime, resolution: $resolution, joinedUserCount: $joinedUserCount, isQuotaFull: $isQuotaFull, joinedStatus: $joinedStatus, latitude: $latitude, longitude: $longitude, ticketUrl: $ticketUrl, requestStatus: $requestStatus, isCurrentUser: $isCurrentUser, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, joinStatus: $joinStatus, rating: $rating, ratingLenght: $ratingLenght, isPublish: $isPublish, isUserEvent: $isUserEvent, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, aspectRatio: $aspectRatio, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, groupRequest: $groupRequest, eventGroups: $eventGroups)';
+    return 'EventModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, location: $location, date: $date, likeStatus: $likeStatus, startTime: $startTime, endTime: $endTime, resolution: $resolution, joinedUserCount: $joinedUserCount, isQuotaFull: $isQuotaFull, joinedStatus: $joinedStatus, latitude: $latitude, longitude: $longitude, ticketUrl: $ticketUrl, requestStatus: $requestStatus, isCurrentUser: $isCurrentUser, isClosedComment: $isClosedComment, openToJoinStatus: $openToJoinStatus, joinStatus: $joinStatus, searching: $searching, rating: $rating, ratingLenght: $ratingLenght, isPublish: $isPublish, isUserEvent: $isUserEvent, likeCount: $likeCount, shareCount: $shareCount, participantsLimit: $participantsLimit, aspectRatio: $aspectRatio, vendorDetails: $vendorDetails, joinedUsers: $joinedUsers, groupRequest: $groupRequest, eventGroups: $eventGroups)';
   }
 
   @override
@@ -738,6 +754,8 @@ class _$EventModelImpl implements _EventModel {
                 other.openToJoinStatus == openToJoinStatus) &&
             (identical(other.joinStatus, joinStatus) ||
                 other.joinStatus == joinStatus) &&
+            (identical(other.searching, searching) ||
+                other.searching == searching) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.ratingLenght, ratingLenght) ||
                 other.ratingLenght == ratingLenght) &&
@@ -788,6 +806,7 @@ class _$EventModelImpl implements _EventModel {
         isClosedComment,
         openToJoinStatus,
         joinStatus,
+        searching,
         rating,
         ratingLenght,
         isPublish,
@@ -841,6 +860,7 @@ abstract class _EventModel implements EventModel {
       final bool? isClosedComment,
       final bool? openToJoinStatus,
       final bool? joinStatus,
+      final bool? searching,
       final double? rating,
       final int? ratingLenght,
       final bool? isPublish,
@@ -899,6 +919,8 @@ abstract class _EventModel implements EventModel {
   bool? get openToJoinStatus;
   @override
   bool? get joinStatus;
+  @override
+  bool? get searching;
   @override
   double? get rating;
   @override
@@ -1419,6 +1441,217 @@ abstract class _GroupRequestDetail implements GroupRequestDetail {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GroupRequestDetailImplCopyWith<_$GroupRequestDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+GroupRequestCreateData _$GroupRequestCreateDataFromJson(
+    Map<String, dynamic> json) {
+  return _GroupRequestCreateData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GroupRequestCreateData {
+  GroupRequestDetail? get groupRequest => throw _privateConstructorUsedError;
+  EventGroups? get eventGroups => throw _privateConstructorUsedError;
+
+  /// Serializes this GroupRequestCreateData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GroupRequestCreateDataCopyWith<GroupRequestCreateData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GroupRequestCreateDataCopyWith<$Res> {
+  factory $GroupRequestCreateDataCopyWith(GroupRequestCreateData value,
+          $Res Function(GroupRequestCreateData) then) =
+      _$GroupRequestCreateDataCopyWithImpl<$Res, GroupRequestCreateData>;
+  @useResult
+  $Res call({GroupRequestDetail? groupRequest, EventGroups? eventGroups});
+
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest;
+  $EventGroupsCopyWith<$Res>? get eventGroups;
+}
+
+/// @nodoc
+class _$GroupRequestCreateDataCopyWithImpl<$Res,
+        $Val extends GroupRequestCreateData>
+    implements $GroupRequestCreateDataCopyWith<$Res> {
+  _$GroupRequestCreateDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groupRequest = freezed,
+    Object? eventGroups = freezed,
+  }) {
+    return _then(_value.copyWith(
+      groupRequest: freezed == groupRequest
+          ? _value.groupRequest
+          : groupRequest // ignore: cast_nullable_to_non_nullable
+              as GroupRequestDetail?,
+      eventGroups: freezed == eventGroups
+          ? _value.eventGroups
+          : eventGroups // ignore: cast_nullable_to_non_nullable
+              as EventGroups?,
+    ) as $Val);
+  }
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest {
+    if (_value.groupRequest == null) {
+      return null;
+    }
+
+    return $GroupRequestDetailCopyWith<$Res>(_value.groupRequest!, (value) {
+      return _then(_value.copyWith(groupRequest: value) as $Val);
+    });
+  }
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EventGroupsCopyWith<$Res>? get eventGroups {
+    if (_value.eventGroups == null) {
+      return null;
+    }
+
+    return $EventGroupsCopyWith<$Res>(_value.eventGroups!, (value) {
+      return _then(_value.copyWith(eventGroups: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$GroupRequestCreateDataImplCopyWith<$Res>
+    implements $GroupRequestCreateDataCopyWith<$Res> {
+  factory _$$GroupRequestCreateDataImplCopyWith(
+          _$GroupRequestCreateDataImpl value,
+          $Res Function(_$GroupRequestCreateDataImpl) then) =
+      __$$GroupRequestCreateDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({GroupRequestDetail? groupRequest, EventGroups? eventGroups});
+
+  @override
+  $GroupRequestDetailCopyWith<$Res>? get groupRequest;
+  @override
+  $EventGroupsCopyWith<$Res>? get eventGroups;
+}
+
+/// @nodoc
+class __$$GroupRequestCreateDataImplCopyWithImpl<$Res>
+    extends _$GroupRequestCreateDataCopyWithImpl<$Res,
+        _$GroupRequestCreateDataImpl>
+    implements _$$GroupRequestCreateDataImplCopyWith<$Res> {
+  __$$GroupRequestCreateDataImplCopyWithImpl(
+      _$GroupRequestCreateDataImpl _value,
+      $Res Function(_$GroupRequestCreateDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groupRequest = freezed,
+    Object? eventGroups = freezed,
+  }) {
+    return _then(_$GroupRequestCreateDataImpl(
+      groupRequest: freezed == groupRequest
+          ? _value.groupRequest
+          : groupRequest // ignore: cast_nullable_to_non_nullable
+              as GroupRequestDetail?,
+      eventGroups: freezed == eventGroups
+          ? _value.eventGroups
+          : eventGroups // ignore: cast_nullable_to_non_nullable
+              as EventGroups?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GroupRequestCreateDataImpl implements _GroupRequestCreateData {
+  const _$GroupRequestCreateDataImpl({this.groupRequest, this.eventGroups});
+
+  factory _$GroupRequestCreateDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GroupRequestCreateDataImplFromJson(json);
+
+  @override
+  final GroupRequestDetail? groupRequest;
+  @override
+  final EventGroups? eventGroups;
+
+  @override
+  String toString() {
+    return 'GroupRequestCreateData(groupRequest: $groupRequest, eventGroups: $eventGroups)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GroupRequestCreateDataImpl &&
+            (identical(other.groupRequest, groupRequest) ||
+                other.groupRequest == groupRequest) &&
+            (identical(other.eventGroups, eventGroups) ||
+                other.eventGroups == eventGroups));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, groupRequest, eventGroups);
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GroupRequestCreateDataImplCopyWith<_$GroupRequestCreateDataImpl>
+      get copyWith => __$$GroupRequestCreateDataImplCopyWithImpl<
+          _$GroupRequestCreateDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GroupRequestCreateDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GroupRequestCreateData implements GroupRequestCreateData {
+  const factory _GroupRequestCreateData(
+      {final GroupRequestDetail? groupRequest,
+      final EventGroups? eventGroups}) = _$GroupRequestCreateDataImpl;
+
+  factory _GroupRequestCreateData.fromJson(Map<String, dynamic> json) =
+      _$GroupRequestCreateDataImpl.fromJson;
+
+  @override
+  GroupRequestDetail? get groupRequest;
+  @override
+  EventGroups? get eventGroups;
+
+  /// Create a copy of GroupRequestCreateData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GroupRequestCreateDataImplCopyWith<_$GroupRequestCreateDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 GroupUsers _$GroupUsersFromJson(Map<String, dynamic> json) {

@@ -167,14 +167,29 @@ class EventDetailsViewModel extends StateNotifier<EventDetailsState> {
     state = state.copyWith(events: updatedEvents);
   }
 
-  void incrementGroupRequest(String id, GroupRequestDetail requestDetail) {
+  void incrementGroupRequest(String id, GroupRequestCreateData requestDetail) {
     if (_isDisposed) return;
     final update = state.events;
 
     // Güncellenmiş events listesini state'e aktarın
 
     final updatedEvents = update!.copyWith(
-      groupRequest: requestDetail,
+      groupRequest: requestDetail.groupRequest,
+      eventGroups: requestDetail.eventGroups,
+      searching: null,
+    );
+
+    // Güncellenmiş events listesini state'e aktarın
+    state = state.copyWith(events: updatedEvents);
+  }
+  void incrementGroupRequestForSearch(String id, ) {
+    if (_isDisposed) return;
+    final update = state.events;
+
+    // Güncellenmiş events listesini state'e aktarın
+
+    final updatedEvents = update!.copyWith(
+      searching:true,
     );
 
     // Güncellenmiş events listesini state'e aktarın

@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:togodo/data/model/event/event_model.dart';
 import 'package:togodo/features/component/featured_image.dart';
 import 'package:togodo/ui/home/reels/group_view/has_group_view.dart';
+import 'package:togodo/ui/home/reels/group_view/search_loading_view.dart';
 import 'package:togodo/ui/home/reels/group_view/search_view.dart';
 
 import '../components/custom_paint.dart';
@@ -60,9 +61,13 @@ class ReelsGroupView extends HookConsumerWidget {
                       ? GroupSearchView(
                           item: item,
                         )
-                      : ReelsGroupFirstView(
-                          item: item,
-                        ),
+                      : item.searching == true
+                          ? GroupSearchLoadingView(
+                              item: item,
+                            )
+                          : ReelsGroupFirstView(
+                              item: item,
+                            ),
         ),
       ],
     );

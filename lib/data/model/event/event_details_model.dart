@@ -19,6 +19,7 @@ class EventDetailsModel
     String? date,
     bool? likeStatus,
     bool? joinStatus,
+    bool? searching,
     int? joinedUserCount,
     bool? joinedStatus,
     bool? isCurrentUser,

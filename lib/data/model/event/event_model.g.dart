@@ -29,6 +29,7 @@ _$EventModelImpl _$$EventModelImplFromJson(Map<String, dynamic> json) =>
       isClosedComment: json['isClosedComment'] as bool?,
       openToJoinStatus: json['openToJoinStatus'] as bool?,
       joinStatus: json['joinStatus'] as bool?,
+      searching: json['searching'] as bool?,
       rating: (json['rating'] as num?)?.toDouble(),
       ratingLenght: (json['ratingLenght'] as num?)?.toInt(),
       isPublish: json['isPublish'] as bool?,
@@ -76,6 +77,7 @@ Map<String, dynamic> _$$EventModelImplToJson(_$EventModelImpl instance) =>
       'isClosedComment': instance.isClosedComment,
       'openToJoinStatus': instance.openToJoinStatus,
       'joinStatus': instance.joinStatus,
+      'searching': instance.searching,
       'rating': instance.rating,
       'ratingLenght': instance.ratingLenght,
       'isPublish': instance.isPublish,
@@ -128,6 +130,25 @@ Map<String, dynamic> _$$GroupRequestDetailImplToJson(
       'isDeleted': instance.isDeleted,
       'eventId': instance.eventId,
       'aspNetUsers': instance.aspNetUsers,
+    };
+
+_$GroupRequestCreateDataImpl _$$GroupRequestCreateDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GroupRequestCreateDataImpl(
+      groupRequest: json['groupRequest'] == null
+          ? null
+          : GroupRequestDetail.fromJson(
+              json['groupRequest'] as Map<String, dynamic>),
+      eventGroups: json['eventGroups'] == null
+          ? null
+          : EventGroups.fromJson(json['eventGroups'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$GroupRequestCreateDataImplToJson(
+        _$GroupRequestCreateDataImpl instance) =>
+    <String, dynamic>{
+      'groupRequest': instance.groupRequest,
+      'eventGroups': instance.eventGroups,
     };
 
 _$GroupUsersImpl _$$GroupUsersImplFromJson(Map<String, dynamic> json) =>

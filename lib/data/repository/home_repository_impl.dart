@@ -461,7 +461,7 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Result<GroupRequestDetail>> createGroupRequest(String? eventId) {
+  Future<Result<GroupRequestCreateData>> createGroupRequest(String? eventId) {
     return Result.guardFuture(
       () async => _dataSource.createGroupRequest({"eventId": eventId}),
     );

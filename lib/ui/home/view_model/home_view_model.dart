@@ -292,14 +292,36 @@ class HomeViewModel extends StateNotifier<HomeState> {
     state = state.copyWith(events: updatedEvents);
   }
 
-  void incrementGroupRequest(String id, GroupRequestDetail requestDetail) {
+  void incrementGroupRequest(String id, GroupRequestCreateData requestDetail) {
     if (_isDisposed) return;
 
     final update = state.events;
     // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
     final updatedEvents = update.map((event) {
       if (event.id == id) {
-        return event.copyWith(groupRequest: requestDetail);
+        return event.copyWith(
+          groupRequest: requestDetail.groupRequest,
+          eventGroups: requestDetail.eventGroups,
+          searching: null,
+        );
+      }
+      return event;
+    }).toList();
+
+    // Güncellenmiş events listesini state'e aktarın
+
+    state = state.copyWith(events: updatedEvents);
+  }
+  void incrementGroupRequestForSearch(String id, ) {
+    if (_isDisposed) return;
+
+    final update = state.events;
+    // `state.events` listesinde `id`'ye göre event'i bulun ve güncelleyin
+    final updatedEvents = update.map((event) {
+      if (event.id == id) {
+        return event.copyWith(
+         searching: true,
+        );
       }
       return event;
     }).toList();
@@ -543,6 +565,20 @@ class HomeViewModel extends StateNotifier<HomeState> {
     String id, {
     bool homePage = false,
   }) {
+    if (!homePage) {
+      incrementGroupRequestForSearch(
+        id,
+      );
+      _ref
+          .read(eventDetailsViewModelProvider(id).notifier)
+          .incrementGroupRequestForSearch(
+        id,
+      );
+    } else {
+      incrementGroupRequestForSearch(
+        id,
+      );
+    }
     return _repository.createGroupRequest(id).then((result) {
       if (!homePage) {
         incrementGroupRequest(

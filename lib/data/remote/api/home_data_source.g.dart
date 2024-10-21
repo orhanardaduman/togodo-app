@@ -1136,21 +1136,21 @@ class _HomeDataSource implements HomeDataSource {
   }
 
   @override
-  Future<GroupRequestDetail> createGroupRequest(
+  Future<GroupRequestCreateData> createGroupRequest(
       Map<String, dynamic> data) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _options = _setStreamType<GroupRequestDetail>(Options(
+    final _options = _setStreamType<GroupRequestCreateData>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'Event/GroupRequest',
+          'Event/GroupRequestNew',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -1160,9 +1160,9 @@ class _HomeDataSource implements HomeDataSource {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late GroupRequestDetail _value;
+    late GroupRequestCreateData _value;
     try {
-      _value = GroupRequestDetail.fromJson(_result.data!);
+      _value = GroupRequestCreateData.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

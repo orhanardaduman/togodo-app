@@ -76,6 +76,16 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
       _isInnerScrollable = true,
       showMore = false,
       loadedMore = false;
+  final GlobalKey<LiquidSwipeState> _liquidSwipeKey =
+      GlobalKey<LiquidSwipeState>();
+
+  @override
+  void initState() {
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
+        (_) => _liquidSwipeKey.currentState?.triggerInitialAnimationTwice());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final model = ref.watch(homeViewModelProvider);
@@ -92,8 +102,11 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
                 bottom: MediaQuery.of(context).size.height * .1,
               ),
               child: LiquidSwipe(
-                showSide:
-                    (widget.reelsList[currentIndex].participantsLimit ?? 0) ==
+                key: _liquidSwipeKey,
+                showSide: widget.reelsList[currentIndex].participantsLimit ==
+                        null
+                    ? false
+                    : (widget.reelsList[currentIndex].participantsLimit ?? 0) ==
                         0,
                 onPageChange: (page) {
                   if (hasOpen != ((page ?? 0) >= 0.01)) {
@@ -116,19 +129,7 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
                 ],
               ),
             ),
-            if (showMore)
-              GestureDetector(
-                onTapDown: (e) {
-                  setState(() {
-                    showMore = false;
-                  });
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  color: Colors.transparent,
-                ),
-              )
+
           ],
         ),
         if ((widget.showAppbar ?? true) &&
@@ -138,23 +139,7 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
           /*   _index != 0 && _index & 5 == 0
               ? const SizedBox.shrink()
               :  */
-          Positioned(
-            bottom: 0,
-            child: userType == UserType.user
-                ? SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: ReelsBottomButton(
-                      model: widget.reelsList[currentIndex],
-                      showMore: showMore,
-                      onShowMore: (val) {
-                        setState(() {
-                          showMore = val;
-                        });
-                      },
-                    ),
-                  )
-                : const GuestEventButton(),
-          ),
+          SizedBox(),
       ],
     );
   }
@@ -214,6 +199,7 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
             index,
             context,
             viewModel,
+            isGuest ? UserType.guest : UserType.user,
           );
         },
         controller: widget.controller,
@@ -224,6 +210,7 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
             currentIndex = value;
             showMore = false;
           });
+          _liquidSwipeKey.currentState?.triggerInitialAnimationTwice();
           if (value % 8 == 0) {
             if (isGuest) {
               viewModel.fetchMoreReelsGuest();
@@ -236,7 +223,8 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
     );
   }
 
-  SizedBox reelsMain(int index, BuildContext context, HomeViewModel model) {
+  SizedBox reelsMain(
+      int index, BuildContext context, HomeViewModel model, UserType userType) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -247,6 +235,14 @@ class _ReelsViewerState extends ConsumerState<ReelsViewer> {
         onLike: widget.onLike,
         onTap: widget.onTap,
         onShare: widget.onShare,
+        showButton: !hasOpen,
+        isShowMore: showMore,
+        userType: userType,
+        onShowMore: (val) {
+          setState(() {
+            showMore = val;
+          });
+        },
       ),
     );
   }

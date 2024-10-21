@@ -108,7 +108,7 @@ abstract class HomeRepository {
     String? eventId,
     String? sortNumber,
   );
-  Future<Result<GroupRequestDetail>> createGroupRequest(
+  Future<Result<GroupRequestCreateData>> createGroupRequest(
     String? eventId,
   );
 

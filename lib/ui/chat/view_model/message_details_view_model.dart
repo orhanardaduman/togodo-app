@@ -213,7 +213,12 @@ class MessageDetailsNotifier extends StateNotifier<MessageDetailsState> {
       return result.isSuccess;
     });
   }
-
+  void setLoading (){
+    state = state.copyWith(sending: true);
+  }
+  void stopLoading(){
+    state = state.copyWith(sending: false);
+  }
   Future<void> pickImage({
     required ImageSource source,
     BuildContext? context,

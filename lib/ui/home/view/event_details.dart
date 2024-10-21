@@ -33,6 +33,7 @@ import '../../../gen/assets.gen.dart';
 import '../../event/widget/event_rating_popup.dart';
 import '../reels/group_view_mini/mini_first_view.dart';
 import '../reels/group_view_mini/mini_has_group_view.dart';
+import '../reels/group_view_mini/mini_search_loading_view.dart';
 import '../reels/group_view_mini/mini_search_view.dart';
 
 @RoutePage()
@@ -149,9 +150,13 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                             ? MiniGroupSearchView(
                                                 item: model.events!,
                                               )
-                                            : MiniReelsGroupFirstView(
-                                                item: model.events!,
-                                              ),
+                                            : model.events?.searching == true
+                                                ? MiniGroupSearchLoadingView(
+                                                    item: model.events!,
+                                                  )
+                                                : MiniReelsGroupFirstView(
+                                                    item: model.events!,
+                                                  ),
                                   ),
                                 const SizedBox(
                                   height: 12,
@@ -395,11 +400,11 @@ class _EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                                                 // Burada yeni post ekleme formunuzu oluşturun
                                                 return DraggableScrollableSheet(
                                                   expand: false,
-                                                  initialChildSize:
-                                                      0.9, // Başlangıç boyutu
+                                                  initialChildSize: 0.9,
+                                                  // Başlangıç boyutu
                                                   maxChildSize: 0.9,
-                                                  minChildSize:
-                                                      0.9, // Minimum kaplayacağı boyut
+                                                  minChildSize: 0.9,
+                                                  // Minimum kaplayacağı boyut
                                                   builder: (_, controller) {
                                                     return CommentPage(
                                                       eventId: widget.eventId,

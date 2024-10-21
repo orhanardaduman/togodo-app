@@ -605,11 +605,6 @@
   "canStartChatWhenReady": "You can start chet here when group is ready \uD83C\uDF89",
   "redirectingTOTicket": "Redirecting to ticket...",
   "sending": "Sending ",
-  "allReadyFriend": "All ready friend"
-
-
-
-
-
-
+  "allReadyFriend": "All ready friend",
+  "creatingGroupRequest": "Creating group request..."
 }

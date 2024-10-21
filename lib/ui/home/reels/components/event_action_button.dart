@@ -289,45 +289,51 @@ class EventButtonState extends ConsumerState<EventButton> {
     );
   }
 
-  CustomButton requestWaitingButton(
+  SizedBox requestWaitingButton(
     L10n l10n,
     AppTheme theme,
     bool themeMode,
     HomeViewModel notifier,
   ) {
-    return CustomButton(
-      text: l10n.requestWaiting,
-      style: theme.textTheme.bodyLarge.copyWith(
-        color: themeMode ? MainColors.white : MainColors.primary,
-        fontWeight: FontWeight.w700,
-      ),
-      bgColor: MainColors.primary.withOpacity(0.2),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(
-          color: MainColors.primary400,
-          width: 3,
+    return SizedBox(
+      height: 58,
+      width: MediaQuery.of(context).size.width - 48,
+
+      child: CustomButton(
+
+        text: l10n.requestWaiting,
+        style: theme.textTheme.bodyLarge.copyWith(
+          color: themeMode ? MainColors.white : MainColors.primary,
+          fontWeight: FontWeight.w700,
         ),
+        bgColor: MainColors.primary.withOpacity(0.2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: const BorderSide(
+            color: MainColors.primary400,
+            width: 3,
+          ),
+        ),
+        onPressed: () {
+          warningShowDialog(
+            l10n.leaveEvent,
+            l10n.leaveEventInfo,
+            l10n.leaveEvent,
+            () async {
+              final response = await notifier.eventRemoveJoinRequest(
+                widget.model.id!,
+                homePage: widget.isHomePage,
+              );
+              if (response) {
+                // ignore: use_build_context_synchronously
+                Navigator.of(context).pop();
+              }
+            },
+            theme,
+            context,
+          );
+        },
       ),
-      onPressed: () {
-        warningShowDialog(
-          l10n.leaveEvent,
-          l10n.leaveEventInfo,
-          l10n.leaveEvent,
-          () async {
-            final response = await notifier.eventRemoveJoinRequest(
-              widget.model.id!,
-              homePage: widget.isHomePage,
-            );
-            if (response) {
-              // ignore: use_build_context_synchronously
-              Navigator.of(context).pop();
-            }
-          },
-          theme,
-          context,
-        );
-      },
     );
   }
 
@@ -339,6 +345,7 @@ class EventButtonState extends ConsumerState<EventButton> {
   ) {
     return SizedBox(
       width: MediaQuery.of(context).size.width - 48,
+      height: 58,
       child: CustomButton(
         text: (widget.model.isQuotaFull ?? false) == true
             ? l10n.getInLine
@@ -385,6 +392,7 @@ class EventButtonState extends ConsumerState<EventButton> {
   ) {
     return Container(
       width: MediaQuery.of(context).size.width - 48,
+      height: 58,
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -421,7 +429,7 @@ class EventButtonState extends ConsumerState<EventButton> {
   ) {
     return SizedBox(
       width: MediaQuery.of(context).size.width - 48,
-      height: 60,
+      height: 58,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

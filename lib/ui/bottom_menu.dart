@@ -182,7 +182,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
       ..updateMessage(msg.typeId == '1' ? true : false)
       ..updateNotification(_newNotification);
     _showRatings(msg);
-    _wonPopup(msg);
+    //_wonPopup(msg);
     _chatPopup(msg);
     _ratePopup(msg);
     _deleteEvent(msg);
@@ -226,6 +226,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
       }
       showDialog<MessagePopUpWidget>(
         context: context,
+        barrierColor: Colors.transparent,
         builder: (BuildContext context) {
           return MessagePopUpWidget(
             imgUrl: msg.userProfileImage ?? '',
@@ -249,6 +250,7 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
       }
       showDialog<MessagePopUpWidget>(
         context: context,
+        barrierColor: Colors.transparent,
         builder: (BuildContext context) {
           return MessagePopUpWidget(
             imgUrl: msg.userProfileImage ?? '',

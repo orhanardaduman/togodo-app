@@ -34,11 +34,13 @@ class FlatMessageInputBox extends StatefulHookConsumerWidget {
     this.onSubmitted,
     this.rightIcon = true,
     this.inputMessage,
+    this.isNew,
   });
   final Widget? prefix;
   final Widget? suffix;
   final bool? roundedCorners;
   final bool rightIcon;
+  final bool? isNew;
   final void Function(String)? onChanged;
   final void Function(String)? onSubmitted;
   final TextEditingController controller;
@@ -84,8 +86,16 @@ class _FlatMessageInputBoxState extends ConsumerState<FlatMessageInputBox>
     final theme = ref.watch(appThemeProvider);
     final l10n = useL10n();
     final model = ref.watch(messageDetailsProvider(widget.roomId));
-    final notifier = ref.read(messageDetailsProvider(widget.roomId).notifier);
-    final viewModel = ref.watch(messageDetailsProvider(widget.roomId));
+    final viewModel = (true == widget.isNew
+        ? ref.read(eventGroupDetailsProvider(widget.roomId))
+        : ref.read(
+            messageDetailsProvider(widget.roomId),
+          ));
+    final notifier = (true == widget.isNew
+        ? ref.read(eventGroupDetailsProvider(widget.roomId).notifier)
+        : ref.read(
+            messageDetailsProvider(widget.roomId).notifier,
+          ));
 
     double cornerRadius() {
       if (widget.roundedCorners != null && widget.roundedCorners! == true) {
@@ -118,12 +128,26 @@ class _FlatMessageInputBoxState extends ConsumerState<FlatMessageInputBox>
                 borderRadius: BorderRadius.circular(cornerRadius()),
               ),
               child: AudioRecorder(
-                onDelete: notifier.updateVoidRecod,
+                onDelete: () {
+                  if (true == widget.isNew) {
+                    (notifier as EventGroupDetailNotifier).updateVoidRecod();
+                  } else {
+                    (notifier as MessageDetailsNotifier).updateVoidRecod();
+                  }
+                },
                 onStop: (String path) async {
-                  notifier.updateVoidRecod();
+                  if (true == widget.isNew) {
+                    (notifier as EventGroupDetailNotifier).updateVoidRecod();
+                  } else {
+                    (notifier as MessageDetailsNotifier).updateVoidRecod();
+                  }
                   final postService = PostService();
                   this.path = path;
-
+                  if (true == widget.isNew) {
+                    (notifier as EventGroupDetailNotifier).setLoading();
+                  } else {
+                    (notifier as MessageDetailsNotifier).setLoading();
+                  }
                   await postService.sendMessage(
                     '',
                     chatRoomId: widget.roomId,
@@ -131,6 +155,11 @@ class _FlatMessageInputBoxState extends ConsumerState<FlatMessageInputBox>
                     file: [File(Uri.parse(path).path)],
                     isGroup: model.isGrupChat,
                   );
+                  if (true == widget.isNew) {
+                    (notifier as EventGroupDetailNotifier).stopLoading();
+                  } else {
+                    (notifier as MessageDetailsNotifier).stopLoading();
+                  }
                 },
               ),
             )
@@ -151,7 +180,9 @@ class _FlatMessageInputBoxState extends ConsumerState<FlatMessageInputBox>
                   ),
                 ),
                 InkWell(
-                  onTap: viewModel.isSubmit
+                  onTap: ((true == widget.isNew)
+                          ? (viewModel as EventGroupDetailState).isSubmit
+                          : (viewModel as MessageDetailsState).isSubmit)
                       ? () {}
                       : () {
                           if (widget.onSubmitted != null) {
@@ -170,7 +201,9 @@ class _FlatMessageInputBoxState extends ConsumerState<FlatMessageInputBox>
                       left: 12,
                     ),
                     child: CustomCircleButton(
-                      backgroundColor: viewModel.isSubmit
+                      backgroundColor: ((true == widget.isNew)
+                          ? (viewModel as EventGroupDetailState).isSubmit
+                          : (viewModel as MessageDetailsState).isSubmit)
                           ? MainColors.grey500
                           : MainColors.primary,
                       iconPath: Assets.icons.bold.send.path,
@@ -245,6 +278,7 @@ class _FlatMessageInputBoxItemState
             messageDetailsProvider(widget.roomId).notifier,
           ));
     return FlatMessageInputBox(
+      isNew: widget.isNew,
       controller: true == widget.isNew
           ? (viewModelNotifier as EventGroupDetailNotifier)
               .textEditingController

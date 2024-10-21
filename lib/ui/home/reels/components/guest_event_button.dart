@@ -15,6 +15,7 @@ class GuestEventButton extends HookConsumerWidget {
     final theme = ref.watch(appThemeProvider);
     final l10n = useL10n();
     return SafeArea(
+      bottom: false,
       child: Container(
         padding: EdgeInsets.only(
           left: 24,

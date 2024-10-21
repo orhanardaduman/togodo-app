@@ -42,7 +42,7 @@ class ProfilContent extends HookConsumerWidget {
 // Katıldığım etkinliklerin gösterilip gösterilmeyeceğini kontrol eder
     final showJoinedEvents = data!.isCurrentUser!
         ? true // Mevcut kullanıcı için her zaman göster
-        : data!
+        : !data!
             .isHideEventJoinedUserToCurrentUser!; // Diğer kullanıcı için koşula bağlı göster
 
     return data != null &&

@@ -170,8 +170,8 @@ abstract class HomeDataSource {
     @Body() Map<String, dynamic> data,
   );
 
-  @POST('Event/GroupRequest')
-  Future<GroupRequestDetail> createGroupRequest(
+  @POST('Event/GroupRequestNew')
+  Future<GroupRequestCreateData> createGroupRequest(
     @Body() Map<String, dynamic> data,
   );
 

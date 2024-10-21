@@ -606,6 +606,6 @@
   "canStartChatWhenReady": "Grubun hazır olduğunda burada sohbeti başlatabilirsin \uD83C\uDF89",
   "redirectingTOTicket": "Bilet almaya yönlendiriyor...",
   "sending": "Gönderiliyor ",
-  "allReadyFriend": "Arkadaşsınız"
-
+  "allReadyFriend": "Arkadaşsınız",
+  "creatingGroupRequest": "Gurup isteği oluşturuluyor..."
 }

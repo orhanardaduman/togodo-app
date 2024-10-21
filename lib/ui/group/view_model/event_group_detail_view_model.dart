@@ -149,7 +149,12 @@ class EventGroupDetailNotifier extends StateNotifier<EventGroupDetailState> {
   void updateVoidRecod() {
     state = state.copyWith(isVoiceRecord: !state.isVoiceRecord);
   }
-
+  void setLoading (){
+    state = state.copyWith(sending: true);
+  }
+  void stopLoading(){
+    state = state.copyWith(sending: false);
+  }
   Future<void> sendMessage() async {
     if (_isDisposed) return;
 

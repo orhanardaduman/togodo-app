@@ -27,6 +27,7 @@ class EventModel with _$EventModel implements EventCommonProperties {
     bool? isClosedComment,
     bool? openToJoinStatus,
     bool? joinStatus,
+    bool? searching,
     double? rating,
     int? ratingLenght,
     bool? isPublish,
@@ -71,6 +72,17 @@ class GroupRequestDetail with _$GroupRequestDetail {
 
   factory GroupRequestDetail.fromJson(Map<String, Object?> json) =>
       _$GroupRequestDetailFromJson(json);
+}
+
+@freezed
+class GroupRequestCreateData with _$GroupRequestCreateData {
+  const factory GroupRequestCreateData({
+    GroupRequestDetail? groupRequest,
+    EventGroups? eventGroups,
+  }) = _GroupRequestCreateData;
+
+  factory GroupRequestCreateData.fromJson(Map<String, Object?> json) =>
+      _$GroupRequestCreateDataFromJson(json);
 }
 
 @freezed

@@ -15,10 +15,13 @@ class ReelsBottomButton extends HookConsumerWidget {
       {required this.showMore,
       required this.model,
       required this.onShowMore,
+        this.bottom = false,
       super.key});
+
   final EventModel model;
-  final bool showMore;
+  final bool showMore,bottom;
   final Function(bool newValue) onShowMore;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(homeViewModelProvider.notifier);
@@ -34,6 +37,7 @@ class ReelsBottomButton extends HookConsumerWidget {
       blurValue: 1,
       builder: (context) {
         return SafeArea(
+          bottom: !bottom,
           child: Container(
             padding: EdgeInsets.only(
               left: 24,
@@ -41,14 +45,16 @@ class ReelsBottomButton extends HookConsumerWidget {
               top: context.device.isAndroidDevice ? 10 : 1,
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 EventButton(
-                    model: model,
-                    enableShowCase: homeViewModel.enableShowcase,
-                    isHomePage: true,
-                    showMore: showMore,
-                    onShowMore: onShowMore),
+                  model: model,
+                  enableShowCase: homeViewModel.enableShowcase,
+                  isHomePage: true,
+                  showMore: showMore,
+                  onShowMore: onShowMore,
+                ),
               ],
             ),
           ),
