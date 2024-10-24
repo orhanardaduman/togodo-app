@@ -1,6 +1,6 @@
 name: togodo
 description: A new Flutter project.
-version: 1.1.5+96
+version: 1.1.7+97
 publish_to: 'none' 
 
 
@@ -147,7 +147,7 @@ dependencies:
   url_launcher: ^6.3.0
   theme_button: ^1.0.4
   flutter_dotenv: ^5.1.0
-  map_launcher: ^3.1.0
+  map_launcher: ^3.5.0
   flutter_slidable: ^3.0.1
   flutter_keyboard_visibility: ^6.0.0
   vibration: ^2.0.0

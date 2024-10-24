@@ -607,5 +607,6 @@
   "redirectingTOTicket": "Bilet almaya yönlendiriyor...",
   "sending": "Gönderiliyor ",
   "allReadyFriend": "Arkadaşsınız",
-  "creatingGroupRequest": "Gurup isteği oluşturuluyor..."
+  "creatingGroupRequest": "Gurup isteği oluşturuluyor...",
+  "removeFriendNew": "Arkadaşlıktan Çık"
 }

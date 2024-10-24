@@ -18,6 +18,7 @@ _$MessageTimelineModelImpl _$$MessageTimelineModelImplFromJson(
       lastMessage: json['lastMessage'] as String?,
       contentType: json['contentType'] as String?,
       lastMessageContentType: json['lastMessageContentType'] as String?,
+      lastMessageSenderId: json['lastMessageSenderId'] as String?,
       lastMessageTime: json['lastMessageTime'] == null
           ? null
           : DateTime.parse(json['lastMessageTime'] as String),
@@ -51,6 +52,7 @@ Map<String, dynamic> _$$MessageTimelineModelImplToJson(
       'lastMessage': instance.lastMessage,
       'contentType': instance.contentType,
       'lastMessageContentType': instance.lastMessageContentType,
+      'lastMessageSenderId': instance.lastMessageSenderId,
       'lastMessageTime': instance.lastMessageTime?.toIso8601String(),
       'isSeen': instance.isSeen,
       'isMuted': instance.isMuted,

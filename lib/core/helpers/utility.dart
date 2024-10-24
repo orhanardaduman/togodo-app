@@ -134,9 +134,8 @@ Future<void> copyLinkNewText(
   ];
   final random = Random();
 
-  final shareText = '${starts[random.nextInt(starts.length)]}\n'
-      '$eventName\n\n'
-      "${splited.sublist(0, splited.length > 12 ? 12 : splited.length)} ... *devamı togodo'da*\n\n"
+  final shareText = '${starts[random.nextInt(starts.length)]} '
+      "... *devamı togodo'da*\n\n"
       '$url';
   showToast(
     context,
@@ -244,9 +243,8 @@ Future<void> shareEventPlusWithImage(
   ];
   final random = Random();
 
-  final shareText = '${starts[random.nextInt(starts.length)]}\n'
-      '$eventName\n\n'
-      "${splited.sublist(0, splited.length > 12 ? 12 : splited.length)} ... *devamı togodo'da*\n\n"
+  final shareText = '${starts[random.nextInt(starts.length)]} '
+      "... *devamı togodo'da*\n\n"
       '$url';
   if (image != null) {
     await Share.shareXFiles(

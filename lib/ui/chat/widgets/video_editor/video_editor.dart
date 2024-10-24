@@ -11,6 +11,7 @@ import 'package:togodo/core/theme/app_theme.dart';
 import 'package:togodo/ui/chat/services/post_service.dart';
 import 'package:togodo/ui/chat/view_model/message_details_view_model.dart';
 import 'package:togodo/ui/chat/widgets/video_editor/export_service.dart';
+import 'package:togodo/ui/group/view_model/event_group_detail_view_model.dart';
 import 'package:video_editor/video_editor.dart';
 
 class VideoEditor extends StatefulHookConsumerWidget {
@@ -18,12 +19,15 @@ class VideoEditor extends StatefulHookConsumerWidget {
     required this.file,
     required this.roomId,
     required this.isSearchRoute,
+    this.isNew = false,
     super.key,
   });
 
   final File file;
   final String roomId;
   final bool isSearchRoute;
+  final bool isNew;
+
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _VideoEditorState();
 }
@@ -101,11 +105,19 @@ class _VideoEditorState extends ConsumerState<VideoEditor> {
         onCompleted: (file) {
           _isExporting.value = false;
           if (!mounted) return;
-          ref.read(messageDetailsProvider(widget.roomId).notifier)
-            ..addMediaList([file])
-            ..sendMessage(
-              isSearchRoute: widget.isSearchRoute,
-            ).then((value) => Navigator.pop(context));
+          if(widget.isNew){
+            ref.read(eventGroupDetailsProvider(widget.roomId).notifier)
+              ..addMediaList([file])
+              ..sendMessage();
+            Navigator.pop(context);
+          }else{
+            ref.read(messageDetailsProvider(widget.roomId).notifier)
+              ..addMediaList([file])
+              ..sendMessage(
+                isSearchRoute: widget.isSearchRoute,
+              ).then((value) => Navigator.pop(context));
+          }
+
         },
       );
     }

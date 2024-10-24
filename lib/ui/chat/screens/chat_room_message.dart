@@ -193,7 +193,7 @@ class _ChatRoomMessageState extends ConsumerState<ChatRoomMessage>
         ],
       ),
       children: [
-        if (viewModel.chatData.ext.isNullOrEmpty && !viewModel.loading)
+        if (viewModel.chatData.ext.isNullOrEmpty || viewModel.loading)
           const SizedBox.shrink()
         else
           InkWell(

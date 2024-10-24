@@ -606,5 +606,7 @@
   "redirectingTOTicket": "Redirecting to ticket...",
   "sending": "Sending ",
   "allReadyFriend": "All ready friend",
-  "creatingGroupRequest": "Creating group request..."
+  "creatingGroupRequest": "Creating group request...",
+  "removeFriendNew": "Remove Friend"
+
 }

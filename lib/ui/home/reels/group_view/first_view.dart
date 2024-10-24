@@ -20,7 +20,6 @@ class ReelsGroupFirstView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userModel = ref.watch(userViewModelProvider).tokenModel;
     final l10n = useL10n();
     final viewModel = ref.read(homeViewModelProvider.notifier);
     final theme = ref.watch(appThemeProvider);

@@ -12,12 +12,15 @@ class GroupBloc extends Bloc<GroupEvents, GroupStates> {
       (event, emit) async {
         emit(GroupLoading());
         // try {
-        final response = await api.getGroup(event.id);
-        if (response != null) {
-          emit(GroupLoaded(response));
-        } else {
-          emit(GroupFailed("Beklenmedik bir hata ile karşılaşıldı"));
+        if(event.id != null){
+          final response = await api.getGroup(event.id!);
+          if (response != null) {
+            emit(GroupLoaded(response));
+          } else {
+            emit(GroupFailed("Beklenmedik bir hata ile karşılaşıldı"));
+          }
         }
+
         //} catch (e) {
         //  emit(GroupFailed("Beklenmedik bir hata ile karşılaşıldı"));
         //}

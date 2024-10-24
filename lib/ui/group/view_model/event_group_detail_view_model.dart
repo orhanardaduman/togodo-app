@@ -278,6 +278,7 @@ class EventGroupDetailNotifier extends StateNotifier<EventGroupDetailState> {
                 file: File(pickedFile.path),
                 roomId: roomId!,
                 isSearchRoute: isSearchRoute,
+                isNew: true,
               ),
             ),
           );

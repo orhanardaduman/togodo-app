@@ -32,15 +32,29 @@ class FCM {
     StackRouter router,
     WidgetRef ref,
     String currentUserId,
-  ) {
+  ) async {
+    var lastMessage = await FirebaseMessaging.instance.getInitialMessage();
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      if (message.data["toUser"] == currentUserId) {
-        navigateBasedOnType(
-          message,
+      if (lastMessage == null) {
+        if (message.data["toUser"] == currentUserId) {
+          navigateBasedOnType(
+            message,
+            router,
+          );
+        }
+      }
+    });
+
+    if (lastMessage != null) {
+      if (lastMessage.data["toUser"] == currentUserId) {
+        await navigateBasedOnType(
+          lastMessage,
           router,
         );
       }
-    });
+      lastMessage = null;
+    }
+
     FirebaseMessaging.onMessage.listen(
       (message) {
         try {

@@ -20,6 +20,9 @@ enum CacheItems {
   Future<List<String>?> readSecureDataList() async {
     final preferences = await SharedPreferences.getInstance();
     final readData = preferences.getStringList(name);
+   //readData?.add("WWGpprVjVgcVQSsMFXN7MOhKZJf2");
+   //readData?.add("6ruX1cLqY8Pc1cLnaRapmxnywgD3");
+   //readData?.add("kbn0gtuTvue0mVAXBNhhwrqO3no1");
     return readData;
   }
 

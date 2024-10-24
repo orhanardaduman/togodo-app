@@ -5,6 +5,7 @@ import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -117,9 +118,21 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
   }
 
   void _initFCM() {
+
     firebaseMessaging = FCM();
 
     firebaseMessaging.streamCtlr.stream.listen(_changeWon);
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      final userModel = ref.watch(userViewModelProvider).tokenModel;
+
+      firebaseMessaging.setNotifications(
+        context,
+        AutoRouter.of(context),
+        ref,
+        userModel?.userId ?? '',
+      );
+    });
+
   }
 
   void _showRatings(FcmModel msg) {
@@ -298,14 +311,8 @@ class _BottomMenuPageState extends ConsumerState<BottomMenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    final userModel = ref.watch(userViewModelProvider).tokenModel;
 
-    firebaseMessaging.setNotifications(
-      context,
-      AutoRouter.of(context),
-      ref,
-      userModel?.userId ?? '',
-    );
+
     return AutoTabsScaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,

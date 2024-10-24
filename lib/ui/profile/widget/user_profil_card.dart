@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:blur/blur.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -31,6 +32,7 @@ import 'package:togodo/ui/profile/widget/user_card_count_widget.dart';
 
 class UserProfileCard extends StatefulHookConsumerWidget {
   const UserProfileCard({this.data, super.key, this.userId});
+
   final ProfilModel? data;
   final String? userId;
 
@@ -42,6 +44,7 @@ class UserProfileCard extends StatefulHookConsumerWidget {
 class _UserProfileCardState extends ConsumerState<UserProfileCard> {
   bool _isShowMoreFriends = false, readMore = false;
   int _type = 0;
+
   @override
   void initState() {
     super.initState();
@@ -186,9 +189,9 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                                 TextSpan(
                                                     text:
                                                         '${(widget.data?.followersCount ?? 3) - 3} ${l10n.other}'),
-                                              if ((widget.data?.followersCount ??
-                                                          3) -
-                                                      3 >
+                                              if ((widget.data
+                                                          ?.followersCount ??
+                                                      0) >
                                                   0)
                                                 TextSpan(
                                                   text: l10n.fallowingAlt,
@@ -229,7 +232,6 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                         ),
                                     ],
                                   ),
-
                                   if (userModel != null &&
                                       userModel.token != null &&
                                       !(userModel.token!.bioCompletion ??
@@ -279,27 +281,6 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                                 ],
                               ),
                             if (_type == 0) const SizedBox(height: 14),
-                            if(
-                            !(widget.data?.isCurrentUser ?? false) &&
-                                (widget.data!.isFriend ?? false)
-                            )
-                              Column(
-                                children: [
-
-                                  PrimaryText(l10n.allReadyFriend,
-                                    style: theme.textTheme.bodyMedium.copyWith(
-                                      color: _isShowMoreFriends
-                                          ? MainColors.primary
-                                          : (theme.mode == ThemeMode.dark
-                                          ? MainColors.grey50
-                                          : MainColors.grey600),
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 12),
-
-                                ],
-                              ),
                             if (userModel != null &&
                                 userModel.token != null &&
                                 userModel.token!.userType == 1)
@@ -357,18 +338,132 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
                             else if (widget.userId == null)
                               currentUserBottom(router, l10n, theme)
                             else if (widget.data!.isFriend!)
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  showLargeMoreButton(
-                                    context,
-                                    theme,
-                                    l10n,
-                                    model,
-                                  ),
-                                  messageButton(theme, router),
-                                ],
+                              SizedBox(
+                                height: 50,
+
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    Expanded(
+                                        child: DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        customButton: Container(
+                                          padding: EdgeInsets.all(10,),
+                                          decoration: BoxDecoration(
+                                            color: theme.mode == ThemeMode.dark
+                                                ? MainColors.dark3
+                                                : MainColors.grey200,
+                                            borderRadius: BorderRadius.circular(
+                                              100,
+                                            ),
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              Center(
+                                                child: PrimaryText(
+                                                  l10n.allReadyFriend,
+                                                  style: theme
+                                                      .textTheme.bodyMedium
+                                                      .copyWith(
+                                                    color: (theme.mode ==
+                                                            ThemeMode.dark
+                                                        ? MainColors.grey50
+                                                        : MainColors.grey600),
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                  right: 0,
+                                                  top: 0,
+                                                  bottom: 0,
+                                                  child: Assets.icons.bold.arrowDown.svg()),
+                                            ],
+                                          ),
+                                        ),
+                                        items: [
+                                          DropdownMenuItem<int>(
+                                            value: 1,
+                                            child: Center(
+                                              child: PrimaryText(
+                                                l10n.removeFriend,
+                                                style: theme.textTheme.bodyMedium
+                                                    .copyWith(
+                                                  color:
+                                                      (theme.mode == ThemeMode.dark
+                                                          ? MainColors.grey50
+                                                          : MainColors.grey600),
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        onChanged: (value) {
+                                          if (value == 1) {
+                                            model.removeFriend();
+                                          }
+                                        },
+                                        dropdownStyleData: DropdownStyleData(
+                                          width:
+                                              MediaQuery.of(context).size.width -
+                                                  48,
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 5,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: theme.mode == ThemeMode.dark
+                                                ? MainColors.dark2
+                                                : MainColors.grey200,
+                                            borderRadius: BorderRadius.circular(
+                                              100,
+                                            ),
+                                          ),
+                                          offset: const Offset(0, -10),
+                                        ),
+                                        menuItemStyleData:
+                                            const MenuItemStyleData(
+                                          padding: EdgeInsets.only(
+                                            left: 16,
+                                            right: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                        /*   CustomButton(
+                                        text: l10n.allReadyFriend,
+                                        startNull: true,
+                                        bgColor: theme.mode == ThemeMode.dark
+                                            ? MainColors.dark3
+                                            : MainColors.grey200,
+                                        style: theme.textTheme.bodyMedium.copyWith(
+                                          color:  (theme.mode == ThemeMode.dark
+                                              ? MainColors.grey50
+                                              : MainColors.grey600),
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        mode: ButtonMode.dark,
+                                        onPressed: () {
+
+                                        },
+                                        rightIcon: Assets.icons.bold.arrowDown.path,
+
+                                        radius: 100,
+                                      ),*/
+                                        ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    messageButton(theme, router),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    showMoreButton(
+                                      theme,
+                                      model,
+                                    ),
+                                  ],
+                                ),
                               )
                             else if (widget
                                 .data!.friendRequestUserToCurrentUser!)
@@ -726,7 +821,7 @@ class _UserProfileCardState extends ConsumerState<UserProfileCard> {
         iconColor: theme.mode == ThemeMode.dark
             ? MainColors.grey50
             : MainColors.grey600,
-        iconPath: Assets.icons.light.message.path,
+        iconPath: Assets.icons.bold.message.path,
         onPressed: () {
           if (widget.data!.id != null) {
             router.push(

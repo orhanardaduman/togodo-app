@@ -29,6 +29,7 @@ mixin _$MessageTimelineModel {
   String? get lastMessage => throw _privateConstructorUsedError;
   String? get contentType => throw _privateConstructorUsedError;
   String? get lastMessageContentType => throw _privateConstructorUsedError;
+  String? get lastMessageSenderId => throw _privateConstructorUsedError;
   DateTime? get lastMessageTime => throw _privateConstructorUsedError;
   bool? get isSeen => throw _privateConstructorUsedError;
   bool? get isMuted => throw _privateConstructorUsedError;
@@ -71,6 +72,7 @@ abstract class $MessageTimelineModelCopyWith<$Res> {
       String? lastMessage,
       String? contentType,
       String? lastMessageContentType,
+      String? lastMessageSenderId,
       DateTime? lastMessageTime,
       bool? isSeen,
       bool? isMuted,
@@ -113,6 +115,7 @@ class _$MessageTimelineModelCopyWithImpl<$Res,
     Object? lastMessage = freezed,
     Object? contentType = freezed,
     Object? lastMessageContentType = freezed,
+    Object? lastMessageSenderId = freezed,
     Object? lastMessageTime = freezed,
     Object? isSeen = freezed,
     Object? isMuted = freezed,
@@ -165,6 +168,10 @@ class _$MessageTimelineModelCopyWithImpl<$Res,
       lastMessageContentType: freezed == lastMessageContentType
           ? _value.lastMessageContentType
           : lastMessageContentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastMessageSenderId: freezed == lastMessageSenderId
+          ? _value.lastMessageSenderId
+          : lastMessageSenderId // ignore: cast_nullable_to_non_nullable
               as String?,
       lastMessageTime: freezed == lastMessageTime
           ? _value.lastMessageTime
@@ -248,6 +255,7 @@ abstract class _$$MessageTimelineModelImplCopyWith<$Res>
       String? lastMessage,
       String? contentType,
       String? lastMessageContentType,
+      String? lastMessageSenderId,
       DateTime? lastMessageTime,
       bool? isSeen,
       bool? isMuted,
@@ -287,6 +295,7 @@ class __$$MessageTimelineModelImplCopyWithImpl<$Res>
     Object? lastMessage = freezed,
     Object? contentType = freezed,
     Object? lastMessageContentType = freezed,
+    Object? lastMessageSenderId = freezed,
     Object? lastMessageTime = freezed,
     Object? isSeen = freezed,
     Object? isMuted = freezed,
@@ -339,6 +348,10 @@ class __$$MessageTimelineModelImplCopyWithImpl<$Res>
       lastMessageContentType: freezed == lastMessageContentType
           ? _value.lastMessageContentType
           : lastMessageContentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastMessageSenderId: freezed == lastMessageSenderId
+          ? _value.lastMessageSenderId
+          : lastMessageSenderId // ignore: cast_nullable_to_non_nullable
               as String?,
       lastMessageTime: freezed == lastMessageTime
           ? _value.lastMessageTime
@@ -417,6 +430,7 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
       this.lastMessage,
       this.contentType,
       this.lastMessageContentType,
+      this.lastMessageSenderId,
       this.lastMessageTime,
       this.isSeen,
       this.isMuted,
@@ -455,6 +469,8 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
   final String? contentType;
   @override
   final String? lastMessageContentType;
+  @override
+  final String? lastMessageSenderId;
   @override
   final DateTime? lastMessageTime;
   @override
@@ -495,7 +511,7 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
 
   @override
   String toString() {
-    return 'MessageTimelineModel(chatRoomId: $chatRoomId, chatRoomName: $chatRoomName, userId: $userId, userFullName: $userFullName, userName: $userName, userImageUrl: $userImageUrl, lastMessage: $lastMessage, contentType: $contentType, lastMessageContentType: $lastMessageContentType, lastMessageTime: $lastMessageTime, isSeen: $isSeen, isMuted: $isMuted, isDeleted: $isDeleted, isPinned: $isPinned, isBlocked: $isBlocked, isWriting: $isWriting, isReplied: $isReplied, isCurrentUser: $isCurrentUser, isOnline: $isOnline, isGroupChat: $isGroupChat, isSeenGroupChat: $isSeenGroupChat, repliedMessageId: $repliedMessageId, unseenMessagesCount: $unseenMessagesCount, joinedUsers: $joinedUsers)';
+    return 'MessageTimelineModel(chatRoomId: $chatRoomId, chatRoomName: $chatRoomName, userId: $userId, userFullName: $userFullName, userName: $userName, userImageUrl: $userImageUrl, lastMessage: $lastMessage, contentType: $contentType, lastMessageContentType: $lastMessageContentType, lastMessageSenderId: $lastMessageSenderId, lastMessageTime: $lastMessageTime, isSeen: $isSeen, isMuted: $isMuted, isDeleted: $isDeleted, isPinned: $isPinned, isBlocked: $isBlocked, isWriting: $isWriting, isReplied: $isReplied, isCurrentUser: $isCurrentUser, isOnline: $isOnline, isGroupChat: $isGroupChat, isSeenGroupChat: $isSeenGroupChat, repliedMessageId: $repliedMessageId, unseenMessagesCount: $unseenMessagesCount, joinedUsers: $joinedUsers)';
   }
 
   @override
@@ -520,6 +536,8 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
                 other.contentType == contentType) &&
             (identical(other.lastMessageContentType, lastMessageContentType) ||
                 other.lastMessageContentType == lastMessageContentType) &&
+            (identical(other.lastMessageSenderId, lastMessageSenderId) ||
+                other.lastMessageSenderId == lastMessageSenderId) &&
             (identical(other.lastMessageTime, lastMessageTime) ||
                 other.lastMessageTime == lastMessageTime) &&
             (identical(other.isSeen, isSeen) || other.isSeen == isSeen) &&
@@ -563,6 +581,7 @@ class _$MessageTimelineModelImpl implements _MessageTimelineModel {
         lastMessage,
         contentType,
         lastMessageContentType,
+        lastMessageSenderId,
         lastMessageTime,
         isSeen,
         isMuted,
@@ -609,6 +628,7 @@ abstract class _MessageTimelineModel implements MessageTimelineModel {
       final String? lastMessage,
       final String? contentType,
       final String? lastMessageContentType,
+      final String? lastMessageSenderId,
       final DateTime? lastMessageTime,
       final bool? isSeen,
       final bool? isMuted,
@@ -646,6 +666,8 @@ abstract class _MessageTimelineModel implements MessageTimelineModel {
   String? get contentType;
   @override
   String? get lastMessageContentType;
+  @override
+  String? get lastMessageSenderId;
   @override
   DateTime? get lastMessageTime;
   @override

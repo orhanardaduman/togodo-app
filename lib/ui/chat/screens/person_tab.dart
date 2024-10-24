@@ -20,6 +20,8 @@ import 'package:togodo/ui/chat/view_model/web_socket_notifier.dart';
 import 'package:togodo/ui/chat/widgets/index.dart';
 import 'package:togodo/ui/settings/language_settings.dart';
 
+import '../../auth/viewmodel/user_view_model.dart';
+
 class TabFirst extends HookConsumerWidget {
   const TabFirst({
     required this.theme,
@@ -36,6 +38,8 @@ class TabFirst extends HookConsumerWidget {
     final notifier = ref.watch(webSocketProvider.notifier);
     final language = ref.watch(languageProvider);
     final l10n = useL10n();
+    final userModel = ref.watch(userViewModelProvider).tokenModel;
+
     return messages.chatData.ext.isNotNullOrEmpty
         ? MediaQuery.removePadding(
             removeTop: true,
@@ -87,6 +91,7 @@ class TabFirst extends HookConsumerWidget {
                     onlineColor,
                     l10n,
                     language,
+                      userModel?.userId ?? "",
                   ), // Kaydırılabilir kartın içeriği burada yer alır,
                 );
               },
@@ -104,6 +109,7 @@ class TabFirst extends HookConsumerWidget {
     Color onlineColor,
     L10n l10n,
     String language,
+      String currentUserId,
   ) {
     return FlatChatItem(
       onPressed: () {
@@ -128,7 +134,7 @@ class TabFirst extends HookConsumerWidget {
       ),
       message: (message.isDeleted ?? false)
           ? l10n.messageDeleted
-          : formatMessageContent(message, l10n),
+          : formatMessageContent(message, l10n,currentUserId),
       isWriting: message.isWriting ?? false,
       multiLineMessage: true,
       counter: Column(
@@ -169,18 +175,18 @@ class TabFirst extends HookConsumerWidget {
     );
   }
 
-  String formatMessageContent(MessageTimelineModel message, L10n l10n) {
+  String formatMessageContent(MessageTimelineModel message, L10n l10n, String currentId) {
     switch (message.lastMessageContentType) {
       case '2':
-        return message.isCurrentUser! ? l10n.sentPhoto : l10n.receivedPhoto;
+        return message.lastMessageSenderId == currentId ? l10n.sentPhoto : l10n.receivedPhoto;
       case '3':
-        return message.isCurrentUser! ? l10n.sentVideo : l10n.receivedVideo;
+        return message.lastMessageSenderId == currentId? l10n.sentVideo : l10n.receivedVideo;
       case '4':
-        return message.isCurrentUser! ? l10n.sentEvent : l10n.receivedEvent;
+        return message.lastMessageSenderId == currentId ? l10n.sentEvent : l10n.receivedEvent;
       case '5':
-        return message.isCurrentUser! ? l10n.sentAudio : l10n.receivedAudio;
+        return message.lastMessageSenderId == currentId? l10n.sentAudio : l10n.receivedAudio;
       case '6':
-        return message.isCurrentUser!
+        return message.lastMessageSenderId == currentId
             ? l10n.sentEventInvitation
             : l10n.receivedEventInvitation;
       default:

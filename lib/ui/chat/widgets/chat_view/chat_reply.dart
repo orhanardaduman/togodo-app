@@ -49,6 +49,8 @@ class ChatReplyContent extends HookConsumerWidget {
             children: [
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+
                   children: [
                     if (replyModel!.messageContentType == '6')
                       EnventCards(

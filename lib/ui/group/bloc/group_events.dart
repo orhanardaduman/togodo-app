@@ -1,6 +1,6 @@
 abstract class GroupEvents {}
 
 class GetGroup extends GroupEvents {
-  final String id;
+  final String? id;
   GetGroup(this.id);
 }

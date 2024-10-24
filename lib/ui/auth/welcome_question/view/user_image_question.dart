@@ -178,7 +178,11 @@ class _UserImageQuestionPageState extends ConsumerState<UserImageQuestionPage> {
                             )
                           : viewModel.imageUrl != null
                               ? DecorationImage(
-                                  image: NetworkImage(viewModel.imageUrl!),
+                                  image: NetworkImage(viewModel.imageUrl!
+                                      .replaceAll('=s96-c', '')
+                                      .replaceAll('_normal', '')
+                                      .replaceAll('picture', '?height=500'),
+                                  ),
                                   fit: BoxFit.cover,
                                 )
                               : null,

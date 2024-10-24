@@ -14,6 +14,7 @@ class MessageTimelineModel with _$MessageTimelineModel {
     String? lastMessage,
     String? contentType,
     String? lastMessageContentType,
+    String? lastMessageSenderId,
     DateTime? lastMessageTime,
     bool? isSeen,
     bool? isMuted,

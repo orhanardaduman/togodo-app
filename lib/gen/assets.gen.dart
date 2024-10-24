@@ -175,6 +175,10 @@ class $AssetsIconsBoldGen {
   SvgGenImage get arrowUp2 =>
       const SvgGenImage('assets/icons/Bold/Arrow - Up 2.svg');
 
+  /// File path: assets/icons/Bold/Arrow_down.svg
+  SvgGenImage get arrowDown =>
+      const SvgGenImage('assets/icons/Bold/Arrow_down.svg');
+
   /// File path: assets/icons/Bold/Bag.svg
   SvgGenImage get bag => const SvgGenImage('assets/icons/Bold/Bag.svg');
 
@@ -529,6 +533,7 @@ class $AssetsIconsBoldGen {
         arrowLeft2,
         arrowRight2,
         arrowUp2,
+        arrowDown,
         bag,
         bag2,
         bookmark,
